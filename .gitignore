@@ -23,4 +23,19 @@ stats.html
 *.njsproj
 *.sln
 *.sw?
+
+# Environment files
 *.env
+*.env.*
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Cursor AI files
+.cursor/
+/.cursor
+
+# Project specific excludes
+CHANGELOG__PROJECT--DAILY.md
