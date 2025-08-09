@@ -4,9 +4,12 @@ import '@/styles/global.css'
 import { createApp } from 'vue'
 import App from '/APP__ROOT--MAIN.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
+import ElementPlus from 'element-plus'
 
 const app = createApp(App)
 
+// Integrate Element Plus UI library with default size 'small' and z-index 3000
+app.use(ElementPlus, { size: 'small', zIndex: 3000 })
 // Initialize global error handling before everything else
 globalErrorHandler.initialize()
 

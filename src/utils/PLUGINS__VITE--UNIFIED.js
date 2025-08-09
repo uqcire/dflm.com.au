@@ -10,6 +10,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import viteCompression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
+import tailwindcss from '@tailwindcss/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 /**
  * Creates and configures all Vite plugins for the application
@@ -35,7 +37,7 @@ export function createVitePlugins(options = {}) {
     // =============================================================================
     // CORE VUE PLUGIN
     // =============================================================================
-    
+
     /**
      * @vitejs/plugin-vue
      * 
@@ -77,6 +79,12 @@ export function createVitePlugins(options = {}) {
         }
       }
     }),
+
+    // =============================================================================
+    // TAILWIND CSS PLUGIN
+    // =============================================================================
+
+    tailwindcss(),
 
     // =============================================================================
     // AUTO IMPORT PLUGIN
@@ -157,11 +165,12 @@ export function createVitePlugins(options = {}) {
         ],
         
         // Generate TypeScript declaration file
-        dts: false,
+        dts: true,
                 
         // Custom resolvers for special cases
         resolvers: [
           // Add custom resolvers here if needed
+          ElementPlusResolver({ importStyle: 'css' })
         ],
         
         // Directories to scan for auto-imports
@@ -238,6 +247,7 @@ export function createVitePlugins(options = {}) {
       resolvers: [
         // Add component library resolvers here
         // Example: ElementPlusResolver(), AntDesignVueResolver()
+        ElementPlusResolver({ importStyle: 'css' }),
         ...componentResolvers
       ],
       

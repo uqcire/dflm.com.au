@@ -10,8 +10,14 @@ declare module 'vue' {
   export interface GlobalComponents {
     'COMPONENT__ERRORBOUNDARY-GLOBAL': typeof import('./src/components/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue')['default']
     'COMPONENT__NOTIFICATION-CONTAINER': typeof import('./src/components/COMPONENT__NOTIFICATION--CONTAINER.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElMain: typeof import('element-plus/es')['ElMain']
+    ElProgress: typeof import('element-plus/es')['ElProgress']
     'PAGE__HOME-DEFAULT': typeof import('./src/views/PAGE__HOME--DEFAULT.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    'UI__ALERT-BASE': typeof import('./src/components/UI__ALERT--BASE.vue')['default']
   }
 }

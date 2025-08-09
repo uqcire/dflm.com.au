@@ -3,6 +3,7 @@ import { defineConfig, loadEnv } from 'vite'
 import { wrapperEnv } from './src/utils/ENV-PROCESSOR__VITE--WRAPPER'
 import { createVitePlugins } from './src/utils/PLUGINS__VITE--UNIFIED'
 
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Load and process environment variables
@@ -16,7 +17,7 @@ export default defineConfig(({ mode }) => {
       enableAutoImport: true,
       componentResolvers: [],
       enableCompression: mode === 'production',
-      enableBundleAnalysis: mode === 'production'
+      enableBundleAnalysis: mode === 'production',
     }),
     
     base: VITE_PUBLIC_PATH || '/',
@@ -57,14 +58,15 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks: {
             'vue-vendor': ['vue', 'vue-router', 'pinia'],
-            'utils-vendor': ['axios']
+            'utils-vendor': ['axios'],
+            'element-plus-vendor': ['element-plus']
           }
         }
       }
     },
     
     optimizeDeps: {
-      include: ['vue', 'vue-router', 'pinia', 'axios']
+      include: ['vue', 'vue-router', 'pinia', 'axios', 'element-plus']
     }
   }
 })

@@ -94,39 +94,43 @@ function handleReload() {
     })
   }
 }
+
+import { ElConfigProvider } from 'element-plus'
 </script>
 
 <template>
-  <div id="app" class="app">
-    <!-- Global Error Boundary wraps the entire application -->
-    <ErrorBoundary
-      @error="handleError"
-      @retry="handleRetry"
-      @reload="handleReload"
-      :enable-error-reporting="true"
-      :auto-retry="false"
-      :max-retries="3"
-    >
-      <!-- Main Content Area -->
-      <main class="app__main">
-        <router-view v-slot="{ Component, route }">
-          <Suspense>
-            <!-- Each route component is wrapped in its own error boundary -->
-            <component :is="Component" :key="route.path" />
-            <template #fallback>
-              <div class="app__loading">
-                <div class="app__loading-spinner"></div>
-                <p class="app__loading-text">Loading...</p>
-              </div>
-            </template>
-          </Suspense>
-        </router-view>
-      </main>
-    </ErrorBoundary>
-    
-    <!-- Global Notification System -->
-    <NotificationContainer />
-  </div>
+  <el-config-provider :size="size" :z-index="zIndex">
+    <div id="app" class="app">
+      <!-- Global Error Boundary wraps the entire application -->
+      <ErrorBoundary
+        @error="handleError"
+        @retry="handleRetry"
+        @reload="handleReload"
+        :enable-error-reporting="true"
+        :auto-retry="false"
+        :max-retries="3"
+      >
+        <!-- Main Content Area -->
+        <main class="app__main">
+          <router-view v-slot="{ Component, route }">
+            <Suspense>
+              <!-- Each route component is wrapped in its own error boundary -->
+              <component :is="Component" :key="route.path" />
+              <template #fallback>
+                <div class="app__loading">
+                  <div class="app__loading-spinner"></div>
+                  <p class="app__loading-text">Loading...</p>
+                </div>
+              </template>
+            </Suspense>
+          </router-view>
+        </main>
+      </ErrorBoundary>
+      
+      <!-- Global Notification System -->
+      <NotificationContainer />
+    </div>
+  </el-config-provider>
 </template>
 
 <style scoped>

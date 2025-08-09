@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /*
   A (more) Modern CSS Reset
   https://piccalil.li/blog/a-more-modern-css-reset/
@@ -77,4 +79,87 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+:root {
+  /* Monza Primary Color */
+  --monza-50: 0 80% 96%;
+  --monza-100: 359 84% 90%;
+  --monza-200: 359 86% 81%;
+  --monza-300: 359 88% 72%;
+  --monza-400: 358 90% 60%;
+  --monza-500: 358 71% 48%;
+  --monza-600: 358 73% 41%;
+  --monza-700: 358 75% 33%;
+  --monza-800: 357 79% 23%;
+  --monza-900: 358 88% 13%;
+  --monza-950: 359 91% 9%;
+  /* Tree Poppy Secondary Color */
+  --tree-poppy-50: 24 100% 95%;
+  --tree-poppy-100: 24 100% 87%;
+  --tree-poppy-200: 29 99% 72%;
+  --tree-poppy-300: 37 90% 51%;
+  --tree-poppy-400: 37 87% 46%;
+  --tree-poppy-500: 37 89% 39%;
+  --tree-poppy-600: 37 91% 32%;
+  --tree-poppy-700: 36 93% 24%;
+  --tree-poppy-800: 36 95% 16%;
+  --tree-poppy-900: 33 96% 9%;
+  --tree-poppy-950: 30 100% 5%;
+  /* Pickled Bluewood Tertiary Color */
+  --pickled-bluewood-50: 215 46% 95%;
+  --pickled-bluewood-100: 213 46% 87%;
+  --pickled-bluewood-200: 211 48% 74%;
+  --pickled-bluewood-300: 210 43% 62%;
+  --pickled-bluewood-400: 210 28% 52%;
+  --pickled-bluewood-500: 210 27% 42%;
+  --pickled-bluewood-600: 210 27% 33%;
+  --pickled-bluewood-700: 210 29% 24%;
+  --pickled-bluewood-800: 211 31% 19%;
+  --pickled-bluewood-900: 210 36% 11%;
+  --pickled-bluewood-950: 208 43% 7%;
+  /* Cello Tertiary Color */
+  --cello-50: 221 73% 96%;
+  --cello-100: 223 70% 89%;
+  --cello-200: 221 71% 79%;
+  --cello-300: 219 73% 70%;
+  --cello-400: 216 70% 59%;
+  --cello-500: 216 50% 49%;
+  --cello-600: 215 51% 40%;
+  --cello-700: 215 53% 32%;
+  --cello-800: 215 55% 24%;
+  --cello-900: 215 63% 14%;
+  --cello-950: 216 75% 8%;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
 
