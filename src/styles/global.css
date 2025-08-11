@@ -161,5 +161,23 @@ textarea:not([rows]) {
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* Element Plus brand mapping */
+  --el-color-primary: hsl(var(--monza-600));
+  --el-color-primary-dark-2: hsl(var(--monza-700));
+  --el-color-primary-light-3: hsl(var(--monza-400));
+  --el-color-primary-light-5: hsl(var(--monza-300));
+  --el-color-primary-light-7: hsl(var(--monza-200));
+  --el-color-primary-light-8: hsl(var(--monza-100));
+  --el-color-primary-light-9: hsl(var(--monza-50));
+
+  /* Map secondary (Tree Poppy) to warning */
+  --el-color-warning: hsl(var(--tree-poppy-500));
+  --el-color-warning-dark-2: hsl(var(--tree-poppy-600));
+  --el-color-warning-light-3: hsl(var(--tree-poppy-400));
+  --el-color-warning-light-5: hsl(var(--tree-poppy-300));
+  --el-color-warning-light-7: hsl(var(--tree-poppy-200));
+  --el-color-warning-light-8: hsl(var(--tree-poppy-100));
+  --el-color-warning-light-9: hsl(var(--tree-poppy-50));
 }
 
