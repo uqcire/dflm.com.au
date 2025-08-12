@@ -4,14 +4,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/PAGE__HOME--DEFAULT.vue'),
+    name: 'under-construction',
+    component: () => import('@/views/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
     meta: {
-      title: 'Homepage',
+      title: 'Under Construction',
       preload: true, // Preload critical routes
       transition: 'fade',
       keepAlive: true, // Cache component
       layout: '' // Different layout
+    },
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('@/views/PAGE__HOME--DEFAULT.vue'),
+    meta: {
+      title: 'Homepage',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
     },
   },
 ]

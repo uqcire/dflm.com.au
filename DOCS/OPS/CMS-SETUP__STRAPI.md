@@ -1,5 +1,16 @@
 # CMS SETUP — STRAPI + SUPABASE (RENDER)
 
+## STATUS — PROJECT SETUP PROGRESS
+- Date: 2025-08-12
+- Completed:
+  - Permissions configured in Strapi (Render) for the Public role as per Step 4.
+- Deferred (do later):
+  - Step 5 — Webhooks: not implemented yet. Defer until deploy pipeline and site build strategy are defined. Site development has not started.
+- Resume when:
+  - Decide build strategy (SSG vs CSR/SSR).
+  - If SSG: create a Vercel Deploy Hook, then add Strapi webhooks for publish/unpublish (others optional).
+  - If CSR/SSR: deploy webhooks may be unnecessary.
+
 ## 1) Supabase
 - Create project; copy Postgres connection string (append `?sslmode=require`)
 - Example: `postgresql://postgres:YOUR_PASSWORD@YOUR_REF.supabase.co:5432/postgres?sslmode=require`

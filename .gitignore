@@ -36,6 +36,7 @@ stats.html
 # Cursor AI files
 .cursor/
 /.cursor
+DOCS/
 
 # Project specific excludes
 CHANGELOG__PROJECT--DAILY.md
