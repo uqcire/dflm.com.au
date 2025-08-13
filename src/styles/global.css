@@ -1,6 +1,14 @@
 @import url("https://use.typekit.net/dcp0ukb.css");
 @import "tailwindcss";
 
+@theme {
+  --font-playfair: "playfair-display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-montserrat: "montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-playfair);
+}
 
 /*
   A (more) Modern CSS Reset
@@ -19,6 +27,7 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  font-family: var(--font-montserrat);
 }
 
 /* Remove default margin in favour of better control in authored CSS */
@@ -43,6 +52,7 @@ body {
 h1, h2, h3, h4,
 button, input, label {
   line-height: 1.1;
+  
 }
 
 /* Balance text wrapping on headings */
@@ -130,23 +140,4 @@ textarea:not([rows]) {
   --cello-800: 215 55% 24%;
   --cello-900: 215 63% 14%;
   --cello-950: 216 75% 8%;
-
-  /* Element Plus brand mapping */
-  --el-color-primary: hsl(var(--monza-600));
-  --el-color-primary-dark-2: hsl(var(--monza-700));
-  --el-color-primary-light-3: hsl(var(--monza-400));
-  --el-color-primary-light-5: hsl(var(--monza-300));
-  --el-color-primary-light-7: hsl(var(--monza-200));
-  --el-color-primary-light-8: hsl(var(--monza-100));
-  --el-color-primary-light-9: hsl(var(--monza-50));
-
-  /* Secondary = Tree Poppy mapped to Element Plus warning */
-  --el-color-warning: hsl(var(--tree-poppy-500));
-  --el-color-warning-dark-2: hsl(var(--tree-poppy-600));
-  --el-color-warning-light-3: hsl(var(--tree-poppy-400));
-  --el-color-warning-light-5: hsl(var(--tree-poppy-300));
-  --el-color-warning-light-7: hsl(var(--tree-poppy-200));
-  --el-color-warning-light-8: hsl(var(--tree-poppy-100));
-  --el-color-warning-light-9: hsl(var(--tree-poppy-50));
 }
-

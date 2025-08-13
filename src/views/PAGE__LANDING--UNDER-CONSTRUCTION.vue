@@ -4,25 +4,24 @@ const brand = 'E-Sunrise Australia'
 
 <template>
     <section class="UC">
-        <el-container class="UC__container min-h-screen flex flex-col">
+        <el-container class="UC__container">
             <el-main>
-                <div class="UC__content flex flex-col items-center justify-center px-6 gap-6">
-                    <img class="UC__logo mb-6 opacity-90" src="@/assets/brand__logo--icon.png" alt="Logo" />
-                    <h1 class="UC__title text-4xl md:text-6xl font-bold mb-3 text-white text-center">
+                <div class="UC__content ">
+                    <img class="UC__logo" src="@/assets/brand__logo--icon.png" alt="Logo" />
+                    <h1 class="UC__title">
                         {{ brand }} is under construction
                     </h1>
-                    <h2 class="UC__subtitle text-xl md:text-3xl font-semibold text-white mb-6 text-center">
+                    <h2 class="UC__subtitle">
                         Your Strategic Partner for Premium Agricultural Ingredients
                     </h2>
-                    <p class="text-sm md:text-lg text-gray-300 mb-6 max-w-xl text-center">
+                    <p class="UC__description">
                         We're getting everything ready. Please check back soon.
                     </p>
 
-                    <div class="UC__actions flex items-center gap-3">
-                        <el-button
-                            class="UC__cta UC__cta--primary shadow-xl h-14 px-6 rounded-lg flex items-center justify-center text-lg font-semibold"
-                            tag="a" size="large" href="mailto:hello@dflm.com.au?subject=Website%20Enquiry">
-                            <span class="UC__cta--primary__text text-white font-semibold text-lg">Contact us</span>
+                    <div class="UC__actions ">
+                        <el-button class="UC__cta UC__cta--primary " tag="a" size="large"
+                            href="mailto:hello@dflm.com.au?subject=Website%20Enquiry">
+                            <span class="UC__cta--primary__text ">Contact us</span>
                         </el-button>
                     </div>
                 </div>
@@ -51,15 +50,37 @@ const brand = 'E-Sunrise Australia'
     justify-content: center;
 }
 
-.UC__container {}
+.UC__container {
+    @apply min-h-screen flex flex-col;
+}
 
-.UC__title {}
+.UC__content {
+    @apply flex flex-col items-center justify-center px-6 gap-6
+}
 
-.UC__subtitle {}
+.UC__logo {
+    @apply mb-6 opacity-90
+}
 
-.UC__actions {}
+.UC__title {
+    @apply text-4xl md:text-6xl font-bold mb-3 text-white text-center
+}
 
-.UC__cta {}
+.UC__subtitle {
+    @apply text-xl md:text-3xl font-semibold text-white mb-6 text-center
+}
+
+.UC__description {
+    @apply text-sm md:text-lg text-gray-300 mb-6 max-w-xl text-center
+}
+
+.UC__actions {
+    @apply flex items-center gap-3;
+}
+
+.UC__cta {
+    @apply shadow-xl h-14 px-6 rounded-lg flex items-center justify-center text-lg font-semibold
+}
 
 .UC__cta--primary {
     background-color: hsl(var(--tree-poppy-500));
@@ -69,7 +90,9 @@ const brand = 'E-Sunrise Australia'
     text-decoration: none;
 }
 
-.UC__cta--primary__text {}
+.UC__cta--primary__text {
+    @apply text-white font-semibold text-lg
+}
 
 .UC__footer {
     @apply text-white text-sm font-normal flex items-center justify-center
