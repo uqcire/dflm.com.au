@@ -15,19 +15,21 @@
     <div class="error-boundary__container">
       <div class="error-boundary__icon">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 9V13M12 17H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M12 9V13M12 17H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
-      
+
       <div class="error-boundary__content">
         <h2 class="error-boundary__title">
           {{ errorConfig.title }}
         </h2>
-        
+
         <p class="error-boundary__message">
           {{ errorConfig.message }}
         </p>
-        
+
         <div v-if="showDetails" class="error-boundary__details">
           <details class="error-boundary__technical">
             <summary>Technical Details</summary>
@@ -39,43 +41,30 @@
             </div>
           </details>
         </div>
-        
+
         <div class="error-boundary__actions">
-          <button 
-            @click="retry" 
-            class="error-boundary__button error-boundary__button--primary"
-            :disabled="retrying"
-          >
+          <button @click="retry" class="error-boundary__button error-boundary__button--primary" :disabled="retrying">
             <span v-if="retrying">Retrying...</span>
             <span v-else>{{ errorConfig.retryText }}</span>
           </button>
-          
-          <button 
-            @click="reload" 
-            class="error-boundary__button error-boundary__button--secondary"
-          >
+
+          <button @click="reload" class="error-boundary__button error-boundary__button--secondary">
             {{ errorConfig.reloadText }}
           </button>
-          
-          <button 
-            @click="toggleDetails" 
-            class="error-boundary__button error-boundary__button--ghost"
-          >
+
+          <button @click="toggleDetails" class="error-boundary__button error-boundary__button--ghost">
             {{ showDetails ? 'Hide Details' : 'Show Details' }}
           </button>
-          
-          <button 
-            @click="reportError" 
-            class="error-boundary__button error-boundary__button--ghost"
-            v-if="enableErrorReporting"
-          >
+
+          <button @click="reportError" class="error-boundary__button error-boundary__button--ghost"
+            v-if="enableErrorReporting">
             Report Issue
           </button>
         </div>
       </div>
     </div>
   </div>
-  
+
   <!-- Render children when no error -->
   <slot v-else />
 </template>
@@ -99,7 +88,7 @@ const props = defineProps({
       reloadText: 'Reload Page'
     })
   },
-  
+
   /**
    * Enable error reporting functionality
    */
@@ -107,7 +96,7 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
-  
+
   /**
    * Auto-retry functionality
    */
@@ -115,7 +104,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  
+
   /**
    * Auto-retry delay in milliseconds
    */
@@ -123,7 +112,7 @@ const props = defineProps({
     type: Number,
     default: 3000
   },
-  
+
   /**
    * Maximum number of auto-retries
    */
@@ -131,7 +120,7 @@ const props = defineProps({
     type: Number,
     default: 3
   },
-  
+
   /**
    * Fallback component to render on error
    */
@@ -169,47 +158,57 @@ const errorConfig = computed(() => ({
  * Capture errors from child components
  */
 onErrorCaptured((error, componentInstance, errorInfo) => {
-  console.error('Error captured by boundary:', error)
-  console.error('Component instance:', componentInstance)
-  console.error('Error info:', errorInfo)
-  
-  // Set error state
-  hasError.value = true
-  errorMessage.value = error.message || 'An unexpected error occurred'
-  
-  // Collect detailed error information
-  errorDetails.value = {
-    message: error.message,
-    stack: error.stack,
-    componentName: componentInstance?.$options?.name || componentInstance?.$options?.__name || 'Unknown Component',
-    timestamp: new Date().toISOString(),
-    userAgent: navigator.userAgent,
-    url: window.location.href,
-    errorInfo: errorInfo
+  try {
+    console.error('Error captured by boundary:', error)
+    console.error('Component instance:', componentInstance)
+    console.error('Error info:', errorInfo)
+
+    // Create a proper error object if none exists
+    const normalizedError = error instanceof Error
+      ? error
+      : new Error(error?.message || error || 'Unknown component error')
+
+    // Set error state
+    hasError.value = true
+    errorMessage.value = normalizedError.message || 'An unexpected error occurred'
+
+    // Collect detailed error information
+    errorDetails.value = {
+      message: normalizedError.message,
+      stack: normalizedError.stack || 'No stack trace available',
+      componentName: componentInstance?.$options?.name || componentInstance?.$options?.__name || 'Unknown Component',
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      url: window.location.href,
+      errorInfo: errorInfo
+    }
+
+    // Emit error event for parent handling
+    emit('error', {
+      error: normalizedError,
+      componentInstance,
+      errorInfo,
+      details: errorDetails.value
+    })
+
+    // Auto-retry if enabled
+    if (props.autoRetry && retryCount.value < props.maxRetries) {
+      setTimeout(() => {
+        autoRetryHandler()
+      }, props.autoRetryDelay)
+    }
+
+    // Report error to external service if enabled
+    if (props.enableErrorReporting) {
+      reportErrorToService(normalizedError, errorDetails.value)
+    }
+
+    // Prevent error from bubbling up
+    return false
+  } catch (handlerError) {
+    console.error('Error in onErrorCaptured:', handlerError)
+    return false
   }
-  
-  // Emit error event for parent handling
-  emit('error', {
-    error,
-    componentInstance,
-    errorInfo,
-    details: errorDetails.value
-  })
-  
-  // Auto-retry if enabled
-  if (props.autoRetry && retryCount.value < props.maxRetries) {
-    setTimeout(() => {
-      autoRetryHandler()
-    }, props.autoRetryDelay)
-  }
-  
-  // Report error to external service if enabled
-  if (props.enableErrorReporting) {
-    reportErrorToService(error, errorDetails.value)
-  }
-  
-  // Prevent error from bubbling up
-  return false
 })
 
 /**
@@ -218,19 +217,19 @@ onErrorCaptured((error, componentInstance, errorInfo) => {
 const retry = async () => {
   retrying.value = true
   retryCount.value++
-  
+
   try {
     // Wait a moment for any cleanup
     await new Promise(resolve => setTimeout(resolve, 500))
-    
+
     // Reset error state
     hasError.value = false
     errorMessage.value = ''
     errorDetails.value = {}
     showDetails.value = false
-    
+
     emit('retry', retryCount.value)
-    
+
   } catch (error) {
     console.error('Retry failed:', error)
   } finally {
@@ -267,10 +266,10 @@ const toggleDetails = () => {
 const reportError = () => {
   // In a real application, this would send error details to an error tracking service
   console.log('Reporting error:', errorDetails.value)
-  
+
   // Example: Send to error tracking service
   reportErrorToService(new Error(errorMessage.value), errorDetails.value)
-  
+
   // Show confirmation to user
   alert('Error report sent. Thank you for helping us improve the application!')
 }
@@ -288,7 +287,7 @@ const reportErrorToService = (error, details) => {
         fatal: false
       })
     }
-    
+
     // Example: Send to custom logging endpoint
     // fetch('/api/errors', {
     //   method: 'POST',
@@ -300,7 +299,7 @@ const reportErrorToService = (error, details) => {
     //     timestamp: new Date().toISOString()
     //   })
     // }).catch(err => console.error('Failed to report error:', err))
-    
+
   } catch (reportingError) {
     console.error('Failed to report error:', reportingError)
   }
@@ -323,7 +322,7 @@ const reset = () => {
 onMounted(() => {
   // Handle unhandled promise rejections
   window.addEventListener('unhandledrejection', handleUnhandledRejection)
-  
+
   // Handle general JavaScript errors
   window.addEventListener('error', handleGlobalError)
 })
@@ -332,48 +331,80 @@ onMounted(() => {
  * Handle unhandled promise rejections
  */
 const handleUnhandledRejection = (event) => {
-  console.error('Unhandled promise rejection:', event.reason)
-  
-  // Don't show error boundary for network errors in HTTP client
-  // (those should be handled by the HTTP client itself)
-  if (event.reason?.isAxiosError) {
-    return
+  try {
+    console.error('Unhandled promise rejection:', event.reason)
+
+    // Don't show error boundary for network errors in HTTP client
+    // (those should be handled by the HTTP client itself)
+    if (event.reason?.isAxiosError) {
+      return
+    }
+
+    // Create a proper error object if none exists
+    const error = event.reason instanceof Error
+      ? event.reason
+      : new Error(event.reason?.message || event.reason || 'Unhandled promise rejection')
+
+    hasError.value = true
+    errorMessage.value = 'A network or server error occurred'
+    errorDetails.value = {
+      message: error.message || 'Unhandled promise rejection',
+      stack: error.stack || 'No stack trace available',
+      componentName: 'Global Promise Handler',
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      url: window.location.href,
+      type: 'unhandled_promise_rejection'
+    }
+
+    event.preventDefault()
+  } catch (handlerError) {
+    console.error('Error in handleUnhandledRejection:', handlerError)
   }
-  
-  hasError.value = true
-  errorMessage.value = 'A network or server error occurred'
-  errorDetails.value = {
-    message: event.reason?.message || 'Unhandled promise rejection',
-    stack: event.reason?.stack || 'No stack trace available',
-    componentName: 'Global Promise Handler',
-    timestamp: new Date().toISOString(),
-    userAgent: navigator.userAgent,
-    url: window.location.href,
-    type: 'unhandled_promise_rejection'
-  }
-  
-  event.preventDefault()
 }
 
 /**
  * Handle global JavaScript errors
  */
 const handleGlobalError = (event) => {
-  console.error('Global error:', event.error)
-  
-  hasError.value = true
-  errorMessage.value = 'An unexpected error occurred'
-  errorDetails.value = {
-    message: event.error?.message || event.message || 'Global JavaScript error',
-    stack: event.error?.stack || 'No stack trace available',
-    componentName: 'Global Error Handler',
-    timestamp: new Date().toISOString(),
-    userAgent: navigator.userAgent,
-    url: window.location.href,
-    filename: event.filename,
-    lineno: event.lineno,
-    colno: event.colno,
-    type: 'global_javascript_error'
+  try {
+    // Ignore SES lockdown extension errors
+    if (event.message?.includes('SES_UNCAUGHT_EXCEPTION') ||
+      event.filename?.includes('lockdown-install.js')) {
+      return
+    }
+
+    // Ignore ResizeObserver errors (common browser noise)
+    if (event.message?.includes('ResizeObserver loop completed')) {
+      return
+    }
+
+    // Ignore null errors
+    if (!event.error && !event.message) {
+      return
+    }
+
+    console.error('Global error:', event.error)
+
+    // Create a proper error object if none exists
+    const error = event.error || new Error(event.message || 'Unknown global error')
+
+    hasError.value = true
+    errorMessage.value = 'An unexpected error occurred'
+    errorDetails.value = {
+      message: error.message || event.message || 'Global JavaScript error',
+      stack: error.stack || 'No stack trace available',
+      componentName: 'Global Error Handler',
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      url: window.location.href,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+      type: 'global_javascript_error'
+    }
+  } catch (handlerError) {
+    console.error('Error in handleGlobalError:', handlerError)
   }
 }
 
@@ -541,12 +572,12 @@ defineExpose({
   .error-boundary {
     padding: var(--space-4, 1rem);
   }
-  
+
   .error-boundary__actions {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .error-boundary__button {
     width: 100%;
   }
@@ -558,22 +589,22 @@ defineExpose({
     background: linear-gradient(135deg, #1f1f1f 0%, #2d2d2d 100%);
     border-color: #444;
   }
-  
+
   .error-boundary__title {
     color: #ef4444;
   }
-  
+
   .error-boundary__message {
     color: #a3a3a3;
   }
-  
+
   .error-boundary__technical {
     background: #2d2d2d;
     border-color: #444;
   }
-  
+
   .error-boundary__technical summary {
     color: #e5e5e5;
   }
 }
-</style> 
+</style>

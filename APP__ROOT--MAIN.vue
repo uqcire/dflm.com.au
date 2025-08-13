@@ -11,10 +11,10 @@
 -->
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import ErrorBoundary from '@/components/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue'
 import NotificationContainer from '@/components/COMPONENT__NOTIFICATION--CONTAINER.vue'
-import ComponentNavigationPrimary from '@/components/COMPONENT__NAVIGATION--PRIMARY.vue'
+import ComponentHeaderSite from '@/components/COMPONENT__HEADER--SITE.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
 
 /**
@@ -22,11 +22,6 @@ import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
  */
 onMounted(() => {
   console.log('🚀 Application initialized with error handling')
-
-  // Ensure global error handler is initialized
-  if (!globalErrorHandler.isInitialized) {
-    globalErrorHandler.initialize()
-  }
 
   // Add custom error handler for demonstration
   globalErrorHandler.addEventListener((errorInfo) => {
@@ -97,23 +92,28 @@ function handleReload() {
 }
 
 import { ElConfigProvider } from 'element-plus'
+
+const size = ref('small')
+const zIndex = ref(3000)
 </script>
 
 <template>
   <el-config-provider :size="size" :z-index="zIndex">
     <div id="app" class="app">
       <!-- Site Navigation -->
-      <ComponentNavigationPrimary />
+      <ComponentHeaderSite />
 
       <!-- Global Error Boundary wraps the entire application -->
-      <ErrorBoundary @error="handleError" @retry="handleRetry" @reload="handleReload" :enable-error-reporting="true"
+      <ErrorBoundary @error="handleError" @retry="handleRetry" @reload="handleReload" :enable-error-reporting="false"
         :auto-retry="false" :max-retries="3">
         <!-- Main Content Area -->
         <main class="app__main">
           <router-view v-slot="{ Component, route }">
             <Suspense>
               <!-- Each route component is wrapped in its own error boundary -->
-              <component :is="Component" :key="route.path" />
+              <div>
+                <component :is="Component" :key="route.path" />
+              </div>
               <template #fallback>
                 <div class="app__loading">
                   <div class="app__loading-spinner"></div>

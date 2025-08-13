@@ -8,10 +8,11 @@ import '@/styles/global.css'
 
 const app = createApp(App)
 
-// Integrate Element Plus UI library with default size 'small' and z-index 3000
-app.use(ElementPlus, { size: 'small', zIndex: 3000 })
 // Initialize global error handling before everything else
 globalErrorHandler.initialize()
+
+// Add Element Plus plugin
+app.use(ElementPlus)
 
 // Make global error handler accessible globally for HTTP client and other utilities
 window.globalErrorHandler = globalErrorHandler

@@ -42,11 +42,11 @@ export class GlobalErrorHandler {
     this.options = {
       enableConsoleLogging: true,
       enableUserNotifications: true,
-      enableErrorReporting: true,
+      enableErrorReporting: false, // Disabled until backend API is ready
       enableRecovery: true,
       maxRetries: 3,
       retryDelay: 1000,
-      reportingEndpoint: '/api/errors',
+      reportingEndpoint: null, // No backend API yet
       excludeErrors: [
         'Script error',
         'Network Error',
@@ -119,6 +119,11 @@ export class GlobalErrorHandler {
       source: 'window.unhandledrejection'
     })
     
+    // Check if error should be excluded before processing
+    if (this.shouldExcludeError(errorInfo)) {
+      return
+    }
+    
     this.processError(errorInfo)
     
     // Prevent default browser behavior
@@ -140,6 +145,11 @@ export class GlobalErrorHandler {
       lineno: event.lineno,
       colno: event.colno
     })
+    
+    // Check if error should be excluded before processing
+    if (this.shouldExcludeError(errorInfo)) {
+      return
+    }
     
     this.processError(errorInfo)
   }
@@ -245,32 +255,51 @@ export class GlobalErrorHandler {
   }
 
   /**
-   * Normalize different error types to standard Error object
+   * Normalize error object to ensure consistent structure
    */
   normalizeError(error) {
-    if (error instanceof Error) {
-      return error
+    // Handle null/undefined errors
+    if (!error) {
+      return {
+        name: 'UnknownError',
+        message: 'An unknown error occurred (null/undefined error object)',
+        stack: 'No stack trace available'
+      }
     }
     
+    // Handle string errors
     if (typeof error === 'string') {
-      return new Error(error)
+      return {
+        name: 'StringError',
+        message: error,
+        stack: 'No stack trace available'
+      }
     }
     
-    if (error && typeof error === 'object') {
-      const message = error.message || error.toString() || 'Unknown error'
-      const normalizedError = new Error(message)
-      
-      // Preserve additional properties
-      Object.keys(error).forEach(key => {
-        if (key !== 'message') {
-          normalizedError[key] = error[key]
-        }
-      })
-      
-      return normalizedError
+    // Handle Error objects
+    if (error instanceof Error) {
+      return {
+        name: error.name || 'Error',
+        message: error.message || 'No error message',
+        stack: error.stack || 'No stack trace available'
+      }
     }
     
-    return new Error('Unknown error occurred')
+    // Handle other objects
+    if (typeof error === 'object') {
+      return {
+        name: error.name || 'UnknownError',
+        message: error.message || JSON.stringify(error),
+        stack: error.stack || 'No stack trace available'
+      }
+    }
+    
+    // Fallback for primitives
+    return {
+      name: 'PrimitiveError',
+      message: String(error),
+      stack: 'No stack trace available'
+    }
   }
 
   /**
@@ -299,18 +328,31 @@ export class GlobalErrorHandler {
   }
 
   /**
-   * Check if error should be excluded from handling
+   * Determine if error should be excluded from handling
    */
   shouldExcludeError(errorInfo) {
-    return this.options.excludeErrors.some(excludePattern => {
-      if (typeof excludePattern === 'string') {
-        return errorInfo.message.includes(excludePattern)
-      }
-      if (excludePattern instanceof RegExp) {
-        return excludePattern.test(errorInfo.message)
-      }
-      return false
-    })
+    // Exclude SES lockdown extension errors (browser extension noise)
+    if (errorInfo.message?.includes('SES_UNCAUGHT_EXCEPTION') || 
+        errorInfo.message?.includes('lockdown-install.js')) {
+      return true
+    }
+    
+    // Exclude ResizeObserver errors (common browser noise)
+    if (errorInfo.message?.includes('ResizeObserver loop completed')) {
+      return true
+    }
+    
+    // Exclude non-actionable errors
+    if (errorInfo.message?.includes('Non-Error promise rejection captured')) {
+      return true
+    }
+    
+    // Exclude network errors that should be handled by HTTP client
+    if (this.isAxiosError(errorInfo.error)) {
+      return true
+    }
+    
+    return false
   }
 
   /**
@@ -459,29 +501,26 @@ export class GlobalErrorHandler {
    * Report error to external monitoring service
    */
   async reportError(errorInfo) {
+    if (!this.options.enableErrorReporting) {
+      return
+    }
+    
     try {
-      // Report to browser's error tracking if available
-      if (window.gtag) {
-        window.gtag('event', 'exception', {
-          description: errorInfo.message,
-          fatal: errorInfo.severity === ErrorSeverity.CRITICAL
-        })
-      }
+      // TODO: Replace with actual error reporting service when backend is ready
+      console.log('📊 Error Report (not sent - no backend):', {
+        id: errorInfo.id,
+        message: errorInfo.message,
+        type: errorInfo.type,
+        severity: errorInfo.severity,
+        timestamp: errorInfo.timestamp,
+        url: errorInfo.url,
+        userAgent: errorInfo.userAgent
+      })
       
-      // Report to custom endpoint
-      if (this.options.reportingEndpoint) {
-        await fetch(this.options.reportingEndpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            ...errorInfo,
-            // Remove circular references and large objects
-            originalError: undefined
-          })
-        })
-      }
+      // Example integration with error tracking services:
+      // Sentry: Sentry.captureException(errorInfo.error, { extra: errorInfo })
+      // LogRocket: LogRocket.captureException(errorInfo.error)
+      // Custom: await fetch('/api/errors', { method: 'POST', body: JSON.stringify(errorInfo) })
       
     } catch (reportingError) {
       console.error('Failed to report error:', reportingError)
@@ -650,11 +689,6 @@ export class GlobalErrorHandler {
 
 // Create singleton instance
 export const globalErrorHandler = new GlobalErrorHandler()
-
-// Auto-initialize in browser environment
-if (typeof window !== 'undefined') {
-  globalErrorHandler.initialize()
-}
 
 // Export convenience functions
 export function handleError(error, context = {}) {
