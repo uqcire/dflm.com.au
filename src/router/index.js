@@ -26,6 +26,42 @@ const routes = [
       layout: ''
     },
   },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/PAGE__ABOUT--DEFAULT.vue'),
+    meta: {
+      title: 'About',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/products',
+    name: 'products',
+    component: () => import('@/views/PAGE__PRODUCTS--DEFAULT.vue'),
+    meta: {
+      title: 'Products',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: () => import('@/views/PAGE__CONTACT--DEFAULT.vue'),
+    meta: {
+      title: 'Contact',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  }
 ]
 
 const router = createRouter({
