@@ -21,12 +21,12 @@ import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
  */
 onMounted(() => {
   console.log('🚀 Application initialized with error handling')
-  
+
   // Ensure global error handler is initialized
   if (!globalErrorHandler.isInitialized) {
     globalErrorHandler.initialize()
   }
-  
+
   // Add custom error handler for demonstration
   globalErrorHandler.addEventListener((errorInfo) => {
     console.log('Application received error event:', errorInfo)
@@ -46,7 +46,7 @@ onUnmounted(() => {
  */
 function handleError(errorEvent) {
   console.log('Error boundary caught error:', errorEvent)
-  
+
   // Show user-friendly notification
   if (window.notifications) {
     window.notifications.error(
@@ -71,7 +71,7 @@ function handleError(errorEvent) {
  */
 function handleRetry(retryCount) {
   console.log(`Retry attempt #${retryCount}`)
-  
+
   if (window.notifications) {
     window.notifications.info(
       `Attempting to recover from error (attempt ${retryCount})...`,
@@ -87,7 +87,7 @@ function handleRetry(retryCount) {
  */
 function handleReload() {
   console.log('Reloading application due to error')
-  
+
   if (window.notifications) {
     window.notifications.info('Reloading application...', {
       duration: 2000
@@ -101,15 +101,28 @@ import { ElConfigProvider } from 'element-plus'
 <template>
   <el-config-provider :size="size" :z-index="zIndex">
     <div id="app" class="app">
+      <!-- Site Navigation -->
+      <header class="app__header" role="navigation" aria-label="Primary">
+        <el-menu class="app__nav" mode="horizontal" :default-active="$route.path" router background-color="transparent"
+          active-text-color="#B51C21" text-color="var(--color-text, #1f2937)">
+          <el-menu-item index="/">Home</el-menu-item>
+          <el-menu-item index="/about">About</el-menu-item>
+          <el-sub-menu index="/services">
+            <template #title>Services</template>
+            <el-menu-item index="/services/import-distribution">Import & Distribution</el-menu-item>
+            <el-menu-item index="/services/oem">OEM / Private Label</el-menu-item>
+          </el-sub-menu>
+          <el-menu-item index="/products">Products</el-menu-item>
+          <el-menu-item index="/industries">Industries</el-menu-item>
+          <el-menu-item index="/certifications">Certifications</el-menu-item>
+          <el-menu-item index="/blog">Blog</el-menu-item>
+          <el-menu-item index="/contact">Contact</el-menu-item>
+        </el-menu>
+      </header>
+
       <!-- Global Error Boundary wraps the entire application -->
-      <ErrorBoundary
-        @error="handleError"
-        @retry="handleRetry"
-        @reload="handleReload"
-        :enable-error-reporting="true"
-        :auto-retry="false"
-        :max-retries="3"
-      >
+      <ErrorBoundary @error="handleError" @retry="handleRetry" @reload="handleReload" :enable-error-reporting="true"
+        :auto-retry="false" :max-retries="3">
         <!-- Main Content Area -->
         <main class="app__main">
           <router-view v-slot="{ Component, route }">
@@ -126,7 +139,7 @@ import { ElConfigProvider } from 'element-plus'
           </router-view>
         </main>
       </ErrorBoundary>
-      
+
       <!-- Global Notification System -->
       <NotificationContainer />
     </div>
@@ -140,6 +153,19 @@ import { ElConfigProvider } from 'element-plus'
   color: var(--color-text, #1f2937);
   background: var(--color-bg, #ffffff);
   line-height: 1.6;
+}
+
+.app__header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: saturate(180%) blur(8px);
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid var(--color-border, #e5e7eb);
+}
+
+.app__nav {
+  padding: 0 var(--space-4, 1rem);
 }
 
 .app__main {
@@ -174,8 +200,13 @@ import { ElConfigProvider } from 'element-plus'
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Dark theme support */
@@ -184,12 +215,17 @@ import { ElConfigProvider } from 'element-plus'
     background: var(--color-bg-dark, #111827);
     color: var(--color-text-dark, #f9fafb);
   }
-  
+
+  .app__header {
+    background: rgba(17, 24, 39, 0.7);
+    border-bottom-color: #374151;
+  }
+
   .app__loading-spinner {
     border-color: var(--color-border-dark, #374151);
     border-top-color: var(--color-primary, #3b82f6);
   }
-  
+
   .app__loading-text {
     color: var(--color-text-secondary-dark, #d1d5db);
   }
