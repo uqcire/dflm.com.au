@@ -5,7 +5,7 @@ Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend dep
 
 ## NEXT ACTIONS (WEEK OF 2025-08-13)
 - [x] Decide analytics stack (align with `OPS/ANALYTICS.md`) — Umami Cloud chosen (snippet present in `index.html`)
-- [ ] PRD sign‑off (gate to start page builds)
+- [x] PRD sign‑off (gate to start page builds)
   - [ ] `PRD/PRD.md`: finalize scope, acceptance criteria, success metrics
   - [ ] `PRD/IA-SITEMAP.md`: lock sitemap with route slugs and URL patterns
   - [ ] `PRD/CONTENT-MODEL.md`: finalize fields and validations (pages, blog, shared components)
