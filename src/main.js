@@ -4,7 +4,6 @@ import { createApp } from 'vue'
 import App from '/APP__ROOT--MAIN.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
 import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
 import '@/styles/global.css'
 
 const app = createApp(App)

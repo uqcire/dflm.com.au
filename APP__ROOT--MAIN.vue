@@ -14,6 +14,7 @@
 import { onMounted, onUnmounted } from 'vue'
 import ErrorBoundary from '@/components/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue'
 import NotificationContainer from '@/components/COMPONENT__NOTIFICATION--CONTAINER.vue'
+import ComponentNavigationPrimary from '@/components/COMPONENT__NAVIGATION--PRIMARY.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
 
 /**
@@ -102,23 +103,7 @@ import { ElConfigProvider } from 'element-plus'
   <el-config-provider :size="size" :z-index="zIndex">
     <div id="app" class="app">
       <!-- Site Navigation -->
-      <header class="app__header" role="navigation" aria-label="Primary">
-        <el-menu class="app__nav" mode="horizontal" :default-active="$route.path" router background-color="transparent"
-          active-text-color="#B51C21" text-color="var(--color-text, #1f2937)">
-          <el-menu-item index="/">Home</el-menu-item>
-          <el-menu-item index="/about">About</el-menu-item>
-          <el-sub-menu index="/services">
-            <template #title>Services</template>
-            <el-menu-item index="/services/import-distribution">Import & Distribution</el-menu-item>
-            <el-menu-item index="/services/oem">OEM / Private Label</el-menu-item>
-          </el-sub-menu>
-          <el-menu-item index="/products">Products</el-menu-item>
-          <el-menu-item index="/industries">Industries</el-menu-item>
-          <el-menu-item index="/certifications">Certifications</el-menu-item>
-          <el-menu-item index="/blog">Blog</el-menu-item>
-          <el-menu-item index="/contact">Contact</el-menu-item>
-        </el-menu>
-      </header>
+      <ComponentNavigationPrimary />
 
       <!-- Global Error Boundary wraps the entire application -->
       <ErrorBoundary @error="handleError" @retry="handleRetry" @reload="handleReload" :enable-error-reporting="true"
@@ -153,19 +138,6 @@ import { ElConfigProvider } from 'element-plus'
   color: var(--color-text, #1f2937);
   background: var(--color-bg, #ffffff);
   line-height: 1.6;
-}
-
-.app__header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: saturate(180%) blur(8px);
-  background: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid var(--color-border, #e5e7eb);
-}
-
-.app__nav {
-  padding: 0 var(--space-4, 1rem);
 }
 
 .app__main {
@@ -214,11 +186,6 @@ import { ElConfigProvider } from 'element-plus'
   .app {
     background: var(--color-bg-dark, #111827);
     color: var(--color-text-dark, #f9fafb);
-  }
-
-  .app__header {
-    background: rgba(17, 24, 39, 0.7);
-    border-bottom-color: #374151;
   }
 
   .app__loading-spinner {

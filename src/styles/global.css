@@ -4,6 +4,55 @@
 @theme {
   --font-playfair: "playfair-display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-montserrat: "montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Tailwind v4 color tokens mapped from HSL component vars */
+  --color-monza-50: hsl(var(--monza-50));
+  --color-monza-100: hsl(var(--monza-100));
+  --color-monza-200: hsl(var(--monza-200));
+  --color-monza-300: hsl(var(--monza-300));
+  --color-monza-400: hsl(var(--monza-400));
+  --color-monza-500: hsl(var(--monza-500));
+  --color-monza-600: hsl(var(--monza-600));
+  --color-monza-700: hsl(var(--monza-700));
+  --color-monza-800: hsl(var(--monza-800));
+  --color-monza-900: hsl(var(--monza-900));
+  --color-monza-950: hsl(var(--monza-950));
+
+  --color-tree-poppy-50: hsl(var(--tree-poppy-50));
+  --color-tree-poppy-100: hsl(var(--tree-poppy-100));
+  --color-tree-poppy-200: hsl(var(--tree-poppy-200));
+  --color-tree-poppy-300: hsl(var(--tree-poppy-300));
+  --color-tree-poppy-400: hsl(var(--tree-poppy-400));
+  --color-tree-poppy-500: hsl(var(--tree-poppy-500));
+  --color-tree-poppy-600: hsl(var(--tree-poppy-600));
+  --color-tree-poppy-700: hsl(var(--tree-poppy-700));
+  --color-tree-poppy-800: hsl(var(--tree-poppy-800));
+  --color-tree-poppy-900: hsl(var(--tree-poppy-900));
+  --color-tree-poppy-950: hsl(var(--tree-poppy-950));
+
+  --color-pickled-bluewood-50: hsl(var(--pickled-bluewood-50));
+  --color-pickled-bluewood-100: hsl(var(--pickled-bluewood-100));
+  --color-pickled-bluewood-200: hsl(var(--pickled-bluewood-200));
+  --color-pickled-bluewood-300: hsl(var(--pickled-bluewood-300));
+  --color-pickled-bluewood-400: hsl(var(--pickled-bluewood-400));
+  --color-pickled-bluewood-500: hsl(var(--pickled-bluewood-500));
+  --color-pickled-bluewood-600: hsl(var(--pickled-bluewood-600));
+  --color-pickled-bluewood-700: hsl(var(--pickled-bluewood-700));
+  --color-pickled-bluewood-800: hsl(var(--pickled-bluewood-800));
+  --color-pickled-bluewood-900: hsl(var(--pickled-bluewood-900));
+  --color-pickled-bluewood-950: hsl(var(--pickled-bluewood-950));
+
+  --color-cello-50: hsl(var(--cello-50));
+  --color-cello-100: hsl(var(--cello-100));
+  --color-cello-200: hsl(var(--cello-200));
+  --color-cello-300: hsl(var(--cello-300));
+  --color-cello-400: hsl(var(--cello-400));
+  --color-cello-500: hsl(var(--cello-500));
+  --color-cello-600: hsl(var(--cello-600));
+  --color-cello-700: hsl(var(--cello-700));
+  --color-cello-800: hsl(var(--cello-800));
+  --color-cello-900: hsl(var(--cello-900));
+  --color-cello-950: hsl(var(--cello-950));
 }
 
 h1, h2, h3, h4 {
@@ -140,4 +189,18 @@ textarea:not([rows]) {
   --cello-800: 215 55% 24%;
   --cello-900: 215 63% 14%;
   --cello-950: 216 75% 8%;
+
+  /* Element Plus brand mapping */
+  /* Primary */
+  --el-color-primary: hsl(var(--monza-600));
+  --el-color-primary-dark-2: hsl(var(--monza-700));
+  --el-color-primary-light-1: hsl(var(--monza-500));
+  --el-color-primary-light-2: hsl(var(--monza-400));
+  --el-color-primary-light-3: hsl(var(--monza-300));
+  --el-color-primary-light-4: hsl(var(--monza-200));
+  --el-color-primary-light-5: hsl(var(--monza-100));
+  --el-color-primary-light-6: hsl(var(--monza-50));
+  --el-color-primary-light-7: hsl(var(--monza-50));
+  --el-color-primary-light-8: hsl(var(--monza-50));
+  --el-color-primary-light-9: hsl(var(--monza-50));
 }
