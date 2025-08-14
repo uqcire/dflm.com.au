@@ -203,4 +203,6 @@ textarea:not([rows]) {
   --el-color-primary-light-7: hsl(var(--monza-50));
   --el-color-primary-light-8: hsl(var(--monza-50));
   --el-color-primary-light-9: hsl(var(--monza-50));
+
+  /* Element Plus overrides */
 }

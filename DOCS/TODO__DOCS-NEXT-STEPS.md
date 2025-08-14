@@ -18,9 +18,12 @@ Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend dep
 - Target start: 2025-08-15 (immediately after PRD sign‑off)
 - Pre‑req: PHASE 1 items above are checked
 - Initial tasks:
-  - [ ] Scaffold routes and empty page shells: `/`, `/about`, `/products`, `/contact`
-  - [ ] Wire document titles/meta per route
-  - [ ] Create base layout components (Header, Footer, Nav)
+  - [x] Scaffold routes and empty page shells per sitemap
+  - [x] Wire document titles/meta per route
+  - [ ] Create base layout components:
+    - [x] Navigation (Element Plus menu as shared component)
+    - [ ] Header
+    - [ ] Footer
   - [ ] Connect page shells to Strapi stubs or mock data
 
 ## PHASE 0 — CORE DECISIONS (BLOCKERS)

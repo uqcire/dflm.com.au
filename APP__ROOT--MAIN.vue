@@ -15,6 +15,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import ErrorBoundary from '@/components/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue'
 import NotificationContainer from '@/components/COMPONENT__NOTIFICATION--CONTAINER.vue'
 import ComponentHeaderSite from '@/components/COMPONENT__HEADER--SITE.vue'
+import ComponentFooterSite from '@/components/COMPONENT__FOOTER--SITE.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
 
 /**
@@ -100,49 +101,51 @@ const zIndex = ref(3000)
 <template>
   <el-config-provider :size="size" :z-index="zIndex">
     <div id="app" class="app">
-      <!-- Site Navigation -->
-      <ComponentHeaderSite />
+      <el-container>
 
-      <!-- Global Error Boundary wraps the entire application -->
-      <ErrorBoundary @error="handleError" @retry="handleRetry" @reload="handleReload" :enable-error-reporting="false"
-        :auto-retry="false" :max-retries="3">
-        <!-- Main Content Area -->
-        <main class="app__main">
-          <router-view v-slot="{ Component, route }">
-            <Suspense>
-              <!-- Each route component is wrapped in its own error boundary -->
-              <div>
-                <component :is="Component" :key="route.path" />
-              </div>
-              <template #fallback>
-                <div class="app__loading">
-                  <div class="app__loading-spinner"></div>
-                  <p class="app__loading-text">Loading...</p>
-                </div>
-              </template>
-            </Suspense>
-          </router-view>
-        </main>
-      </ErrorBoundary>
+        <!-- Site Navigation -->
+        <el-header>
+          <ComponentHeaderSite />
+        </el-header>
 
-      <!-- Global Notification System -->
-      <NotificationContainer />
+        <el-main>
+          <!-- Global Error Boundary wraps the entire application -->
+          <ErrorBoundary @error="handleError" @retry="handleRetry" @reload="handleReload"
+            :enable-error-reporting="false" :auto-retry="false" :max-retries="3">
+            <!-- Main Content Area -->
+            <main class="app__main">
+              <router-view v-slot="{ Component, route }">
+                <Suspense>
+                  <!-- Each route component is wrapped in its own error boundary -->
+                  <div>
+                    <component :is="Component" :key="route.path" />
+                  </div>
+                  <template #fallback>
+                    <div class="app__loading">
+                      <div class="app__loading-spinner"></div>
+                      <p class="app__loading-text">Loading...</p>
+                    </div>
+                  </template>
+                </Suspense>
+              </router-view>
+            </main>
+          </ErrorBoundary>
+
+          <!-- Global Notification System -->
+          <NotificationContainer />
+        </el-main>
+
+        <!-- Site Footer -->
+        <el-footer>
+          <ComponentFooterSite />
+        </el-footer>
+      </el-container>
     </div>
   </el-config-provider>
 </template>
 
 <style scoped>
 .app {
-  min-height: 100vh;
-  font-family: var(--font-family-primary, 'Inter', sans-serif);
-  color: var(--color-text, #1f2937);
-  background: var(--color-bg, #ffffff);
-  line-height: 1.6;
-}
-
-.app__main {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -169,6 +172,12 @@ const zIndex = ref(3000)
   color: var(--color-text-secondary, #6b7280);
   font-size: var(--font-size-sm, 0.875rem);
   margin: 0;
+}
+
+.el-header,
+.el-main,
+.el-footer {
+  padding: 0
 }
 
 @keyframes spin {

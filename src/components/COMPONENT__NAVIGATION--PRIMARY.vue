@@ -1,11 +1,17 @@
 <script setup>
+const props = defineProps({
+    mode: { type: String, default: 'horizontal' },
+    backgroundColor: { type: String, default: '' },
+    textColor: { type: String, default: '' },
+    activeTextColor: { type: String, default: '' }
+})
 </script>
 
 <template>
-    <header class="navigation navigation--primary sticky top-0 z-[100] backdrop-blur">
-        <el-menu class="navigation__menu px-4 font-bold" mode="horizontal" :default-active="$route.path" router
-            background-color="hsl(var(--monza-600))" text-color="#ffffff" active-text-color="hsl(var(--tree-poppy-50))"
-            active-color="hsl(var(--tree-poppy-50))">
+    <nav class="navigation navigation--primary px-4" role="navigation" aria-label="Primary">
+        <el-menu class="navigation__menu" :mode="mode" :default-active="$route.path" router
+            :background-color="backgroundColor || 'hsl(var(--monza-600))'" :text-color="textColor || '#ffffff'"
+            :active-text-color="activeTextColor || 'hsl(var(--tree-poppy-50))'">
             <el-menu-item index="/">Home</el-menu-item>
             <el-menu-item index="/about">About</el-menu-item>
             <el-sub-menu index="/services">
@@ -19,15 +25,20 @@
             <el-menu-item index="/blog">Blog</el-menu-item>
             <el-menu-item index="/contact">Contact</el-menu-item>
         </el-menu>
-    </header>
+    </nav>
 </template>
 
 <style scoped>
-.el-menu-item:hover {
-    background-color: hsl(var(--monza-600)) !important;
-    color: #fff;
+.el-menu--horizontal.el-menu {
+    border-bottom: none;
 }
 
+.el-menu--vertical {
+    border-right: none !important;
+
+}
+
+.el-menu-item:hover,
 .el-menu-item:focus {
     background-color: hsl(var(--monza-600)) !important;
     color: #fff;

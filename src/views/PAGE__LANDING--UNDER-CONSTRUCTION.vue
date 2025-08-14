@@ -79,7 +79,7 @@ const brand = 'E-Sunrise Australia'
 }
 
 .UC__cta {
-    @apply shadow-xl h-14 px-6 rounded-lg flex items-center justify-center text-lg font-semibold
+    @apply shadow-xl rounded-lg flex items-center justify-center font-semibold
 }
 
 .UC__cta--primary {
@@ -91,7 +91,7 @@ const brand = 'E-Sunrise Australia'
 }
 
 .UC__cta--primary__text {
-    @apply text-white font-semibold text-lg
+    @apply text-white font-semibold
 }
 
 .UC__footer {
