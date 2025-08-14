@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import COMPONENT__SOCIAL__LINKS from './COMPONENT__SOCIAL--LINKS.vue'
 
 const currentYear = ref(new Date().getFullYear())
 
@@ -44,10 +45,10 @@ const footerLinks = [
 ]
 
 const socialLinks = [
-    { name: 'Facebook', icon: 'facebook', path: '#' },
-    { name: 'Twitter', icon: 'x', path: '#' },
-    { name: 'LinkedIn', icon: 'linkedin', path: '#' },
-    { name: 'Instagram', icon: 'instagram', path: '#' }
+    { name: 'Facebook', icon: 'facebook', url: '#' },
+    { name: 'Twitter', icon: 'x', url: '#' },
+    { name: 'LinkedIn', icon: 'linkedin', url: '#' },
+    { name: 'Instagram', icon: 'instagram', url: '#' }
 ]
 </script>
 
@@ -71,15 +72,7 @@ const socialLinks = [
                                 Your trusted partner for premium products and exceptional service in the Australian
                                 market.
                             </p>
-                            <h3 class="footer__heading text-lg font-semibold font-playfair mb-4">Follow Us</h3>
-                            <div class="footer__social flex flex-wrap gap-2 mb-6">
-                                <a v-for="(social, socialIndex) in socialLinks" :key="socialIndex" :href="social.path"
-                                    class="footer__social-link w-10 h-10 hover:bg-monza-200 rounded-full flex items-center justify-center transition-colors duration-200"
-                                    aria-label="Follow us on {{ social.name }}">
-                                    <img :src="`/src/assets/icons/${social.icon}.svg`" :alt="social.name"
-                                        class="w-6 h-6" />
-                                </a>
-                            </div>
+                            <COMPONENT__SOCIAL__LINKS :links="socialLinks" variant="footer" class="mb-6" />
                         </div>
                     </el-col>
 

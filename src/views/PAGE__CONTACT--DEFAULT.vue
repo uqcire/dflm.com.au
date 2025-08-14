@@ -1,36 +1,38 @@
 <script setup>
+import { useData } from '@/composables/useData'
+import ComponentLoadingState from '@/components/COMPONENT__LOADING--STATE.vue'
+import ComponentErrorState from '@/components/COMPONENT__ERROR--STATE.vue'
+import ComponentContactInfo from '@/components/COMPONENT__CONTACT--INFO.vue'
+
+const { data, isLoading, error, getSiteSettings } = useData()
+const siteSettings = getSiteSettings()
 </script>
 
 <template>
-    <section class="page-contact">
-        <header class="page-contact__header">
-            <h1 class="page-contact__title">Contact</h1>
-        </header>
-        <div class="page-contact__content">
-            <p class="page-contact__text">Email us at
-                <a href="mailto:info@dflm.com.au" data-umami-event="contact_mailto"
-                    class="page-contact__link">info@dflm.com.au</a>
-            </p>
+    <ComponentLoadingState v-if="isLoading" />
+    <ComponentErrorState v-else-if="error" />
+    <div v-else class="py-8 px-6">
+        <div class="max-w-4xl mx-auto">
+            <header class="page-contact__header mb-8">
+                <h1 class="page-contact__title text-3xl font-bold text-gray-900">Contact</h1>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <ComponentContactInfo :email="siteSettings.email" :phone="siteSettings.phone"
+                        :address="siteSettings.address" title="Get in Touch" />
+                </div>
+
+                <div>
+                    <!-- Placeholder for a contact form in the future -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Send us a message</h2>
+                        <p class="text-gray-600">Contact form coming soon.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 </template>
 
-<style scoped>
-.page-contact {
-    padding: var(--space-8, 2rem) var(--space-6, 1.5rem);
-}
-
-.page-contact__title {
-    margin: 0 0 var(--space-4, 1rem) 0;
-    font-size: var(--font-size-2xl, 1.5rem);
-    font-weight: 600;
-}
-
-.page-contact__text {
-    color: var(--color-text-secondary, #6b7280);
-}
-
-.page-contact__link {
-    color: var(--color-primary, #3b82f6);
-}
-</style>
+<style scoped></style>

@@ -5,11 +5,15 @@ import App from '/APP__ROOT--MAIN.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
 import ElementPlus from 'element-plus'
 import '@/styles/global.css'
+import { initDefaultSEO } from '@/utils/SEO-MANAGER__DYNAMIC'
 
 const app = createApp(App)
 
 // Initialize global error handling before everything else
 globalErrorHandler.initialize()
+
+// Initialize default SEO meta tags
+initDefaultSEO()
 
 // Add Element Plus plugin
 app.use(ElementPlus)
@@ -32,3 +36,4 @@ app.mount('#app')
 // Log successful initialization
 console.log('🚀 Application started with comprehensive error handling')
 console.log('📊 Error statistics available at: window.globalErrorHandler.getStatistics()')
+console.log('🔍 SEO initialized with dynamic meta tags and structured data')

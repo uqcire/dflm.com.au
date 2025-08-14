@@ -25,6 +25,22 @@ Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend dep
     - [x] Header
     - [x] Footer
   - [ ] Connect page shells to Strapi stubs or mock data
+    - [x] Create mock data structure mirroring Strapi content model
+    - [x] Create data service/composable for centralized data access
+    - [x] Update page components to consume data
+    - [ ] Create reusable content components (hero, features, etc.)
+      - [x] Hero component (COMPONENT__HERO--PAGE.vue)
+      - [x] Loading state component (COMPONENT__LOADING--STATE.vue)
+      - [x] Error state component (COMPONENT__ERROR--STATE.vue)
+      - [x] Contact info component (COMPONENT__CONTACT--INFO.vue)
+      - [x] Social links component (COMPONENT__SOCIAL--LINKS.vue)
+      - [x] Feature list component (COMPONENT__FEATURE--LIST.vue)
+      - [x] Service card component (COMPONENT__SERVICE--CARD.vue)
+      - [x] Product card component (COMPONENT__PRODUCT--CARD.vue)
+      - [x] Content section component (COMPONENT__CONTENT--SECTION.vue)
+    - [x] Implement dynamic routing and meta tags
+    - [ ] Create API client for future Strapi integration
+    - [ ] Test layouts and components with mock data
 
 ## PHASE 0 — CORE DECISIONS (BLOCKERS)
 - [x] Decide site build strategy: SSG (with on-demand rebuilds via Strapi publish/unpublish)

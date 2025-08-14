@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useData } from '@/composables/useData'
+import { updateRouteSEO } from '@/utils/SEO-MANAGER__DYNAMIC'
 
 // Routes configuration
 const routes = [
@@ -19,7 +21,7 @@ const routes = [
     name: 'home',
     component: () => import('@/views/PAGE__HOME--DEFAULT.vue'),
     meta: {
-      title: 'Homepage',
+      title: 'Home',
       preload: false,
       transition: 'fade',
       keepAlive: true,
@@ -80,6 +82,18 @@ const routes = [
     component: () => import('@/views/PAGE__PRODUCTS--DEFAULT.vue'),
     meta: {
       title: 'Products',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/products/:slug',
+    name: 'product-detail',
+    component: () => import('@/views/PAGE__PRODUCT--DEMO.vue'),
+    meta: {
+      title: 'Product',
       preload: false,
       transition: 'fade',
       keepAlive: true,
@@ -175,41 +189,37 @@ const router = createRouter({
   routes,
 })
 
-const SITE_NAME = 'E-Sunrise Australia'
-const DEFAULT_DESCRIPTION = 'E‑Sunrise Australia — B2B Agricultural Import & Distribution in Melbourne.'
-
-function setOrCreateMeta(attr, key, value) {
-  let el = document.head.querySelector(`meta[${attr}="${key}"]`)
-  if (!el) {
-    el = document.createElement('meta')
-    el.setAttribute(attr, key)
-    document.head.appendChild(el)
+// Dynamic meta tag management
+router.beforeEach(async (to, from, next) => {
+  // Get data composable for dynamic content
+  const { getSiteSettings } = useData()
+  const siteSettings = getSiteSettings()
+  
+  // Prepare SEO data
+  const seoData = {
+    title: to.meta?.title,
+    description: to.meta?.description,
+    image: to.meta?.image,
+    organization: siteSettings
   }
-  el.setAttribute('content', value)
-}
 
-function setOrCreateCanonical(href) {
-  let link = document.head.querySelector('link[rel="canonical"]')
-  if (!link) {
-    link = document.createElement('link')
-    link.setAttribute('rel', 'canonical')
-    document.head.appendChild(link)
+  // Add specific data based on route
+  if (to.name === 'post-detail') {
+    seoData.publishedAt = to.meta?.publishedAt
+    seoData.updatedAt = to.meta?.updatedAt
+    seoData.author = to.meta?.author
   }
-  link.setAttribute('href', href)
-}
 
-router.beforeEach((to, from, next) => {
-  const titleText = to.meta?.title ? `${to.meta.title} | ${SITE_NAME}` : SITE_NAME
-  document.title = titleText
+  // Add breadcrumbs for detail pages
+  if (to.name === 'product-detail' || to.name === 'industry-detail' || to.name === 'post-detail') {
+    seoData.breadcrumbs = [
+      { name: 'Home', url: '/home' },
+      { name: to.meta?.title, url: to.fullPath }
+    ]
+  }
 
-  const description = to.meta?.description || DEFAULT_DESCRIPTION
-  const url = window.location.origin + to.fullPath
-
-  setOrCreateMeta('name', 'description', description)
-  setOrCreateMeta('property', 'og:title', titleText)
-  setOrCreateMeta('property', 'og:description', description)
-  setOrCreateMeta('property', 'og:url', url)
-  setOrCreateCanonical(url)
+  // Update SEO using the utility
+  updateRouteSEO(to, seoData)
 
   next()
 })
