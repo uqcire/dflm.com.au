@@ -1,16 +1,37 @@
 <script setup>
-import { useData } from '@/composables/useData'
+import { onMounted, computed } from 'vue'
+import { useSiteSettings } from '@/composables/useDataFetching.js'
 import ComponentLoadingState from '@/components/COMPONENT__LOADING--STATE.vue'
 import ComponentErrorState from '@/components/COMPONENT__ERROR--STATE.vue'
 import ComponentContactInfo from '@/components/COMPONENT__CONTACT--INFO.vue'
 
-const { data, isLoading, error, getSiteSettings } = useData()
-const siteSettings = getSiteSettings()
+// Site settings
+const {
+    siteSettings,
+    isLoading,
+    hasError,
+    errorDisplay,
+    loadSiteSettings,
+    getSetting
+} = useSiteSettings()
+
+// Load data on mount
+onMounted(async () => {
+    try {
+        await loadSiteSettings()
+    } catch (error) {
+        console.error('Error loading contact page data:', error)
+    }
+})
+
+// Get site settings data
+const settings = computed(() => siteSettings.value || {})
 </script>
 
 <template>
     <ComponentLoadingState v-if="isLoading" />
-    <ComponentErrorState v-else-if="error" />
+    <ComponentErrorState v-else-if="hasError"
+        :message="errorDisplay?.message || 'An error occurred while loading the contact page.'" />
     <div v-else class="py-8 px-6">
         <div class="max-w-4xl mx-auto">
             <header class="page-contact__header mb-8">
@@ -19,8 +40,8 @@ const siteSettings = getSiteSettings()
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div>
-                    <ComponentContactInfo :email="siteSettings.email" :phone="siteSettings.phone"
-                        :address="siteSettings.address" title="Get in Touch" />
+                    <ComponentContactInfo :email="settings.email" :phone="settings.phone" :address="settings.address"
+                        title="Get in Touch" />
                 </div>
 
                 <div>

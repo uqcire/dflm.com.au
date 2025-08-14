@@ -1,23 +1,25 @@
 <script setup>
-defineProps({
+const props = defineProps({
     email: {
         type: String,
-        required: true
+        required: false,
+        default: ''
     },
     phone: {
         type: String,
-        required: true
+        required: false,
+        default: ''
     },
     address: {
         type: Object,
-        required: true,
-        validator: (value) => {
-            return typeof value.line1 === 'string' &&
-                typeof value.city === 'string' &&
-                typeof value.region === 'string' &&
-                typeof value.country === 'string' &&
-                typeof value.postcode === 'string'
-        }
+        required: false,
+        default: () => ({
+            line1: '',
+            city: '',
+            region: '',
+            country: '',
+            postcode: ''
+        })
     },
     showTitle: {
         type: Boolean,
@@ -36,7 +38,7 @@ defineProps({
 
         <div class="space-y-4">
             <!-- Email -->
-            <div class="flex items-start">
+            <div v-if="email" class="flex items-start">
                 <div class="flex-shrink-0">
                     <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,7 +57,7 @@ defineProps({
             </div>
 
             <!-- Phone -->
-            <div class="flex items-start">
+            <div v-if="phone" class="flex items-start">
                 <div class="flex-shrink-0">
                     <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -74,7 +76,8 @@ defineProps({
             </div>
 
             <!-- Address -->
-            <div class="flex items-start">
+            <div v-if="address && (address.line1 || address.city || address.region || address.country)"
+                class="flex items-start">
                 <div class="flex-shrink-0">
                     <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -86,11 +89,19 @@ defineProps({
                 <div class="ml-3">
                     <h3 class="text-sm font-medium text-gray-900">Address</h3>
                     <div class="mt-1 text-gray-600">
-                        <p>{{ address.line1 }}</p>
-                        <p>{{ address.city }}, {{ address.region }} {{ address.postcode }}</p>
-                        <p>{{ address.country }}</p>
+                        <p v-if="address.line1">{{ address.line1 }}</p>
+                        <p v-if="address.city || address.region || address.postcode">
+                            {{ [address.city, address.region, address.postcode].filter(Boolean).join(', ') }}
+                        </p>
+                        <p v-if="address.country">{{ address.country }}</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- No contact info message -->
+            <div v-if="!email && !phone && (!address || (!address.line1 && !address.city && !address.region && !address.country))"
+                class="text-center py-8">
+                <p class="text-gray-500">Contact information coming soon.</p>
             </div>
         </div>
     </div>

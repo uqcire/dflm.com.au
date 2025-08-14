@@ -4,15 +4,10 @@ defineProps({
         type: Object,
         required: true,
         validator: (value) => {
-            return typeof value.title === 'string' &&
-                typeof value.description === 'string' &&
-                (typeof value.image === 'string' || value.image === undefined) &&
-                (typeof value.price === 'string' || value.price === undefined) &&
-                (typeof value.category === 'string' || value.category === undefined) &&
-                (typeof value.linkText === 'string' || value.linkText === undefined) &&
-                (typeof value.linkUrl === 'string' || value.linkUrl === undefined) &&
-                (typeof value.featured === 'boolean' || value.featured === undefined) &&
-                (typeof value.badge === 'string' || value.badge === undefined)
+            // Basic validation - check if required properties exist
+            return value &&
+                typeof value.title === 'string' &&
+                typeof value.description === 'string';
         }
     },
     variant: {

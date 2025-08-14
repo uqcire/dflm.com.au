@@ -391,8 +391,20 @@ const createHttpInstance = () => {
     },
     (error) => {
       // Mark error as coming from HTTP client to prevent double handling
-      error.isAxiosError = true
-      error.isHttpClientError = true
+      // Use Object.defineProperty to avoid read-only property issues
+      try {
+        Object.defineProperty(error, 'isAxiosError', {
+          value: true,
+          writable: false,
+          configurable: true
+        });
+      } catch (e) {
+        // If we can't set isAxiosError, just add our own property
+        error.isHttpClientError = true;
+      }
+      
+      // Always set our custom property
+      error.isHttpClientError = true;
       
       // Handle network errors
       if (error.code === 'ECONNABORTED') {
