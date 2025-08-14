@@ -1,14 +1,14 @@
 # DOCS TODO — NEXT STEPS
 
 Date: 2025-08-12
-Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend deployed on Vercel; apex + www domains configured. Strapi permissions configured on Render.
+Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend deployed on Vercel; apex + www domains configured. Strapi permissions configured on Render. Base layout components (Header, Navigation, Footer) completed. PRD documentation finalized and locked.
 
 ## NEXT ACTIONS (WEEK OF 2025-08-13)
 - [x] Decide analytics stack (align with `OPS/ANALYTICS.md`) — Umami Cloud chosen (snippet present in `index.html`)
 - [x] PRD sign‑off (gate to start page builds)
-  - [ ] `PRD/PRD.md`: finalize scope, acceptance criteria, success metrics
-  - [ ] `PRD/IA-SITEMAP.md`: lock sitemap with route slugs and URL patterns
-  - [ ] `PRD/CONTENT-MODEL.md`: finalize fields and validations (pages, blog, shared components)
+  - [x] `PRD/PRD.md`: finalize scope, acceptance criteria, success metrics
+  - [x] `PRD/IA-SITEMAP.md`: lock sitemap with route slugs and URL patterns
+  - [x] `PRD/CONTENT-MODEL.md`: finalize fields and validations (pages, blog, shared components)
 - [ ] CMS prep (in parallel)
   - [ ] Create Strapi content types per `PRD/CONTENT-MODEL.md`
   - [ ] Define reusable components (media, SEO, CTA)
@@ -22,8 +22,8 @@ Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend dep
   - [x] Wire document titles/meta per route
   - [ ] Create base layout components:
     - [x] Navigation (Element Plus menu as shared component)
-    - [ ] Header
-    - [ ] Footer
+    - [x] Header
+    - [x] Footer
   - [ ] Connect page shells to Strapi stubs or mock data
 
 ## PHASE 0 — CORE DECISIONS (BLOCKERS)
