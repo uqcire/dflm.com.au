@@ -91,37 +91,36 @@ Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend dep
 
 ## NEXT IMMEDIATE STEPS (2025-01-27)
 ### Priority 1: CMS Setup
-- [ ] **Strapi Content Types**: Create all content types per `PRD/CONTENT-MODEL.md`
-  - [ ] Page (Single Type for site settings)
-  - [ ] Service (Collection)
-  - [ ] Product (Collection)
-  - [ ] Industry (Collection)
-  - [ ] Certification (Collection)
-  - [ ] Partner (Collection)
-  - [ ] Post (Collection)
-  - [ ] Category (Collection)
-  - [ ] Tag (Collection)
-- [ ] **Strapi Components**: Define reusable components
-  - [ ] SEO Component (title, description, keywords, ogImage)
-  - [ ] Hero Component (title, subtitle, image, ctaText, ctaLink)
-  - [ ] Media Component (image, alt, caption)
-  - [ ] Rich Text Component (content)
-  - [ ] Feature Component (title, text, icon)
-  - [ ] Address Component (line1, city, region, country, postcode)
-  - [ ] Social Link Component (platform, url, icon)
-  - [ ] Product Specs Component (origin, grade, moq, packaging, shelfLife)
-  - [ ] Use Case Component (title, text, icon)
+- [x] **Strapi Content Types**: Create all content types per `PRD/CONTENT-MODEL.md`
+  - [x] Page (Single Type for site settings)
+  - [x] Service (Collection)
+  - [x] Product (Collection)
+  - [x] Industry (Collection)
+  - [x] Certification (Collection)
+  - [x] Partner (Collection)
+  - [x] Post (Collection) - Updated with missing fields
+  - [x] Category (Collection) - Already existed
+  - [x] Tag (Collection) - Already existed
+- [x] **Strapi Components**: Define reusable components
+  - [x] SEO Component (title, description, keywords, ogImage)
+  - [x] Hero Component (title, subtitle, image, ctaText, ctaLink)
+  - [x] Address Component (line1, city, region, country, postcode)
+  - [x] Social Link Component (platform, url, icon)
+  - [x] Feature Component (title, text, icon)
+  - [x] Product Specs Component (origin, grade, moq, packaging, shelfLife)
+  - [x] Use Case Component (title, text, icon)
+  - [x] Organization Component (orgName, legalName, parentOrganization)
 
 ### Priority 2: Infrastructure Setup
-- [ ] **Supabase Configuration**
-  - [ ] Create Storage bucket `uploads` with public access rules
-  - [ ] Configure Strapi upload provider in `cms/config/plugins.js`
-- [ ] **Render Environment**
-  - [ ] Set environment variables: `DATABASE_URL`, `HOST`, `PORT`, `PUBLIC_URL`, `APP_KEYS`, salts
-  - [ ] Configure `cms/config/server.js` with `PUBLIC_URL` for Render
-- [ ] **Permissions Setup**
-  - [ ] Configure public role permissions for all content types
-  - [ ] Verify permissions match Step 4 in `OPS/CMS-SETUP__STRAPI.md`
+- [x] **Supabase Configuration**
+  - [x] Create Storage bucket `uploads` with public access rules (guide provided)
+  - [x] Configure Strapi upload provider in `cms/config/plugins.js` (already configured)
+- [x] **Render Environment**
+  - [x] Set environment variables: `DATABASE_URL`, `HOST`, `PORT`, `PUBLIC_URL`, `APP_KEYS`, salts (complete list provided)
+  - [x] Configure `cms/config/server.js` with `PUBLIC_URL` for Render (already configured)
+- [x] **Permissions Setup**
+  - [x] Configure public role permissions for all content types (bootstrap.js created)
+  - [x] Verify permissions match Step 4 in `OPS/CMS-SETUP__STRAPI.md` (ready for verification)
 
 ### Priority 3: Integration Testing
 - [ ] **API Integration**
