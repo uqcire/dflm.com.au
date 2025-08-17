@@ -127,10 +127,10 @@ Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend dep
   - [x] Update API client to use real Strapi endpoints instead of mock data
   - [x] Test all data fetching composables with real Strapi data
   - [x] Verify all pages load correctly with Strapi content
-- [ ] **Webhook Setup**
-  - [ ] Create Vercel Deploy Hook; save URL as `VERCEL_DEPLOY_HOOK_URL`
-  - [ ] Configure Strapi webhook for `entry.publish` and `entry.unpublish` events
-  - [ ] Test webhook triggers Vercel builds
+- [x] **Webhook Setup** ✅
+  - [x] Create Vercel Deploy Hook; save URL as `VERCEL_DEPLOY_HOOK_URL`
+  - [x] Configure Strapi webhook for `entry.publish` and `entry.unpublish` events
+  - [x] Test webhook triggers Vercel builds (✅ Tested and working)
 
 ## PHASE 2 — CMS (STRAPI + SUPABASE)
 - [ ] Create content types per `PRD/CONTENT-MODEL.md`
