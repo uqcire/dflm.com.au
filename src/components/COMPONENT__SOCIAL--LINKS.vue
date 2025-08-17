@@ -1,4 +1,16 @@
 <script setup>
+import facebookIcon from '/src/assets/icons/facebook.svg'
+import instagramIcon from '/src/assets/icons/instagram.svg'
+import linkedinIcon from '/src/assets/icons/linkedin.svg'
+import xIcon from '/src/assets/icons/x.svg'
+
+const iconMap = {
+    facebook: facebookIcon,
+    instagram: instagramIcon,
+    linkedin: linkedinIcon,
+    x: xIcon
+}
+
 defineProps({
     links: {
         type: Array,
@@ -84,7 +96,7 @@ const getVariantClasses = (variant) => {
                 getSizeClasses(size),
                 getVariantClasses(variant)
             ]" :aria-label="`Follow us on ${link.name}`" target="_blank" rel="noopener noreferrer">
-                <img :src="`/src/assets/icons/${link.icon}.svg`" :alt="link.name" :class="[
+                <img :src="iconMap[link.icon]" :alt="link.name" :class="[
                     'social-links__icon',
                     getIconSizeClasses(size)
                 ]" />

@@ -7,6 +7,7 @@
  */
 
 import { get, post, put, del } from '../utils/HTTP-CLIENT__API--UNIFIED.js';
+import { getApiConfig } from '../config/production.js';
 
 // =============================================================================
 // CONFIGURATION
@@ -16,8 +17,8 @@ import { get, post, put, del } from '../utils/HTTP-CLIENT__API--UNIFIED.js';
  * Strapi API Configuration
  */
 export const strapiConfig = {
-  // Base URL for Strapi API
-  baseUrl: import.meta.env.VITE_STRAPI_API_URL || 'http://localhost:1337',
+  // Base URL for Strapi API - uses production config when available
+  baseUrl: getApiConfig().strapiApiUrl,
   
   // API version and endpoints
   apiVersion: '', // Strapi v5 doesn't use version prefixes
