@@ -1,4 +1,4 @@
-import { getServices as getServicesFromMock, getServiceBySlug as getServiceBySlugFromMock, getServiceById as getServiceByIdFromMock } from './mockApiClient.js';
+import { strapiClient, buildStrapiUrl, formatStrapiParams } from './strapiApiConfig.js';
 import { Service } from '../models/ContentModels.js';
 import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
 
@@ -9,7 +9,9 @@ import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
  */
 export async function getServices(params = {}) {
   try {
-    const response = await getServicesFromMock(params);
+    // Format parameters for Strapi v5
+    const formattedParams = formatStrapiParams(params);
+    const response = await strapiClient.get('/services', { params: formattedParams });
     return {
       data: response.data.map(service => Service.fromApiResponse(service)),
       meta: response.meta || {}
@@ -35,8 +37,18 @@ export async function getServices(params = {}) {
  */
 export async function getServiceBySlug(slug) {
   try {
-    const response = await getServiceBySlugFromMock(slug);
-    return Service.fromApiResponse(response.data);
+    const response = await strapiClient.get('/services', { 
+      params: { 
+        'filters[slug][$eq]': slug,
+        'populate': '*'
+      } 
+    });
+    
+    if (response.data && response.data.length > 0) {
+      return Service.fromApiResponse(response.data[0]);
+    }
+    
+    throw new Error(`Service with slug '${slug}' not found`);
   } catch (error) {
     const apiError = handleApiError(error, {
       operation: 'getServiceBySlug',
@@ -58,7 +70,7 @@ export async function getServiceBySlug(slug) {
  */
 export async function getServiceById(id) {
   try {
-    const response = await getServiceByIdFromMock(id);
+    const response = await strapiClient.get(`/services/${id}`);
     return Service.fromApiResponse(response.data);
   } catch (error) {
     const apiError = handleApiError(error, {

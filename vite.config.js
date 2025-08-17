@@ -29,7 +29,8 @@ export default defineConfig(({ mode }) => {
         '@components': path.resolve(__dirname, 'src/components'),
         '@views': path.resolve(__dirname, 'src/views'),
         '@stores': path.resolve(__dirname, 'src/stores'),
-        '@utils': path.resolve(__dirname, 'src/utils')
+        '@utils': path.resolve(__dirname, 'src/utils'),
+        'vue': 'vue/dist/vue.esm-bundler.js'
       },
       // File extensions to omit when importing files
       extensions: [

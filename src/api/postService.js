@@ -1,4 +1,4 @@
-import { getPosts as getPostsFromMock, getPostBySlug as getPostBySlugFromMock, getPostById as getPostByIdFromMock } from './mockApiClient.js';
+import { strapiClient, buildStrapiUrl, formatStrapiParams } from './strapiApiConfig.js';
 import { Post } from '../models/ContentModels.js';
 import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
 
@@ -9,7 +9,9 @@ import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
  */
 export async function getPosts(params = {}) {
   try {
-    const response = await getPostsFromMock(params);
+    // Format parameters for Strapi v5
+    const formattedParams = formatStrapiParams(params);
+    const response = await strapiClient.get('/posts', { params: formattedParams });
     return {
       data: response.data.map(post => Post.fromApiResponse(post)),
       meta: response.meta || {}
@@ -35,8 +37,18 @@ export async function getPosts(params = {}) {
  */
 export async function getPostBySlug(slug) {
   try {
-    const response = await getPostBySlugFromMock(slug);
-    return Post.fromApiResponse(response.data);
+    const response = await strapiClient.get('/posts', { 
+      params: { 
+        'filters[slug][$eq]': slug,
+        'populate': '*'
+      } 
+    });
+    
+    if (response.data && response.data.length > 0) {
+      return Post.fromApiResponse(response.data[0]);
+    }
+    
+    throw new Error(`Post with slug '${slug}' not found`);
   } catch (error) {
     const apiError = handleApiError(error, {
       operation: 'getPostBySlug',
@@ -55,7 +67,7 @@ export async function getPostBySlug(slug) {
  */
 export async function getPostById(id) {
   try {
-    const response = await getPostByIdFromMock(id);
+    const response = await strapiClient.get(`/posts/${id}`);
     return Post.fromApiResponse(response.data);
   } catch (error) {
     const apiError = handleApiError(error, {

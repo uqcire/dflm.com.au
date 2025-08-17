@@ -1,4 +1,4 @@
-import { getProducts as getProductsFromMock, getProductBySlug as getProductBySlugFromMock, getProductById as getProductByIdFromMock } from './mockApiClient.js';
+import { strapiClient, buildStrapiUrl, formatStrapiParams } from './strapiApiConfig.js';
 import { Product } from '../models/ContentModels.js';
 import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
 
@@ -9,7 +9,9 @@ import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
  */
 export async function getProducts(params = {}) {
   try {
-    const response = await getProductsFromMock(params);
+    // Format parameters for Strapi v5
+    const formattedParams = formatStrapiParams(params);
+    const response = await strapiClient.get('/products', { params: formattedParams });
     return {
       data: response.data.map(product => Product.fromApiResponse(product)),
       meta: response.meta || {}
@@ -35,8 +37,18 @@ export async function getProducts(params = {}) {
  */
 export async function getProductBySlug(slug) {
   try {
-    const response = await getProductBySlugFromMock(slug);
-    return Product.fromApiResponse(response.data);
+    const response = await strapiClient.get('/products', { 
+      params: { 
+        'filters[slug][$eq]': slug,
+        'populate': '*'
+      } 
+    });
+    
+    if (response.data && response.data.length > 0) {
+      return Product.fromApiResponse(response.data[0]);
+    }
+    
+    throw new Error(`Product with slug '${slug}' not found`);
   } catch (error) {
     const apiError = handleApiError(error, {
       operation: 'getProductBySlug',
@@ -55,7 +67,7 @@ export async function getProductBySlug(slug) {
  */
 export async function getProductById(id) {
   try {
-    const response = await getProductByIdFromMock(id);
+    const response = await strapiClient.get(`/products/${id}`);
     return Product.fromApiResponse(response.data);
   } catch (error) {
     const apiError = handleApiError(error, {

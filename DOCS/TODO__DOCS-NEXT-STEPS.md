@@ -123,10 +123,10 @@ Status: Build strategy chosen: SSG + on-demand rebuilds (webhooks). Frontend dep
   - [x] Verify permissions match Step 4 in `OPS/CMS-SETUP__STRAPI.md` (ready for verification)
 
 ### Priority 3: Integration Testing
-- [ ] **API Integration**
-  - [ ] Update API client to use real Strapi endpoints instead of mock data
-  - [ ] Test all data fetching composables with real Strapi data
-  - [ ] Verify all pages load correctly with Strapi content
+- [x] **API Integration**
+  - [x] Update API client to use real Strapi endpoints instead of mock data
+  - [x] Test all data fetching composables with real Strapi data
+  - [x] Verify all pages load correctly with Strapi content
 - [ ] **Webhook Setup**
   - [ ] Create Vercel Deploy Hook; save URL as `VERCEL_DEPLOY_HOOK_URL`
   - [ ] Configure Strapi webhook for `entry.publish` and `entry.unpublish` events

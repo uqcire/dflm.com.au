@@ -20,7 +20,7 @@ export const strapiConfig = {
   baseUrl: import.meta.env.VITE_STRAPI_API_URL || 'http://localhost:1337',
   
   // API version and endpoints
-  apiVersion: 'v4',
+  apiVersion: '', // Strapi v5 doesn't use version prefixes
   apiPath: '/api',
   
   // Authentication
@@ -40,7 +40,7 @@ export const strapiConfig = {
   
   // Response handling
   response: {
-    // Strapi response structure
+    // Strapi v5 response structure (flattened)
     dataKey: 'data',
     metaKey: 'meta',
     errorKey: 'error',
@@ -57,6 +57,14 @@ export const strapiConfig = {
     media: {
       baseUrl: import.meta.env.VITE_STRAPI_MEDIA_URL || '',
       formats: ['thumbnail', 'small', 'medium', 'large'],
+    },
+    
+    // Strapi v5 specific
+    v5: {
+      // Use documentId instead of id for individual documents
+      useDocumentId: true,
+      // Flattened response structure (no data.attributes nesting)
+      flattenedResponse: true,
     },
   },
   
@@ -80,7 +88,7 @@ export const strapiConfig = {
     
     // API endpoints mapping
     endpoints: {
-      'site-settings': '/site-settings',
+      'site-settings': '/page', // Single type - uses singular name
       'page': '/pages',
       'service': '/services',
       'product': '/products',
@@ -97,7 +105,7 @@ export const strapiConfig = {
   query: {
     // Default parameters for all requests
     defaults: {
-      populate: 'deep',
+      populate: '*',
       publicationState: 'live',
     },
     
@@ -123,7 +131,6 @@ export const strapiConfig = {
       page: 'pagination[page]',
       pageSize: 'pagination[pageSize]',
       limit: 'pagination[limit]',
-      start: 'pagination[start]',
     },
     
     // Fields selection
@@ -149,20 +156,28 @@ export function buildStrapiUrl(endpoint, params = {}) {
   const apiPath = strapiConfig.apiPath;
   const apiVersion = strapiConfig.apiVersion;
   
-  let url = `${baseUrl}${apiPath}/${apiVersion}${endpoint}`;
+  // Build URL without version prefix for Strapi v5
+  let url = `${baseUrl}${apiPath}${endpoint}`;
   
   // Add query parameters
   const queryParams = new URLSearchParams();
   
-  // Add default parameters
-  Object.entries(strapiConfig.query.defaults).forEach(([key, value]) => {
-    queryParams.append(key, value);
-  });
+  // Start with default parameters
+  const allParams = { ...strapiConfig.query.defaults, ...params };
   
-  // Add custom parameters
-  Object.entries(params).forEach(([key, value]) => {
+  // Add all parameters
+  Object.entries(allParams).forEach(([key, value]) => {
     if (value !== undefined && value !== null) {
-      queryParams.append(key, value);
+      // Handle nested objects (like pagination)
+      if (typeof value === 'object' && !Array.isArray(value)) {
+        Object.entries(value).forEach(([nestedKey, nestedValue]) => {
+          if (nestedValue !== undefined && nestedValue !== null) {
+            queryParams.append(`${key}[${nestedKey}]`, nestedValue);
+          }
+        });
+      } else {
+        queryParams.append(key, value);
+      }
     }
   });
   
@@ -196,12 +211,15 @@ export function formatStrapiParams(params = {}) {
     formatted[sortKey] = '';
   }
   
-  // Handle pagination
-  if (params.page) {
-    formatted[strapiConfig.query.pagination.page] = params.page;
-  }
-  if (params.pageSize) {
-    formatted[strapiConfig.query.pagination.pageSize] = params.pageSize;
+  // Handle pagination - Strapi v5 expects nested pagination object
+  if (params.page || params.pageSize) {
+    formatted.pagination = {};
+    if (params.page) {
+      formatted.pagination.page = params.page;
+    }
+    if (params.pageSize) {
+      formatted.pagination.pageSize = params.pageSize;
+    }
   }
   
   // Handle fields
@@ -218,7 +236,7 @@ export function formatStrapiParams(params = {}) {
 }
 
 /**
- * Parse Strapi response
+ * Parse Strapi response (v5 compatible)
  * @param {Object} response - Raw Strapi response
  * @returns {Object} Parsed response
  */
@@ -229,21 +247,23 @@ export function parseStrapiResponse(response) {
     throw new Error(error.message || 'Strapi API error');
   }
   
-  // Handle single item response
+  // Handle single item response (v5 flattened structure)
   if (data && !Array.isArray(data)) {
     return {
-      data: data.attributes || data,
+      data: data, // v5: data is already flattened, no data.attributes
       meta: meta || {},
-      id: data.id
+      id: data.id,
+      documentId: data.documentId // v5: use documentId for individual documents
     };
   }
   
-  // Handle collection response
+  // Handle collection response (v5 flattened structure)
   if (Array.isArray(data)) {
     return {
       data: data.map(item => ({
-        ...item.attributes,
-        id: item.id
+        ...item, // v5: item is already flattened, no item.attributes
+        id: item.id,
+        documentId: item.documentId // v5: include documentId
       })),
       meta: meta || {}
     };
@@ -253,15 +273,13 @@ export function parseStrapiResponse(response) {
 }
 
 /**
- * Format data for Strapi API
+ * Format data for Strapi API (v5 compatible)
  * @param {Object} data - Raw data
  * @returns {Object} Formatted data for Strapi
  */
 export function formatStrapiData(data) {
   return {
-    data: {
-      attributes: data
-    }
+    data: data // v5: no need for attributes wrapper
   };
 }
 
@@ -403,7 +421,9 @@ class StrapiApiClient {
    * @returns {Promise<Object>} API response
    */
   async request(method, endpoint, data = null, config = {}) {
-    const url = buildStrapiUrl(endpoint, config.params);
+    // Build URL - if params are provided, let the HTTP client handle them
+    const baseUrl = `${this.baseUrl}${this.apiPath}${endpoint}`;
+    const url = config.params ? baseUrl : buildStrapiUrl(endpoint, {});
     
     // Add authentication header
     const token = getStrapiToken();

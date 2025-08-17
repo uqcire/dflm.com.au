@@ -1,5 +1,5 @@
 import { SiteSettings } from '../models/ContentModels.js';
-import { getSiteSettings as mockGetSiteSettings } from './mockApiClient.js';
+import { strapiClient, buildStrapiUrl } from './strapiApiConfig.js';
 import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
 
 /**
@@ -8,7 +8,7 @@ import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
  */
 export async function getSiteSettings() {
   try {
-    const response = await mockGetSiteSettings();
+    const response = await strapiClient.get('/page');
     return SiteSettings.fromApiResponse(response.data);
   } catch (error) {
     const apiError = handleApiError(error, {
