@@ -1,140 +1,92 @@
-import { Page } from '../models/ContentModels.js';
-import { getPages as mockGetPages, getPageBySlug as mockGetPageBySlug, getPageById as mockGetPageById } from './mockApiClient.js';
-import { handleApiError, ApiError, errorMonitor } from './errorHandler.js';
+﻿import { Page } from '../models/ContentModels.js';
+import { strapiClient } from './strapiApiConfig.js';
+import { handleApiError } from './errorHandler.js';
 
-/**
- * Get all pages
- * @param {Object} params - Query parameters (pagination, sorting, etc.)
- * @returns {Promise<{data: Page[], meta: Object}>} Pages data with pagination info
- */
 export async function getPages(params = {}) {
   try {
-    const response = await mockGetPages(params);
-    return {
-      data: response.data.map(page => Page.fromApiResponse(page)),
-      meta: response.meta || {}
-    };
+    const response = await strapiClient.get('/static-pages', { params });
+    return { data: response.data.map(page => Page.fromApiResponse(page)), meta: response.meta || {} };
   } catch (error) {
-    const apiError = handleApiError(error, {
-      operation: 'getPages',
-      params,
-      contentType: 'page'
-    });
-    
-    // Record error for monitoring
-    errorMonitor.recordError(apiError);
-    
-    throw apiError;
+    throw handleApiError(error, { operation: 'getPages', contentType: 'page' });
   }
 }
 
-/**
- * Get page by slug
- * @param {string} slug - Page slug
- * @returns {Promise<Page>} Page data
- */
 export async function getPageBySlug(slug) {
   try {
-    const response = await mockGetPageBySlug(slug);
-    return Page.fromApiResponse(response.data);
-  } catch (error) {
-    const apiError = handleApiError(error, {
-      operation: 'getPageBySlug',
-      slug,
-      contentType: 'page'
+    // First try to get all pages and filter client-side
+    const response = await strapiClient.get('/static-pages', {
+      params: { 
+        'populate[0]': 'Hero',
+        'populate[1]': 'Blocks',
+        'populate[2]': 'Blocks.features',
+        'populate[3]': 'Blocks.features.features',
+        'populate[4]': 'SEO',
+        '_t': Date.now() // Cache buster
+      }
     });
     
-    // Record error for monitoring
-    errorMonitor.recordError(apiError);
+    // Find the page with matching slug or title
+    const page = response.data.find(page => {
+      const matchesSlug = page.Slug === slug;
+      const matchesTitle = page.Title?.toLowerCase() === slug.toLowerCase();
+      
+      return matchesSlug || matchesTitle;
+    });
     
-    throw apiError;
+    if (!page) {
+      throw new Error(`Page with slug/title '${slug}' not found`);
+    }
+    
+    console.log('🔍 Raw page data from Strapi:', JSON.stringify(page, null, 2));
+    
+    // Log the blocks structure specifically
+    if (page.Blocks) {
+      console.log('🔍 Blocks structure:', JSON.stringify(page.Blocks, null, 2));
+      page.Blocks.forEach((block, index) => {
+        console.log(`🔍 Block ${index} details:`, JSON.stringify(block, null, 2));
+      });
+    }
+    
+    const processedPage = Page.fromApiResponse(page);
+    console.log('🔍 Processed page data:', processedPage);
+    return processedPage;
+  } catch (error) {
+    throw handleApiError(error, { operation: 'getPageBySlug', slug, contentType: 'page' });
   }
 }
 
-/**
- * Get page by ID
- * @param {number|string} id - Page ID
- * @returns {Promise<Page>} Page data
- */
 export async function getPageById(id) {
   try {
-    const response = await mockGetPageById(id);
+    const response = await strapiClient.get('/pages/' + id);
     return Page.fromApiResponse(response.data);
   } catch (error) {
-    const apiError = handleApiError(error, {
-      operation: 'getPageById',
-      id,
-      contentType: 'page'
-    });
-    
-    // Record error for monitoring
-    errorMonitor.recordError(apiError);
-    
-    throw apiError;
+    throw handleApiError(error, { operation: 'getPageById', id, contentType: 'page' });
   }
 }
 
-/**
- * Create a new page
- * @param {Page} page - Page data to create
- * @returns {Promise<Page>} Created page data
- */
 export async function createPage(page) {
   try {
-    // For mock data, we'll just return the input data since we can't actually create
-    // In a real implementation, this would make a POST request to the API
-    console.warn('createPage called with mock data - no actual creation performed');
-    return page;
+    const response = await strapiClient.post('/pages', page);
+    return Page.fromApiResponse(response.data);
   } catch (error) {
-    const apiError = handleApiError(error, {
-      operation: 'createPage',
-      contentType: 'page'
-    });
-    errorMonitor.recordError(apiError);
-    throw apiError;
+    throw handleApiError(error, { operation: 'createPage', contentType: 'page' });
   }
 }
 
-/**
- * Update a page
- * @param {number|string} id - Page ID
- * @param {Page} page - Page data to update
- * @returns {Promise<Page>} Updated page data
- */
 export async function updatePage(id, page) {
   try {
-    // For mock data, we'll just return the input data since we can't actually update
-    // In a real implementation, this would make a PUT request to the API
-    console.warn('updatePage called with mock data - no actual update performed');
-    return page;
+    const response = await strapiClient.put('/pages/' + id, page);
+    return Page.fromApiResponse(response.data);
   } catch (error) {
-    const apiError = handleApiError(error, {
-      operation: 'updatePage',
-      id,
-      contentType: 'page'
-    });
-    errorMonitor.recordError(apiError);
-    throw apiError;
+    throw handleApiError(error, { operation: 'updatePage', id, contentType: 'page' });
   }
 }
 
-/**
- * Delete a page
- * @param {number|string} id - Page ID
- * @returns {Promise<void>}
- */
 export async function deletePage(id) {
   try {
-    // For mock data, we'll just log the action since we can't actually delete
-    // In a real implementation, this would make a DELETE request to the API
-    console.warn('deletePage called with mock data - no actual deletion performed');
+    await strapiClient.delete('/pages/' + id);
+    return true;
   } catch (error) {
-    const apiError = handleApiError(error, {
-      operation: 'deletePage',
-      id,
-      contentType: 'page'
-    });
-    errorMonitor.recordError(apiError);
-    throw apiError;
+    throw handleApiError(error, { operation: 'deletePage', id, contentType: 'page' });
   }
-} 
+}

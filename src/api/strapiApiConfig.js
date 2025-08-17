@@ -90,7 +90,7 @@ export const strapiConfig = {
     // API endpoints mapping
     endpoints: {
       'site-settings': '/page', // Single type - uses singular name
-      'page': '/pages',
+      'page': '/static-pages', // Updated to use static-pages endpoint
       'service': '/services',
       'product': '/products',
       'industry': '/industries',

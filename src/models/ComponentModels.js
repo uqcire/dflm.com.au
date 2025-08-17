@@ -38,6 +38,8 @@ export class HeroComponent {
     this.title = data.title || '';
     this.subtitle = data.subtitle || '';
     this.image = data.image || null;
+    this.ctaText = data.ctaText || '';
+    this.ctaLink = data.ctaLink || '';
   }
 
   static fromApiResponse(data) {
@@ -48,7 +50,9 @@ export class HeroComponent {
     return {
       title: this.title,
       subtitle: this.subtitle,
-      image: this.image
+      image: this.image,
+      ctaText: this.ctaText,
+      ctaLink: this.ctaLink
     };
   }
 }

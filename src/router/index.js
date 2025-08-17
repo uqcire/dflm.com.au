@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useData } from '@/composables/useData'
+import { getSiteSettings } from '@/api/siteSettingsService.js'
 import { updateRouteSEO } from '@/utils/SEO-MANAGER__DYNAMIC'
 
 // Routes configuration
@@ -91,7 +91,7 @@ const routes = [
   {
     path: '/products/:slug',
     name: 'product-detail',
-    component: () => import('@/views/PAGE__PRODUCT--DEMO.vue'),
+    component: () => import('@/views/PAGE__PRODUCTS--DEFAULT.vue'),
     meta: {
       title: 'Product',
       preload: false,
@@ -192,8 +192,8 @@ const router = createRouter({
 // Dynamic meta tag management
 router.beforeEach(async (to, from, next) => {
   // Get data composable for dynamic content
-  const { getSiteSettings } = useData()
-  const siteSettings = getSiteSettings()
+  // Site settings will be fetched dynamically
+  const siteSettings = {}
   
   // Prepare SEO data
   const seoData = {

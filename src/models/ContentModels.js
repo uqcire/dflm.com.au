@@ -57,11 +57,12 @@ export class SiteSettings {
 export class Page {
   constructor(data = {}) {
     this.id = data.id || null;
-    this.title = data.title || '';
-    this.slug = data.slug || '';
-    this.hero = data.hero ? new HeroComponent(data.hero) : new HeroComponent();
-    this.blocks = data.blocks || [];
-    this.seo = data.seo ? new SeoComponent(data.seo) : new SeoComponent();
+    // Handle both lowercase and capitalized field names from Strapi
+    this.title = data.title || data.Title || '';
+    this.slug = data.slug || data.Slug || '';
+    this.hero = data.hero ? new HeroComponent(data.hero) : (data.Hero ? new HeroComponent(data.Hero) : new HeroComponent());
+    this.blocks = data.blocks || data.Blocks || [];
+    this.seo = data.seo ? new SeoComponent(data.seo) : (data.SEO ? new SeoComponent(data.SEO) : new SeoComponent());
     this.createdAt = data.createdAt || null;
     this.updatedAt = data.updatedAt || null;
   }
