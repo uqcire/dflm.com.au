@@ -173,6 +173,30 @@ const routes = [
     },
   },
   {
+    path: '/design-system',
+    name: 'design-system',
+    component: () => import('@/views/PAGE__DESIGN-SYSTEM--DEFAULT.vue'),
+    meta: {
+      title: 'Design System',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/design-system',
+    name: 'design-system',
+    component: () => import('@/views/PAGE__DESIGN-SYSTEM--DEFAULT.vue'),
+    meta: {
+      title: 'Design System',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/PAGE__NOT-FOUND--404.vue'),

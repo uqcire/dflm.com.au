@@ -2,7 +2,6 @@
 import { onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePosts } from '@/composables/useDataFetching.js'
-import { siteSettings } from '@/data/siteSettings.js'
 import ComponentLoadingState from '@/components/COMPONENT__LOADING--STATE.vue'
 import ComponentErrorState from '@/components/COMPONENT__ERROR--STATE.vue'
 
@@ -42,7 +41,7 @@ const currentPost = computed(() => posts.value || null)
             <h1 class="page-post__title">{{ currentPost.title }}</h1>
             <div class="page-post__meta">
                 <time :datetime="currentPost.publishedAt">{{ new Date(currentPost.publishedAt).toLocaleDateString()
-                    }}</time>
+                }}</time>
                 <span v-if="currentPost.category" class="page-post__category">{{ currentPost.category.name }}</span>
                 <span v-if="currentPost.author" class="page-post__author">By {{ currentPost.author }}</span>
             </div>

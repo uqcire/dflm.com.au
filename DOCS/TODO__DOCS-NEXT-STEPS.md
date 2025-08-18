@@ -1,7 +1,7 @@
 # DOCS TODO — NEXT STEPS
 
 Date: 2025-08-17
-Status: ✅ **ARCHITECTURE OPTIMIZATION COMPLETE** - Individual content file architecture implemented with optimal separation of concerns. CMS cleaned up to blog-only with 92% component reduction. All PRD documentation updated. Both frontend and CMS optimized for their specific purposes.
+Status: 🎨 **PHASE 3 - UX DESIGN SYSTEM IN PROGRESS** - Architecture optimization complete. Now implementing comprehensive design system with finalized design tokens, layout components, business components, and component showcase for E-Sunrise Australia brand.
 
 ## NEXT ACTIONS (WEEK OF 2025-08-17)
 - [x] Decide analytics stack (align with `OPS/ANALYTICS.md`) — Umami Cloud chosen (snippet present in `index.html`)
@@ -224,12 +224,120 @@ All major architectural improvements have been successfully implemented:
 
 With the optimized architecture now in place, the project is ready for the remaining development phases:
 
-## PHASE 3 — UX (DESIGN SYSTEM)
-- [ ] `UX/DESIGN-TOKENS.md`: Finalize tokens (colors, spacing, type scale)
-- [ ] Map tokens in codebase (`dflm.com.au/src/styles/global.css`)
-- [ ] `UX/COMPONENTS.md`: Define base components + props/states (Button, Card, Header, Footer, Nav, Grid, Form)
-- [ ] `UX/ACCESSIBILITY-GUIDELINES.md`: Add WCAG targets and test checklist
-- [ ] `UX/RESPONSIVE-RULES.md`: Breakpoints and container rules confirmed
+## PHASE 3 — UX (DESIGN SYSTEM) [IN PROGRESS]
+
+### Step 1: Design Tokens Finalization ✅
+- [x] **1.1 Design Tokens Documentation** (`UX/DESIGN-TOKENS.md`):
+  - [x] Finalize Monza as primary color with semantic naming
+  - [x] Finalize Tree Poppy as secondary color  
+  - [x] Define Pickled Bluewood and Cello as accent/background colors
+  - [x] Add typography tokens (font families, sizes, weights, line heights)
+  - [x] Add spacing tokens (consistent spacing scale)
+  - [x] Add border radius, shadows, and animation tokens
+- [x] **1.2 Global CSS Updates** (`src/styles/global.css`):
+  - [x] Map design tokens to Tailwind v4 theme configuration
+  - [x] Ensure tokens work with existing Tailwind utilities
+  - [x] Maintain Element Plus compatibility
+  - [x] Update semantic color variables (text, background, border colors)
+- [x] **Typography System Clarification**:
+  - [x] Playfair Display for headings (h1-h6) and display text
+  - [x] Montserrat for body text, paragraphs, and UI elements
+  - [x] Semantic font family naming with usage guidelines
+
+### Step 2: Component Documentation ✅
+- [x] **2.1 Layout Components** (`UX/COMPONENTS.md`):
+  - [x] Document `COMPONENT__CONTAINER` (max-width containers with responsive padding)
+  - [x] Document `COMPONENT__GRID` (responsive grid layouts)
+  - [x] Document `COMPONENT__SECTION` (page sections with consistent spacing)
+  - [x] Document `COMPONENT__STACK` (vertical spacing between elements)
+- [x] **2.2 Business Components** (`UX/COMPONENTS.md`):
+  - [x] Extend existing `COMPONENT__PRODUCT--CARD`, `COMPONENT__SERVICE--CARD`
+  - [x] Document `COMPONENT__TESTIMONIAL--CARD`
+  - [x] Document `COMPONENT__CTA--SECTION`
+  - [x] Document `COMPONENT__STATS--GRID`
+  - [x] Document `COMPONENT__COMPANY--LOGO`
+- [x] **Component System Documentation**:
+  - [x] Comprehensive props and usage examples for all components
+  - [x] Design token integration guidelines
+  - [x] E-Sunrise Australia brand-specific styling
+  - [x] Implementation roadmap and status tracking
+
+### Step 3: Responsive & Accessibility Guidelines ✅
+- [x] **3.1 Responsive Rules** (`UX/RESPONSIVE-RULES.md`):
+  - [x] Document breakpoint strategy using standard Tailwind breakpoints
+  - [x] Define container sizing rules
+  - [x] Specify typography scaling across breakpoints
+  - [x] Define component behavior on mobile/tablet/desktop
+- [x] **3.2 Accessibility Guidelines** (`UX/ACCESSIBILITY-GUIDELINES.md`):
+  - [x] Update color contrast requirements
+  - [x] Document focus states and keyboard navigation
+  - [x] Add ARIA labels and semantic HTML guidelines
+  - [x] Include screen reader considerations
+- [x] **Comprehensive Guidelines Documentation**:
+  - [x] Mobile-first responsive strategy with design token integration
+  - [x] WCAG 2.1 AA+ compliance with practical implementation examples
+  - [x] Touch interaction guidelines and performance optimization
+  - [x] Comprehensive testing framework for accessibility validation
+
+### Step 4: Implementation
+- [x] **4.1 Update Existing Components**:
+  - [x] Update existing components to use standardized design tokens
+  - [x] Ensure Tailwind-first approach is maintained
+  - [x] Verify Element Plus integration compatibility
+  - [x] **Components Updated**:
+    - [x] COMPONENT__HERO--PAGE.vue - Complete design token integration with responsive typography
+    - [x] COMPONENT__PRODUCT--CARD.vue - Enhanced with new variants and accessibility improvements
+    - [x] COMPONENT__SERVICE--CARD.vue - Full design token implementation with flexible layouts
+    - [x] COMPONENT__HEADER--SITE.vue - Improved accessibility and mobile navigation
+- [x] **4.2 Create Layout Components**:
+  - [x] Create `COMPONENT__CONTAINER` with responsive behavior
+  - [x] Create `COMPONENT__GRID` for flexible layouts
+  - [x] Create `COMPONENT__SECTION` for consistent page sections
+  - [x] Create `COMPONENT__STACK` for vertical spacing
+  - [x] **Layout Components Created**:
+    - [x] COMPONENT__CONTAINER.vue - Responsive containers with design token sizing and padding
+    - [x] COMPONENT__GRID.vue - Flexible grid system with responsive columns and design token gaps
+    - [x] COMPONENT__SECTION.vue - Page sections with consistent spacing and background options
+    - [x] COMPONENT__STACK.vue - Vertical/horizontal spacing utility with optional dividers
+- [x] **4.3 Create Business Components**:
+  - [x] Create `COMPONENT__TESTIMONIAL--CARD`
+  - [x] Create `COMPONENT__CTA--SECTION`
+  - [x] Create `COMPONENT__STATS--GRID`
+  - [x] Create `COMPONENT__COMPANY--LOGO`
+  - [x] **Business Components Created**:
+    - [x] COMPONENT__TESTIMONIAL--CARD.vue - Customer testimonials with rating, avatar, and variants
+    - [x] COMPONENT__CTA--SECTION.vue - Call-to-action sections with gradient backgrounds and dual actions
+    - [x] COMPONENT__STATS--GRID.vue - Statistics display with trends, icons, and responsive layouts
+    - [x] COMPONENT__COMPANY--LOGO.vue - Partner logo display with grid, carousel, and inline variants
+
+### Step 5: Design System Page
+- [x] **5.1 Simple Design System Page**:
+  - [x] Create `/design-system` route and page component
+  - [x] Display design tokens (colors, typography, spacing)
+  - [x] Show component library with basic examples
+  - [x] Include usage guidelines and documentation links
+  - [x] Simple, clean presentation for developers/designers
+
+#### ✅ **COMPLETED**: Step 5.1 - Design System Page Created
+- [x] Design System Page Created
+    - [x] PAGE__DESIGN-SYSTEM--DEFAULT.vue - Complete design system showcase with tokens, components, and guidelines
+    - [x] Route added to router with `/design-system` path
+    - [x] Three-section navigation: Design Tokens, Components, Guidelines
+    - [x] Brand color swatches with CSS custom property references
+    - [x] Typography examples with Playfair Display and Montserrat
+    - [x] Spacing scale visualization
+    - [x] Component examples with all variants
+    - [x] Usage guidelines and documentation links
+    - [x] Fully responsive with design token integration
+    - [x] COMPONENT__COMPANY--LOGO.vue recreated after deletion
+    - [x] COMPONENT__COMPANY--LOGO.vue recreated after deletion
+
+### Strategy Notes:
+- **Colors**: Monza (primary), Tree Poppy (secondary), Pickled Bluewood & Cello (accent/background)
+- **UI Framework**: Element Plus for basic UI components + custom layout/business components
+- **Responsive**: Standard Tailwind breakpoints (sm: 640px, md: 768px, lg: 1024px, xl: 1280px)
+- **Accessibility**: Basic WCAG guidelines compliance
+- **Approach**: Documentation first → Implementation → Showcase
 
 ## PHASE 4 — OPS (DELIVERY)
 - [ ] `OPS/HOSTING.md`: Add domain config, SSL, redirects (apex → www or vice versa), cache strategy
@@ -240,7 +348,6 @@ With the optimized architecture now in place, the project is ready for the remai
 ## PHASE 5 — READINESS / QA
 - [ ] Content entry: create sample entries for each blog type and publish
 - [x] SSG webhook verification: webhook triggers Vercel build and site updates ✅
-- [ ] Accessibility sweep: keyboard nav, focus states, color contrast
 - [ ] Performance: images (formats/sizes), code-splitting, cache headers
 - [ ] SEO: validate metadata, structured data where applicable
 
