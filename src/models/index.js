@@ -1,31 +1,17 @@
 /**
- * Models Index
+ * Blog Models Index
  * 
- * This file exports all content models and component models
- * for easy importing throughout the application.
+ * This file exports blog content models and components
+ * for the Strapi CMS integration.
  */
 
 // Component Models
 export {
-  SeoComponent,
-  HeroComponent,
-  OrgComponent,
-  ProductSpecsComponent,
-  AddressComponent,
-  FeatureComponent,
-  SocialLinkComponent,
-  UseCaseComponent
+  SeoComponent
 } from './ComponentModels.js';
 
 // Content Models
 export {
-  SiteSettings,
-  Page,
-  Service,
-  Product,
-  Industry,
-  Certification,
-  Partner,
   Post,
   Category,
   Tag

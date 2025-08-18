@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getSiteSettings } from '@/api/siteSettingsService.js'
+import { siteSettings } from '@/data/staticContent.js'
 import { updateRouteSEO } from '@/utils/SEO-MANAGER__DYNAMIC'
 
 // Routes configuration

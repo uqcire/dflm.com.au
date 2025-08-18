@@ -1,9 +1,8 @@
 /**
- * Strapi API Configuration
+ * Strapi Blog API Configuration
  * 
  * This file provides configuration and utilities for integrating with
- * the Strapi CMS API. It handles authentication, request formatting,
- * response parsing, and environment-specific settings.
+ * the Strapi CMS API for blog functionality only (posts, categories, tags).
  */
 
 import { get, post, put, del } from '../utils/HTTP-CLIENT__API--UNIFIED.js';
@@ -32,10 +31,10 @@ export const strapiConfig = {
     refreshThreshold: 5 * 60 * 1000, // 5 minutes before expiry
   },
   
-  // Request configuration
+  // Request configuration for blog API
   request: {
-    timeout: 30000, // 30 seconds
-    retryAttempts: 3,
+    timeout: 10000, // 10 seconds (faster for blog content)
+    retryAttempts: 2,
     retryDelay: 1000, // 1 second
   },
   
@@ -69,48 +68,32 @@ export const strapiConfig = {
     },
   },
   
-  // Content types configuration
+  // Blog content types configuration
   contentTypes: {
-    // Single types (global settings)
-    singleTypes: ['site-settings'],
-    
-    // Collection types
+    // Blog collection types only
     collectionTypes: [
-      'page',
-      'service', 
-      'product',
-      'industry',
-      'certification',
-      'partner',
       'post',
       'category',
       'tag'
     ],
     
-    // API endpoints mapping
+    // Blog API endpoints mapping
     endpoints: {
-      'site-settings': '/page', // Single type - uses singular name
-      'page': '/static-pages', // Updated to use static-pages endpoint
-      'service': '/services',
-      'product': '/products',
-      'industry': '/industries',
-      'certification': '/certifications',
-      'partner': '/partners',
       'post': '/posts',
       'category': '/categories',
       'tag': '/tags'
     }
   },
   
-  // Query parameters
+  // Blog query parameters
   query: {
-    // Default parameters for all requests
+    // Default parameters for blog requests
     defaults: {
       populate: '*',
       publicationState: 'live',
     },
     
-    // Available filters
+    // Blog-specific filters
     filters: {
       slug: 'filters[slug][$eq]',
       category: 'filters[category][slug][$eq]',
@@ -119,25 +102,23 @@ export const strapiConfig = {
       dateRange: 'filters[publishedAt][$gte]',
     },
     
-    // Available sorts
+    // Blog sorting options
     sorts: {
-      createdAt: 'sort[0]=createdAt:desc',
-      updatedAt: 'sort[0]=updatedAt:desc',
+      newest: 'sort[0]=publishedAt:desc',
+      oldest: 'sort[0]=publishedAt:asc',
       title: 'sort[0]=title:asc',
-      publishedAt: 'sort[0]=publishedAt:desc',
+      updated: 'sort[0]=updatedAt:desc',
     },
     
-    // Pagination
+    // Blog pagination
     pagination: {
       page: 'pagination[page]',
       pageSize: 'pagination[pageSize]',
       limit: 'pagination[limit]',
     },
     
-    // Fields selection
+    // Blog fields and population
     fields: 'fields',
-    
-    // Population
     populate: 'populate',
   }
 };
@@ -631,15 +612,15 @@ export function getStrapiConfig() {
 }
 
 /**
- * Validate Strapi configuration
- * @returns {boolean} True if configuration is valid
+ * Validate blog Strapi configuration
+ * @returns {boolean} True if blog configuration is valid
  */
 export function validateStrapiConfig() {
-  const required = ['baseUrl', 'apiVersion', 'apiPath'];
+  const required = ['baseUrl', 'apiPath'];
   
   for (const field of required) {
     if (!strapiConfig[field]) {
-      console.error(`Missing required Strapi config: ${field}`);
+      console.error(`Missing required blog Strapi config: ${field}`);
       return false;
     }
   }

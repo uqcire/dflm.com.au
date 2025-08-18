@@ -1,60 +1,34 @@
 <script setup>
-import { onMounted, computed } from 'vue'
-import { useSiteSettings, usePages } from '@/composables/useDataFetching.js'
+import { homePage } from '@/data/pages/homePage.js'
 import ComponentHero from '@/components/COMPONENT__HERO--PAGE.vue'
-import ComponentLoadingState from '@/components/COMPONENT__LOADING--STATE.vue'
-import ComponentErrorState from '@/components/COMPONENT__ERROR--STATE.vue'
-
-// Site settings
-const {
-  siteSettings,
-  isLoading: siteLoading,
-  hasError: siteError,
-  errorDisplay: siteErrorDisplay,
-  loadSiteSettings
-} = useSiteSettings()
-
-// Home page data
-const {
-  pages,
-  isLoading: pageLoading,
-  hasError: pageError,
-  errorDisplay: pageErrorDisplay,
-  loadPageBySlug
-} = usePages()
-
-// Computed properties
-const isLoading = computed(() => siteLoading.value || pageLoading.value)
-const hasError = computed(() => siteError.value || pageError.value)
-const errorDisplay = computed(() => siteErrorDisplay.value || pageErrorDisplay.value)
-
-// Load data on mount
-onMounted(async () => {
-  try {
-    await Promise.all([
-      loadSiteSettings(),
-      loadPageBySlug('home')
-    ])
-  } catch (error) {
-    console.error('Error loading home page data:', error)
-  }
-})
-
-// Get home page data
-const homePage = computed(() => pages.value || null)
 </script>
 
 <template>
-  <ComponentLoadingState v-if="isLoading" />
-  <ComponentErrorState v-else-if="hasError"
-    :message="errorDisplay?.message || 'An error occurred while loading the home page.'" />
-  <div v-else-if="homePage">
-    <section class="page-home">
-      <ComponentHero :title="homePage.hero?.title" :subtitle="homePage.hero?.subtitle" :image="homePage.hero?.image" />
-      <!-- Rest of home page content using homePage data -->
-    </section>
-  </div>
-  <div v-else>
-    <ComponentErrorState :message="'Home page content could not be loaded.'" />
-  </div>
+  <section class="page-home">
+    <ComponentHero :title="homePage.hero.title" :subtitle="homePage.hero.subtitle" :image="homePage.hero.image" />
+    <div class="page-home__content max-w-4xl mx-auto py-8 px-6">
+      <div class="page-home__body">
+        <div v-for="(block, index) in homePage.blocks" :key="index" class="page-home__block mb-6">
+          <!-- Content Block -->
+          <div v-if="block.type === 'content'" class="page-home__content-block">
+            <h2 v-if="block.title" class="text-2xl font-bold text-gray-900 mb-4">{{ block.title }}</h2>
+            <div v-if="block.text" class="prose max-w-none" v-html="block.text"></div>
+            <img v-if="block.image" :src="block.image" :alt="block.title" class="mt-4 rounded-lg shadow-md" />
+          </div>
+          <!-- Features Block -->
+          <div v-else-if="block.features" class="page-home__features">
+            <h2 v-if="block.features.title" class="text-2xl font-bold text-gray-900 mb-6">{{ block.features.title }}
+            </h2>
+            <div v-if="block.features.features && block.features.features.length > 0" class="grid md:grid-cols-2 gap-6">
+              <div v-for="(feature, featureIndex) in block.features.features" :key="featureIndex"
+                class="page-home__feature">
+                <h3 class="text-lg font-semibold mb-2 text-blue-600">{{ feature.title }}</h3>
+                <p class="text-gray-600">{{ feature.text }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>

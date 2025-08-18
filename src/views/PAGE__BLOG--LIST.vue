@@ -1,39 +1,23 @@
 <script setup>
 import { onMounted, computed } from 'vue'
-import { usePosts, useSiteSettings } from '@/composables/useDataFetching.js'
+import { usePosts } from '@/composables/useDataFetching.js'
+import { siteSettings } from '@/data/staticContent.js'
 import ComponentLoadingState from '@/components/COMPONENT__LOADING--STATE.vue'
 import ComponentErrorState from '@/components/COMPONENT__ERROR--STATE.vue'
-
-// Site settings
-const {
-    siteSettings,
-    isLoading: siteLoading,
-    hasError: siteError,
-    errorDisplay: siteErrorDisplay,
-    loadSiteSettings
-} = useSiteSettings()
 
 // Posts data
 const {
     posts,
-    isLoading: postsLoading,
-    hasError: postsError,
-    errorDisplay: postsErrorDisplay,
+    isLoading,
+    hasError,
+    errorDisplay,
     loadPosts
 } = usePosts()
-
-// Computed properties
-const isLoading = computed(() => siteLoading.value || postsLoading.value)
-const hasError = computed(() => siteError.value || postsError.value)
-const errorDisplay = computed(() => siteErrorDisplay.value || postsErrorDisplay.value)
 
 // Load data on mount
 onMounted(async () => {
     try {
-        await Promise.all([
-            loadSiteSettings(),
-            loadPosts({ page: 1, pageSize: 10 })
-        ])
+        await loadPosts({ page: 1, pageSize: 10 })
     } catch (error) {
         console.error('Error loading blog page data:', error)
     }

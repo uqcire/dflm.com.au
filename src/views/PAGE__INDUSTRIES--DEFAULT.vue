@@ -1,13 +1,29 @@
 <script setup>
+import { industriesPage } from '@/data/pages/industriesPage.js'
+import ComponentHero from '@/components/COMPONENT__HERO--PAGE.vue'
 </script>
 
 <template>
     <section class="page-industries">
-        <header class="page-industries__header">
-            <h1 class="page-industries__title">Industries</h1>
-        </header>
-        <div class="page-industries__content">
-            <p class="page-industries__text">Industries content coming soon.</p>
+        <ComponentHero :title="industriesPage.hero.title" :subtitle="industriesPage.hero.subtitle"
+            :cta-text="industriesPage.hero.ctaText" :cta-link="industriesPage.hero.ctaLink" />
+        <div class="max-w-4xl mx-auto py-8 px-6">
+            <div class="page-industries__content">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div v-for="industry in industriesPage.industries" :key="industry.id"
+                        class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ industry.title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ industry.description }}</p>
+                        <ul class="space-y-2">
+                            <li v-for="feature in industry.features" :key="feature"
+                                class="text-sm text-gray-500 flex items-center">
+                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                                {{ feature }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </template>

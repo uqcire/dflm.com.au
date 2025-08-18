@@ -1,68 +1,11 @@
 /**
- * API Services Index
+ * Blog API Services Index
  * 
- * This file exports all API service methods for content types
- * for easy importing throughout the application.
+ * This file exports blog-related API service methods for the
+ * Strapi CMS integration (posts, categories, tags only).
  */
 
-// Content Type Services
-export {
-  getSiteSettings,
-  updateSiteSettings
-} from './siteSettingsService.js';
-
-export {
-  getPages,
-  getPageBySlug,
-  getPageById,
-  createPage,
-  updatePage,
-  deletePage
-} from './pageService.js';
-
-export {
-  getServices,
-  getServiceBySlug,
-  getServiceById,
-  createService,
-  updateService,
-  deleteService
-} from './serviceService.js';
-
-export {
-  getProducts,
-  getProductBySlug,
-  getProductById,
-  createProduct,
-  updateProduct,
-  deleteProduct
-} from './productService.js';
-
-export {
-  getIndustries,
-  getIndustryBySlug,
-  getIndustryById,
-  createIndustry,
-  updateIndustry,
-  deleteIndustry
-} from './industryService.js';
-
-export {
-  getCertifications,
-  getCertificationById,
-  createCertification,
-  updateCertification,
-  deleteCertification
-} from './certificationService.js';
-
-export {
-  getPartners,
-  getPartnerById,
-  createPartner,
-  updatePartner,
-  deletePartner
-} from './partnerService.js';
-
+// Blog Content Services
 export {
   getPosts,
   getPostBySlug,

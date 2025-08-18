@@ -1,30 +1,13 @@
 /**
- * Data Fetching Composables for Vue Components
+ * Blog Data Fetching Composables for Vue Components
  * 
- * This file provides composables for fetching data from the API
+ * This file provides composables for fetching blog data from the Strapi API
  * with reactive state management, caching, and error handling.
  */
 
-import { ref, computed, readonly, watch, nextTick } from 'vue';
+import { ref, computed, readonly } from 'vue';
 import { useApiError } from './useApiError.js';
 import { 
-  getSiteSettings, 
-  getPages, 
-  getPageBySlug, 
-  getPageById,
-  getServices,
-  getServiceBySlug,
-  getServiceById,
-  getProducts,
-  getProductBySlug,
-  getProductById,
-  getIndustries,
-  getIndustryBySlug,
-  getIndustryById,
-  getCertifications,
-  getCertificationById,
-  getPartners,
-  getPartnerById,
   getPosts,
   getPostBySlug,
   getPostById,
@@ -41,12 +24,12 @@ import {
 // =============================================================================
 
 /**
- * Simple in-memory cache for API responses
+ * Simple in-memory cache for blog API responses
  */
 class DataCache {
   constructor() {
     this.cache = new Map();
-    this.maxSize = 100;
+    this.maxSize = 50; // Smaller cache for blog only
     this.ttl = 5 * 60 * 1000; // 5 minutes
   }
   
@@ -57,19 +40,18 @@ class DataCache {
    * @returns {string} Cache key
    */
   generateKey(operation, params = {}) {
-    return `${operation}:${JSON.stringify(params)}`;
+    return `${operation}_${JSON.stringify(params)}`;
   }
   
   /**
    * Get cached data
    * @param {string} key - Cache key
-   * @returns {any} Cached data or null
+   * @returns {any|null} Cached data or null
    */
   get(key) {
     const item = this.cache.get(key);
     if (!item) return null;
     
-    // Check if expired
     if (Date.now() - item.timestamp > this.ttl) {
       this.cache.delete(key);
       return null;
@@ -79,12 +61,12 @@ class DataCache {
   }
   
   /**
-   * Set cached data
+   * Set cache data
    * @param {string} key - Cache key
    * @param {any} data - Data to cache
    */
   set(key, data) {
-    // Remove oldest items if cache is full
+    // Manage cache size
     if (this.cache.size >= this.maxSize) {
       const firstKey = this.cache.keys().next().value;
       this.cache.delete(firstKey);
@@ -97,31 +79,18 @@ class DataCache {
   }
   
   /**
-   * Clear cache
-   * @param {string} pattern - Pattern to match keys (optional)
+   * Clear specific cache entry
+   * @param {string} key - Cache key
    */
-  clear(pattern = null) {
-    if (pattern) {
-      for (const key of this.cache.keys()) {
-        if (key.includes(pattern)) {
-          this.cache.delete(key);
-        }
-      }
-    } else {
-      this.cache.clear();
-    }
+  clear(key) {
+    this.cache.delete(key);
   }
   
   /**
-   * Get cache statistics
-   * @returns {Object} Cache stats
+   * Clear all cache
    */
-  getStats() {
-    return {
-      size: this.cache.size,
-      maxSize: this.maxSize,
-      ttl: this.ttl
-    };
+  clearAll() {
+    this.cache.clear();
   }
 }
 
@@ -132,11 +101,6 @@ const dataCache = new DataCache();
 // BASE DATA FETCHING COMPOSABLE
 // =============================================================================
 
-/**
- * Base data fetching composable
- * @param {Object} options - Configuration options
- * @returns {Object} Data fetching utilities
- */
 export function useDataFetching(options = {}) {
   const {
     error,
@@ -249,279 +213,8 @@ export function useDataFetching(options = {}) {
 }
 
 // =============================================================================
-// CONTENT-SPECIFIC COMPOSABLES
+// BLOG-SPECIFIC COMPOSABLES
 // =============================================================================
-
-/**
- * Site Settings Composable
- * @param {Object} options - Configuration options
- * @returns {Object} Site settings utilities
- */
-export function useSiteSettings(options = {}) {
-  const {
-    data: siteSettings,
-    isLoading,
-    hasError,
-    errorDisplay,
-    isEmpty,
-    fetchData,
-    refreshData,
-    clearData
-  } = useDataFetching(options);
-  
-  /**
-   * Load site settings
-   * @param {Object} params - Fetch parameters
-   * @returns {Promise<any>} Site settings
-   */
-  async function loadSiteSettings(params = {}) {
-    return await fetchData(getSiteSettings, params, {
-      operation: 'loadSiteSettings',
-      contentType: 'site-settings'
-    });
-  }
-  
-  /**
-   * Get specific site setting
-   * @param {string} key - Setting key
-   * @returns {any} Setting value
-   */
-  function getSetting(key) {
-    if (!siteSettings.value?.data) return null;
-    return siteSettings.value.data[key];
-  }
-  
-  return {
-    // State
-    siteSettings,
-    isLoading,
-    hasError,
-    errorDisplay,
-    isEmpty,
-    
-    // Methods
-    loadSiteSettings,
-    refreshSiteSettings: () => refreshData(getSiteSettings),
-    clearSiteSettings: clearData,
-    getSetting
-  };
-}
-
-/**
- * Pages Composable
- * @param {Object} options - Configuration options
- * @returns {Object} Pages utilities
- */
-export function usePages(options = {}) {
-  const {
-    data: pages,
-    isLoading,
-    hasError,
-    errorDisplay,
-    isEmpty,
-    fetchData,
-    refreshData,
-    clearData
-  } = useDataFetching(options);
-  
-  /**
-   * Load pages
-   * @param {Object} params - Fetch parameters
-   * @returns {Promise<any>} Pages data
-   */
-  async function loadPages(params = {}) {
-    return await fetchData(getPages, params, {
-      operation: 'loadPages',
-      contentType: 'page'
-    });
-  }
-  
-  /**
-   * Get page by slug
-   * @param {string} slug - Page slug
-   * @returns {Promise<any>} Page data
-   */
-  async function loadPageBySlug(slug) {
-    return await fetchData(getPageBySlug, slug, {
-      operation: 'loadPageBySlug',
-      contentType: 'page',
-      slug
-    });
-  }
-  
-  /**
-   * Get page by ID
-   * @param {number|string} id - Page ID
-   * @returns {Promise<any>} Page data
-   */
-  async function loadPageById(id) {
-    return await fetchData(getPageById, id, {
-      operation: 'loadPageById',
-      contentType: 'page',
-      id
-    });
-  }
-  
-  return {
-    // State
-    pages,
-    isLoading,
-    hasError,
-    errorDisplay,
-    isEmpty,
-    
-    // Methods
-    loadPages,
-    loadPageBySlug,
-    loadPageById,
-    refreshPages: () => refreshData(getPages),
-    clearPages: clearData
-  };
-}
-
-/**
- * Services Composable
- * @param {Object} options - Configuration options
- * @returns {Object} Services utilities
- */
-export function useServices(options = {}) {
-  const {
-    data: services,
-    isLoading,
-    hasError,
-    errorDisplay,
-    isEmpty,
-    fetchData,
-    refreshData,
-    clearData
-  } = useDataFetching(options);
-  
-  /**
-   * Load services
-   * @param {Object} params - Fetch parameters
-   * @returns {Promise<any>} Services data
-   */
-  async function loadServices(params = {}) {
-    return await fetchData(getServices, params, {
-      operation: 'loadServices',
-      contentType: 'service'
-    });
-  }
-  
-  /**
-   * Get service by slug
-   * @param {string} slug - Service slug
-   * @returns {Promise<any>} Service data
-   */
-  async function loadServiceBySlug(slug) {
-    return await fetchData(getServiceBySlug, slug, {
-      operation: 'loadServiceBySlug',
-      contentType: 'service',
-      slug
-    });
-  }
-  
-  /**
-   * Get service by ID
-   * @param {number|string} id - Service ID
-   * @returns {Promise<any>} Service data
-   */
-  async function loadServiceById(id) {
-    return await fetchData(getServiceById, id, {
-      operation: 'loadServiceById',
-      contentType: 'service',
-      id
-    });
-  }
-  
-  return {
-    // State
-    services,
-    isLoading,
-    hasError,
-    errorDisplay,
-    isEmpty,
-    
-    // Methods
-    loadServices,
-    loadServiceBySlug,
-    loadServiceById,
-    refreshServices: () => refreshData(getServices),
-    clearServices: clearData
-  };
-}
-
-/**
- * Products Composable
- * @param {Object} options - Configuration options
- * @returns {Object} Products utilities
- */
-export function useProducts(options = {}) {
-  const {
-    data: products,
-    isLoading,
-    hasError,
-    errorDisplay,
-    isEmpty,
-    fetchData,
-    refreshData,
-    clearData
-  } = useDataFetching(options);
-  
-  /**
-   * Load products
-   * @param {Object} params - Fetch parameters
-   * @returns {Promise<any>} Products data
-   */
-  async function loadProducts(params = {}) {
-    return await fetchData(getProducts, params, {
-      operation: 'loadProducts',
-      contentType: 'product'
-    });
-  }
-  
-  /**
-   * Get product by slug
-   * @param {string} slug - Product slug
-   * @returns {Promise<any>} Product data
-   */
-  async function loadProductBySlug(slug) {
-    return await fetchData(getProductBySlug, slug, {
-      operation: 'loadProductBySlug',
-      contentType: 'product',
-      slug
-    });
-  }
-  
-  /**
-   * Get product by ID
-   * @param {number|string} id - Product ID
-   * @returns {Promise<any>} Product data
-   */
-  async function loadProductById(id) {
-    return await fetchData(getProductById, id, {
-      operation: 'loadProductById',
-      contentType: 'product',
-      id
-    });
-  }
-  
-  return {
-    // State
-    products,
-    isLoading,
-    hasError,
-    errorDisplay,
-    isEmpty,
-    
-    // Methods
-    loadProducts,
-    loadProductBySlug,
-    loadProductById,
-    refreshProducts: () => refreshData(getProducts),
-    clearProducts: clearData
-  };
-}
 
 /**
  * Blog Posts Composable
@@ -595,18 +288,14 @@ export function usePosts(options = {}) {
   };
 }
 
-// =============================================================================
-// PAGINATION COMPOSABLE
-// =============================================================================
-
 /**
- * Pagination Composable
+ * Blog Categories Composable
  * @param {Object} options - Configuration options
- * @returns {Object} Pagination utilities
+ * @returns {Object} Blog categories utilities
  */
-export function usePagination(options = {}) {
+export function useCategories(options = {}) {
   const {
-    data: paginatedData,
+    data: categories,
     isLoading,
     hasError,
     errorDisplay,
@@ -616,142 +305,69 @@ export function usePagination(options = {}) {
     clearData
   } = useDataFetching(options);
   
-  // Pagination state
-  const currentPage = ref(1);
-  const pageSize = ref(options.pageSize || 10);
-  const totalItems = ref(0);
-  const totalPages = ref(0);
-  
-  // Computed properties
-  const hasNextPage = computed(() => currentPage.value < totalPages.value);
-  const hasPrevPage = computed(() => currentPage.value > 1);
-  const isFirstPage = computed(() => currentPage.value === 1);
-  const isLastPage = computed(() => currentPage.value === totalPages.value);
-  
   /**
-   * Load paginated data
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Paginated data
+   * Load categories
+   * @param {Object} params - Fetch parameters
+   * @returns {Promise<any>} Categories data
    */
-  async function loadPaginatedData(fetcher, params = {}, context = {}) {
-    const paginationParams = {
-      page: currentPage.value,
-      pageSize: pageSize.value,
-      ...params
-    };
-    
-    const result = await fetchData(fetcher, paginationParams, context);
-    
-    // Update pagination info
-    if (result?.meta?.pagination) {
-      const pagination = result.meta.pagination;
-      totalItems.value = pagination.total || 0;
-      totalPages.value = pagination.pageCount || 0;
-      currentPage.value = pagination.page || 1;
-    }
-    
-    return result;
+  async function loadCategories(params = {}) {
+    return await fetchData(getCategories, params, {
+      operation: 'loadCategories',
+      contentType: 'category'
+    });
   }
   
   /**
-   * Go to next page
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Next page data
+   * Get category by slug
+   * @param {string} slug - Category slug
+   * @returns {Promise<any>} Category data
    */
-  async function nextPage(fetcher, params = {}, context = {}) {
-    if (hasNextPage.value) {
-      currentPage.value++;
-      return await loadPaginatedData(fetcher, params, context);
-    }
-    return null;
+  async function loadCategoryBySlug(slug) {
+    return await fetchData(getCategoryBySlug, slug, {
+      operation: 'loadCategoryBySlug',
+      contentType: 'category',
+      slug
+    });
   }
   
   /**
-   * Go to previous page
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Previous page data
+   * Get category by ID
+   * @param {number|string} id - Category ID
+   * @returns {Promise<any>} Category data
    */
-  async function prevPage(fetcher, params = {}, context = {}) {
-    if (hasPrevPage.value) {
-      currentPage.value--;
-      return await loadPaginatedData(fetcher, params, context);
-    }
-    return null;
-  }
-  
-  /**
-   * Go to specific page
-   * @param {number} page - Page number
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Page data
-   */
-  async function goToPage(page, fetcher, params = {}, context = {}) {
-    if (page >= 1 && page <= totalPages.value) {
-      currentPage.value = page;
-      return await loadPaginatedData(fetcher, params, context);
-    }
-    return null;
-  }
-  
-  /**
-   * Reset pagination
-   */
-  function resetPagination() {
-    currentPage.value = 1;
-    totalItems.value = 0;
-    totalPages.value = 0;
-    clearData();
+  async function loadCategoryById(id) {
+    return await fetchData(getCategoryById, id, {
+      operation: 'loadCategoryById',
+      contentType: 'category',
+      id
+    });
   }
   
   return {
     // State
-    paginatedData,
+    categories,
     isLoading,
     hasError,
     errorDisplay,
     isEmpty,
-    currentPage: readonly(currentPage),
-    pageSize: readonly(pageSize),
-    totalItems: readonly(totalItems),
-    totalPages: readonly(totalPages),
-    
-    // Computed
-    hasNextPage,
-    hasPrevPage,
-    isFirstPage,
-    isLastPage,
     
     // Methods
-    loadPaginatedData,
-    nextPage,
-    prevPage,
-    goToPage,
-    resetPagination,
-    refreshData,
-    clearData
+    loadCategories,
+    loadCategoryBySlug,
+    loadCategoryById,
+    refreshCategories: () => refreshData(getCategories),
+    clearCategories: clearData
   };
 }
 
-// =============================================================================
-// SEARCH AND FILTER COMPOSABLE
-// =============================================================================
-
 /**
- * Search and Filter Composable
+ * Blog Tags Composable
  * @param {Object} options - Configuration options
- * @returns {Object} Search and filter utilities
+ * @returns {Object} Blog tags utilities
  */
-export function useSearchAndFilter(options = {}) {
+export function useTags(options = {}) {
   const {
-    data: filteredData,
+    data: tags,
     isLoading,
     hasError,
     errorDisplay,
@@ -761,188 +377,58 @@ export function useSearchAndFilter(options = {}) {
     clearData
   } = useDataFetching(options);
   
-  // Search and filter state
-  const searchQuery = ref('');
-  const filters = ref({});
-  const sortBy = ref(options.defaultSort || 'createdAt');
-  const sortOrder = ref(options.defaultSortOrder || 'desc');
-  
-  // Debounced search
-  let searchTimeout = null;
-  
   /**
-   * Apply search and filters
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Filtered data
+   * Load tags
+   * @param {Object} params - Fetch parameters
+   * @returns {Promise<any>} Tags data
    */
-  async function applyFilters(fetcher, params = {}, context = {}) {
-    const filterParams = {
-      ...params,
-      filters: {
-        ...filters.value
-      },
-      sort: `${sortBy.value}:${sortOrder.value}`
-    };
-    
-    // Add search query if provided
-    if (searchQuery.value.trim()) {
-      filterParams.search = searchQuery.value.trim();
-    }
-    
-    return await fetchData(fetcher, filterParams, context);
+  async function loadTags(params = {}) {
+    return await fetchData(getTags, params, {
+      operation: 'loadTags',
+      contentType: 'tag'
+    });
   }
   
   /**
-   * Set search query with debouncing
-   * @param {string} query - Search query
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @param {number} delay - Debounce delay in ms
+   * Get tag by slug
+   * @param {string} slug - Tag slug
+   * @returns {Promise<any>} Tag data
    */
-  async function setSearchQuery(query, fetcher, params = {}, context = {}, delay = 300) {
-    searchQuery.value = query;
-    
-    // Clear existing timeout
-    if (searchTimeout) {
-      clearTimeout(searchTimeout);
-    }
-    
-    // Debounce search
-    searchTimeout = setTimeout(async () => {
-      await applyFilters(fetcher, params, context);
-    }, delay);
+  async function loadTagBySlug(slug) {
+    return await fetchData(getTagBySlug, slug, {
+      operation: 'loadTagBySlug',
+      contentType: 'tag',
+      slug
+    });
   }
   
   /**
-   * Set filter
-   * @param {string} key - Filter key
-   * @param {any} value - Filter value
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Filtered data
+   * Get tag by ID
+   * @param {number|string} id - Tag ID
+   * @returns {Promise<any>} Tag data
    */
-  async function setFilter(key, value, fetcher, params = {}, context = {}) {
-    filters.value[key] = value;
-    return await applyFilters(fetcher, params, context);
-  }
-  
-  /**
-   * Clear filter
-   * @param {string} key - Filter key
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Filtered data
-   */
-  async function clearFilter(key, fetcher, params = {}, context = {}) {
-    delete filters.value[key];
-    return await applyFilters(fetcher, params, context);
-  }
-  
-  /**
-   * Clear all filters
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Filtered data
-   */
-  async function clearAllFilters(fetcher, params = {}, context = {}) {
-    filters.value = {};
-    searchQuery.value = '';
-    return await applyFilters(fetcher, params, context);
-  }
-  
-  /**
-   * Set sort
-   * @param {string} field - Sort field
-   * @param {string} order - Sort order (asc/desc)
-   * @param {Function} fetcher - Data fetching function
-   * @param {Object} params - Additional parameters
-   * @param {Object} context - Error context
-   * @returns {Promise<any>} Sorted data
-   */
-  async function setSort(field, order, fetcher, params = {}, context = {}) {
-    sortBy.value = field;
-    sortOrder.value = order;
-    return await applyFilters(fetcher, params, context);
-  }
-  
-  /**
-   * Reset search and filters
-   */
-  function resetSearchAndFilter() {
-    searchQuery.value = '';
-    filters.value = {};
-    sortBy.value = options.defaultSort || 'createdAt';
-    sortOrder.value = options.defaultSortOrder || 'desc';
-    clearData();
+  async function loadTagById(id) {
+    return await fetchData(getTagById, id, {
+      operation: 'loadTagById',
+      contentType: 'tag',
+      id
+    });
   }
   
   return {
     // State
-    filteredData,
+    tags,
     isLoading,
     hasError,
     errorDisplay,
     isEmpty,
-    searchQuery: readonly(searchQuery),
-    filters: readonly(filters),
-    sortBy: readonly(sortBy),
-    sortOrder: readonly(sortOrder),
     
     // Methods
-    applyFilters,
-    setSearchQuery,
-    setFilter,
-    clearFilter,
-    clearAllFilters,
-    setSort,
-    resetSearchAndFilter,
-    refreshData,
-    clearData
-  };
-}
-
-// =============================================================================
-// CACHE MANAGEMENT COMPOSABLE
-// =============================================================================
-
-/**
- * Cache Management Composable
- * @returns {Object} Cache management utilities
- */
-export function useCacheManagement() {
-  /**
-   * Clear all cache
-   */
-  function clearAllCache() {
-    dataCache.clear();
-  }
-  
-  /**
-   * Clear cache by pattern
-   * @param {string} pattern - Pattern to match
-   */
-  function clearCacheByPattern(pattern) {
-    dataCache.clear(pattern);
-  }
-  
-  /**
-   * Get cache statistics
-   * @returns {Object} Cache stats
-   */
-  function getCacheStats() {
-    return dataCache.getStats();
-  }
-  
-  return {
-    clearAllCache,
-    clearCacheByPattern,
-    getCacheStats
+    loadTags,
+    loadTagBySlug,
+    loadTagById,
+    refreshTags: () => refreshData(getTags),
+    clearTags: clearData
   };
 }
 
@@ -951,18 +437,13 @@ export function useCacheManagement() {
 // =============================================================================
 
 export default {
-  // Base composables
+  // Core composables
   useDataFetching,
-  useSiteSettings,
-  usePages,
-  useServices,
-  useProducts,
-  usePosts,
   
-  // Advanced composables
-  usePagination,
-  useSearchAndFilter,
-  useCacheManagement,
+  // Blog composables
+  usePosts,
+  useCategories,
+  useTags,
   
   // Cache instance (for advanced usage)
   dataCache

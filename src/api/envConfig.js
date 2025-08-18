@@ -1,8 +1,8 @@
 /**
- * Environment Configuration for API Integration
+ * Environment Configuration for Blog API Integration
  * 
- * This file defines and validates all environment variables needed
- * for the API integration (mock data and Strapi).
+ * This file defines and validates environment variables needed
+ * for blog Strapi CMS integration only.
  */
 
 // =============================================================================
@@ -10,58 +10,36 @@
 // =============================================================================
 
 /**
- * Environment variables configuration
+ * Environment variables configuration for blog CMS
  */
 export const envConfig = {
-  // Mock API Configuration
-  VITE_USE_MOCK_API: {
-    description: 'Enable mock API data (true/false)',
-    default: 'true',
-    type: 'boolean',
-    required: false
-  },
-  
-  // Strapi API Configuration
+  // Strapi Blog API Configuration
   VITE_STRAPI_API_URL: {
-    description: 'Strapi API base URL',
+    description: 'Strapi blog API base URL',
     default: 'http://localhost:1337',
     type: 'string',
-    required: false
-  },
-  
-  VITE_STRAPI_ENABLED: {
-    description: 'Enable Strapi integration (true/false)',
-    default: 'false',
-    type: 'boolean',
-    required: false
+    required: true
   },
   
   VITE_STRAPI_MEDIA_URL: {
-    description: 'Strapi media base URL',
+    description: 'Strapi media base URL for blog images',
     default: '',
     type: 'string',
     required: false
   },
   
-  // Authentication
+  // Authentication (optional for public blog content)
   VITE_STRAPI_TOKEN: {
-    description: 'Strapi API token for authentication',
+    description: 'Strapi API token for authenticated requests',
     default: '',
     type: 'string',
     required: false
   },
   
-  // Development settings
+  // Performance settings
   VITE_API_TIMEOUT: {
-    description: 'API request timeout in milliseconds',
-    default: '30000',
-    type: 'number',
-    required: false
-  },
-  
-  VITE_API_RETRY_ATTEMPTS: {
-    description: 'Number of API retry attempts',
-    default: '3',
+    description: 'Blog API request timeout in milliseconds',
+    default: '10000',
     type: 'number',
     required: false
   }
@@ -152,17 +130,15 @@ export function validateEnvConfig() {
 }
 
 /**
- * Get current API configuration
- * @returns {Object} Current API configuration
+ * Get current blog API configuration
+ * @returns {Object} Current blog API configuration
  */
 export function getCurrentApiConfig() {
   return {
-    useMockApi: getEnvVarAsBoolean('VITE_USE_MOCK_API'),
-    strapiEnabled: getEnvVarAsBoolean('VITE_STRAPI_ENABLED'),
     strapiApiUrl: getEnvVar('VITE_STRAPI_API_URL'),
     strapiMediaUrl: getEnvVar('VITE_STRAPI_MEDIA_URL'),
+    strapiToken: getEnvVar('VITE_STRAPI_TOKEN'),
     apiTimeout: getEnvVarAsNumber('VITE_API_TIMEOUT'),
-    apiRetryAttempts: getEnvVarAsNumber('VITE_API_RETRY_ATTEMPTS'),
     environment: import.meta.env.MODE
   };
 }
@@ -188,36 +164,12 @@ export function isProduction() {
 }
 
 /**
- * Check if mock API is enabled
- * @returns {boolean} True if mock API is enabled
+ * Check if Strapi blog integration is configured
+ * @returns {boolean} True if Strapi blog is configured
  */
-export function isMockApiEnabled() {
-  return getEnvVarAsBoolean('VITE_USE_MOCK_API');
-}
-
-/**
- * Check if Strapi integration is enabled
- * @returns {boolean} True if Strapi is enabled
- */
-export function isStrapiEnabled() {
-  return getEnvVarAsBoolean('VITE_STRAPI_ENABLED');
-}
-
-/**
- * Get API mode (mock, strapi, or hybrid)
- * @returns {string} API mode
- */
-export function getApiMode() {
-  const mockEnabled = isMockApiEnabled();
-  const strapiEnabled = isStrapiEnabled();
-  
-  if (mockEnabled && strapiEnabled) {
-    return 'hybrid';
-  } else if (strapiEnabled) {
-    return 'strapi';
-  } else {
-    return 'mock';
-  }
+export function isBlogApiConfigured() {
+  const apiUrl = getEnvVar('VITE_STRAPI_API_URL');
+  return apiUrl && apiUrl !== '';
 }
 
 // =============================================================================
@@ -225,21 +177,19 @@ export function getApiMode() {
 // =============================================================================
 
 /**
- * Setup environment for API integration
+ * Setup environment for blog API integration
  * @returns {Object} Setup result
  */
-export function setupApiEnvironment() {
+export function setupBlogApiEnvironment() {
   const validation = validateEnvConfig();
   const config = getCurrentApiConfig();
-  const mode = getApiMode();
+  const isConfigured = isBlogApiConfigured();
   
-  console.log('🔧 API Environment Setup:');
-  console.log(`  Mode: ${mode}`);
+  console.log('🔧 Blog API Environment Setup:');
   console.log(`  Environment: ${config.environment}`);
-  console.log(`  Mock API: ${config.useMockApi ? 'enabled' : 'disabled'}`);
-  console.log(`  Strapi: ${config.strapiEnabled ? 'enabled' : 'disabled'}`);
+  console.log(`  Blog API: ${isConfigured ? 'configured' : 'not configured'}`);
   
-  if (config.strapiEnabled) {
+  if (isConfigured) {
     console.log(`  Strapi URL: ${config.strapiApiUrl}`);
   }
   
@@ -253,95 +203,73 @@ export function setupApiEnvironment() {
   
   return {
     valid: validation.valid,
-    mode,
+    configured: isConfigured,
     config,
     validation
   };
 }
 
 /**
- * Generate environment file template
+ * Generate environment file template for blog API
  * @returns {string} Environment file content
  */
 export function generateEnvTemplate() {
-  let template = `# API Configuration
+  let template = `# Blog API Configuration
 # Copy this file to .env.local and update values as needed
 
-# Mock API Configuration
-VITE_USE_MOCK_API=true
-
-# Strapi API Configuration
+# Strapi Blog CMS Configuration
 VITE_STRAPI_API_URL=http://localhost:1337
-VITE_STRAPI_ENABLED=false
 VITE_STRAPI_MEDIA_URL=
 
-# Authentication (optional)
+# Authentication (optional for public blog content)
 VITE_STRAPI_TOKEN=
 
-# Development settings
-VITE_API_TIMEOUT=30000
-VITE_API_RETRY_ATTEMPTS=3
+# Performance settings
+VITE_API_TIMEOUT=10000
 `;
 
   return template;
 }
 
 /**
- * Get environment documentation
+ * Get environment documentation for blog API
  * @returns {string} Documentation
  */
 export function getEnvDocumentation() {
-  let docs = `# Environment Variables Documentation
+  let docs = `# Blog API Environment Variables Documentation
 
-## API Configuration
+## Strapi Blog CMS Configuration
 
-### Mock API
-- \`VITE_USE_MOCK_API\`: Enable mock API data (default: true)
-  - Set to 'true' to use mock data during development
-  - Set to 'false' to use real API calls
-
-### Strapi Integration
-- \`VITE_STRAPI_API_URL\`: Strapi API base URL (default: http://localhost:1337)
+### Required Variables
+- \`VITE_STRAPI_API_URL\`: Strapi blog API base URL
   - Development: http://localhost:1337
   - Production: https://your-strapi-instance.com
 
-- \`VITE_STRAPI_ENABLED\`: Enable Strapi integration (default: false)
-  - Set to 'true' to use Strapi API
-  - Set to 'false' to use mock data
+### Optional Variables
+- \`VITE_STRAPI_MEDIA_URL\`: Strapi media base URL for blog images
+  - Used for serving blog media files from Strapi
+  - If not set, will use VITE_STRAPI_API_URL
 
-- \`VITE_STRAPI_MEDIA_URL\`: Strapi media base URL (optional)
-  - Used for serving media files from Strapi
+- \`VITE_STRAPI_TOKEN\`: Strapi API token for authenticated requests
+  - Optional for public blog content
+  - Required for creating/updating blog posts via admin
 
-### Authentication
-- \`VITE_STRAPI_TOKEN\`: Strapi API token (optional)
-  - Required for authenticated requests
-  - Can be set at runtime for security
-
-### Development Settings
-- \`VITE_API_TIMEOUT\`: API request timeout in milliseconds (default: 30000)
-- \`VITE_API_RETRY_ATTEMPTS\`: Number of API retry attempts (default: 3)
+### Performance Settings
+- \`VITE_API_TIMEOUT\`: Blog API request timeout in milliseconds (default: 10000)
 
 ## Usage Examples
 
-### Development with Mock Data
+### Development
 \`\`\`
-VITE_USE_MOCK_API=true
-VITE_STRAPI_ENABLED=false
-\`\`\`
-
-### Development with Strapi
-\`\`\`
-VITE_USE_MOCK_API=false
-VITE_STRAPI_ENABLED=true
 VITE_STRAPI_API_URL=http://localhost:1337
+VITE_API_TIMEOUT=10000
 \`\`\`
 
 ### Production
 \`\`\`
-VITE_USE_MOCK_API=false
-VITE_STRAPI_ENABLED=true
-VITE_STRAPI_API_URL=https://your-strapi-instance.com
-VITE_STRAPI_MEDIA_URL=https://your-strapi-instance.com
+VITE_STRAPI_API_URL=https://cms-fklk.onrender.com
+VITE_STRAPI_MEDIA_URL=https://cms-fklk.onrender.com
+VITE_API_TIMEOUT=10000
 \`\`\`
 `;
 
@@ -352,9 +280,9 @@ VITE_STRAPI_MEDIA_URL=https://your-strapi-instance.com
 // AUTO-SETUP IN DEVELOPMENT
 // =============================================================================
 
-// Automatically setup environment in development
+// Automatically setup blog environment in development
 if (import.meta.env.DEV) {
-  setupApiEnvironment();
+  setupBlogApiEnvironment();
 }
 
 // =============================================================================
@@ -370,10 +298,8 @@ export default {
   getCurrentApiConfig,
   isDevelopment,
   isProduction,
-  isMockApiEnabled,
-  isStrapiEnabled,
-  getApiMode,
-  setupApiEnvironment,
+  isBlogApiConfigured,
+  setupBlogApiEnvironment,
   generateEnvTemplate,
   getEnvDocumentation
 }; 
