@@ -1,6 +1,6 @@
 <script setup>
 import { serviceImportDistribution } from '@/data/staticContent.js'
-import ComponentHero from '@/components/COMPONENT__HERO--PAGE.vue'
+import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 </script>
 
 <template>

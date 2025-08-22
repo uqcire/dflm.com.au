@@ -13,57 +13,31 @@ export const productsPage = {
   products: [
     {
       id: 1,
-      title: 'Garlic Products',
-      slug: 'garlic-products',
-      summary: 'Premium garlic products for food processing and retail',
-      description: 'High-quality garlic products including fresh garlic, dehydrated garlic, and garlic powder suitable for various food applications.',
-      price: 'Contact for pricing',
-      featured: true,
-      badge: 'Popular',
-      image: null,
-      specs: {
-        origin: 'China',
-        grade: 'Premium',
-        moq: '1 tonne',
-        packaging: '25kg bags',
-        shelfLife: '24 months'
-      }
+      title: 'Fresh Vegetables',
+      slug: 'fresh-vegetables',
+      description: 'Consistently sourced and processed at the highest standards, our fresh vegetables deliver reliable quality for Australia’s food industry. With strict cold chain and compliance systems, we ensure freshness from farm to table.',
+      image: '/src/assets/home/product-card__fresh-vegetables.png',
+      specs: null,
+      link: '/products/fresh-vegetables'
     },
     {
       id: 2,
       title: 'Dehydrated Vegetables',
       slug: 'dehydrated-vegetables',
-      summary: 'Quality dehydrated vegetables for food manufacturing',
-      description: 'Range of dehydrated vegetables including onions, carrots, and mixed vegetables for food processing applications.',
+      description: 'Our range of dehydrated vegetables includes onions, carrots, and mixed vegetables, perfect for food processing applications. With strict quality control and compliance systems, we ensure consistency and reliability for every batch.',
       price: 'Contact for pricing',
-      featured: false,
-      badge: null,
-      image: null,
-      specs: {
-        origin: 'China',
-        grade: 'Food Grade',
-        moq: '500kg',
-        packaging: '20kg bags',
-        shelfLife: '18 months'
-      }
+      image: '/src/assets/home/product-card__dehydrated-vegetables.png',
+      specs: null,
+      link: '/products/dehydrated-vegetables'
     },
     {
       id: 3,
       title: 'Pulses & Legumes',
       slug: 'pulses-legumes',
-      summary: 'Premium pulses and legumes for various applications',
-      description: 'High-quality pulses including chickpeas, lentils, and beans suitable for food processing and retail markets.',
-      price: 'Contact for pricing',
-      featured: false,
-      badge: null,
-      image: null,
-      specs: {
-        origin: 'Australia/Imported',
-        grade: 'Premium',
-        moq: '1 tonne',
-        packaging: '25kg bags',
-        shelfLife: '36 months'
-      }
+      description: 'From chickpeas to lentils, our pulses and legumes are processed to meet global standards for safety and consistency. We provide bulk volumes with full traceability, supporting both industrial applications and retail supply chains.',
+      image: '/src/assets/home/product-card__pulses.png',
+      specs: null,
+      link: '/products/pulses-legumes'
     }
   ],
   seo: {

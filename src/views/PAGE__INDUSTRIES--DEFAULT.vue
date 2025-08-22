@@ -1,6 +1,6 @@
 <script setup>
-import { industriesPage } from '@/data/pages/industriesPage.js'
-import ComponentHero from '@/components/COMPONENT__HERO--PAGE.vue'
+import { industriesPage } from '@/data/staticContent.js'
+import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 </script>
 
 <template>

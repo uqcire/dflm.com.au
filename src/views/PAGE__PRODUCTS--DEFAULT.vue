@@ -1,7 +1,7 @@
 <script setup>
 import { productsPage } from '@/data/staticContent.js'
-import ComponentHero from '@/components/COMPONENT__HERO--PAGE.vue'
-import ComponentProductCard from '@/components/COMPONENT__PRODUCT--CARD.vue'
+import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
+import ComponentProductCard from '@/components/ui/COMPONENT__PRODUCT--CARD.vue'
 </script>
 
 <template>

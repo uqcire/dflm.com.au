@@ -5,7 +5,75 @@
   --font-playfair: "playfair-display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-montserrat: "montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  /* Tailwind v4 color tokens mapped from HSL component vars */
+  /* === FONT FAMILY DEFINITIONS FOR TAILWIND === */
+  /* Define font families that can be used with Tailwind classes */
+  --font-family-heading: var(--font-playfair);
+  --font-family-body: var(--font-montserrat);
+  --font-family-mono: "SF Mono", Monaco, Inconsolata, "Roboto Mono", "Source Code Pro", Consolas, "Courier New", monospace;
+  
+  /* Tailwind font family utilities */
+  --font-family-sans: var(--font-montserrat);
+  --font-family-serif: var(--font-playfair);
+  --font-family-display: var(--font-playfair);
+  
+  /* Legacy aliases for backwards compatibility */
+  --font-family-primary: var(--font-family-body);
+
+  /* === BRAND COLOR PALETTE === */
+  /* Monza Primary Color (HSL components) */
+  --monza-50: 0 80% 96%;
+  --monza-100: 359 84% 90%;
+  --monza-200: 359 86% 81%;
+  --monza-300: 359 88% 72%;
+  --monza-400: 358 90% 60%;
+  --monza-500: 358 71% 48%;
+  --monza-600: 358 73% 41%;
+  --monza-700: 358 75% 33%;
+  --monza-800: 357 79% 23%;
+  --monza-900: 358 88% 13%;
+  --monza-950: 359 91% 9%;
+
+  /* Tree Poppy Secondary Color */
+  --tree-poppy-50: 24 100% 95%;
+  --tree-poppy-100: 24 100% 87%;
+  --tree-poppy-200: 29 99% 72%;
+  --tree-poppy-300: 37 90% 51%;
+  --tree-poppy-400: 37 87% 46%;
+  --tree-poppy-500: 37 89% 39%;
+  --tree-poppy-600: 37 91% 32%;
+  --tree-poppy-700: 36 93% 24%;
+  --tree-poppy-800: 36 95% 16%;
+  --tree-poppy-900: 33 96% 9%;
+  --tree-poppy-950: 30 100% 5%;
+
+  /* Pickled Bluewood Accent Color */
+  --pickled-bluewood-50: 215 46% 95%;
+  --pickled-bluewood-100: 213 46% 87%;
+  --pickled-bluewood-200: 211 48% 74%;
+  --pickled-bluewood-300: 210 43% 62%;
+  --pickled-bluewood-400: 210 28% 52%;
+  --pickled-bluewood-500: 210 27% 42%;
+  --pickled-bluewood-600: 210 27% 33%;
+  --pickled-bluewood-700: 210 29% 24%;
+  --pickled-bluewood-800: 211 31% 19%;
+  --pickled-bluewood-900: 210 36% 11%;
+  --pickled-bluewood-950: 208 43% 7%;
+
+  /* Cello Support Color */
+  --cello-50: 221 73% 96%;
+  --cello-100: 223 70% 89%;
+  --cello-200: 221 71% 79%;
+  --cello-300: 219 73% 70%;
+  --cello-400: 216 70% 59%;
+  --cello-500: 216 50% 49%;
+  --cello-600: 215 51% 40%;
+  --cello-700: 215 53% 32%;
+  --cello-800: 215 55% 24%;
+  --cello-900: 215 63% 14%;
+  --cello-950: 216 75% 8%;
+
+  /* === TAILWIND COLOR MAPPINGS === */
+  /* Map brand colors to Tailwind color palette */
   --color-monza-50: hsl(var(--monza-50));
   --color-monza-100: hsl(var(--monza-100));
   --color-monza-200: hsl(var(--monza-200));
@@ -54,23 +122,39 @@
   --color-cello-900: hsl(var(--cello-900));
   --color-cello-950: hsl(var(--cello-950));
 
-  /* === E-SUNRISE AUSTRALIA DESIGN TOKENS === */
-  /* Brand semantic tokens for components */
+  /* === SEMANTIC COLOR TOKENS === */
+  /* Brand semantic tokens - these can be used directly in Tailwind classes */
   --color-primary: var(--color-monza-600);
   --color-secondary: var(--color-tree-poppy-500);
   --color-accent: var(--color-pickled-bluewood-500);
   --color-support: var(--color-cello-500);
 
-  /* Typography tokens */
-  --font-family-body: var(--font-montserrat);      /* For body text, paragraphs, general content */
-  --font-family-heading: var(--font-playfair);     /* For headings (h1-h6) and display text */
-  --font-family-mono: "SF Mono", Monaco, Inconsolata, "Roboto Mono", "Source Code Pro", Consolas, "Courier New", monospace;
+  /* Text colors mapped to Tailwind's gray scale */
+  --color-slate-900: #0f172a;  /* Primary text */
+  --color-slate-600: #475569;  /* Secondary text */
+  --color-slate-500: #64748b;  /* Tertiary text */
+  --color-slate-400: #94a3b8;  /* Quaternary text */
   
-  /* Legacy aliases for backwards compatibility */
-  --font-family-primary: var(--font-family-body);
-  --font-family-display: var(--font-family-heading);
+  /* Background colors */
+  --color-white: #ffffff;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
 
-  /* Font sizes */
+  /* Border colors */
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+
+  /* Status colors */
+  --color-green-600: #059669;
+  --color-green-50: #ecfdf5;
+  --color-green-200: #a7f3d0;
+  --color-red-600: #dc2626;
+  --color-red-50: #fef2f2;
+  --color-red-200: #fecaca;
+
+  /* Font sizes - these match Tailwind's default scale */
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;   /* 14px */
   --font-size-base: 1rem;     /* 16px */
@@ -83,7 +167,7 @@
   --font-size-6xl: 3.75rem;   /* 60px */
   --font-size-7xl: 4.5rem;    /* 72px */
 
-  /* Font weights */
+  /* Font weights - match Tailwind defaults */
   --font-weight-thin: 100;
   --font-weight-light: 300;
   --font-weight-normal: 400;
@@ -93,7 +177,7 @@
   --font-weight-extrabold: 800;
   --font-weight-black: 900;
 
-  /* Line heights */
+  /* Line heights - match Tailwind defaults */
   --line-height-none: 1;
   --line-height-tight: 1.25;
   --line-height-snug: 1.375;
@@ -101,7 +185,7 @@
   --line-height-relaxed: 1.625;
   --line-height-loose: 2;
 
-  /* Letter spacing */
+  /* Letter spacing - match Tailwind defaults */
   --letter-spacing-tighter: -0.05em;
   --letter-spacing-tight: -0.025em;
   --letter-spacing-normal: 0em;
@@ -109,7 +193,8 @@
   --letter-spacing-wider: 0.05em;
   --letter-spacing-widest: 0.1em;
 
-  /* Spacing scale */
+  /* === SPACING SCALE === */
+  /* Match Tailwind's spacing scale exactly */
   --space-0: 0;
   --space-px: 1px;
   --space-0-5: 0.125rem;  /* 2px */
@@ -136,7 +221,7 @@
   --space-28: 7rem;       /* 112px */
   --space-32: 8rem;       /* 128px */
 
-  /* Semantic spacing */
+  /* Semantic spacing for components */
   --space-component-xs: var(--space-2);   /* 8px */
   --space-component-sm: var(--space-4);   /* 16px */
   --space-component-md: var(--space-6);   /* 24px */
@@ -149,7 +234,8 @@
   --space-layout-lg: var(--space-24);     /* 96px */
   --space-layout-xl: var(--space-32);     /* 128px */
 
-  /* Border radius */
+  /* === BORDER RADIUS === */
+  /* Match Tailwind's border radius scale */
   --radius-none: 0;
   --radius-sm: 0.125rem;   /* 2px */
   --radius-base: 0.25rem;  /* 4px */
@@ -167,7 +253,8 @@
   --border-width-4: 4px;
   --border-width-8: 8px;
 
-  /* Box shadows */
+  /* === BOX SHADOWS === */
+  /* Match Tailwind's shadow scale */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -177,19 +264,20 @@
   --shadow-2xl: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
   --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 
-  /* Focus shadows */
+  /* Focus shadows using brand colors */
   --shadow-focus-primary: 0 0 0 3px hsla(var(--monza-500), 0.3);
   --shadow-focus-secondary: 0 0 0 3px hsla(var(--tree-poppy-500), 0.3);
   --shadow-focus-accent: 0 0 0 3px hsla(var(--pickled-bluewood-500), 0.3);
 
-  /* Animation timing */
+  /* === ANIMATION & TIMING === */
+  /* Match Tailwind's timing functions */
   --ease-linear: linear;
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-  /* Duration */
+  /* Match Tailwind's duration scale */
   --duration-75: 75ms;
   --duration-100: 100ms;
   --duration-150: 150ms;
@@ -199,7 +287,8 @@
   --duration-700: 700ms;
   --duration-1000: 1000ms;
 
-  /* Responsive breakpoints */
+  /* === RESPONSIVE BREAKPOINTS === */
+  /* Match Tailwind's default breakpoints */
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -212,15 +301,20 @@
   --container-lg: 1024px;
   --container-xl: 1280px;
   --container-2xl: 1536px;
-}
 
-/* Typography application */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-heading); /* Playfair Display for all headings */
-}
-
-body, p, span, div, button, input, label, a {
-  font-family: var(--font-family-body); /* Montserrat for body text and UI elements */
+  /* === ELEMENT PLUS INTEGRATION === */
+  /* Map brand colors to Element Plus */
+  --el-color-primary: hsl(var(--monza-600));
+  --el-color-primary-dark-2: hsl(var(--monza-700));
+  --el-color-primary-light-1: hsl(var(--monza-500));
+  --el-color-primary-light-2: hsl(var(--monza-400));
+  --el-color-primary-light-3: hsl(var(--monza-300));
+  --el-color-primary-light-4: hsl(var(--monza-200));
+  --el-color-primary-light-5: hsl(var(--monza-100));
+  --el-color-primary-light-6: hsl(var(--monza-50));
+  --el-color-primary-light-7: hsl(var(--monza-50));
+  --el-color-primary-light-8: hsl(var(--monza-50));
+  --el-color-primary-light-9: hsl(var(--monza-50));
 }
 
 /*
@@ -259,13 +353,13 @@ ol[role='list'] {
 body {
   min-height: 100vh;
   line-height: 1.5;
+  font-family: var(--font-family-body); /* Montserrat for body text - apply early */
 }
 
 /* Set shorter line heights on headings and interactive elements */
 h1, h2, h3, h4,
 button, input, label {
   line-height: 1.1;
-  
 }
 
 /* Balance text wrapping on headings */
@@ -304,114 +398,53 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
-/* === SEMANTIC COLOR TOKENS === */
-:root {
-  /* TEXT COLORS */
-  --color-text-primary: #0f172a;           /* Main text color */
-  --color-text-secondary: #475569;         /* Secondary text */
-  --color-text-tertiary: #64748b;          /* Tertiary/muted text */
-  --color-text-quaternary: #94a3b8;        /* Placeholder text */
-  --color-text-inverse: #ffffff;           /* Text on dark backgrounds */
-  --color-text-primary-on-bg: var(--color-primary);      /* Primary text color */
-  --color-text-secondary-on-bg: var(--color-secondary);  /* Secondary text color */
-
-  /* BACKGROUND COLORS */
-  --color-bg-primary: #ffffff;             /* Main background */
-  --color-bg-secondary: #f8fafc;           /* Secondary background */
-  --color-bg-tertiary: #f1f5f9;            /* Tertiary background */
-  --color-bg-quaternary: #e2e8f0;          /* Quaternary background */
-  --color-bg-inverse: #0f172a;             /* Dark background */
-  --color-bg-primary-subtle: var(--color-monza-50);         /* Subtle primary bg */
-  --color-bg-secondary-subtle: var(--color-tree-poppy-50);  /* Subtle secondary bg */
-  --color-bg-accent-subtle: var(--color-pickled-bluewood-50); /* Subtle accent bg */
-
-  /* BORDER COLORS */
-  --color-border-primary: #e2e8f0;         /* Main border color */
-  --color-border-secondary: #cbd5e1;       /* Secondary border */
-  --color-border-tertiary: #94a3b8;        /* Tertiary border */
-  --color-border-focus: var(--color-primary);  /* Focus border */
-  --color-border-error: #dc2626;           /* Error border */
-  --color-border-success: #059669;         /* Success border */
-  --color-border-warning: var(--color-secondary); /* Warning border */
-
-  /* STATUS COLORS */
-  --color-success: #059669;                /* Success state */
-  --color-success-bg: #ecfdf5;             /* Success background */
-  --color-success-border: #a7f3d0;         /* Success border */
-  --color-error: #dc2626;                  /* Error state */
-  --color-error-bg: #fef2f2;               /* Error background */
-  --color-error-border: #fecaca;           /* Error border */
-  --color-warning: var(--color-secondary); /* Warning state */
-  --color-warning-bg: var(--color-tree-poppy-50);  /* Warning background */
-  --color-warning-border: var(--color-tree-poppy-200); /* Warning border */
-  --color-info: var(--color-accent);       /* Info state */
-  --color-info-bg: var(--color-pickled-bluewood-50);   /* Info background */
-  --color-info-border: var(--color-pickled-bluewood-200); /* Info border */
+/* === TYPOGRAPHY DEFAULTS === */
+/* Apply font families with higher specificity to override Tailwind */
+body, p, span, div, button, input, label, a {
+  font-family: var(--font-family-body) !important; /* Montserrat for body text and UI elements */
 }
 
-:root {
-  /* Monza Primary Color */
-  --monza-50: 0 80% 96%;
-  --monza-100: 359 84% 90%;
-  --monza-200: 359 86% 81%;
-  --monza-300: 359 88% 72%;
-  --monza-400: 358 90% 60%;
-  --monza-500: 358 71% 48%;
-  --monza-600: 358 73% 41%;
-  --monza-700: 358 75% 33%;
-  --monza-800: 357 79% 23%;
-  --monza-900: 358 88% 13%;
-  --monza-950: 359 91% 9%;
-  /* Tree Poppy Secondary Color */
-  --tree-poppy-50: 24 100% 95%;
-  --tree-poppy-100: 24 100% 87%;
-  --tree-poppy-200: 29 99% 72%;
-  --tree-poppy-300: 37 90% 51%;
-  --tree-poppy-400: 37 87% 46%;
-  --tree-poppy-500: 37 89% 39%;
-  --tree-poppy-600: 37 91% 32%;
-  --tree-poppy-700: 36 93% 24%;
-  --tree-poppy-800: 36 95% 16%;
-  --tree-poppy-900: 33 96% 9%;
-  --tree-poppy-950: 30 100% 5%;
-  /* Pickled Bluewood Tertiary Color */
-  --pickled-bluewood-50: 215 46% 95%;
-  --pickled-bluewood-100: 213 46% 87%;
-  --pickled-bluewood-200: 211 48% 74%;
-  --pickled-bluewood-300: 210 43% 62%;
-  --pickled-bluewood-400: 210 28% 52%;
-  --pickled-bluewood-500: 210 27% 42%;
-  --pickled-bluewood-600: 210 27% 33%;
-  --pickled-bluewood-700: 210 29% 24%;
-  --pickled-bluewood-800: 211 31% 19%;
-  --pickled-bluewood-900: 210 36% 11%;
-  --pickled-bluewood-950: 208 43% 7%;
-  /* Cello Tertiary Color */
-  --cello-50: 221 73% 96%;
-  --cello-100: 223 70% 89%;
-  --cello-200: 221 71% 79%;
-  --cello-300: 219 73% 70%;
-  --cello-400: 216 70% 59%;
-  --cello-500: 216 50% 49%;
-  --cello-600: 215 51% 40%;
-  --cello-700: 215 53% 32%;
-  --cello-800: 215 55% 24%;
-  --cello-900: 215 63% 14%;
-  --cello-950: 216 75% 8%;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading) !important; /* Playfair Display for all headings */
+}
 
-  /* Element Plus brand mapping */
-  /* Primary */
-  --el-color-primary: hsl(var(--monza-600));
-  --el-color-primary-dark-2: hsl(var(--monza-700));
-  --el-color-primary-light-1: hsl(var(--monza-500));
-  --el-color-primary-light-2: hsl(var(--monza-400));
-  --el-color-primary-light-3: hsl(var(--monza-300));
-  --el-color-primary-light-4: hsl(var(--monza-200));
-  --el-color-primary-light-5: hsl(var(--monza-100));
-  --el-color-primary-light-6: hsl(var(--monza-50));
-  --el-color-primary-light-7: hsl(var(--monza-50));
-  --el-color-primary-light-8: hsl(var(--monza-50));
-  --el-color-primary-light-9: hsl(var(--monza-50));
+/* Tailwind utility classes for font families */
+.font-heading {
+  font-family: var(--font-family-heading) !important;
+}
 
-  /* Element Plus overrides */
+.font-body {
+  font-family: var(--font-family-body) !important;
+}
+
+.font-display {
+  font-family: var(--font-family-display) !important;
+}
+
+.font-mono {
+  font-family: var(--font-family-mono) !important;
+}
+
+/* === ELEMENT PLUS LAYOUT OVERRIDES === */
+/* Force remove all Element Plus layout padding with highest specificity */
+.el-container,
+.el-header,
+.el-main,
+.el-footer {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Ensure el-footer specifically has no padding */
+.el-footer {
+  --el-footer-padding: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove any container-level padding */
+.el-container {
+  --el-container-padding-horizontal: 0 !important;
+  --el-container-padding-vertical: 0 !important;
 }

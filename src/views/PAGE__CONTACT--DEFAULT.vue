@@ -1,7 +1,7 @@
 <script setup>
-import { contactPage, siteSettings } from '@/data/staticContent.js'
-import ComponentHero from '@/components/COMPONENT__HERO--PAGE.vue'
-import ComponentContactInfo from '@/components/COMPONENT__CONTACT--INFO.vue'
+import { contactPage } from '@/data/staticContent.js'
+import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
+import ComponentContactInfo from '@/components/forms/COMPONENT__CONTACT--INFO.vue'
 </script>
 
 <template>

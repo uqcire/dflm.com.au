@@ -1,54 +1,50 @@
 /**
- * About Page Content for E-Sunrise Australia
+ * About Page Content for E-Sunrise Aust  ralia
  */
 
 export const aboutPage = {
+  subNavigation: {
+    items: [
+      { id: 'who-are-we', title: 'Who are we', href: '#who-are-we' },
+      { id: 'our-edge', title: 'Our Edge', href: '#our-edge' },
+      { id: 'capabilities', title: 'Capabilities', href: '#capabilities' },
+      { id: 'partners-clients', title: 'Partners & Clients', href: '#partners-clients' },
+      { id: 'our-history', title: 'Our History', href: '#our-history' }
+    ],
+    sticky: true
+  },  
   hero: {
-    title: 'About E-Sunrise Australia',
-    subtitle: 'Delivering quality food products to businesses across Australia since 2023',
-    image: null,
-    ctaText: 'Contact Us',
-    ctaLink: '/contact'
+    title: 'Our company',
+    subtitle: 'Combining global scale with local reliability, we secure the future of food supply through consistency, compliance, and collaboration.',
+    fullWidth: true,
+    backgroundImage: '/src/assets/about/hero.png',
+    overlayOpacity: '30'
   },
-  blocks: [
-    {
-      type: 'content',
-      title: 'Our Story',
-      text: `
-        <p>E-Sunrise Australia is a subsidiary of Jiangsu Liming Food Group, a global leader in food processing and distribution. Established in 2023, we bring our parent company's extensive experience and global network to serve the Australian market.</p>
-        <p>Our mission is to provide Australian businesses with access to premium agricultural ingredients while maintaining the highest standards of quality, reliability, and customer service.</p>
-      `
-    },
-    {
-      type: 'features',
-      features: {
-        title: 'Our Services',
-        features: [
-          {
-            title: 'Import & Distribution',
-            text: 'Comprehensive import and distribution services for food products across Australia. We handle customs clearance, warehousing, and nationwide delivery to ensure your products reach customers efficiently.'
-          },
-          {
-            title: 'OEM / Private Label Services',
-            text: 'Custom private label and OEM solutions for your brand. We work with you to develop, source, and package products under your own brand name with quality assurance and compliance.'
-          },
-          {
-            title: 'Quality Assurance',
-            text: 'Rigorous quality control processes and certifications to ensure all products meet Australian food safety standards. We maintain the highest quality benchmarks throughout our supply chain.'
-          },
-          {
-            title: 'Reliable Supply Chain',
-            text: 'Established relationships with trusted suppliers and efficient logistics networks. We ensure consistent product availability and timely delivery to meet your business needs.'
-          }
-        ]
-      }
-    }
-  ],
-  seo: {
-    title: 'About Us - E-Sunrise Australia | Food Import & Distribution',
-    description: 'Learn about E-Sunrise Australia\'s mission to provide premium food products to Australian businesses. Our commitment to quality, reliability, and customer service sets us apart.',
-    keywords: 'about us, food import, distribution, Australia, quality assurance'
-  }
+  ourHistory: {
+    title: 'Our History, From Local Roots to Global Growth',
+    subtitle: 'Founded in 2002, Jiangsu Liming Food Group grew from an agricultural processor in China into a national leader in food manufacturing, exporting to more than 60 countries. In 2024, we established E-Sunrise Group Australia in Melbourne, bringing global scale and proven expertise closer to local partners with one mission — to build trusted, lasting value across food supply chains.',
+    backgroundImage: '/src/assets/about/our-history.png',
+    ctaText: 'Explore our history',
+    ctaLink: '/about/history',
+    fullWidth: true
+  },
+  partners: {
+    title: 'Trusted by our customers & partners',
+    items: [
+      { name: 'Costco', logo: '/src/assets/partners/costco.svg' },
+      { name: 'McCormick', logo: '/src/assets/partners/McCormick.png' },
+      { name: 'Sam\'s Club', logo: '/src/assets/partners/sams-club.png' },
+      { name: 'Chu Bang', logo: '/src/assets/partners/chubang.png' },
+      { name: 'Jammy Chai', logo: '/src/assets/partners/jammy-chai.png' },
+      { name: 'Haitian', logo: '/src/assets/partners/haitian.png' },
+      { name: 'Zobon', logo: '/src/assets/partners/zobon.png' },
+      { name: 'Yueshifu', logo: '/src/assets/partners/yueshifu.png' },
+      { name: 'Totole', logo: '/src/assets/partners/totole.svg' },
+      { name: 'Haidilao', logo: '/src/assets/partners/haidilao.png' },
+    ],
+    columns: { base: 2, md: 3, lg: 4 },
+    gap: 'lg'
+  },
 }
 
 export default aboutPage 
