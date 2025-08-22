@@ -6,25 +6,13 @@ import { updateRouteSEO } from '@/utils/SEO-MANAGER__DYNAMIC'
 const routes = [
   {
     path: '/',
-    name: 'under-construction',
-    component: () => import('@/views/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
-    meta: {
-      title: 'Under Construction',
-      preload: true, // Preload critical routes
-      transition: 'fade',
-      keepAlive: true, // Cache component
-      layout: '' // Different layout
-    },
-  },
-  {
-    path: '/home',
     name: 'home',
     component: () => import('@/views/PAGE__HOME--DEFAULT.vue'),
     meta: {
       title: 'Home',
-      preload: false,
+      preload: true, // Preload critical routes
       transition: 'fade',
-      keepAlive: true,
+      keepAlive: true, // Cache component
       layout: ''
     },
   },
@@ -34,6 +22,18 @@ const routes = [
     component: () => import('@/views/PAGE__ABOUT--DEFAULT.vue'),
     meta: {
       title: 'About',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/about/mission-and-vision',
+    name: 'about-mission-vision',
+    component: () => import('@/views/PAGE__ABOUT--MISSION-AND-VISION.vue'),
+    meta: {
+      title: 'Mission & Vision',
       preload: false,
       transition: 'fade',
       keepAlive: true,
@@ -237,7 +237,16 @@ router.beforeEach(async (to, from, next) => {
   // Add breadcrumbs for detail pages
   if (to.name === 'product-detail' || to.name === 'industry-detail' || to.name === 'post-detail') {
     seoData.breadcrumbs = [
-      { name: 'Home', url: '/home' },
+      { name: 'Home', url: '/' },
+      { name: to.meta?.title, url: to.fullPath }
+    ]
+  }
+
+  // Add breadcrumbs for about sub-pages
+  if (to.name === 'about-mission-vision') {
+    seoData.breadcrumbs = [
+      { name: 'Home', url: '/' },
+      { name: 'About', url: '/about' },
       { name: to.meta?.title, url: to.fullPath }
     ]
   }

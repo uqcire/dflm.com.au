@@ -12,10 +12,10 @@
 
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-import ErrorBoundary from '@/components/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue'
-import NotificationContainer from '@/components/COMPONENT__NOTIFICATION--CONTAINER.vue'
-import ComponentHeaderSite from '@/components/COMPONENT__HEADER--SITE.vue'
-import ComponentFooterSite from '@/components/COMPONENT__FOOTER--SITE.vue'
+import ErrorBoundary from '@/components/system/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue'
+import NotificationContainer from '@/components/system/COMPONENT__NOTIFICATION--CONTAINER.vue'
+import ComponentHeaderSite from '@/components/navigation/COMPONENT__HEADER--SITE.vue'
+import ComponentFooterSite from '@/components/navigation/COMPONENT__FOOTER--SITE.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
 
 /**
@@ -100,15 +100,14 @@ const zIndex = ref(3000)
 
 <template>
   <el-config-provider :size="size" :z-index="zIndex">
-    <div id="app" class="app">
-      <el-container>
-
+    <div id="app" class="app min-h-screen bg-white text-slate-900">
+      <el-container class="min-h-screen">
         <!-- Site Navigation -->
-        <el-header>
+        <el-header class="p-0">
           <ComponentHeaderSite />
         </el-header>
 
-        <el-main>
+        <el-main class="p-0">
           <!-- Global Error Boundary wraps the entire application -->
           <ErrorBoundary @error="handleError" @retry="handleRetry" @reload="handleReload"
             :enable-error-reporting="false" :auto-retry="false" :max-retries="3">
@@ -121,9 +120,13 @@ const zIndex = ref(3000)
                     <component :is="Component" :key="route.path" />
                   </div>
                   <template #fallback>
-                    <div class="app__loading">
-                      <div class="app__loading-spinner"></div>
-                      <p class="app__loading-text">Loading...</p>
+                    <div class="flex flex-col items-center justify-center min-h-[400px] p-8">
+                      <!-- Loading Spinner -->
+                      <div
+                        class="app__loading-spinner w-10 h-10 border-4 border-slate-200 border-t-monza-600 rounded-full animate-spin mb-4 motion-reduce:animate-none motion-reduce:border-monza-600">
+                      </div>
+                      <!-- Loading Text -->
+                      <p class="text-slate-600 text-sm m-0 dark:text-slate-400">Loading...</p>
                     </div>
                   </template>
                 </Suspense>
@@ -133,10 +136,10 @@ const zIndex = ref(3000)
 
           <!-- Global Notification System -->
           <NotificationContainer />
-        </el-main>
 
+        </el-main>
         <!-- Site Footer -->
-        <el-footer>
+        <el-footer class="p-0 m-0">
           <ComponentFooterSite />
         </el-footer>
       </el-container>
@@ -145,41 +148,7 @@ const zIndex = ref(3000)
 </template>
 
 <style scoped>
-.app {
-  min-height: 100vh;
-}
-
-.app__loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  padding: var(--space-8, 2rem);
-}
-
-.app__loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid var(--color-border, #e5e7eb);
-  border-top: 4px solid var(--color-primary, #3b82f6);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: var(--space-4, 1rem);
-}
-
-.app__loading-text {
-  color: var(--color-text-secondary, #6b7280);
-  font-size: var(--font-size-sm, 0.875rem);
-  margin: 0;
-}
-
-.el-header,
-.el-main,
-.el-footer {
-  padding: 0
-}
-
+/* Keyframes for loading spinner - keep as CSS since Tailwind doesn't support custom keyframes directly */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -190,28 +159,16 @@ const zIndex = ref(3000)
   }
 }
 
-/* Dark theme support */
-@media (prefers-color-scheme: dark) {
-  .app {
-    background: var(--color-bg-dark, #111827);
-    color: var(--color-text-dark, #f9fafb);
-  }
-
-  .app__loading-spinner {
-    border-color: var(--color-border-dark, #374151);
-    border-top-color: var(--color-primary, #3b82f6);
-  }
-
-  .app__loading-text {
-    color: var(--color-text-secondary-dark, #d1d5db);
-  }
+/* Custom animation class for loading spinner */
+.app__loading-spinner {
+  animation: spin 1s linear infinite;
 }
 
-/* Reduced motion */
+/* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .app__loading-spinner {
     animation: none;
-    border: 4px solid var(--color-primary, #3b82f6);
+    border-color: var(--color-monza-600);
   }
 }
 </style>

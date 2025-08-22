@@ -2,8 +2,8 @@
 import { onMounted, computed } from 'vue'
 import { usePosts } from '@/composables/useDataFetching.js'
 import { siteSettings } from '@/data/staticContent.js'
-import ComponentLoadingState from '@/components/COMPONENT__LOADING--STATE.vue'
-import ComponentErrorState from '@/components/COMPONENT__ERROR--STATE.vue'
+import ComponentLoadingState from '@/components/system/COMPONENT__LOADING--STATE.vue'
+import ComponentErrorState from '@/components/system/COMPONENT__ERROR--STATE.vue'
 
 // Posts data
 const {

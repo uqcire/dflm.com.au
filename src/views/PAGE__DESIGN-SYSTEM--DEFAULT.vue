@@ -2,17 +2,17 @@
 import { ref } from 'vue'
 
 // Import components for showcase
-import ComponentHeroPage from '@/components/COMPONENT__HERO--PAGE.vue'
-import ComponentProductCard from '@/components/COMPONENT__PRODUCT--CARD.vue'
-import ComponentServiceCard from '@/components/COMPONENT__SERVICE--CARD.vue'
-import ComponentTestimonialCard from '@/components/COMPONENT__TESTIMONIAL--CARD.vue'
-import ComponentCtaSection from '@/components/COMPONENT__CTA--SECTION.vue'
-import ComponentStatsGrid from '@/components/COMPONENT__STATS--GRID.vue'
-import ComponentCompanyLogo from '@/components/COMPONENT__COMPANY--LOGO.vue'
-import ComponentContainer from '@/components/COMPONENT__CONTAINER.vue'
-import ComponentGrid from '@/components/COMPONENT__GRID.vue'
-import ComponentSection from '@/components/COMPONENT__SECTION.vue'
-import ComponentStack from '@/components/COMPONENT__STACK.vue'
+import ComponentHeroPage from '@/components/layout/COMPONENT__HERO--PAGE.vue'
+import ComponentProductCard from '@/components/ui/COMPONENT__PRODUCT--CARD.vue'
+import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
+import ComponentTestimonialCard from '@/components/ui/COMPONENT__TESTIMONIAL--CARD.vue'
+import ComponentCtaSection from '@/components/forms/COMPONENT__CTA--SECTION.vue'
+import ComponentStatsGrid from '@/components/ui/COMPONENT__STATS--GRID.vue'
+import ComponentCompanyLogo from '@/components/ui/COMPONENT__COMPANY--LOGO.vue'
+import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
+import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
+import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'
+import ComponentStack from '@/components/layout/COMPONENT__STACK.vue'
 
 // Sample data for component examples
 const sampleProduct = ref({
@@ -373,7 +373,8 @@ const componentCategories = ref([
                                         color: 'var(--color-text-primary)',
                                         lineHeight: 'var(--line-height-relaxed)',
                                         margin: '0'
-                                    }">This is body text using Montserrat font family for optimal readability and modern appearance.</p>
+                                    }">This is body text using Montserrat font family for optimal readability and
+                                        modern appearance.</p>
                                     <code :style="{
                                         fontSize: 'var(--font-size-xs)',
                                         color: 'var(--color-text-secondary)',
