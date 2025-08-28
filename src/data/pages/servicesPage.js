@@ -4,48 +4,19 @@
 
 export const servicesPage = {
   hero: {
-    title: 'Our Services',
-    subtitle: 'Comprehensive solutions for your food import and distribution needs',
-    image: null,
-    ctaText: 'Get in Touch',
-    ctaLink: '/contact'
+    title: 'Our Businesses',
+    subtitle: 'We power Australia’s food industry with world-class manufacturing, reliable supply chains, and trusted solutions that deliver consistent quality and lasting value.',
+    backgroundImage: '/src/assets/about/hero.png',
+    overlayOpacity: '50',
+    fullWidth: true
   },
-  services: [
-    {
-      id: 1,
-      title: 'Import & Distribution',
-      slug: 'import-distribution',
-      summary: 'End-to-end import and distribution services for food products across Australia',
-      details: 'We handle the complete import process including customs clearance, warehousing, and nationwide distribution to ensure your products reach customers efficiently and cost-effectively.',
-      features: [
-        'Customs clearance and documentation',
-        'Warehousing and inventory management',
-        'Nationwide distribution network',
-        'Quality control and compliance'
-      ],
-      ctaLabel: 'Learn More',
-      image: null
-    },
-    {
-      id: 2,
-      title: 'OEM / Private Label Services',
-      slug: 'oem-private-label',
-      summary: 'Custom private label and OEM solutions for your brand',
-      details: 'We work with you to develop, source, and package products under your own brand name with quality assurance and compliance with Australian standards.',
-      features: [
-        'Product development and sourcing',
-        'Custom packaging and labeling',
-        'Quality assurance and compliance',
-        'Brand protection and support'
-      ],
-      ctaLabel: 'Learn More',
-      image: null
-    }
-  ],
-  seo: {
-    title: 'Services - E-Sunrise Australia | Food Import & Distribution',
-    description: 'Comprehensive food import and distribution services including customs clearance, warehousing, OEM solutions, and private label services across Australia.',
-    keywords: 'food import services, distribution, OEM, private label, Australia'
+  services: {
+    items: [
+      { id: 'import-and-distribution', title: 'Import & Distribution', href: '#import-and-distribution' },
+      { id: 'oem-and-private-label', title: 'OEM & Private Label', href: '#oem-and-private-label' },
+      { id: 'industry-solutions', title: 'Industry Solutions', href: '#industry-solutions' },
+    ],
+    sticky: true
   }
 }
 

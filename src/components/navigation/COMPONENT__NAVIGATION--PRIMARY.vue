@@ -90,30 +90,29 @@ onUnmounted(() => {
         sticky ? 'sticky top-0 z-50 bg-white/95 backdrop-blur-sm' : ''
     ]" role="navigation" aria-label="Sub Navigation">
         <div
-            class="flex flex-wrap justify-center lg:justify-start gap-8 lg:gap-12 px-6 py-4 overflow-x-auto lg:overflow-x-visible">
-            <a v-for="item in subNavItems" :key="item.id" :href="item.href" @click.prevent="scrollToSection(item.id)"
+            class="flex flex-wrap justify-center lg:justify-start gap-8 lg:gap-12 px-4 py-2 overflow-x-auto lg:overflow-x-visible">
+            <router-link v-for="item in subNavItems" :key="item.id" :to="item.href"
+                @click.prevent="scrollToSection(item.id)"
                 class="relative whitespace-nowrap font-body text-sm font-medium text-pickled-bluewood-700 hover:text-pickled-bluewood-900 transition-all duration-200 py-2 border-b-2 border-transparent hover:border-monza-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-monza-600 after:transition-all after:duration-300 after:ease-out"
                 :class="{
                     'text-pickled-bluewood-900 border-monza-600 after:w-full': activeSection === item.id,
                     'hover:after:w-full': activeSection !== item.id
                 }">
                 {{ item.title }}
-            </a>
+            </router-link>
         </div>
     </nav>
 
     <!-- Primary Navigation -->
     <nav v-else class="px-4" role="navigation" aria-label="Primary">
-        <el-menu class="border-b-0" :mode="mode" :default-active="$route.path" router
+        <el-menu class="border-b-0" :ellipsis="false" :mode="mode" :default-active="$route.path" router
             :background-color="backgroundColor || 'hsl(var(--monza-600))'" :text-color="textColor || '#ffffff'"
             :active-text-color="activeTextColor || 'hsl(var(--tree-poppy-200))'">
-            <el-menu-item index="/">Home</el-menu-item>
-            <el-menu-item index="/about">About</el-menu-item>
-            <el-menu-item index="/services">Services</el-menu-item>
+            <el-menu-item index="/our-company">Our Company</el-menu-item>
+            <el-menu-item index="/our-businesses">Our Businesses</el-menu-item>
             <el-menu-item index="/products">Products</el-menu-item>
-            <el-menu-item index="/industries">Industries</el-menu-item>
-            <el-menu-item index="/blog">Blog</el-menu-item>
-            <el-menu-item index="/contact">Contact</el-menu-item>
+            <el-menu-item index="/news">News</el-menu-item>
+            <el-menu-item index="/contact">Contact us</el-menu-item>
         </el-menu>
     </nav>
 </template>

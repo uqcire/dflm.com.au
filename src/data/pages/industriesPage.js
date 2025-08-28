@@ -16,21 +16,27 @@ export const industriesPage = {
   industries: [
     {
       id: 1,
-      title: 'Food Manufacturing',
-      description: 'Supply premium ingredients to food manufacturers for processing and production',
-      features: ['Quality assurance', 'Consistent supply', 'Technical support']
+      title: 'Taste & Texture',
+      description: 'Are you a manufacturer looking to boost taste and texture – even in food products with reduced sugar, salt, or fat? Our portfolio of natural ingredients and functional solutions helps create products that consumers love.',
+      image: '/src/assets/explore/our-business.png',
+      linkText: 'Learn more',
+      linkUrl: '/our-businesses/oem-and-private-label'
     },
     {
       id: 2,
-      title: 'Retail & Supermarkets',
-      description: 'Provide branded and private label products for retail distribution',
-      features: ['Private labeling', 'Packaging solutions', 'Quality compliance']
+      title: 'Sugar reduction',
+      description: 'Discover how we can help navigate the complexities of sugar reduction to help you create products that meet consumer demand for healthier options without compromising on taste.',
+      image: '/src/assets/explore/our-company.png',
+      linkText: 'Learn more',
+      linkUrl: '/our-businesses/import-and-distribution'
     },
     {
       id: 3,
-      title: 'Food Service',
-      description: 'Supply ingredients to restaurants, cafes, and food service providers',
-      features: ['Reliable delivery', 'Quality products', 'Flexible ordering']
+      title: 'Health & Wellbeing',
+      description: 'Want to create foods and beverages that benefit health & wellbeing? We offer ingredients that support digestive health, immunity, and overall wellness.',
+      image: '/src/assets/explore/newsroom.png',
+      linkText: 'Learn more',
+      linkUrl: '/products'
     }
   ],
   seo: {

@@ -1,5 +1,5 @@
 <script setup>
-import { certificationsPage } from '@/data/staticContent.js'
+import { certificationsPage } from '@/data/pages/certificationsPage.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 </script>
 

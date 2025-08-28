@@ -14,6 +14,10 @@ defineProps({
         type: Boolean,
         default: true
     },
+    constrainWidth: {
+        type: Boolean,
+        default: true
+    },
     tag: {
         type: String,
         default: 'div'
@@ -21,16 +25,21 @@ defineProps({
 })
 
 // Tailwind class mappings
-const getSizeClasses = (size) => {
+const getSizeClasses = (size, constrainWidth) => {
+    if (!constrainWidth) {
+        return 'max-w-full' // No width constraint
+    }
+
     const sizeMap = {
         sm: 'max-w-sm',      // 640px
         md: 'max-w-md',      // 768px  
-        lg: 'max-w-4xl',     // 1024px (using max-w-4xl which is 896px, closest to 1024px)
-        xl: 'max-w-5xl',     // 1280px (using max-w-5xl which is 1024px, will need custom)
-        '2xl': 'max-w-7xl',  // 1536px (using max-w-7xl which is 1280px, will need custom)
-        full: 'max-w-full'
+        lg: 'max-w-5xl',     // 1024px
+        xl: 'max-w-6xl',     // 1152px
+        '2xl': 'max-w-7xl',  // 1280px
+        '3xl': 'max-w-8xl',  // 1536px
+        full: 'max-w-full'   // Full width (no constraint)
     }
-    return sizeMap[size] || 'max-w-4xl'
+    return sizeMap[size] || 'max-w-5xl'
 }
 
 const getPaddingClasses = (padding) => {
@@ -51,7 +60,7 @@ const getCenterClasses = (center) => {
 
 <template>
     <component :is="tag" class="container-component w-full box-border font-body" :class="[
-        getSizeClasses(size),
+        getSizeClasses(size, constrainWidth),
         getPaddingClasses(padding),
         getCenterClasses(center),
         `container--${size}`,
@@ -68,8 +77,9 @@ const getCenterClasses = (center) => {
     max-width: 1280px;
 }
 
+/* 2xl uses 7xl max-width (1280px) */
 .container--2xl .container-component {
-    max-width: 1536px;
+    max-width: 1280px;
 }
 
 /* Debug mode for development */

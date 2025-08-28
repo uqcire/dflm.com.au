@@ -9,6 +9,8 @@ import ComponentProductCard from '@/components/ui/COMPONENT__PRODUCT--CARD.vue'
 import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue'
 import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 import ComponentExploreMore from '@/components/content/COMPONENT__EXPLORE--MORE.vue'
+import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TOUCH.vue'
+import ComponentAlternatingContent from '@/components/content/COMPONENT__ALTERNATING--CONTENT.vue'
 import { useRouter } from 'vue-router'
 
 // Navigation
@@ -44,14 +46,14 @@ const navigateToPage = (path) => {
             products with consistent quality, certified safety, and dependable logistics across Australia.
           </p>
 
-          <a href="/about"
+          <router-link to="/our-company"
             class="inline-flex items-center mt-4 text-pickled-bluewood-800 underline font-medium hover:text-pickled-bluewood-900 transition-colors duration-200 group">
             Discover more about us
             <svg class="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none"
               stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
-          </a>
+          </router-link>
         </div>
       </ComponentGrid>
 
@@ -108,14 +110,14 @@ const navigateToPage = (path) => {
             and strict quality control to deliver dependable supply for every industrial application.
           </p>
 
-          <a href="/products/garlic"
+          <router-link to="/products/garlic"
             class="inline-flex items-center text-pickled-bluewood-600 underline font-medium hover:text-pickled-bluewood-900 transition-colors duration-200 group">
             Discover more
             <svg class="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none"
               stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
-          </a>
+          </router-link>
         </div>
       </ComponentGrid>
     </ComponentContainer>
@@ -131,7 +133,7 @@ const navigateToPage = (path) => {
         <!-- Right Column - Content -->
         <div class="space-y-8">
           <h3
-            class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 pb-4 leading-tight">
+            class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 pb-8 leading-tight">
             Global scale, local reliability
           </h3>
 
@@ -142,10 +144,10 @@ const navigateToPage = (path) => {
           </p>
 
           <!-- Statistics Grid -->
-          <ComponentGrid :columns="{ base: 1, md: 3 }" gap="lg" class="pt-8">
+          <ComponentGrid :columns="{ base: 1, md: 3 }" gap="lg" class="pt-4">
             <!-- Revenue -->
             <div class="text-center">
-              <div class="border-t-2 border-pickled-bluewood-800 pt-4 mb-2">
+              <div class=" pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
                   100,000+ tons
                 </div>
@@ -157,9 +159,10 @@ const navigateToPage = (path) => {
 
             <!-- People -->
             <div class="text-center">
-              <div class="border-t-2 border-pickled-bluewood-800 pt-4 mb-2">
+              <div class="pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
-                  20+ years
+                  20+ <br>
+                  years
                 </div>
               </div>
               <p class="font-body text-sm text-pickled-bluewood-700">
@@ -169,7 +172,7 @@ const navigateToPage = (path) => {
 
             <!-- Years -->
             <div class="text-center">
-              <div class="border-t-2 border-pickled-bluewood-800 pt-4 mb-2">
+              <div class=" pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
                   60+ countries
                 </div>
@@ -185,95 +188,34 @@ const navigateToPage = (path) => {
   </ComponentSection>
 
   <!-- Services -->
-  <ComponentSection spacing="sm" background="subtle">
-    <ComponentContainer size="xl" padding="md">
-      <!-- First Service - Helping to safeguard our planet -->
-      <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="xl" align="center" class="mb-16">
-        <!-- Left Column - Content -->
-        <div class="space-y-6">
-          <h3
-            class="font-heading text-3xl pb-8 md:text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 leading-tight">
-            Strength in Supply Chain Solutions
-          </h3>
-
-          <p class="font-body text-lg text-pickled-bluewood-700 leading-relaxed pb-4">
-            With vertically integrated operations and advanced logistics, we provide seamless import, distribution, and
-            supply chain management across Australia. From customs clearance to cold-chain delivery, our expertise
-            ensures products arrive safely, efficiently, and at scale.
-          </p>
-
-          <a href="/services/sustainability"
-            class="inline-flex items-center underline text-pickled-bluewood-800 font-medium hover:text-pickled-bluewood-900 transition-colors duration-200 group">
-            Discover End-to-End Distribution
-            <svg class="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none"
-              stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-
-        <!-- Right Column - Image -->
-        <div class="order-first lg:order-last">
-          <ComponentImageDisplay src="/src/assets/home/service-card__supply-chain.png"
-            alt="Strength in Supply Chain Solutions" size="lg" variant="plain" object-fit="cover" />
-        </div>
-      </ComponentGrid>
-
-      <!-- Second Service - Some heroes wear lab coats -->
-      <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="xl" align="center">
-        <!-- Left Column - Image -->
-        <div>
-          <ComponentImageDisplay class="mask-alpha mask-r-from-black mask-r-from-70% mask-r-to-transparent"
-            src="/src/assets/home/service-card__manufacturing.png" alt="Some heroes wear lab coats" size="lg"
-            variant="plain" object-fit="cover" />
-        </div>
-
-        <!-- Right Column - Content -->
-        <div class="space-y-6">
-          <h3
-            class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 pb-8 leading-tight">
-            Manufacturing You Can Count On
-          </h3>
-
-          <p class="font-body text-lg text-pickled-bluewood-700 leading-relaxed pb-4">
-            As a full-scale producer, we control every step from cultivation to processing, guaranteeing consistent
-            quality and compliance. Our modern facilities and certified systems allow us to deliver tailored solutions
-            for manufacturers, distributors, and retail partners.
-          </p>
-
-          <a href="/services/research"
-            class="inline-flex items-center underline text-pickled-bluewood-800 font-medium hover:text-pickled-bluewood-900 transition-colors duration-200 group">
-            Partner With Us for Tailored Solutions
-            <svg class="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none"
-              stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </ComponentGrid>
+  <ComponentSection spacing="sm" background="transparent">
+    <ComponentContainer size="full" padding="sm" :constrainWidth="false">
+      <ComponentAlternatingContent :sections="[
+        {
+          title: 'Strength in Supply Chain Solutions',
+          description: 'With vertically integrated operations and advanced logistics, we provide seamless import, distribution, and supply chain management across Australia. From customs clearance to cold-chain delivery, our expertise ensures products arrive safely, efficiently, and at scale.',
+          image: '/src/assets/home/service-card__supply-chain.png',
+          linkText: 'Discover End-to-End Distribution',
+          linkUrl: '/our-businesses/import-and-distribution',
+          imagePosition: 'right',
+          imageSize: 'lg'
+        },
+        {
+          title: 'Manufacturing You Can Count On',
+          description: 'As a full-scale producer, we control every step from cultivation to processing, guaranteeing consistent quality and compliance. Our modern facilities and certified systems allow us to deliver tailored solutions for manufacturers, distributors, and retail partners.',
+          image: '/src/assets/home/service-card__manufacturing.png',
+          linkText: 'Partner With Us for Tailored Solutions',
+          linkUrl: '/our-businesses/oem-and-private-label',
+          imagePosition: 'left',
+          imageSize: 'lg',
+        }
+      ]" />
     </ComponentContainer>
   </ComponentSection>
 
   <!-- Get in Touch -->
-  <ComponentSection spacing="sm" background="transparent" style="background-color: hsl(var(--monza-100))">
-    <ComponentContainer size="lg" padding="sm">
-      <div class="text-center space-y-6">
-        <h3 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 leading-tight">
-          Get in touch
-        </h3>
-        <p class="font-body text-lg md:text-xl text-pickled-bluewood-700 leading-relaxed max-w-4xl mx-auto pt-4">
-          Did you know that you can contact different departments and functions from E-Sunrise Australia such as media
-          team, sustainability team and our investors team?
-        </p>
-        <div class="pt-4">
-          <a href="/contact"
-            class="inline-flex items-center px-8 py-4 bg-pickled-bluewood-800 text-white font-medium text-lg rounded-full hover:bg-pickled-bluewood-900 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
-            Contact us
-          </a>
-        </div>
-      </div>
-    </ComponentContainer>
-  </ComponentSection>
+  <ComponentCtaGetInTouch
+    description="Did you know that you can contact different departments and functions from E-Sunrise Australia such as media team, sustainability team and our investors team?" />
 
   <!-- Explore More -->
   <ComponentExploreMore :title="exploreCards.home.title" :cards="exploreCards.home.cards"

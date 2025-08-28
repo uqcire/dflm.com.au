@@ -4,8 +4,10 @@
  */
 
 export const exploreCards = {
+  title: 'Explore more',
+  columns: { base: 1, md: 3 },
+  gap: 'lg',
   home: {
-    title: 'Explore more',
     background: 'transparent',
     backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
     cards: [
@@ -18,7 +20,7 @@ export const exploreCards = {
       },
       {
         title: 'Our Newsroom',
-        description: 'Read more about news from DFLM Group and its businesses.',
+        description: 'Read more about news from DFLM Group and its businesses. Explore company updates, industry insights, and announcements that reflect our growth and innovation. Stay informed on milestones, product launches, and the latest developments shaping our future.',
         image: '/src/assets/explore/newsroom.png',
         alt: 'Newsroom',
         link: '/blog'
@@ -31,18 +33,42 @@ export const exploreCards = {
         link: '/services'
       }
     ],
-    columns: { base: 1, md: 3 },
-    gap: 'lg'
   },
-  
   about: {
-    title: 'Explore more',
     background: 'transparent',
     backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
     cards: [
       {
         title: 'Our Newsroom',
-        description: 'Read more about news from DFLM Group and its businesses.',
+        description: 'Read more about news from DFLM Group and its businesses. Explore company updates, industry insights, and announcements that reflect our growth and innovation. Stay informed on milestones, product launches, and the latest developments shaping our future.',
+        image: '/src/assets/explore/newsroom.png',
+        alt: 'Newsroom',
+        link: '/news'
+      },
+      {
+        title: 'Our Industries',
+        description: 'Explore how our manufacturing strength and supply chain expertise support manufacturers, distributors, and retailers in building reliable food supply chains.',
+        image: '/src/assets/explore/industries.png',
+        alt: 'Industries',
+        link: '/industries'
+      },
+      {
+        title: 'Our Businesses',
+        description: 'Four complementary businesses, all powered by purpose, people, and innovation.',
+        image: '/src/assets/explore/our-business.png',
+        alt: 'Our Businesses',
+        link: '/services'
+      }
+    ],
+  },
+  
+  ourBusinesses: {
+    background: 'transparent',
+    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
+    cards: [
+      {
+        title: 'Our Newsroom',
+        description: 'Read more about news from DFLM Group and its businesses. Explore company updates, industry insights, and announcements that reflect our growth and innovation. Stay informed on milestones, product launches, and the latest developments shaping our future.',
         image: '/src/assets/explore/newsroom.png',
         alt: 'Newsroom',
         link: '/blog'
@@ -62,10 +88,8 @@ export const exploreCards = {
         link: '/services'
       }
     ],
-    columns: { base: 1, md: 3 },
-    gap: 'lg'
   },
-  
+
   products: {
     title: 'Explore more',
     background: 'transparent',
@@ -90,8 +114,6 @@ export const exploreCards = {
         link: '/about'
       }
     ],
-    columns: { base: 1, md: 3 },
-    gap: 'lg'
   },
   
   services: {
@@ -118,12 +140,9 @@ export const exploreCards = {
         link: '/about'
       }
     ],
-    columns: { base: 1, md: 3 },
-    gap: 'lg'
   },
   
   industries: {
-    title: 'Explore more',
     background: 'transparent',
     backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
     cards: [
@@ -146,12 +165,9 @@ export const exploreCards = {
         link: '/about'
       }
     ],
-    columns: { base: 1, md: 3 },
-    gap: 'lg'
   },
   
   contact: {
-    title: 'Explore more',
     background: 'transparent',
     backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
     cards: [
@@ -174,8 +190,6 @@ export const exploreCards = {
         link: '/about'
       }
     ],
-    columns: { base: 1, md: 3 },
-    gap: 'lg'
   }
 }
 

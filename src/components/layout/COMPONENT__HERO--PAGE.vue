@@ -88,10 +88,10 @@ const getImageSizeClasses = (size) => {
                     {{ subtitle }}
                 </h2>
                 <div v-if="ctaText && ctaLink" class="mt-6">
-                    <a :href="ctaLink"
+                    <router-link :to="ctaLink"
                         class="hero-cta-button inline-flex items-center px-6 py-3 font-body text-base font-medium text-white bg-monza-600 border-0 rounded-lg shadow-sm transition-all duration-200 no-underline tracking-wide hover:bg-monza-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-monza-500 focus:ring-offset-2">
                         {{ ctaText }}
-                    </a>
+                    </router-link>
                 </div>
             </div>
 

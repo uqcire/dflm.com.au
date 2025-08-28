@@ -1,55 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import COMPONENT__SOCIAL__LINKS from './COMPONENT__SOCIAL--LINKS.vue'
+import { footerLinks, socialLinks } from '@/data/index.js'
 
 const currentYear = ref(new Date().getFullYear())
-
-const footerLinks = [
-    {
-        title: 'Quick Links',
-        links: [
-            { text: 'Home', path: '/' },
-            { text: 'About Us', path: '/about' },
-            { text: 'Industries', path: '/industries' },
-            { text: 'Certifications', path: '/certifications' },
-            { text: 'Blog', path: '/blog' },
-            { text: 'Contact', path: '/contact' }
-        ]
-    },
-    {
-        title: 'Services',
-        links: [
-            { text: 'Import & Distribution', path: '/services/import-distribution' },
-            { text: 'OEM / Private Label', path: '/services/oem' }
-        ]
-    },
-    {
-        title: 'Products',
-        links: [
-            { text: 'Garlic', path: '/' },
-            { text: 'Dehaydrated Vegetables', path: '/' },
-            { text: 'Sauces', path: '/' },
-            { text: 'Spices', path: '/' },
-            { text: 'Dried Fruits', path: '/' },
-            { text: 'Dried Herbs', path: '/' },
-        ]
-    },
-    {
-        title: 'Contact Info',
-        links: [
-            { text: 'Email: hello@dflm.com.au', path: 'mailto:hello@dflm.com.au' },
-            { text: 'Phone: +61 03 1234 5678', path: 'tel:+61212345678' },
-            { text: 'Address: Melbourne, Australia', path: '#' }
-        ]
-    }
-]
-
-const socialLinks = [
-    { name: 'Facebook', icon: 'facebook', url: '#' },
-    { name: 'Twitter', icon: 'x', url: '#' },
-    { name: 'LinkedIn', icon: 'linkedin', url: '#' },
-    { name: 'Instagram', icon: 'instagram', url: '#' }
-]
 </script>
 
 <template>
@@ -81,7 +35,7 @@ const socialLinks = [
                         <div class="footer__links-sections flex flex-col lg:flex-row lg:justify-between gap-4">
                             <div v-for="(section, index) in footerLinks" :key="index"
                                 class="footer__section pb-4 border-b-2 border-tree-poppy-400 lg:border-b-0 lg:pb-0">
-                                <h3 class="footer__heading text-lg font-bold font-playfair mb-4 pb-4">{{ section.title
+                                <h3 class="footer__heading text-lg font-bold font-playfair mb-4 pb-6">{{ section.title
                                     }}
                                 </h3>
                                 <ul class="footer__links space-y-2">

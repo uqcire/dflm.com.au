@@ -1,5 +1,5 @@
 <script setup>
-import { contactPage } from '@/data/staticContent.js'
+import { contactPage } from '@/data/pages/contactPage.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentContactInfo from '@/components/forms/COMPONENT__CONTACT--INFO.vue'
 </script>

@@ -4,11 +4,11 @@
 
 export const productsPage = {
   hero: {
-    title: 'Our Products',
-    subtitle: 'Premium agricultural ingredients for your business',
-    image: null,
-    ctaText: 'Request Quote',
-    ctaLink: '/contact'
+    title: 'Our Businesses',
+    subtitle: 'We power Australia’s food industry with world-class manufacturing, reliable supply chains, and trusted solutions that deliver consistent quality and lasting value.',
+    backgroundImage: '/src/assets/about/hero.png',
+    overlayOpacity: '50',
+    fullWidth: true
   },
   products: [
     {

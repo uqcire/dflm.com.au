@@ -1,4 +1,6 @@
 <script setup>
+import { ElCard } from 'element-plus'
+
 defineProps({
     service: {
         type: Object,
@@ -7,10 +9,8 @@ defineProps({
             return typeof value.title === 'string' &&
                 typeof value.description === 'string' &&
                 (typeof value.image === 'string' || value.image === undefined) &&
-                (typeof value.icon === 'string' || value.icon === undefined) &&
                 (typeof value.linkText === 'string' || value.linkText === undefined) &&
-                (typeof value.linkUrl === 'string' || value.linkUrl === undefined) &&
-                (typeof value.featured === 'boolean' || value.featured === undefined)
+                (typeof value.linkUrl === 'string' || value.linkUrl === undefined)
         }
     },
     variant: {
@@ -18,16 +18,7 @@ defineProps({
         default: 'standard',
         validator: (value) => ['minimal', 'standard', 'detailed'].includes(value)
     },
-    iconPosition: {
-        type: String,
-        default: 'top',
-        validator: (value) => ['top', 'left', 'background'].includes(value)
-    },
     showLink: {
-        type: Boolean,
-        default: true
-    },
-    showFeatures: {
         type: Boolean,
         default: true
     },
@@ -54,144 +45,82 @@ const getVariantClasses = (variant, featured) => {
     }
 }
 
-const getLayoutClasses = (iconPosition) => {
-    switch (iconPosition) {
-        case 'left':
-            return 'flex flex-row gap-6 md:flex-col md:gap-4'
-        case 'background':
-            return 'relative overflow-hidden'
-        case 'top':
-        default:
-            return 'flex flex-col'
-    }
-}
-
-const getIconContainerClasses = (iconPosition) => {
-    const baseClasses = 'flex-shrink-0'
-
-    switch (iconPosition) {
-        case 'left':
-            return `${baseClasses} w-16 h-16 md:w-full md:h-auto md:mb-4`
-        case 'background':
-            return `${baseClasses} absolute top-4 right-4 opacity-10 z-0`
-        case 'top':
-        default:
-            return `${baseClasses} w-full mb-4`
-    }
-}
-
-const getIconClasses = (iconPosition) => {
-    switch (iconPosition) {
-        case 'left':
-            return 'w-16 h-16 bg-slate-100 rounded-xl flex items-center justify-center text-2xl text-monza-600 mx-0'
-        case 'background':
-            return 'w-20 h-20 bg-slate-100 rounded-xl flex items-center justify-center text-4xl text-monza-600 mx-auto'
-        case 'top':
-        default:
-            return 'w-20 h-20 bg-slate-100 rounded-xl flex items-center justify-center text-4xl text-monza-600 mx-auto'
-    }
-}
-
-const getContentClasses = (iconPosition) => {
-    const baseClasses = 'flex-1'
-    return iconPosition === 'background' ? `${baseClasses} relative z-10` : baseClasses
-}
-
 const getTitleSize = (variant) => {
     return variant === 'detailed' ? 'text-2xl' : 'text-xl'
-}
-
-const getImageHeight = (iconPosition) => {
-    return iconPosition === 'top' ? 'h-48' : 'h-full'
-}
-
-const getFeatureGridClasses = (variant) => {
-    return variant === 'detailed' ? 'grid grid-cols-1 md:grid-cols-2 gap-1' : 'flex flex-col gap-1'
 }
 </script>
 
 <template>
-    <article
-        class="service-card relative bg-white overflow-hidden transition-all duration-200 ease-out font-body hover:shadow-md lg:hover:-translate-y-0.5"
+    <ElCard
+        class="service-card transition-all duration-200 ease-out font-body hover:shadow-md lg:hover:-translate-y-0.5"
         :class="[
-            variant === 'minimal' ? 'rounded-none p-0' : 'rounded-lg p-6',
-            getVariantClasses(variant, service.featured),
-            getLayoutClasses(iconPosition)
-        ]" :aria-label="`Service: ${service.title}`">
-
-        <!-- Icon/Image Section -->
-        <div v-if="service.icon || service.image" class="service-card__visual"
-            :class="getIconContainerClasses(iconPosition)">
-
-            <!-- Service Image -->
-            <div v-if="service.image" class="w-full rounded-md overflow-hidden bg-slate-100"
-                :class="getImageHeight(iconPosition)">
+            variant === 'minimal' ? 'border-0 shadow-none' : '',
+            getVariantClasses(variant, service.featured)
+        ]" :body-style="{ padding: variant === 'minimal' ? '0' : '24px' }" :aria-label="`Service: ${service.title}`">
+        <!-- Image Section - Top -->
+        <div v-if="service.image" class="service-card__visual mb-6">
+            <div class="w-full h-64 rounded-lg overflow-hidden bg-slate-100">
                 <img :src="service.image" :alt="service.title" class="w-full h-full object-cover" />
-            </div>
-
-            <!-- Service Icon -->
-            <div v-else-if="service.icon" :class="getIconClasses(iconPosition)">
-                {{ service.icon }}
             </div>
         </div>
 
-        <!-- Content Section -->
-        <div class="service-card__content" :class="getContentClasses(iconPosition)">
-
-            <!-- Category Badge -->
-            <div v-if="service.category" class="mb-2">
-                <span
-                    class="inline-block px-2 py-1 text-xs font-medium text-tree-poppy-600 bg-tree-poppy-50 rounded uppercase tracking-wide">
-                    {{ service.category }}
-                </span>
-            </div>
+        <!-- Content Section - Bottom -->
+        <div class="service-card__content flex flex-col h-full">
 
             <!-- Service Title -->
-            <h3 class="font-heading font-semibold text-slate-900 mb-2 leading-tight md:text-2xl"
+            <h3 class="font-heading font-bold text-xl pb-4 text-pickled-bluewood-800 mb-4 leading-tight"
                 :class="getTitleSize(variant)">
                 {{ service.title }}
             </h3>
 
             <!-- Service Description -->
-            <p class="text-base text-slate-600 leading-normal"
-                :class="showFeatures && service.features ? 'mb-4' : 'mb-6'">
-                {{ service.description }}
-            </p>
-
-            <!-- Service Features -->
-            <div v-if="showFeatures && service.features" class="mb-6">
-                <h4 class="text-sm font-medium text-slate-900 mb-2 uppercase tracking-wide">
-                    Key Features
-                </h4>
-                <ul class="text-sm text-slate-600 list-none p-0" :class="getFeatureGridClasses(variant)">
-                    <li v-for="feature in service.features" :key="feature" class="pl-4 relative leading-relaxed">
-                        <span class="absolute left-0 text-monza-600 font-bold">✓</span>
-                        {{ feature }}
-                    </li>
-                </ul>
+            <div class="mb-6 flex-1">
+                <p class="text-base text-pickled-bluewood-700 leading-relaxed line-clamp-5">
+                    {{ service.description }}
+                </p>
             </div>
 
             <!-- Action Button -->
-            <div v-if="showLink" class="service-card__action">
-                <a :href="service.linkUrl || '#'"
-                    class="inline-flex items-center px-6 py-3 text-base font-medium font-body text-white bg-monza-600 border-none rounded-md no-underline transition-all duration-200 ease-out tracking-wide shadow-sm hover:bg-monza-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-monza-500 focus:ring-offset-2"
+            <div v-if="showLink" class="service-card__action mt-auto">
+                <router-link :to="service.linkUrl || '#'"
+                    class="inline-flex items-center text-sm font-medium font-body text-monza-600 no-underline transition-all duration-200 ease-out hover:text-monza-700 group"
                     :aria-label="`${service.linkText || linkText} for ${service.title}`">
                     {{ service.linkText || linkText }}
-                    <span class="ml-2 text-sm" aria-hidden="true">→</span>
-                </a>
-            </div>
-
-            <!-- Featured Badge -->
-            <div v-if="service.featured"
-                class="absolute right-0 px-2 py-1 text-xs font-bold text-white bg-tree-poppy-600 rounded uppercase tracking-wider shadow-sm z-20"
-                :class="iconPosition === 'background' ? 'top-4' : 'top-0'">
-                Featured
+                    <span class="ml-2 text-sm transition-transform duration-200 group-hover:translate-x-1"
+                        aria-hidden="true">→</span>
+                </router-link>
             </div>
         </div>
-    </article>
+    </ElCard>
 </template>
 
 <style scoped>
+/* Custom styles for Element Plus card */
+.service-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card :deep(.el-card__body) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.service-card :deep(.el-card) {
+    height: 100%;
+    border: none !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease-out;
+}
+
+.service-card :deep(.el-card:hover) {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
 /* Essential responsive overrides that can't be done with Tailwind alone */
 @media (max-width: 767px) {
     .service-card.flex-row {

@@ -70,8 +70,11 @@ const getColumnClasses = (columns) => {
     return classes.join(' ')
 }
 
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 const navigateToPage = (link) => {
-    window.location.href = link
+    router.push(link)
 }
 </script>
 
@@ -116,7 +119,7 @@ const navigateToPage = (link) => {
                                 {{ card.description }}
                             </p>
 
-                            <a
+                            <router-link :to="card.link"
                                 class="inline-flex items-center text-tree-poppy-300 font-medium hover:text-tree-poppy-200 transition-colors duration-200 group">
                                 Read more
                                 <svg class="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
@@ -125,7 +128,7 @@ const navigateToPage = (link) => {
                                         d="M9 5l7 7-7 7">
                                     </path>
                                 </svg>
-                            </a>
+                            </router-link>
                         </div>
                     </template>
                     <!-- 底部插槽 - 与default插槽平级 -->

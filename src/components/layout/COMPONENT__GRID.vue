@@ -136,9 +136,6 @@ const getGridTemplateColumns = (minItemWidth) => {
 
 <style scoped>
 /* Only keep essential styles that can't be done with Tailwind */
-.grid-component {
-    /* All basic grid styles now handled by Tailwind classes */
-}
 
 /* Debug mode for development */
 .grid-component[data-debug="true"] {

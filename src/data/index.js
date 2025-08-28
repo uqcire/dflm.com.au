@@ -5,9 +5,6 @@
  * for better separation of concerns and easier content management.
  */
 
-// Site-wide settings
-export { siteSettings } from './siteSettings.js'
-
 // Main page content
 export { homePage } from './pages/homePage.js'
 export { aboutPage } from './pages/aboutPage.js'
@@ -21,11 +18,13 @@ export { contactPage } from './pages/contactPage.js'
 export { serviceImportDistribution } from './pages/services/importDistribution.js'
 export { serviceOEM } from './pages/services/oemPrivateLabel.js'
 
+// Component data
+export { exploreCards } from './components/exploreCards.js'
+export { footerLinks, socialLinks } from './components/footerLinks.js'
+
 // Alternative import paths (choose one approach)
 // Option 1: Import from individual files (recommended)
 // import { homePage } from '@/data/pages/homePage.js'
 
 // Option 2: Import from index (for convenience)
 // import { homePage } from '@/data/index.js'
-
-// Option 3: Import from legacy staticContent.js (temporary) 
