@@ -1,5 +1,5 @@
 <script setup>
-import { serviceOEM } from '@/data/pages/services/oemPrivateLabel.js'
+import { serviceOEM } from '@/data/pages/our-business/oemPrivateLabel.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 </script>
 

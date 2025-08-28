@@ -1,5 +1,5 @@
 <script setup>
-import { aboutPage } from '@/data/pages/aboutPage.js'
+import { aboutPage } from '@/data/pages/our-business/aboutPage.js'
 import { exploreCards } from '@/data/components/exploreCards.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'

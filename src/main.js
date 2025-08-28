@@ -1,5 +1,4 @@
 import { setupRouter } from '@/router'
-import { setupStore } from '@/store'
 import { createApp } from 'vue'
 import App from '/APP__ROOT--MAIN.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
@@ -28,7 +27,6 @@ app.config.errorHandler = (error, componentInstance, errorInfo) => {
 
 // Setup application
 setupRouter(app)
-setupStore(app)
 
 // Mount application
 app.mount('#app')

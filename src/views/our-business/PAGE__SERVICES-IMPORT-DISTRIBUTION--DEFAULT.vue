@@ -1,5 +1,5 @@
 <script setup>
-import { serviceImportDistribution } from '@/data/pages/services/importDistribution.js'
+import { serviceImportDistribution } from '@/data/pages/our-business/importDistribution.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 </script>
 

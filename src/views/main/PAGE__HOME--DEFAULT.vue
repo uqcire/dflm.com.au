@@ -28,13 +28,14 @@ const navigateToPage = (path) => {
   </ComponentSection>
 
   <!-- About Us -->
-  <ComponentSection spacing="xs" background="transparent" style="background-color: hsl(var(--monza-100))">
+  <ComponentSection spacing="xs" background="transparent" containerSize="full"
+    style="background-color: hsl(var(--monza-100))">
     <ComponentContainer size="xl" padding="md">
       <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="xl" align="start">
         <!-- Left Column - Main Heading -->
         <div class="space-y-6">
           <h2 class="font-heading text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 leading-tight">
-            Connecting World-Class Supply Chains with Local Industry Needs
+            Connecting World Class Supply Chains with Local Industry Needs
           </h2>
         </div>
 
@@ -62,8 +63,8 @@ const navigateToPage = (path) => {
         <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="xl" align="start">
           <!-- Left Column - Secondary Heading -->
           <div class="space-y-6">
-            <h3 class="font-heading text-3xl md:text-4xl font-bold text-pickled-bluewood-800 leading-tight">
-              From Farm-Level Cultivation to Industry Supply, Delivering Scale, Efficiency, and Trusted Partnerships
+            <h3 class="font-heading text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 leading-tight">
+              From Farm Level Cultivation to Industry Supply, Delivering Scale, Efficiency, and Trusted Partnerships
               Across Markets
             </h3>
           </div>
@@ -82,8 +83,8 @@ const navigateToPage = (path) => {
   </ComponentSection>
 
   <!-- Products -->
-  <ComponentSection spacing="sm" background="transparent">
-    <ComponentContainer size="xl" padding="md">
+  <ComponentSection spacing="sm" containerSize="full" background="transparent">
+    <ComponentContainer size="xl" padding="sm">
       <!-- Top 3 Product Cards -->
       <ComponentGrid :columns="{ base: 1, md: 2, lg: 3 }" gap="lg" class="mb-16">
         <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
@@ -94,15 +95,15 @@ const navigateToPage = (path) => {
       <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="xl" align="center">
         <!-- Left Column - Image -->
         <div class="order-2 lg:order-1">
-          <ComponentImageDisplay class="mask-luminance mask-r-from-white mask-r-from-50% mask-r-to-black"
-            src="/src/assets/home/product-card__garlic.jpg" alt="Garlic" size="lg" variant="plain" object-fit="cover" />
+          <ComponentImageDisplay src="/src/assets/home/product-card__garlic.jpg" alt="Garlic" size="lg" variant="plain"
+            object-fit="cover" />
         </div>
 
         <!-- Right Column - Content -->
         <div class="order-1 lg:order-2 space-y-6">
           <h3
             class="font-heading text-3xl md:text-4xl lg:text-5xl pb-8 font-bold text-pickled-bluewood-600 leading-tight">
-            From Farm to Flavor – Our Garlic Promise
+            Premium Garlic That Powers Global Brands
           </h3>
 
           <p class="font-body text-lg text-pickled-bluewood-600 leading-relaxed pb-4">

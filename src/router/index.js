@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/our-company',
     name: 'our-company',
-    component: () => import('@/views/about/PAGE__ABOUT--DEFAULT.vue'),
+    component: () => import('@/views/our-company/PAGE__ABOUT--DEFAULT.vue'),
     meta: {
       title: 'Our Company',
       preload: false,
@@ -37,7 +37,7 @@ const routes = [
   {
     path: '/our-company/mission-and-vision',
     name: 'our-company-mission-vision',
-    component: () => import('@/views/about/PAGE__ABOUT--MISSION-AND-VISION.vue'),
+    component: () => import('@/views/our-company/PAGE__ABOUT--MISSION-AND-VISION.vue'),
     meta: {
       title: 'Mission & Vision',
       preload: false,   
@@ -53,7 +53,7 @@ const routes = [
   {
     path: '/our-businesses',
     name: 'our-businesses',
-    component: () => import('@/views/services/PAGE__SERVICES--DEFAULT.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES--DEFAULT.vue'),
     meta: {
       title: 'Our Businesses',
       preload: false,
@@ -65,7 +65,7 @@ const routes = [
   {
     path: '/our-businesses/import-and-distribution',
     name: 'service-import-distribution',
-    component: () => import('@/views/services/PAGE__SERVICES-IMPORT-DISTRIBUTION--DEFAULT.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-IMPORT-DISTRIBUTION--DEFAULT.vue'),
     meta: {
       title: 'Import & Distribution',
       preload: false,
@@ -77,7 +77,7 @@ const routes = [
   {
     path: '/our-businesses/oem-and-private-label',
     name: 'service-oem',
-    component: () => import('@/views/services/PAGE__SERVICES-OEM--DEFAULT.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-OEM--DEFAULT.vue'),
     meta: {
       title: 'OEM / Private Label',
       preload: false,
@@ -181,7 +181,7 @@ const routes = [
   {
     path: '/our-businesses/industries',
     name: 'our-businesses-industries',
-    component: () => import('@/views/services/PAGE__SERVICES-INDUSTRIES--DEFAULT.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-INDUSTRIES--DEFAULT.vue'),
     meta: {
       title: 'Industries',
       preload: false,
@@ -193,7 +193,7 @@ const routes = [
   {
     path: '/industries/:slug',
     name: 'industry-detail',
-    component: () => import('@/views/services/PAGE__SERVICES-INDUSTRIES--DEFAULT.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-INDUSTRIES--DEFAULT.vue'),
     meta: {
       title: 'Industry',
       preload: false,
@@ -209,7 +209,7 @@ const routes = [
   {
     path: '/our-businesses/industries/food-manufacturers-and-processors',
     name: 'services-industries-food-manufacturers',
-    component: () => import('@/views/services/PAGE__SERVICES-INDUSTRIES--FOOD-MANUFACTURERS-AND-PROCESSORS.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-INDUSTRIES--FOOD-MANUFACTURERS-AND-PROCESSORS.vue'),
     meta: {
       title: 'Food Manufacturers & Processors',
       preload: false,
@@ -221,7 +221,7 @@ const routes = [
   {
     path: '/our-businesses/industries/food-service-and-distribution',
     name: 'services-industries-food-service',
-    component: () => import('@/views/services/PAGE__SERVICES-INDUSTRIES--FOOD-SERVICE-AND-DISTRIBUTION.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-INDUSTRIES--FOOD-SERVICE-AND-DISTRIBUTION.vue'),
     meta: {
       title: 'Food Service & Distribution',
       preload: false,
@@ -233,7 +233,7 @@ const routes = [
   {
     path: '/our-businesses/industries/supermarkets-and-custom-brands',
     name: 'services-industries-supermarkets',
-    component: () => import('@/views/services/PAGE__SERVICES-INDUSTRIES--SUPERMARKETS-AND-CUSTOM-BRANDS.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-INDUSTRIES--SUPERMARKETS-AND-CUSTOM-BRANDS.vue'),
     meta: {
       title: 'Supermarkets & Custom Brands',
       preload: false,
@@ -245,7 +245,7 @@ const routes = [
   {
     path: '/our-businesses/industries/ingredient-and-bulk-suppliers',
     name: 'services-industries-ingredient-suppliers',
-    component: () => import('@/views/services/PAGE__SERVICES-INDUSTRIES--INGREDIENT-AND-BULK-SUPPLIERS.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-INDUSTRIES--INGREDIENT-AND-BULK-SUPPLIERS.vue'),
     meta: {
       title: 'Ingredient & Bulk Suppliers',
       preload: false,
@@ -257,25 +257,9 @@ const routes = [
   {
     path: '/our-businesses/industries/importers-and-trade-partners',
     name: 'services-industries-importers',
-    component: () => import('@/views/services/PAGE__SERVICES-INDUSTRIES--IMPORTERS-AND-TRADE-PARTNERS.vue'),
+    component: () => import('@/views/our-business/PAGE__SERVICES-INDUSTRIES--IMPORTERS-AND-TRADE-PARTNERS.vue'),
     meta: {
       title: 'Importers & Trade Partners',
-      preload: false,
-      transition: 'fade',
-      keepAlive: true,
-      layout: ''
-    },
-  },
-
-  // ========================================
-  // CERTIFICATIONS & QUALITY PAGES
-  // ========================================
-  {
-    path: '/our-company/certifications',
-    name: 'our-company-certifications',
-    component: () => import('@/views/certifications/PAGE__CERTIFICATIONS--DEFAULT.vue'),
-    meta: {
-      title: 'Certifications & Quality',
       preload: false,
       transition: 'fade',
       keepAlive: true,
@@ -289,7 +273,7 @@ const routes = [
   {
     path: '/news',
     name: 'news',
-    component: () => import('@/views/blog/PAGE__BLOG--LIST.vue'),
+    component: () => import('@/views/news/PAGE__BLOG--LIST.vue'),
     meta: {
       title: 'Blog',
       preload: false,
@@ -301,7 +285,7 @@ const routes = [
   {
     path: '/news/:slug',
     name: 'news-detail',
-    component: () => import('@/views/blog/PAGE__BLOG--DETAIL.vue'),
+    component: () => import('@/views/news/PAGE__BLOG--DETAIL.vue'),
     meta: {
       title: 'Post',
       preload: false,
@@ -400,7 +384,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.name === 'our-company-mission-vision') {
     seoData.breadcrumbs = [
       { name: 'Home', url: '/' },
-      { name: 'About', url: '/about' },
+      { name: 'Our Company', url: '/our-company' },
       { name: to.meta?.title, url: to.fullPath }
     ]
   }

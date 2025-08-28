@@ -7,7 +7,7 @@
 
 // Main page content
 export { homePage } from './pages/homePage.js'
-export { aboutPage } from './pages/aboutPage.js'
+export { aboutPage } from './pages/our-business/aboutPage.js'
 export { servicesPage } from './pages/servicesPage.js'
 export { productsPage } from './pages/productsPage.js'
 export { industriesPage } from './pages/industriesPage.js'
@@ -15,8 +15,8 @@ export { certificationsPage } from './pages/certificationsPage.js'
 export { contactPage } from './pages/contactPage.js'
 
 // Service detail pages
-export { serviceImportDistribution } from './pages/services/importDistribution.js'
-export { serviceOEM } from './pages/services/oemPrivateLabel.js'
+export { serviceImportDistribution } from './pages/our-business/importDistribution.js'
+export { serviceOEM } from './pages/our-business/oemPrivateLabel.js'
 
 // Component data
 export { exploreCards } from './components/exploreCards.js'
