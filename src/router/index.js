@@ -103,6 +103,66 @@ const routes = [
     },
   },
   {
+    path: '/products/fresh-produce',
+    name: 'products-fresh-produce',
+    component: () => import('@/views/products/PAGE__PRODUCTS--FRESH-PRODUCE.vue'),
+    meta: {
+      title: 'Fresh Produce',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/products/processed-garlic',
+    name: 'products-processed-garlic',
+    component: () => import('@/views/products/PAGE__PRODUCTS--PROCESSED-GARLIC.vue'),
+    meta: {
+      title: 'Processed Garlic',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/products/condiments-sauces',
+    name: 'products-condiments-sauces',
+    component: () => import('@/views/products/PAGE__PRODUCTS--CONDIMENTS-SAUCES.vue'),
+    meta: {
+      title: 'Condiments & Sauces',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/products/snacks-consumer',
+    name: 'products-snacks-consumer',
+    component: () => import('@/views/products/PAGE__PRODUCTS--SNACKS-CONSUMER.vue'),
+    meta: {
+      title: 'Snacks & Consumer Products',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/products/broader-agriculture',
+    name: 'products-broader-agriculture',
+    component: () => import('@/views/products/PAGE__PRODUCTS--BROADER-AGRICULTURE.vue'),
+    meta: {
+      title: 'Broader Agriculture',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
     path: '/products/:slug',
     name: 'product-detail',
     component: () => import('@/views/products/PAGE__PRODUCTS--DEFAULT.vue'),
@@ -323,6 +383,15 @@ router.beforeEach(async (to, from, next) => {
   if (to.name === 'product-detail' || to.name === 'industry-detail' || to.name === 'news-detail') {
     seoData.breadcrumbs = [
       { name: 'Home', url: '/' },
+      { name: to.meta?.title, url: to.fullPath }
+    ]
+  }
+
+  // Add breadcrumbs for product detail pages
+  if (to.name && to.name.startsWith('products-') && to.name !== 'products') {
+    seoData.breadcrumbs = [
+      { name: 'Home', url: '/' },
+      { name: 'Products', url: '/products' },
       { name: to.meta?.title, url: to.fullPath }
     ]
   }

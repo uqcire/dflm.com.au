@@ -100,11 +100,11 @@ const getTitleSize = (variant) => {
             <!-- Price and Actions Row -->
             <div class="flex items-center justify-between gap-4">
                 <!-- Action Button -->
-                <a v-if="showLink" :href="product.link || '#'"
+                <router-link v-if="showLink" :to="product.link || '#'"
                     class="inline-flex items-center px-4 py-2 text-xs font-medium font-body text-white bg-monza-600 border-none rounded-md no-underline transition-all duration-200 ease-out tracking-wide hover:bg-monza-700 focus:outline-none focus:ring-2 focus:ring-monza-500 focus:ring-offset-2"
                     :aria-label="`${linkText} for ${product.title}`">
                     {{ linkText }}
-                </a>
+                </router-link>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@ const navigateToPage = (path) => {
 
 <template>
   <!-- Hero -->
-  <ComponentSection spacing="xs" containerSize="full">
+  <ComponentSection spacing="lg">
     <ComponentHero :title="homePage.hero.title" :subtitle="homePage.hero.subtitle" :image="homePage.hero.image"
       :image-size="homePage.hero.imageSize" />
   </ComponentSection>
@@ -187,39 +187,22 @@ const navigateToPage = (path) => {
     </ComponentContainer>
   </ComponentSection>
 
-  <!-- Services -->
-  <ComponentSection spacing="sm" background="transparent">
-    <ComponentContainer size="full" padding="sm" :constrainWidth="false">
-      <ComponentAlternatingContent :sections="[
-        {
-          title: 'Strength in Supply Chain Solutions',
-          description: 'With vertically integrated operations and advanced logistics, we provide seamless import, distribution, and supply chain management across Australia. From customs clearance to cold-chain delivery, our expertise ensures products arrive safely, efficiently, and at scale.',
-          image: '/src/assets/home/service-card__supply-chain.png',
-          linkText: 'Discover End-to-End Distribution',
-          linkUrl: '/our-businesses/import-and-distribution',
-          imagePosition: 'right',
-          imageSize: 'lg'
-        },
-        {
-          title: 'Manufacturing You Can Count On',
-          description: 'As a full-scale producer, we control every step from cultivation to processing, guaranteeing consistent quality and compliance. Our modern facilities and certified systems allow us to deliver tailored solutions for manufacturers, distributors, and retail partners.',
-          image: '/src/assets/home/service-card__manufacturing.png',
-          linkText: 'Partner With Us for Tailored Solutions',
-          linkUrl: '/our-businesses/oem-and-private-label',
-          imagePosition: 'left',
-          imageSize: 'lg',
-        }
-      ]" />
+  <!-- Our Businesses -->
+  <ComponentSection spacing="sm" containerSize="full" background="transparent">
+    <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
+      <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" />
     </ComponentContainer>
   </ComponentSection>
 
   <!-- Get in Touch -->
-  <ComponentCtaGetInTouch
-    description="Did you know that you can contact different departments and functions from E-Sunrise Australia such as media team, sustainability team and our investors team?" />
+  <ComponentCtaGetInTouch :title="homePage.getInTouch.title" :description="homePage.getInTouch.description"
+    :buttonText="homePage.getInTouch.buttonText" :buttonLink="homePage.getInTouch.buttonLink"
+    :background="homePage.getInTouch.background" :backgroundColor="homePage.getInTouch.backgroundColor"
+    :backgroundStyle="homePage.getInTouch.backgroundStyle" />
 
   <!-- Explore More -->
   <ComponentExploreMore :title="exploreCards.home.title" :cards="exploreCards.home.cards"
-    :columns="exploreCards.home.columns" :gap="exploreCards.home.gap" :background="exploreCards.home.background"
+    :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.home.background"
     :style="exploreCards.home.backgroundStyle" />
 
 </template>

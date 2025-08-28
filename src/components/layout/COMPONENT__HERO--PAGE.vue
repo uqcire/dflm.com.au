@@ -72,18 +72,18 @@ const getImageSizeClasses = (size) => {
                 fullWidth ? 'text-white max-w-4xl mx-auto' : ''
             ]">
                 <h1 :class="[
-                    'font-heading font-bold mb-4 pb-8 leading-tight',
+                    'font-heading font-bold mb-4 pb-12 leading-tight',
                     fullWidth
                         ? 'text-5xl md:text-6xl lg:text-7xl text-white'
-                        : 'text-4xl md:text-5xl lg:text-6xl text-pickled-bluewood-800'
+                        : 'text-4xl md:text-5xl lg:text-7xl text-pickled-bluewood-800'
                 ]">
                     {{ title }}
                 </h1>
                 <h2 v-if="subtitle" :class="[
-                    'font-heading max-w-3xl mx-auto mb-6 pb-4 leading-relaxed',
+                    'font-heading max-w-3xl mx-auto mb-6 pb-12 leading-relaxed',
                     fullWidth
                         ? 'text-xl md:text-2xl lg:text-3xl font-medium text-white'
-                        : 'text-xl md:text-3xl text-pickled-bluewood-600'
+                        : 'text-xl md:text-4xl text-pickled-bluewood-600'
                 ]">
                     {{ subtitle }}
                 </h2>

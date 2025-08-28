@@ -5,8 +5,8 @@ export const footerLinks = [
             { text: 'Our Company', path: '/our-company' },
             { text: 'Our Businesses', path: '/our-businesses' },
             { text: 'Industries', path: '/our-businesses/industries' },
-            { text: 'Certifications', path: '/our-company/certifications' },
-            { text: 'News', path: '/blog' },
+            { text: 'Products', path: '/products' },
+            { text: 'News', path: '/news' },
             { text: 'Contact', path: '/contact' }
         ]
     },
@@ -17,7 +17,7 @@ export const footerLinks = [
             { text: 'Mission & Vision', path: '/our-company/mission-and-vision' },
             { text: 'Certifications & Compliance', path: '/our-company/certifications' },
             { text: 'Our History', path: '/our-company/our-history' },
-            { text: 'News', path: '/blog' },
+            { text: 'News', path: '/news' },
         ]
     },
     {
@@ -31,12 +31,11 @@ export const footerLinks = [
     {
         title: 'Products',
         links: [
-            { text: 'Garlic', path: '/' },
-            { text: 'Dehaydrated Vegetables', path: '/' },
-            { text: 'Sauces', path: '/' },
-            { text: 'Spices', path: '/' },
-            { text: 'Dried Fruits', path: '/' },
-            { text: 'Dried Herbs', path: '/' },
+            { text: 'Fresh Produce', path: '/products/fresh-produce' },
+            { text: 'Processed Garlic', path: '/products/processed-garlic' },
+            { text: 'Condiments & Sauces', path: '/products/condiments-and-sauces' },
+            { text: 'Snacks & Consumer Products', path: '/products/snacks-and-consumer-products' },
+            { text: 'Broader Agriculture', path: '/products/broader-agriculture' },
         ]
     },
 ]

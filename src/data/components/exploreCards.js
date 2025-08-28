@@ -1,196 +1,150 @@
 /**
  * Explore Cards Data for E-Sunrise Australia
- * Contains card data for the "Explore More" section across different pages
+ * 
+ * This file contains structured data for "Explore More" sections across different pages.
+ * Each section includes cards that provide navigation to related content areas.
+ * 
+ * Structure:
+ * - Global defaults (title, columns, gap)
+ * - Unified card library with 7 standard cards
+ * - Page-specific configurations that select which cards to display
+ * - Each card has title, description, image, and navigation properties
  */
 
-export const exploreCards = {
+// Global defaults for all explore sections
+const DEFAULT_CONFIG = {
   title: 'Explore more',
   columns: { base: 1, md: 3 },
   gap: 'lg',
-  home: {
-    background: 'transparent',
-    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
-    cards: [
-      {
-        title: 'Our Company',
-        description: 'Discover how we bring progress to life through purpose-led science.',
-        image: '/src/assets/explore/our-company.png',
-        alt: 'Our Company',
-        link: '/about'
-      },
-      {
-        title: 'Our Newsroom',
-        description: 'Read more about news from DFLM Group and its businesses. Explore company updates, industry insights, and announcements that reflect our growth and innovation. Stay informed on milestones, product launches, and the latest developments shaping our future.',
-        image: '/src/assets/explore/newsroom.png',
-        alt: 'Newsroom',
-        link: '/blog'
-      },
-      {
-        title: 'Our Businesses',
-        description: 'Four complementary businesses, all powered by purpose, people, and innovation.',
-        image: '/src/assets/explore/our-business.png',
-        alt: 'Our Businesses',
-        link: '/services'
-      }
-    ],
+  background: 'transparent',
+  backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))'
+}
+
+// Unified card library - all available explore cards
+const CARD_LIBRARY = {
+  ourCompany: {
+    title: 'Our Company',
+    description: 'Learn more about who we are as a company, our mission and values, and how we combine global manufacturing expertise with local operations to deliver certified, reliable food solutions for partners across Australia and international markets.',
+    image: '/src/assets/explore/our-company.png',
+    alt: 'Our Company',
+    link: '/our-company'
   },
-  about: {
-    background: 'transparent',
-    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
-    cards: [
-      {
-        title: 'Our Newsroom',
-        description: 'Read more about news from DFLM Group and its businesses. Explore company updates, industry insights, and announcements that reflect our growth and innovation. Stay informed on milestones, product launches, and the latest developments shaping our future.',
-        image: '/src/assets/explore/newsroom.png',
-        alt: 'Newsroom',
-        link: '/news'
-      },
-      {
-        title: 'Our Industries',
-        description: 'Explore how our manufacturing strength and supply chain expertise support manufacturers, distributors, and retailers in building reliable food supply chains.',
-        image: '/src/assets/explore/industries.png',
-        alt: 'Industries',
-        link: '/industries'
-      },
-      {
-        title: 'Our Businesses',
-        description: 'Four complementary businesses, all powered by purpose, people, and innovation.',
-        image: '/src/assets/explore/our-business.png',
-        alt: 'Our Businesses',
-        link: '/services'
-      }
-    ],
+  
+  ourNewsroom: {
+    title: 'Our Newsroom',
+    description: 'Stay updated with the latest news, company announcements, and industry insights. Explore milestones, product launches, and strategic developments that highlight our continued growth, innovation, and commitment to building stronger food supply chains for the future.',
+    image: '/src/assets/explore/newsroom.png',
+    alt: 'Our Newsroom',
+    link: '/blog'
   },
   
   ourBusinesses: {
-    background: 'transparent',
-    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
-    cards: [
-      {
-        title: 'Our Newsroom',
-        description: 'Read more about news from DFLM Group and its businesses. Explore company updates, industry insights, and announcements that reflect our growth and innovation. Stay informed on milestones, product launches, and the latest developments shaping our future.',
-        image: '/src/assets/explore/newsroom.png',
-        alt: 'Newsroom',
-        link: '/blog'
-      },
-      {
-        title: 'Our Industries',
-        description: 'Explore how our manufacturing strength and supply chain expertise support manufacturers, distributors, and retailers in building reliable food supply chains.',
-        image: '/src/assets/explore/industries.png',
-        alt: 'Industries',
-        link: '/industries'
-      },
-      {
-        title: 'Our Businesses',
-        description: 'Four complementary businesses, all powered by purpose, people, and innovation.',
-        image: '/src/assets/explore/our-business.png',
-        alt: 'Our Businesses',
-        link: '/services'
-      }
-    ],
-  },
-
-  products: {
-    title: 'Explore more',
-    background: 'transparent',
-    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
-    cards: [
-      {
-        title: 'Our Services',
-        description: 'Discover our comprehensive supply chain solutions and OEM services.',
-        image: '/src/assets/home/explore-card__our-business.jpg',
-        link: '/services'
-      },
-      {
-        title: 'Industries We Serve',
-        description: 'Learn how we support food manufacturers, distributors, and retailers.',
-        image: '/src/assets/explore/industries.png',
-        link: '/industries'
-      },
-      {
-        title: 'About Our Company',
-        description: 'Understand our global scale and local reliability approach.',
-        image: '/src/assets/home/explore-card__our-company.jpg',
-        link: '/about'
-      }
-    ],
+    title: 'Our Businesses',
+    description: 'Discover our core business divisions that power the E-Sunrise Group. From large-scale manufacturing and OEM solutions to import, distribution, and logistics, we deliver integrated services that create value across the entire food supply chain.',
+    image: '/src/assets/explore/our-business.png',
+    alt: 'Our Businesses',
+    link: '/our-businesses'
   },
   
-  services: {
-    title: 'Explore more',
-    background: 'transparent',
-    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
-    cards: [
-      {
-        title: 'Our Products',
-        description: 'Explore our range of dehydrated vegetables, garlic products, and more.',
-        image: '/src/assets/home/product-card__garlic.jpg',
-        link: '/products'
-      },
-      {
-        title: 'Industries We Serve',
-        description: 'See how we support various food industry sectors.',
-        image: '/src/assets/explore/industries.png',
-        link: '/industries'
-      },
-      {
-        title: 'Our Company',
-        description: 'Learn about our global manufacturing capabilities.',
-        image: '/src/assets/home/explore-card__our-company.jpg',
-        link: '/about'
-      }
-    ],
+  ourIndustries: {
+    title: 'Industries We Serve',
+    description: 'Explore the industries we serve, including food manufacturers, processors, distributors, retailers, supermarkets, and trade partners. Learn how our scale, reliability, and supply chain expertise help support long-term growth and resilience across the food sector.',
+    image: '/src/assets/explore/industries.png',
+    alt: 'Industries We Serve',
+    link: '/our-businesses/industries'
   },
   
-  industries: {
-    background: 'transparent',
-    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
-    cards: [
-      {
-        title: 'Our Products',
-        description: 'Discover our high-quality food ingredients and solutions.',
-        image: '/src/assets/home/product-card__garlic.jpg',
-        link: '/products'
-      },
-      {
-        title: 'Our Services',
-        description: 'Explore our comprehensive supply chain and OEM services.',
-        image: '/src/assets/home/service-card__supply-chain.png',
-        link: '/services'
-      },
-      {
-        title: 'About Us',
-        description: 'Learn about our global manufacturing expertise.',
-        image: '/src/assets/home/explore-card__our-company.jpg',
-        link: '/about'
-      }
-    ],
+  ourProducts: {
+    title: 'Our Products',
+    description: 'Browse our comprehensive portfolio of food ingredients, from fresh and dehydrated vegetables to garlic specialties, sauces, pulses, legumes, and snacks. Designed to meet industrial demand, our products deliver consistent quality and versatility across global and local markets.',
+    image: '/src/assets/home/product-card__garlic.jpg',
+    alt: 'Our Products',
+    link: '/products'
   },
-  
-  contact: {
-    background: 'transparent',
-    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
-    cards: [
-      {
-        title: 'Our Products',
-        description: 'Explore our range of food ingredients and solutions.',
-        image: '/src/assets/home/product-card__garlic.jpg',
-        link: '/products'
-      },
-      {
-        title: 'Our Services',
-        description: 'Discover our supply chain and manufacturing services.',
-        image: '/src/assets/home/service-card__supply-chain.png',
-        link: '/services'
-      },
-      {
-        title: 'About Our Company',
-        description: 'Learn about our global manufacturing capabilities.',
-        image: '/src/assets/home/explore-card__our-company.jpg',
-        link: '/about'
-      }
-    ],
+    
+  certifications: {
+    title: 'Certifications',
+    description: 'Explore our international certifications, including HACCP and ISO, which guarantee consistent quality, full traceability, and compliance with global and Australian food standards. These certifications reinforce our commitment to reliability, safety, and excellence in food production.',
+    image: '/src/assets/explore/our-company.png',
+    alt: 'Certifications',
+    link: '/our-company/certifications'
   }
+}
+
+// Page-specific card configurations
+const PAGE_CONFIGS = {
+  // Home page - show company, newsroom, and businesses
+  home: {
+    cards: ['ourCompany', 'ourNewsroom', 'ourBusinesses']
+  },
+  
+  // About page - show newsroom, industries, and businesses
+  about: {
+    cards: ['ourNewsroom', 'ourIndustries', 'ourBusinesses']
+  },
+  
+  // Our Businesses page - show newsroom, industries, and businesses
+  ourBusinesses: {
+    cards: ['ourNewsroom', 'ourIndustries', 'ourBusinesses']
+  },
+  
+  // Products page - show businesses, industries, and certifications
+  products: {
+    title: 'Discover More About Our Business',
+    background: 'transparent',
+    backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
+    cards: ['ourBusinesses', 'ourIndustries', 'certifications']
+  },
+  
+  // Services page - show products, industries, and company
+  services: {
+    cards: ['ourProducts', 'ourIndustries', 'ourCompany']
+  },
+  
+  // Industries page - show products, services, and company
+  industries: {
+    cards: ['ourProducts', 'ourServices', 'ourCompany']
+  },
+  
+  // Contact page - show products, services, and company
+  contact: {
+    cards: ['ourProducts', 'ourServices', 'ourCompany']
+  }
+}
+
+// Helper function to create section configuration
+const createSection = (cardKeys, customConfig = {}) => {
+  const cards = cardKeys.map(key => CARD_LIBRARY[key])
+  return {
+    ...DEFAULT_CONFIG,
+    ...customConfig,
+    cards
+  }
+}
+
+// Main export object with optimized structure
+export const exploreCards = {
+  // Global defaults
+  ...DEFAULT_CONFIG,
+
+  // Page-specific sections
+  home: createSection(PAGE_CONFIGS.home.cards),
+  
+  about: createSection(PAGE_CONFIGS.about.cards),
+  
+  ourBusinesses: createSection(PAGE_CONFIGS.ourBusinesses.cards),
+  
+  products: createSection(PAGE_CONFIGS.products.cards, {
+    title: PAGE_CONFIGS.products.title,
+    background: PAGE_CONFIGS.products.background,
+    backgroundStyle: PAGE_CONFIGS.products.backgroundStyle
+  }),
+  
+  services: createSection(PAGE_CONFIGS.services.cards),
+  
+  industries: createSection(PAGE_CONFIGS.industries.cards),
+  
+  contact: createSection(PAGE_CONFIGS.contact.cards)
 }
 
 export default exploreCards 

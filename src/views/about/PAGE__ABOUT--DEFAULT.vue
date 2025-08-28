@@ -13,7 +13,7 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 
 <template>
   <!-- Hero -->
-  <ComponentSection spacing="xs" :fullWidth="true">
+  <ComponentSection spacing="xs" :fullWidth="true" :style="'padding-bottom: 0px; padding-top: 0px'">
     <ComponentHero :title="aboutPage.hero.title" :subtitle="aboutPage.hero.subtitle" :fullWidth="true"
       :backgroundImage="aboutPage.hero.backgroundImage" :overlayOpacity="aboutPage.hero.overlayOpacity" />
   </ComponentSection>
@@ -167,7 +167,7 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 
   <!-- Explore More -->
   <ComponentExploreMore :title="exploreCards.about.title" :cards="exploreCards.about.cards"
-    :columns="exploreCards.about.columns" :gap="exploreCards.about.gap" :background="exploreCards.about.background"
+    :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.about.background"
     :style="exploreCards.about.backgroundStyle" />
 </template>
 

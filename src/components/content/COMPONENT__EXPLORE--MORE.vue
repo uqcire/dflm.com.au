@@ -79,7 +79,7 @@ const navigateToPage = (link) => {
 </script>
 
 <template>
-    <ComponentSection spacing="sm" :background="background">
+    <ComponentSection spacing="sm" containerSize="full" :background="background">
         <ComponentContainer size="xl" padding="sm">
             <!-- Section Title -->
             <div class="text-left mb-8">
@@ -93,29 +93,22 @@ const navigateToPage = (link) => {
                 <el-card v-for="(card, index) in cards" :key="index"
                     class="explore-card h-88 cursor-pointer transition-transform duration-300 hover:scale-105 relative overflow-hidden"
                     shadow="always" @click="navigateToPage(card.link)">
-                    <!-- 头部插槽 - 与default插槽平级 -->
-                    <template #header>
-                        <div />
-                    </template>
-
-                    <!-- 默认内容插槽 -->
-                    <template #default>
-                        <!-- Full Background Image -->
-                        <div class="absolute inset-0 w-full h-full">
-                            <ComponentImageDisplay :src="card.image" :alt="card.alt" size="xl" variant="plain"
-                                object-fit="cover" loading="lazy" class="w-full h-full" />
-                        </div>
-
+                    <!-- Full Background Image -->
+                    <div class="absolute inset-0 w-full h-full">
+                        <ComponentImageDisplay :src="card.image" :alt="card.alt" size="xl" variant="plain"
+                            object-fit="cover" loading="lazy" class="w-full h-full" />
                         <!-- Dark Overlay for Text Readability -->
                         <div class="absolute inset-0 bg-black/50"></div>
+                    </div>
 
-                        <!-- Card Content Overlay -->
-                        <div class="relative z-10 h-full flex flex-col gap-4 justify-between p-8 text-white">
-                            <h4 class="font-heading text-xl font-bold text-white">
+                    <!-- Card Content Overlay -->
+                    <div class="absolute inset-0 z-10 h-full flex">
+                        <div class="m-auto flex flex-col gap-4 items-center text-center p-12 text-white">
+                            <h4 class="font-heading text-2xl font-bold text-white">
                                 {{ card.title }}
                             </h4>
 
-                            <p class="font-body text-white/90 leading-relaxed line-clamp-3">
+                            <p class="font-body text-white/90 leading-relaxed line-clamp-3 text-lg">
                                 {{ card.description }}
                             </p>
 
@@ -130,11 +123,8 @@ const navigateToPage = (link) => {
                                 </svg>
                             </router-link>
                         </div>
-                    </template>
+                    </div>
                     <!-- 底部插槽 - 与default插槽平级 -->
-                    <template #footer>
-                        <div />
-                    </template>
                 </el-card>
             </ComponentGrid>
         </ComponentContainer>
@@ -143,4 +133,12 @@ const navigateToPage = (link) => {
 
 <style scoped>
 /* Component-specific styles if needed */
+:deep(.el-card__header) {
+    padding: 0;
+    height: 0;
+}
+
+:deep(.el-card__body) {
+    padding: 0;
+}
 </style>

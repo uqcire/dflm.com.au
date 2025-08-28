@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     'COMPONENT__ALTERNATING-CONTENT': typeof import('./src/components/content/COMPONENT__ALTERNATING--CONTENT.vue')['default']
+    'COMPONENT__CHALLENGE-CARD': typeof import('./src/components/ui/COMPONENT__CHALLENGE--CARD.vue')['default']
     'COMPONENT__COMPANY-LOGO': typeof import('./src/components/ui/COMPONENT__COMPANY--LOGO.vue')['default']
     'COMPONENT__CONTACT-INFO': typeof import('./src/components/forms/COMPONENT__CONTACT--INFO.vue')['default']
     COMPONENT__CONTAINER: typeof import('./src/components/layout/COMPONENT__CONTAINER.vue')['default']
@@ -58,7 +59,12 @@ declare module 'vue' {
     'PAGE__INDUSTRIES-DEFAULT': typeof import('./src/views/services/PAGE__INDUSTRIES--DEFAULT.vue')['default']
     'PAGE__LANDING-UNDERCONSTRUCTION': typeof import('./src/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue')['default']
     'PAGE__NOTFOUND-404': typeof import('./src/views/error/PAGE__NOT-FOUND--404.vue')['default']
+    'PAGE__PRODUCTS-BROADERAGRICULTURE': typeof import('./src/views/products/PAGE__PRODUCTS--BROADER-AGRICULTURE.vue')['default']
+    'PAGE__PRODUCTS-CONDIMENTSSAUCES': typeof import('./src/views/products/PAGE__PRODUCTS--CONDIMENTS-SAUCES.vue')['default']
     'PAGE__PRODUCTS-DEFAULT': typeof import('./src/views/products/PAGE__PRODUCTS--DEFAULT.vue')['default']
+    'PAGE__PRODUCTS-FRESHPRODUCE': typeof import('./src/views/products/PAGE__PRODUCTS--FRESH-PRODUCE.vue')['default']
+    'PAGE__PRODUCTS-PROCESSEDGARLIC': typeof import('./src/views/products/PAGE__PRODUCTS--PROCESSED-GARLIC.vue')['default']
+    'PAGE__PRODUCTS-SNACKSCONSUMER': typeof import('./src/views/products/PAGE__PRODUCTS--SNACKS-CONSUMER.vue')['default']
     'PAGE__SERVICES-DEFAULT': typeof import('./src/views/services/PAGE__SERVICES--DEFAULT.vue')['default']
     'PAGE__SERVICESIMPORTDISTRIBUTION-DEFAULT': typeof import('./src/views/services/PAGE__SERVICES-IMPORT-DISTRIBUTION--DEFAULT.vue')['default']
     'PAGE__SERVICESINDUSTRIES-DEFAULT': typeof import('./src/views/services/PAGE__SERVICES-INDUSTRIES--DEFAULT.vue')['default']
