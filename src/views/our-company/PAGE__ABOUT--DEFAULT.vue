@@ -1,5 +1,5 @@
 <script setup>
-import { aboutPage } from '@/data/pages/our-business/aboutPage.js'
+import { companyPage } from '@/data/pages/our-company/companyPage.js'
 import { exploreCards } from '@/data/components/exploreCards.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
@@ -14,14 +14,14 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 <template>
   <!-- Hero -->
   <ComponentSection spacing="xs" :fullWidth="true" :style="'padding-bottom: 0px; padding-top: 0px'">
-    <ComponentHero :title="aboutPage.hero.title" :subtitle="aboutPage.hero.subtitle" :fullWidth="true"
-      :backgroundImage="aboutPage.hero.backgroundImage" :overlayOpacity="aboutPage.hero.overlayOpacity" />
+    <ComponentHero :title="companyPage.hero.title" :subtitle="companyPage.hero.subtitle" :fullWidth="true"
+      :backgroundImage="companyPage.hero.backgroundImage" :overlayOpacity="companyPage.hero.overlayOpacity" />
   </ComponentSection>
 
   <!-- Sub Navigation -->
   <ComponentSection spacing="sm" background="subtle">
-    <ComponentNavigation :isSubNavigation="true" :subNavItems="aboutPage.subNavigation.items"
-      :sticky="aboutPage.subNavigation.sticky" />
+    <ComponentNavigation :isSubNavigation="true" :subNavItems="companyPage.subNavigation.items"
+      :sticky="companyPage.subNavigation.sticky" />
   </ComponentSection>
 
   <!-- Who are we -->
@@ -153,22 +153,22 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
   <ComponentSection id="partners-clients" containerSize="full" spacing="sm"
     style="background-color: hsl(var(--cello-300))">
     <ComponentContainer size="md" padding="sm">
-      <ComponentPartnersGrid :title="aboutPage.partners.title" :partners="aboutPage.partners.items"
-        :columns="aboutPage.partners.columns" :gap="aboutPage.partners.gap" />
+      <ComponentPartnersGrid :title="companyPage.partners.title" :partners="companyPage.partners.items"
+        :columns="companyPage.partners.columns" :gap="companyPage.partners.gap" />
     </ComponentContainer>
   </ComponentSection>
 
   <!-- Our History -->
   <ComponentSection spacing="xs" :fullWidth="true" style="padding-top: 0 !important; padding-bottom: 0 !important;">
-    <ComponentHero :title="aboutPage.ourHistory.title" :subtitle="aboutPage.ourHistory.subtitle"
-      :backgroundImage="aboutPage.ourHistory.backgroundImage" :overlayOpacity="'50'"
-      :ctaText="aboutPage.ourHistory.ctaText" :ctaLink="aboutPage.ourHistory.ctaLink" :fullWidth="true" />
+    <ComponentHero :title="companyPage.ourHistory.title" :subtitle="companyPage.ourHistory.subtitle"
+      :backgroundImage="companyPage.ourHistory.backgroundImage" :overlayOpacity="'50'"
+      :ctaText="companyPage.ourHistory.ctaText" :ctaLink="companyPage.ourHistory.ctaLink" :fullWidth="true" />
   </ComponentSection>
 
   <!-- Explore More -->
-  <ComponentExploreMore :title="exploreCards.about.title" :cards="exploreCards.about.cards"
-    :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.about.background"
-    :style="exploreCards.about.backgroundStyle" />
+  <ComponentExploreMore :title="exploreCards.ourCompany.title" :cards="exploreCards.ourCompany.cards"
+    :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.ourCompany.background"
+    :style="exploreCards.ourCompany.backgroundStyle" />
 </template>
 
 <style scoped>

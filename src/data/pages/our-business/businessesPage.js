@@ -95,7 +95,7 @@ const INDUSTRIES_DATA = [
 ]
 
 // Main export object with optimized structure
-export const servicesPage = {
+export const businessesPage = {
   // Hero Section
   hero: HERO_CONFIG,
   
@@ -109,4 +109,4 @@ export const servicesPage = {
   industries: INDUSTRIES_DATA
 }
 
-export default servicesPage 
+export default businessesPage 

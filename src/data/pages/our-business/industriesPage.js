@@ -7,11 +7,11 @@
 
 export const industriesPage = {
   hero: {
-    title: 'Industries We Serve',
-    subtitle: 'Supporting businesses across the food industry with quality ingredients',
-    image: null,
-    ctaText: 'Partner With Us',
-    ctaLink: '/contact'
+    title: 'Powering Food Supply Across Industries',
+    subtitle: 'We combine large-scale manufacturing with trusted supply chain expertise to deliver certified, reliable, and versatile food solutions. Serving manufacturers, distributors, supermarkets, and trade partners, we power growth across the entire food industry.',
+    backgroundImage: '/src/assets/industries__hero--infrastructure-scale.png',
+    overlayOpacity: '50',
+    fullWidth: true
   },
   industries: [
     {

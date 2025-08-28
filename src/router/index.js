@@ -46,6 +46,18 @@ const routes = [
       layout: ''
     },
   },
+  {
+    path: '/our-company/history',
+    name: 'our-company-history',
+    component: () => import('@/views/our-company/PAGE__ABOUT--OUR-HISTORY.vue'),
+    meta: {
+      title: 'Our History',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
 
   // ========================================
   // SERVICES / BUSINESSES PAGES

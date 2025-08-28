@@ -7,11 +7,11 @@
 
 // Main page content
 export { homePage } from './pages/homePage.js'
-export { aboutPage } from './pages/our-business/aboutPage.js'
-export { servicesPage } from './pages/servicesPage.js'
+export { companyPage } from './pages/our-company/companyPage.js'
+export { historyPage } from './pages/our-company/history.js'
+export { businessesPage } from './pages/our-business/businessesPage.js'
 export { productsPage } from './pages/productsPage.js'
-export { industriesPage } from './pages/industriesPage.js'
-export { certificationsPage } from './pages/certificationsPage.js'
+export { industriesPage } from './pages/our-business/industriesPage.js'
 export { contactPage } from './pages/contactPage.js'
 
 // Service detail pages

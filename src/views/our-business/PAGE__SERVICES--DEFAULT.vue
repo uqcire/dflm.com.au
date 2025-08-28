@@ -1,5 +1,5 @@
 <script setup>
-import { servicesPage, exploreCards } from '@/data/index.js'
+import { businessesPage, exploreCards } from '@/data/index.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
 import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'
@@ -14,15 +14,15 @@ import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
 <template>
   <!-- Hero -->
   <ComponentSection spacing="xs" :fullWidth="true" :style="'padding-bottom: 0px; padding-top: 0px'">
-    <ComponentHero :title="servicesPage.hero.title" :subtitle="servicesPage.hero.subtitle"
-      :fullWidth="servicesPage.hero.fullWidth" :backgroundImage="servicesPage.hero.backgroundImage"
-      :overlayOpacity="servicesPage.hero.overlayOpacity" />
+    <ComponentHero :title="businessesPage.hero.title" :subtitle="businessesPage.hero.subtitle"
+      :fullWidth="businessesPage.hero.fullWidth" :backgroundImage="businessesPage.hero.backgroundImage"
+      :overlayOpacity="businessesPage.hero.overlayOpacity" />
   </ComponentSection>
 
   <!-- Sub Navigation -->
   <ComponentSection spacing="xs" background="transparent">
-    <ComponentNavigation :isSubNavigation="true" :subNavItems="servicesPage.services.items"
-      :sticky="servicesPage.services.sticky" />
+    <ComponentNavigation :isSubNavigation="true" :subNavItems="businessesPage.services.items"
+      :sticky="businessesPage.services.sticky" />
   </ComponentSection>
 
   <!-- Statement Section -->
@@ -46,7 +46,7 @@ import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
   <ComponentSection spacing="sm" containerSize="full" background="transparent"
     :style="'background-color: hsl(var(--tree-poppy-100))'">
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
-      <ComponentAlternatingContent :sections="servicesPage.serviceSections" imageSize="lg" />
+      <ComponentAlternatingContent :sections="businessesPage.serviceSections" imageSize="lg" />
     </ComponentContainer>
   </ComponentSection>
 
@@ -63,7 +63,7 @@ import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
 
       <!-- Industries Grid -->
       <ComponentGrid :columns="{ base: 1, md: 3 }" gap="lg">
-        <ComponentServiceCard v-for="industry in servicesPage.industries" :key="industry.title" :service="industry"
+        <ComponentServiceCard v-for="industry in businessesPage.industries" :key="industry.title" :service="industry"
           variant="standard" :showLink="true" />
       </ComponentGrid>
     </ComponentContainer>

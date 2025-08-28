@@ -5,7 +5,7 @@
  * hero sections, company information, and partner data.
  */
 
-export const aboutPage = {
+export const companyPage = {
   // Navigation Configuration
   subNavigation: {
     items: [
@@ -17,7 +17,6 @@ export const aboutPage = {
     ],
     mission: [
       { id: 'our-values', title: 'Our values', href: '#our-values' },
-      { id: 'our-business-unit', title: 'Our business unit', href: '#our-business-unit' },
       { id: 'partner-with-us', title: 'Partner with us', href: '#partner-with-us' },
       { id: 'our-history', title: 'Our History', href: '#our-history' }
     ],
@@ -35,21 +34,22 @@ export const aboutPage = {
 
   // Mission & Vision Section
   mission: {
-    title: 'Mission & Vision',
-    subtitle: 'Building a better legacy of global environmental leadership',
+    title: 'Shaping the Future of Food Supply',
+    subtitle: 'Our mission is to provide reliable food ingredients and solutions that empower manufacturers, distributors, and retailers. Through innovation and collaboration, we build sustainable supply chains for long-term growth.',
     fullWidth: true,
     backgroundImage: '/src/assets/about/hero.png',
-    overlayOpacity: '30'
+    overlayOpacity: '50'
   },
 
   // Company History Section
   ourHistory: {
-    title: 'Our History, From Local Roots to Global Growth',
-    subtitle: 'Founded in 2002, Jiangsu Liming Food Group grew from an agricultural processor in China into a national leader in food manufacturing, exporting to more than 60 countries. In 2024, we established E-Sunrise Group Australia in Melbourne, bringing global scale and proven expertise closer to local partners with one mission — to build trusted, lasting value across food supply chains.',
+    title: 'Two Decades of Trust and Transformation',
+    subtitle: 'Founded in 2002 as Jiangsu Liming Food Group, we’ve grown from an agricultural pioneer in China to a trusted international food manufacturer. In 2024, E-Sunrise Group Australia was established, bringing our global strength closer to the Australian market.',
     backgroundImage: '/src/assets/about/our-history.png',
-    ctaText: 'Explore our history',
-    ctaLink: '/our-company/history',
-    fullWidth: true
+    fullWidth: true,
+    overlayOpacity: '50',
+    ctaText: 'Explore Our History',
+    ctaLink: '/our-company/history'
   },
 
   // Partners & Clients Section
@@ -72,4 +72,4 @@ export const aboutPage = {
   }
 }
 
-export default aboutPage 
+export default companyPage 

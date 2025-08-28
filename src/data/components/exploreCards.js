@@ -62,12 +62,20 @@ const CARD_LIBRARY = {
     link: '/products'
   },
     
-  certifications: {
-    title: 'Certifications',
-    description: 'Explore our international certifications, including HACCP and ISO, which guarantee consistent quality, full traceability, and compliance with global and Australian food standards. These certifications reinforce our commitment to reliability, safety, and excellence in food production.',
+  missionAndValues: {
+    title: 'Mission & Values',
+    description: 'Discover our mission to build trusted, lasting value across food supply chains and explore the core values that drive our commitment to quality, innovation, and sustainable partnerships. Learn how our purpose guides every aspect of our business operations and relationships.',
     image: '/src/assets/explore/our-company.png',
-    alt: 'Certifications',
-    link: '/our-company/certifications'
+    alt: 'Mission & Values',
+    link: '/our-company/mission-and-vision'
+  },
+
+  ourHistory: {
+    title: 'Our History',
+    description: 'Explore our journey from humble beginnings to global scale, from local roots to global growth. Learn about our milestones, innovations, and the journey that led us to where we are today.',
+    image: '/src/assets/explore/our-history.png',
+    alt: 'Our History',
+    link: '/our-company/history'
   }
 }
 
@@ -78,9 +86,19 @@ const PAGE_CONFIGS = {
     cards: ['ourCompany', 'ourNewsroom', 'ourBusinesses']
   },
   
-  // About page - show newsroom, industries, and businesses
-  about: {
+  // Our Company page - show newsroom, industries, and businesses
+  ourCompany: {
     cards: ['ourNewsroom', 'ourIndustries', 'ourBusinesses']
+  },
+
+  // Mission and Vision page - show businesses, industries, and company
+  missionAndValues: {
+    cards: ['ourBusinesses', 'ourIndustries', 'ourCompany']
+  },
+
+  // Our History page - show newsroom, industries, and businesses
+  ourHistory: {
+    cards: ['ourCompany', 'ourBusinesses', 'ourProducts']
   },
   
   // Our Businesses page - show newsroom, industries, and businesses
@@ -88,17 +106,12 @@ const PAGE_CONFIGS = {
     cards: ['ourNewsroom', 'ourIndustries', 'ourBusinesses']
   },
   
-  // Products page - show businesses, industries, and certifications
+  // Products page - show businesses, industries, and mission & values
   products: {
     title: 'Discover More About Our Business',
     background: 'transparent',
     backgroundStyle: 'background-color: hsl(var(--tree-poppy-100))',
-    cards: ['ourBusinesses', 'ourIndustries', 'certifications']
-  },
-  
-  // Services page - show products, industries, and company
-  services: {
-    cards: ['ourProducts', 'ourIndustries', 'ourCompany']
+    cards: ['ourBusinesses', 'ourIndustries', 'missionAndValues']
   },
   
   // Industries page - show products, services, and company
@@ -130,7 +143,11 @@ export const exploreCards = {
   // Page-specific sections
   home: createSection(PAGE_CONFIGS.home.cards),
   
-  about: createSection(PAGE_CONFIGS.about.cards),
+  ourCompany: createSection(PAGE_CONFIGS.ourCompany.cards),
+  
+  missionAndValues: createSection(PAGE_CONFIGS.missionAndValues.cards),
+  
+  ourHistory: createSection(PAGE_CONFIGS.ourHistory.cards),
   
   ourBusinesses: createSection(PAGE_CONFIGS.ourBusinesses.cards),
   
@@ -139,8 +156,6 @@ export const exploreCards = {
     background: PAGE_CONFIGS.products.background,
     backgroundStyle: PAGE_CONFIGS.products.backgroundStyle
   }),
-  
-  services: createSection(PAGE_CONFIGS.services.cards),
   
   industries: createSection(PAGE_CONFIGS.industries.cards),
   

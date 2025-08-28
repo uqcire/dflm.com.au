@@ -15,8 +15,7 @@ export const footerLinks = [
         title: 'Our Company',
         links: [
             { text: 'Mission & Vision', path: '/our-company/mission-and-vision' },
-            { text: 'Certifications & Compliance', path: '/our-company/certifications' },
-            { text: 'Our History', path: '/our-company/our-history' },
+            { text: 'Our History', path: '/our-company/history' },
             { text: 'News', path: '/news' },
         ]
     },
@@ -33,8 +32,8 @@ export const footerLinks = [
         links: [
             { text: 'Fresh Produce', path: '/products/fresh-produce' },
             { text: 'Processed Garlic', path: '/products/processed-garlic' },
-            { text: 'Condiments & Sauces', path: '/products/condiments-and-sauces' },
-            { text: 'Snacks & Consumer Products', path: '/products/snacks-and-consumer-products' },
+            { text: 'Condiments & Sauces', path: '/products/condiments-sauces' },
+            { text: 'Snacks & Consumer Products', path: '/products/snacks-consumer' },
             { text: 'Broader Agriculture', path: '/products/broader-agriculture' },
         ]
     },
