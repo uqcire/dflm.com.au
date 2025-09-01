@@ -10,7 +10,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Processed Garlic"
             subtitle="From fresh garlic to dehydrated, pickled, and black garlic varieties. Our garlic products are processed under strict quality controls for consistent flavor and safety across all applications."
-            :fullWidth="true" backgroundImage="/assets/home/product-card__garlic.jpg" overlayOpacity="50" />
+            :fullWidth="true" backgroundImage="/assets/home/home__product-card--garlic.jpg" overlayOpacity="50" />
     </ComponentSection>
 
     <!-- Overview Section -->

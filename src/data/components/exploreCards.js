@@ -25,7 +25,7 @@ const CARD_LIBRARY = {
   ourCompany: {
     title: 'Our Company',
     description: 'Learn more about who we are as a company, our mission and values, and how we combine global manufacturing expertise with local operations to deliver certified, reliable food solutions for partners across Australia and international markets.',
-    image: '/assets/explore/our-company.png',
+    image: '/assets/explore/explore__card--our-company.png',
     alt: 'Our Company',
     link: '/our-company'
   },
@@ -33,7 +33,7 @@ const CARD_LIBRARY = {
   ourNewsroom: {
     title: 'Our Newsroom',
     description: 'Stay updated with the latest news, company announcements, and industry insights. Explore milestones, product launches, and strategic developments that highlight our continued growth, innovation, and commitment to building stronger food supply chains for the future.',
-    image: '/assets/explore/newsroom.png',
+    image: '/assets/explore/explore__card--newsroom.png',
     alt: 'Our Newsroom',
     link: '/blog'
   },
@@ -41,7 +41,7 @@ const CARD_LIBRARY = {
   ourBusinesses: {
     title: 'Our Businesses',
     description: 'Discover our core business divisions that power the E-Sunrise Group. From large-scale manufacturing and OEM solutions to import, distribution, and logistics, we deliver integrated services that create value across the entire food supply chain.',
-    image: '/assets/explore/our-business.png',
+    image: '/assets/explore/explore__card--our-business.png',
     alt: 'Our Businesses',
     link: '/our-businesses'
   },
@@ -49,7 +49,7 @@ const CARD_LIBRARY = {
   ourIndustries: {
     title: 'Industries We Serve',
     description: 'Explore the industries we serve, including food manufacturers, processors, distributors, retailers, supermarkets, and trade partners. Learn how our scale, reliability, and supply chain expertise help support long-term growth and resilience across the food sector.',
-    image: '/assets/explore/industries.png',
+    image: '/assets/explore/explore__card--industries.png',
     alt: 'Industries We Serve',
     link: '/our-businesses/industries'
   },
@@ -57,7 +57,7 @@ const CARD_LIBRARY = {
   ourProducts: {
     title: 'Our Products',
     description: 'Browse our comprehensive portfolio of food ingredients, from fresh and dehydrated vegetables to garlic specialties, sauces, pulses, legumes, and snacks. Designed to meet industrial demand, our products deliver consistent quality and versatility across global and local markets.',
-    image: '/assets/home/product-card__garlic.jpg',
+    image: '/assets/home/home__product-card--garlic.jpg',
     alt: 'Our Products',
     link: '/products'
   },
@@ -65,7 +65,7 @@ const CARD_LIBRARY = {
   missionAndValues: {
     title: 'Mission & Values',
     description: 'Discover our mission to build trusted, lasting value across food supply chains and explore the core values that drive our commitment to quality, innovation, and sustainable partnerships. Learn how our purpose guides every aspect of our business operations and relationships.',
-    image: '/assets/explore/our-company.png',
+    image: '/assets/explore/explore__card--our-company.png',
     alt: 'Mission & Values',
     link: '/our-company/mission-and-vision'
   },

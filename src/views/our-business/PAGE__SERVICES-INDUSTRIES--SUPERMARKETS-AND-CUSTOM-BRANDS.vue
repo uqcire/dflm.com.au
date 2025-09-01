@@ -12,7 +12,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Supermarkets & Custom Brands"
             subtitle="We partner with retail chains and supermarkets to deliver tailored OEM solutions. From garlic sauces to packaged legumes, we help retailers build distinctive, compliant, and trusted private label products."
-            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/assets/explore/newsroom.png" />
+            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/assets/explore/explore__card--newsroom.png" />
     </ComponentSection>
 
     <!-- Overview Section -->
@@ -44,21 +44,21 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                 <ComponentServiceCard :service="{
                     title: 'Custom Formulation',
                     description: 'Tailored product development to meet your specific taste profiles, nutritional requirements, and brand positioning.',
-                    image: '/assets/home/service-card__manufacturing.png',
+                    image: '/assets/home/home__service-card--manufacturing.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/oem-and-private-label'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Packaging Solutions',
                     description: 'Custom packaging design and production that aligns with your brand identity and retail requirements.',
-                    image: '/assets/home/product-card__fresh-vegetables.png',
+                    image: '/assets/home/home__product-card--fresh-vegetables.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/oem-and-private-label'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Quality Compliance',
                     description: 'Full regulatory compliance and quality assurance to meet Australian food safety standards and retailer requirements.',
-                    image: '/assets/explore/our-business.png',
+                    image: '/assets/explore/explore__card--our-business.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/oem-and-private-label'
                 }" variant="standard" :showLink="true" />
@@ -79,28 +79,28 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                 <ComponentServiceCard :service="{
                     title: 'Garlic Sauces',
                     description: 'Premium garlic sauces and pastes for authentic flavor in cooking and food preparation.',
-                    image: '/assets/home/product-card__garlic.jpg',
+                    image: '/assets/home/home__product-card--garlic.jpg',
                     linkText: 'Learn more',
                     linkUrl: '/products/garlic'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Packaged Legumes',
                     description: 'High-quality packaged pulses and legumes for convenient, nutritious meal solutions.',
-                    image: '/assets/home/product-card__pulses.png',
+                    image: '/assets/home/home__product-card--pulses.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/pulses'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Dehydrated Vegetables',
                     description: 'Convenient dehydrated vegetable mixes for soups, stews, and recipe bases.',
-                    image: '/assets/home/product-card__dehydrated-vegetables.png',
+                    image: '/assets/home/home__product-card--dehydrated-vegetables.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/dehydrated-vegetables'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Seasoning Blends',
                     description: 'Custom seasoning and spice blends for enhanced flavor profiles and cooking convenience.',
-                    image: '/assets/home/product-card__fresh-vegetables.png',
+                    image: '/assets/home/home__product-card--fresh-vegetables.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/seasonings'
                 }" variant="standard" :showLink="true" />

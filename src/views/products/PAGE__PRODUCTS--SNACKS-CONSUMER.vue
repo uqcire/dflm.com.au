@@ -10,7 +10,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Snacks & Consumer Products"
             subtitle="Ready-to-eat snacks and consumer products designed for modern lifestyles. From healthy snack options to convenient meal solutions, we deliver quality and taste that consumers trust."
-            :fullWidth="true" backgroundImage="/assets/home/product-card__pulses.png" overlayOpacity="50" />
+            :fullWidth="true" backgroundImage="/assets/home/home__product-card--pulses.png" overlayOpacity="50" />
     </ComponentSection>
 
     <!-- Overview Section -->

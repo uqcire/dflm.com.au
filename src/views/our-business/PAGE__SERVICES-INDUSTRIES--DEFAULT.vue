@@ -53,7 +53,7 @@ import ComponentExploreMore from '@/components/content/COMPONENT__EXPLORE--MORE.
                 <ComponentServiceCard v-for="industry in industriesPage.industries" :key="industry.id" :service="{
                     title: industry.title,
                     description: industry.description,
-                    image: industry.image || '/assets/explore/industries.png',
+                    image: industry.image || '/assets/explore/explore__card--industries.png',
                     linkText: 'Learn more',
                     linkUrl: industry.linkUrl || '/industries'
                 }" variant="standard" :showLink="true" />

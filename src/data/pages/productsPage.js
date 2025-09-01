@@ -30,7 +30,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Fresh Produce',
     slug: 'fresh-produce',
     description: 'Premium fresh vegetables and fruits sourced directly from trusted farms. Our cold-chain logistics ensure peak freshness and extended shelf life for retail and food service applications.',
-    image: '/assets/home/product-card__fresh-vegetables.png',
+    image: '/assets/home/home__product-card--fresh-vegetables.png',
     link: '/products/fresh-produce'
   },
   {
@@ -38,7 +38,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Processed Garlic',
     slug: 'processed-garlic',
     description: 'From fresh garlic to dehydrated, pickled, and black garlic varieties. Our garlic products are processed under strict quality controls for consistent flavor and safety across all applications.',
-    image: '/assets/home/product-card__garlic.jpg',
+    image: '/assets/home/home__product-card--garlic.jpg',
     link: '/products/processed-garlic'
   },
   {
@@ -46,7 +46,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Condiments & Sauces',
     slug: 'condiments-sauces',
     description: 'Premium sauces and condiments crafted for food service and retail markets. Our range includes garlic sauces, specialty condiments, and custom formulations for diverse culinary applications.',
-    image: '/assets/home/product-card__dehydrated-vegetables.png',
+    image: '/assets/home/home__product-card--dehydrated-vegetables.png',
     link: '/products/condiments-sauces'
   },
   {
@@ -54,7 +54,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Snacks & Consumer Products',
     slug: 'snacks-consumer',
     description: 'Ready-to-eat snacks and consumer products designed for modern lifestyles. From healthy snack options to convenient meal solutions, we deliver quality and taste that consumers trust.',
-    image: '/assets/home/product-card__pulses.png',
+    image: '/assets/home/home__product-card--pulses.png',
     link: '/products/snacks-consumer'
   },
   {
@@ -62,7 +62,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Broader Agriculture',
     slug: 'broader-agriculture',
     description: 'Comprehensive agricultural products including pulses, legumes, and specialty crops. Our broad portfolio supports diverse food manufacturing needs with reliable supply and consistent quality.',
-    image: '/assets/explore/our-business.png',
+    image: '/assets/explore/explore__card--our-business.png',
     link: '/products/broader-agriculture'
   }
 ]

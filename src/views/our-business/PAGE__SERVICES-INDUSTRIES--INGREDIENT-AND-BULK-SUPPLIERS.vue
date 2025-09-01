@@ -12,7 +12,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Ingredient & Bulk Suppliers"
             subtitle="Bulk pulses, legumes, and dehydrated vegetables are at the core of many ingredient suppliers. With 100,000+ tons annual production capacity, we offer stable, cost-effective, and large-scale supply for industrial applications."
-            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/assets/explore/newsroom.png" />
+            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/assets/explore/explore__card--newsroom.png" />
     </ComponentSection>
 
     <!-- Overview Section -->
@@ -44,21 +44,21 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                 <ComponentServiceCard :service="{
                     title: 'Bulk Pulses',
                     description: 'High-quality chickpeas, lentils, beans, and other pulses in bulk quantities for industrial processing and ingredient manufacturing.',
-                    image: '/assets/home/product-card__pulses.png',
+                    image: '/assets/home/home__product-card--pulses.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/pulses'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Dehydrated Vegetables',
                     description: 'Bulk dehydrated vegetables including onions, garlic, carrots, and mixed vegetables for industrial food applications.',
-                    image: '/assets/home/product-card__dehydrated-vegetables.png',
+                    image: '/assets/home/home__product-card--dehydrated-vegetables.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/dehydrated-vegetables'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Garlic Products',
                     description: 'Bulk garlic products in various forms including minced, granulated, and powder for industrial seasoning and flavor applications.',
-                    image: '/assets/home/product-card__garlic.jpg',
+                    image: '/assets/home/home__product-card--garlic.jpg',
                     linkText: 'Learn more',
                     linkUrl: '/products/garlic'
                 }" variant="standard" :showLink="true" />
@@ -140,28 +140,28 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                 <ComponentServiceCard :service="{
                     title: 'Food Processing',
                     description: 'Ingredients for large-scale food processing operations including soups, sauces, and prepared meals.',
-                    image: '/assets/home/service-card__manufacturing.png',
+                    image: '/assets/home/home__service-card--manufacturing.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Ingredient Manufacturing',
                     description: 'Base ingredients for seasoning blends, flavor enhancers, and functional food ingredients.',
-                    image: '/assets/home/service-card__supply-chain.png',
+                    image: '/assets/home/home__service-card--supply-chain.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Animal Feed',
                     description: 'High-quality ingredients for animal feed formulations and pet food manufacturing.',
-                    image: '/assets/explore/our-business.png',
+                    image: '/assets/explore/explore__card--our-business.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Export Markets',
                     description: 'Bulk ingredients for international markets and global food manufacturing operations.',
-                    image: '/assets/explore/our-company.png',
+                    image: '/assets/explore/explore__card--our-company.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />

@@ -12,7 +12,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Food Manufacturers & Processors"
             subtitle="We supply dehydrated vegetables, garlic products, sauces, pulses, and legumes to food manufacturers and processors. With HACCP and ISO certifications, we ensure consistent, safe, and traceable ingredients for large-scale production."
-            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/assets/explore/our-business.png" />
+            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/assets/explore/explore__card--our-business.png" />
     </ComponentSection>
 
     <!-- Overview Section -->
@@ -44,28 +44,28 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                 <ComponentServiceCard :service="{
                     title: 'Dehydrated Vegetables',
                     description: 'High-quality dehydrated vegetables including onions, garlic, carrots, and bell peppers for consistent flavor and extended shelf life.',
-                    image: '/assets/home/product-card__dehydrated-vegetables.png',
+                    image: '/assets/home/home__product-card--dehydrated-vegetables.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/dehydrated-vegetables'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Garlic Products',
                     description: 'Premium garlic products including minced, granulated, and powder forms for authentic flavor and aroma in food manufacturing.',
-                    image: '/assets/home/product-card__garlic.jpg',
+                    image: '/assets/home/home__product-card--garlic.jpg',
                     linkText: 'Learn more',
                     linkUrl: '/products/garlic'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Sauces & Seasonings',
                     description: 'Ready-to-use sauces and seasoning blends that enhance taste profiles and streamline production processes.',
-                    image: '/assets/home/product-card__fresh-vegetables.png',
+                    image: '/assets/home/home__product-card--fresh-vegetables.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/sauces'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Pulses & Legumes',
                     description: 'High-protein pulses and legumes including chickpeas, lentils, and beans for nutritious food formulations.',
-                    image: '/assets/home/product-card__pulses.png',
+                    image: '/assets/home/home__product-card--pulses.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/pulses'
                 }" variant="standard" :showLink="true" />
