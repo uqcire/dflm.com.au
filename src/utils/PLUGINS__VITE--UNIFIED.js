@@ -13,6 +13,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import tailwindcss from '@tailwindcss/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+
 /**
  * Creates and configures all Vite plugins for the application
  * 
@@ -387,7 +388,9 @@ export function createVitePlugins(options = {}) {
         // Title for the analysis page
         title: 'Bundle Analysis - Project Development Environment'
       })
-    ] : [])
+    ] : []),
+
+
   ]
 
   return plugins
