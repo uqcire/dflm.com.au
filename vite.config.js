@@ -58,7 +58,7 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            'vue-vendor': ['vue', 'vue-router', 'pinia'],
+            'vue-vendor': ['vue', 'vue-router'],
             'utils-vendor': ['axios'],
             'element-plus-vendor': ['element-plus']
           }
@@ -67,7 +67,7 @@ export default defineConfig(({ mode }) => {
     },
     
     optimizeDeps: {
-      include: ['vue', 'vue-router', 'pinia', 'axios', 'element-plus']
+      include: ['vue', 'vue-router', 'axios', 'element-plus']
     }
   }
 })

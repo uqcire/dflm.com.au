@@ -98,7 +98,7 @@ export function createVitePlugins(options = {}) {
      * WHAT IT DOES:
      * - Automatically imports Vue composables (ref, reactive, computed, etc.)
      * - Auto-imports Vue Router functions (useRouter, useRoute)
-     * - Auto-imports Pinia store functions (defineStore, storeToRefs)
+     * - Auto-imports Vue and Vue Router functions
      * - Eliminates need for manual import statements
      * - Generates TypeScript declarations for better IDE support
      * 
@@ -137,8 +137,7 @@ export function createVitePlugins(options = {}) {
           // Vue Router functions
           'vue-router',
           
-          // Pinia store functions
-          'pinia',
+              // Vue and Vue Router functions only
           
           // Custom auto-imports
           {
