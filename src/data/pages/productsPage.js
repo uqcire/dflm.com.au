@@ -18,7 +18,7 @@
 const HERO_CONFIG = {
   title: 'Global Food Ingredients You Can Rely On',
   subtitle: 'E-Sunrise Group Australia delivers fresh garlic, dehydrated vegetables, pickled and black garlic, sauces, pulses, legumes, and fresh produce at industrial scale. Backed by HACCP and ISO systems, we simplify sourcing with safe, reliable, and versatile ingredients trusted across global food and retail markets.',
-  backgroundImage: '/assets/about/hero.png',
+  backgroundImage: '/assets/about/about__hero--display.png',
   overlayOpacity: '50',
   fullWidth: true
 }

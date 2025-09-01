@@ -18,7 +18,7 @@
 const HERO_CONFIG = {
   title: 'Our Businesses',
   subtitle: 'We power Australia\'s food industry with world-class manufacturing, reliable supply chains, and trusted solutions that deliver consistent quality and lasting value.',
-  backgroundImage: '/assets/about/hero.png',
+  backgroundImage: '/assets/about/about__hero--display.png',
   overlayOpacity: '50',
   fullWidth: true
 }

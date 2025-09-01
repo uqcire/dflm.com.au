@@ -28,7 +28,7 @@ export const companyPage = {
     title: 'Our company',
     subtitle: 'Combining global scale with local reliability, we secure the future of food supply through consistency, compliance, and collaboration.',
     fullWidth: true,
-    backgroundImage: '/assets/about/hero.png',
+    backgroundImage: '/assets/about/about__hero--display.png',
     overlayOpacity: '50'
   },
 
@@ -37,7 +37,7 @@ export const companyPage = {
     title: 'Shaping the Future of Food Supply',
     subtitle: 'Our mission is to provide reliable food ingredients and solutions that empower manufacturers, distributors, and retailers. Through innovation and collaboration, we build sustainable supply chains for long-term growth.',
     fullWidth: true,
-    backgroundImage: '/assets/about/hero.png',
+    backgroundImage: '/assets/about/about__hero--display.png',
     overlayOpacity: '50'
   },
 
@@ -45,7 +45,7 @@ export const companyPage = {
   ourHistory: {
     title: 'Two Decades of Trust and Transformation',
     subtitle: 'Founded in 2002 as Jiangsu Liming Food Group, we’ve grown from an agricultural pioneer in China to a trusted international food manufacturer. In 2024, E-Sunrise Group Australia was established, bringing our global strength closer to the Australian market.',
-    backgroundImage: '/assets/about/our-history.png',
+    backgroundImage: '/assets/about/about__section--our-history.png',
     fullWidth: true,
     overlayOpacity: '50',
     ctaText: 'Explore Our History',
@@ -77,7 +77,7 @@ export const companyPage = {
       {
         title: 'Delivering Reliability from Production to Partnership',
         description: 'As a vertically integrated manufacturer, we manage everything from cultivation and processing to large-scale supply. With proven international experience and strong local operations in Australia, we deliver certified quality, consistent capacity, and trusted partnerships that create long-term value.',
-        image: '/assets/about/our-edge.png',
+        image: '/assets/about/about__section--our-edge.png',
         linkText: 'Discover Our Capabilities',
         linkUrl: '/our-businesses',
         imagePosition: 'right',
@@ -86,7 +86,7 @@ export const companyPage = {
       {
         title: 'Capabilities That Power Food Supply Chains',
         description: 'E-Sunrise Group Australia delivers certified food ingredients with manufacturing strength, cold-chain logistics, and OEM solutions, ensuring reliable supply, full traceability, and compliance for Australia\'s food industry.',
-        image: '/assets/about/capabilities.png',
+        image: '/assets/about/about__section--capabilities.png',
         linkText: 'Partner With Us for Reliable Supply',
         linkUrl: '/our-businesses/oem-and-private-label',
         imagePosition: 'left',

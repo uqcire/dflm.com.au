@@ -73,7 +73,7 @@ const CARD_LIBRARY = {
   ourHistory: {
     title: 'Our History',
     description: 'Explore our journey from humble beginnings to global scale, from local roots to global growth. Learn about our milestones, innovations, and the journey that led us to where we are today.',
-    image: '/assets/explore/our-history.png',
+    image: '/assets/about/about__section--our-history.png',
     alt: 'Our History',
     link: '/our-company/history'
   }

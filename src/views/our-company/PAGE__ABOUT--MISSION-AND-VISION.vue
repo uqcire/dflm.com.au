@@ -154,7 +154,7 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
 
                 <!-- Right Column - Image -->
                 <div>
-                    <ComponentImageDisplay src="/assets/about/our-history.png"
+                    <ComponentImageDisplay src="/assets/about/about__section--our-history.png"
                         alt="Scientist in laboratory working with equipment" size="xl" variant="plain"
                         object-fit="cover" class="w-full h-full rounded-lg" />
                 </div>
