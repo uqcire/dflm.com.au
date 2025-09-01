@@ -12,7 +12,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Food Service & Distribution"
             subtitle="From restaurants to catering suppliers, we support Australia's food service industry through strong distributor partnerships. Our cold-chain logistics and scalable supply guarantee freshness, efficiency, and long-term reliability."
-            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/src/assets/explore/our-company.png" />
+            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/assets/explore/our-company.png" />
     </ComponentSection>
 
     <!-- Overview Section -->
@@ -44,21 +44,21 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                 <ComponentServiceCard :service="{
                     title: 'Cold-Chain Logistics',
                     description: 'Temperature-controlled storage and transportation ensuring product freshness and safety throughout the supply chain.',
-                    image: '/src/assets/home/service-card__supply-chain.png',
+                    image: '/assets/home/service-card__supply-chain.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Distributor Partnerships',
                     description: 'Strong relationships with regional distributors for reliable, consistent supply across Australia.',
-                    image: '/src/assets/home/service-card__manufacturing.png',
+                    image: '/assets/home/service-card__manufacturing.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Scalable Supply',
                     description: 'Flexible ordering and delivery options to meet varying demand patterns in food service.',
-                    image: '/src/assets/explore/our-business.png',
+                    image: '/assets/explore/our-business.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />

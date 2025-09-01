@@ -1,8 +1,8 @@
 <script setup>
-import facebookIcon from '/src/assets/icons/facebook.svg'
-import instagramIcon from '/src/assets/icons/instagram.svg'
-import linkedinIcon from '/src/assets/icons/linkedin.svg'
-import xIcon from '/src/assets/icons/x.svg'
+import facebookIcon from '/assets/icons/facebook.svg'
+import instagramIcon from '/assets/icons/instagram.svg'
+import linkedinIcon from '/assets/icons/linkedin.svg'
+import xIcon from '/assets/icons/x.svg'
 
 const iconMap = {
     facebook: facebookIcon,

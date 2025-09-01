@@ -95,7 +95,7 @@ const navigateToPage = (path) => {
       <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="xl" align="center">
         <!-- Left Column - Image -->
         <div class="order-2 lg:order-1">
-          <ComponentImageDisplay src="/src/assets/home/product-card__garlic.jpg" alt="Garlic" size="lg" variant="plain"
+          <ComponentImageDisplay src="/assets/home/product-card__garlic.jpg" alt="Garlic" size="lg" variant="plain"
             object-fit="cover" />
         </div>
 

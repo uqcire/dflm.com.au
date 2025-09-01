@@ -10,7 +10,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Fresh Produce"
             subtitle="Premium fresh vegetables and fruits sourced directly from trusted farms. Our cold-chain logistics ensure peak freshness and extended shelf life for retail and food service applications."
-            :fullWidth="true" backgroundImage="/src/assets/home/product-card__fresh-vegetables.png"
+            :fullWidth="true" backgroundImage="/assets/home/product-card__fresh-vegetables.png"
             overlayOpacity="50" />
     </ComponentSection>
 

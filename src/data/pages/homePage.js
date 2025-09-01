@@ -10,7 +10,7 @@ export const homePage = {
   hero: {
     title: 'Scalable Supply You Can Trust',
     subtitle: 'Delivering certified, cost-efficient food ingredients with industrial scale and consistent quality for Australia\'s market.',
-    image: '/src/assets/home/hero__display.png',
+    image: '/assets/home/hero__display.png',
     imageSize: 'xl'
   },
 
@@ -20,7 +20,7 @@ export const homePage = {
       {
         title: 'Strength in Supply Chain Solutions',
         description: 'With vertically integrated operations and advanced logistics, we provide seamless import, distribution, and supply chain management across Australia. From customs clearance to cold-chain delivery, our expertise ensures products arrive safely, efficiently, and at scale.',
-        image: '/src/assets/home/service-card__supply-chain.png',
+        image: '/assets/home/service-card__supply-chain.png',
         linkText: 'Discover End-to-End Distribution',
         linkUrl: '/our-businesses/import-and-distribution',
         imagePosition: 'right',
@@ -29,7 +29,7 @@ export const homePage = {
       {
         title: 'Manufacturing You Can Count On',
         description: 'As a full-scale producer, we control every step from cultivation to processing, guaranteeing consistent quality and compliance. Our modern facilities and certified systems allow us to deliver tailored solutions for manufacturers, distributors, and retail partners.',
-        image: '/src/assets/home/service-card__manufacturing.png',
+        image: '/assets/home/service-card__manufacturing.png',
         linkText: 'Partner With Us for Tailored Solutions',
         linkUrl: '/our-businesses/oem-and-private-label',
         imagePosition: 'left',

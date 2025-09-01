@@ -76,7 +76,7 @@ const getVariantClasses = (variant, highlighted, highlightColor) => {
             ]">
                 <div class="feature-list__content">
                     <div v-if="feature.icon" class="feature-list__icon mb-4">
-                        <img :src="`/src/assets/icons/${feature.icon}.svg`" :alt="feature.title" class="w-8 h-8" />
+                        <img :src="`/assets/icons/${feature.icon}.svg`" :alt="feature.title" class="w-8 h-8" />
                     </div>
 
                     <h3 class="feature-list__item-title text-lg font-semibold mb-2">{{ feature.title }}</h3>

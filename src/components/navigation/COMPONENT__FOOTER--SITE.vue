@@ -15,7 +15,7 @@ const currentYear = ref(new Date().getFullYear())
                         <!-- Company Info -->
                         <div class="footer__section flex flex-col gap-4">
                             <div class="footer__brand flex items-center gap-4">
-                                <img src="/src/assets/brand__logo--icon.png" alt="E‑Sunrise Australia"
+                                <img src="/assets/brand__logo--icon.png" alt="E‑Sunrise Australia"
                                     class="footer__logo h-10 w-auto" />
                                 <div class="footer__brand-text flex flex-col gap-2">
                                     <span class="footer__title text-xl font-semibold font-heading">E‑Sunrise

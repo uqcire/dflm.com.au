@@ -10,7 +10,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Broader Agriculture"
             subtitle="Comprehensive agricultural products including pulses, legumes, and specialty crops. Our broad portfolio supports diverse food manufacturing needs with reliable supply and consistent quality."
-            :fullWidth="true" backgroundImage="/src/assets/explore/our-business.png" overlayOpacity="50" />
+            :fullWidth="true" backgroundImage="/assets/explore/our-business.png" overlayOpacity="50" />
     </ComponentSection>
 
     <!-- Overview Section -->

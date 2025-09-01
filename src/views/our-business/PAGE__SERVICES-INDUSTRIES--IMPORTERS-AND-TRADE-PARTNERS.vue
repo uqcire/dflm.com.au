@@ -12,7 +12,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Importers & Trade Partners"
             subtitle="We work with global importers and trade partners to provide secure capacity, compliance support, and flexible cooperation models. Our proven expertise reduces supply chain risk and strengthens competitiveness in international markets."
-            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/src/assets/explore/newsroom.png" />
+            :ctaText="'Get in touch'" :ctaLink="'/contact'" backgroundImage="/assets/explore/newsroom.png" />
     </ComponentSection>
 
     <!-- Overview Section -->
@@ -44,21 +44,21 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                 <ComponentServiceCard :service="{
                     title: 'Secure Capacity',
                     description: 'Guaranteed supply capacity and production planning to ensure reliable delivery for international trade partners.',
-                    image: '/src/assets/home/service-card__supply-chain.png',
+                    image: '/assets/home/service-card__supply-chain.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Compliance Support',
                     description: 'Full regulatory compliance assistance including documentation, certifications, and import/export requirements.',
-                    image: '/src/assets/home/service-card__manufacturing.png',
+                    image: '/assets/home/service-card__manufacturing.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Flexible Cooperation',
                     description: 'Adaptable partnership models including joint ventures, exclusive agreements, and strategic alliances.',
-                    image: '/src/assets/explore/our-business.png',
+                    image: '/assets/explore/our-business.png',
                     linkText: 'Learn more',
                     linkUrl: '/our-businesses/import-and-distribution'
                 }" variant="standard" :showLink="true" />
@@ -140,28 +140,28 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                 <ComponentServiceCard :service="{
                     title: 'Dehydrated Vegetables',
                     description: 'Premium dehydrated vegetables for international markets with extended shelf life and consistent quality.',
-                    image: '/src/assets/home/product-card__dehydrated-vegetables.png',
+                    image: '/assets/home/product-card__dehydrated-vegetables.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/dehydrated-vegetables'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Garlic Products',
                     description: 'High-quality garlic products in various forms for global culinary and food manufacturing markets.',
-                    image: '/src/assets/home/product-card__garlic.jpg',
+                    image: '/assets/home/product-card__garlic.jpg',
                     linkText: 'Learn more',
                     linkUrl: '/products/garlic'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Pulses & Legumes',
                     description: 'Premium pulses and legumes for international markets with high nutritional value and versatility.',
-                    image: '/src/assets/home/product-card__pulses.png',
+                    image: '/assets/home/product-card__pulses.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/pulses'
                 }" variant="standard" :showLink="true" />
                 <ComponentServiceCard :service="{
                     title: 'Sauces & Seasonings',
                     description: 'Ready-to-use sauces and seasoning blends for international food service and retail markets.',
-                    image: '/src/assets/home/product-card__fresh-vegetables.png',
+                    image: '/assets/home/product-card__fresh-vegetables.png',
                     linkText: 'Learn more',
                     linkUrl: '/products/sauces'
                 }" variant="standard" :showLink="true" />

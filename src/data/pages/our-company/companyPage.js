@@ -28,7 +28,7 @@ export const companyPage = {
     title: 'Our company',
     subtitle: 'Combining global scale with local reliability, we secure the future of food supply through consistency, compliance, and collaboration.',
     fullWidth: true,
-    backgroundImage: '/src/assets/about/hero.png',
+    backgroundImage: '/assets/about/hero.png',
     overlayOpacity: '50'
   },
 
@@ -37,7 +37,7 @@ export const companyPage = {
     title: 'Shaping the Future of Food Supply',
     subtitle: 'Our mission is to provide reliable food ingredients and solutions that empower manufacturers, distributors, and retailers. Through innovation and collaboration, we build sustainable supply chains for long-term growth.',
     fullWidth: true,
-    backgroundImage: '/src/assets/about/hero.png',
+    backgroundImage: '/assets/about/hero.png',
     overlayOpacity: '50'
   },
 
@@ -45,7 +45,7 @@ export const companyPage = {
   ourHistory: {
     title: 'Two Decades of Trust and Transformation',
     subtitle: 'Founded in 2002 as Jiangsu Liming Food Group, we’ve grown from an agricultural pioneer in China to a trusted international food manufacturer. In 2024, E-Sunrise Group Australia was established, bringing our global strength closer to the Australian market.',
-    backgroundImage: '/src/assets/about/our-history.png',
+    backgroundImage: '/assets/about/our-history.png',
     fullWidth: true,
     overlayOpacity: '50',
     ctaText: 'Explore Our History',
@@ -56,16 +56,16 @@ export const companyPage = {
   partners: {
     title: 'Trusted by our customers & partners',
     items: [
-      { name: 'Costco', logo: '/src/assets/partners/costco.svg' },
-      { name: 'McCormick', logo: '/src/assets/partners/McCormick.png' },
-      { name: 'Sam\'s Club', logo: '/src/assets/partners/sams-club.png' },
-      { name: 'Chu Bang', logo: '/src/assets/partners/chubang.png' },
-      { name: 'Jammy Chai', logo: '/src/assets/partners/jammy-chai.png' },
-      { name: 'Haitian', logo: '/src/assets/partners/haitian.png' },
-      { name: 'Zobon', logo: '/src/assets/partners/zobon.png' },
-      { name: 'Yueshifu', logo: '/src/assets/partners/yueshifu.png' },
-      { name: 'Totole', logo: '/src/assets/partners/totole.svg' },
-      { name: 'Haidilao', logo: '/src/assets/partners/haidilao.png' }
+      { name: 'Costco', logo: '/assets/partners/costco.svg' },
+      { name: 'McCormick', logo: '/assets/partners/McCormick.png' },
+      { name: 'Sam\'s Club', logo: '/assets/partners/sams-club.png' },
+      { name: 'Chu Bang', logo: '/assets/partners/chubang.png' },
+      { name: 'Jammy Chai', logo: '/assets/partners/jammy-chai.png' },
+      { name: 'Haitian', logo: '/assets/partners/haitian.png' },
+      { name: 'Zobon', logo: '/assets/partners/zobon.png' },
+      { name: 'Yueshifu', logo: '/assets/partners/yueshifu.png' },
+      { name: 'Totole', logo: '/assets/partners/totole.svg' },
+      { name: 'Haidilao', logo: '/assets/partners/haidilao.png' }
     ],
     columns: { base: 2, md: 3, lg: 4 },
     gap: 'lg'
@@ -77,7 +77,7 @@ export const companyPage = {
       {
         title: 'Delivering Reliability from Production to Partnership',
         description: 'As a vertically integrated manufacturer, we manage everything from cultivation and processing to large-scale supply. With proven international experience and strong local operations in Australia, we deliver certified quality, consistent capacity, and trusted partnerships that create long-term value.',
-        image: '/src/assets/about/our-edge.png',
+        image: '/assets/about/our-edge.png',
         linkText: 'Discover Our Capabilities',
         linkUrl: '/our-businesses',
         imagePosition: 'right',
@@ -86,7 +86,7 @@ export const companyPage = {
       {
         title: 'Capabilities That Power Food Supply Chains',
         description: 'E-Sunrise Group Australia delivers certified food ingredients with manufacturing strength, cold-chain logistics, and OEM solutions, ensuring reliable supply, full traceability, and compliance for Australia\'s food industry.',
-        image: '/src/assets/about/capabilities.png',
+        image: '/assets/about/capabilities.png',
         linkText: 'Partner With Us for Reliable Supply',
         linkUrl: '/our-businesses/oem-and-private-label',
         imagePosition: 'left',

@@ -10,7 +10,7 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
     <ComponentSection spacing="xs" :fullWidth="true">
         <ComponentHero title="Condiments & Sauces"
             subtitle="Premium sauces and condiments crafted for food service and retail markets. Our range includes garlic sauces, specialty condiments, and custom formulations for diverse culinary applications."
-            :fullWidth="true" backgroundImage="/src/assets/home/product-card__dehydrated-vegetables.png"
+            :fullWidth="true" backgroundImage="/assets/home/product-card__dehydrated-vegetables.png"
             overlayOpacity="50" />
     </ComponentSection>
 
