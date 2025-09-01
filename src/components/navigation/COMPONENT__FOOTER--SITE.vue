@@ -41,9 +41,14 @@ const currentYear = ref(new Date().getFullYear())
                                 <ul class="footer__links space-y-2">
                                     <li v-for="(link, linkIndex) in section.links" :key="linkIndex"
                                         class="footer__link-item">
-                                        <a :href="link.path"
+                                        <router-link v-if="!link.path.startsWith('mailto') && !link.path.startsWith('tel')" 
+                                            :to="link.path"
+                                            class="footer__link text-white hover:text-monza-50 transition-colors duration-200 text-sm">
+                                            {{ link.text }}
+                                        </router-link>
+                                        <a v-else :href="link.path"
                                             class="footer__link text-white hover:text-monza-50 transition-colors duration-200 text-sm"
-                                            :target="link.path.startsWith('mailto') || link.path.startsWith('tel') ? '_blank' : '_self'">
+                                            target="_blank">
                                             {{ link.text }}
                                         </a>
                                     </li>
@@ -85,15 +90,15 @@ const currentYear = ref(new Date().getFullYear())
                 <el-col :span="24" :lg="12">
                     <div
                         class="footer__legal-links flex flex-col gap-2 pt-2 lg:flex-row lg:flex-wrap lg:gap-4 lg:pt-0 text-sm justify-center ">
-                        <a href="#"
+                        <router-link to="/privacy-policy"
                             class="footer__legal-link text-white hover:text-monza-50 transition-colors duration-200">Privacy
-                            Policy</a>
-                        <a href="#"
+                            Policy</router-link>
+                        <router-link to="/terms-of-service"
                             class="footer__legal-link text-white hover:text-monza-50 transition-colors duration-200">Terms
-                            of Service</a>
-                        <a href="#"
+                            of Service</router-link>
+                        <router-link to="/cookie-policy"
                             class="footer__legal-link text-white hover:text-monza-50 transition-colors duration-200">Cookie
-                            Policy</a>
+                            Policy</router-link>
                     </div>
                 </el-col>
             </el-row>

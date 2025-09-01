@@ -340,6 +340,46 @@ const routes = [
   },
 
   // ========================================
+  // LEGAL PAGES (Redirected to Under Construction)
+  // ========================================
+  {
+    path: '/privacy-policy',
+    name: 'privacy-policy',
+    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
+    meta: {
+      title: 'Privacy Policy - Under Construction',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/terms-of-service',
+    name: 'terms-of-service',
+    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
+    meta: {
+      title: 'Terms of Service - Under Construction',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+  {
+    path: '/cookie-policy',
+    name: 'cookie-policy',
+    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
+    meta: {
+      title: 'Cookie Policy - Under Construction',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+
+  // ========================================
   // ERROR PAGES
   // ========================================
   {
