@@ -69,6 +69,30 @@ export const companyPage = {
     ],
     columns: { base: 2, md: 3, lg: 4 },
     gap: 'lg'
+  },
+
+  // Capabilities Section
+  capabilities: {
+    sections: [
+      {
+        title: 'Delivering Reliability from Production to Partnership',
+        description: 'As a vertically integrated manufacturer, we manage everything from cultivation and processing to large-scale supply. With proven international experience and strong local operations in Australia, we deliver certified quality, consistent capacity, and trusted partnerships that create long-term value.',
+        image: '/src/assets/about/our-edge.png',
+        linkText: 'Discover Our Capabilities',
+        linkUrl: '/our-businesses',
+        imagePosition: 'right',
+        imageSize: 'lg'
+      },
+      {
+        title: 'Capabilities That Power Food Supply Chains',
+        description: 'E-Sunrise Group Australia delivers certified food ingredients with manufacturing strength, cold-chain logistics, and OEM solutions, ensuring reliable supply, full traceability, and compliance for Australia\'s food industry.',
+        image: '/src/assets/about/capabilities.png',
+        linkText: 'Partner With Us for Reliable Supply',
+        linkUrl: '/our-businesses/oem-and-private-label',
+        imagePosition: 'left',
+        imageSize: 'lg'
+      }
+    ]
   }
 }
 

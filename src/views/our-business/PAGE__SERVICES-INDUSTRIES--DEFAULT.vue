@@ -1,10 +1,13 @@
 <script setup>
 import { industriesPage } from '@/data/index.js'
+import { exploreCards } from '@/data/components/exploreCards.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
 import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
+import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TOUCH.vue'
+import ComponentExploreMore from '@/components/content/COMPONENT__EXPLORE--MORE.vue'
 </script>
 
 <template>
@@ -18,7 +21,7 @@ import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
     <!-- Intro Statement -->
     <ComponentSection spacing="xs" containerSize="full" background="transparent"
         style="background-color: hsl(var(--cello-100))">
-        <ComponentContainer size="lg" padding="sm">
+        <ComponentContainer size="lg" padding="sm" class="text-center">
             <h2
                 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold pb-8 text-pickled-bluewood-800 leading-tight">
                 Solutions tailored to every industry
@@ -59,22 +62,13 @@ import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
     </ComponentSection>
 
     <!-- CTA Section -->
-    <ComponentSection spacing="sm" background="transparent" style="background-color: hsl(var(--cello-200))">
-        <ComponentContainer size="md" padding="sm">
-            <div class="text-center">
-                <h3 class="font-heading text-2xl md:text-3xl font-bold text-pickled-bluewood-800 leading-tight mb-4">
-                    Ready to power your products?
-                </h3>
-                <p class="font-body text-base text-pickled-bluewood-700 leading-relaxed mb-8">
-                    Talk to our team about ingredient sourcing, private label manufacturing, and supply solutions
-                    tailored
-                    to your category.
-                </p>
-                <router-link to="/contact"
-                    class="inline-flex items-center px-8 py-4 bg-pickled-bluewood-800 text-white font-medium text-sm rounded-lg hover:bg-pickled-bluewood-700 transition-all duration-200 shadow-lg hover:shadow-xl">
-                    Contact our team
-                </router-link>
-            </div>
-        </ComponentContainer>
-    </ComponentSection>
+    <ComponentCtaGetInTouch :title="industriesPage.cta.title" :description="industriesPage.cta.description"
+        :buttonText="industriesPage.cta.buttonText" :buttonLink="industriesPage.cta.buttonLink"
+        :background="industriesPage.cta.background" :backgroundColor="industriesPage.cta.backgroundColor"
+        :backgroundStyle="industriesPage.cta.backgroundStyle" />
+
+    <!-- Explore More -->
+    <ComponentExploreMore :title="exploreCards.industries.title" :cards="exploreCards.industries.cards"
+        :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.industries.background"
+        :style="exploreCards.industries.backgroundStyle" />
 </template>

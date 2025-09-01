@@ -40,18 +40,18 @@ const props = defineProps({
         <ComponentContainer size="lg" padding="sm">
             <div class="text-center space-y-6">
                 <h3
-                    class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 leading-tight">
+                    class="font-heading text-3xl pb-8 md:text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 leading-tight">
                     {{ title }}
                 </h3>
                 <p
                     class="font-body text-lg md:text-xl text-pickled-bluewood-700 leading-relaxed max-w-4xl mx-auto pt-4">
                     {{ description }}
                 </p>
-                <div class="pt-4">
-                    <a :href="buttonLink"
+                <div class="pt-8">
+                    <router-link :to="buttonLink"
                         class="inline-flex items-center px-6 py-3 font-body text-base font-medium text-white bg-monza-600 border-0 rounded-lg shadow-sm transition-all duration-200 no-underline tracking-wide hover:bg-monza-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-monza-500 focus:ring-offset-2">
                         {{ buttonText }}
-                    </a>
+                    </router-link>
                 </div>
             </div>
         </ComponentContainer>

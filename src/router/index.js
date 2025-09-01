@@ -280,14 +280,14 @@ const routes = [
   },
 
   // ========================================
-  // BLOG / NEWS PAGES
+  // BLOG / NEWS PAGES (Redirected to Under Construction)
   // ========================================
   {
     path: '/news',
     name: 'news',
-    component: () => import('@/views/news/PAGE__BLOG--LIST.vue'),
+    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
     meta: {
-      title: 'Blog',
+      title: 'News - Under Construction',
       preload: false,
       transition: 'fade',
       keepAlive: true,
@@ -297,9 +297,9 @@ const routes = [
   {
     path: '/news/:slug',
     name: 'news-detail',
-    component: () => import('@/views/news/PAGE__BLOG--DETAIL.vue'),
+    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
     meta: {
-      title: 'Post',
+      title: 'News - Under Construction',
       preload: false,
       transition: 'fade',
       keepAlive: true,

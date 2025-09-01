@@ -13,32 +13,53 @@ export const industriesPage = {
     overlayOpacity: '50',
     fullWidth: true
   },
+
+  // Industries Data
   industries: [
     {
-      id: 1,
-      title: 'Taste & Texture',
-      description: 'Are you a manufacturer looking to boost taste and texture – even in food products with reduced sugar, salt, or fat? Our portfolio of natural ingredients and functional solutions helps create products that consumers love.',
+      title: 'Food Manufacturers & Processors',
+      description: 'We supply dehydrated vegetables, garlic products, sauces, pulses, and legumes to food manufacturers and processors. With HACCP and ISO certifications, we ensure consistent, safe, and traceable ingredients for large-scale production.',
       image: '/src/assets/explore/our-business.png',
-      linkText: 'Learn more',
-      linkUrl: '/our-businesses/oem-and-private-label'
+      linkUrl: '/our-businesses/industries/food-manufacturers-and-processors'
     },
     {
-      id: 2,
-      title: 'Sugar reduction',
-      description: 'Discover how we can help navigate the complexities of sugar reduction to help you create products that meet consumer demand for healthier options without compromising on taste.',
+      title: 'Food Service & Distribution',
+      description: 'From restaurants to catering suppliers, we support Australia\'s food service industry through strong distributor partnerships. Our cold-chain logistics and scalable supply guarantee freshness, efficiency, and long-term reliability.',
       image: '/src/assets/explore/our-company.png',
-      linkText: 'Learn more',
-      linkUrl: '/our-businesses/import-and-distribution'
+      linkUrl: '/our-businesses/industries/food-service-and-distribution'
     },
     {
-      id: 3,
-      title: 'Health & Wellbeing',
-      description: 'Want to create foods and beverages that benefit health & wellbeing? We offer ingredients that support digestive health, immunity, and overall wellness.',
+      title: 'Supermarkets & Custom Brands',
+      description: 'We partner with retail chains and supermarkets to deliver tailored OEM solutions. From garlic sauces to packaged legumes, we help retailers build distinctive, compliant, and trusted private label products.Want to create foods and beverages that benefit health & wellbeing? We offer ingredients that support digestive health, immunity, and overall wellness.',
       image: '/src/assets/explore/newsroom.png',
-      linkText: 'Learn more',
-      linkUrl: '/products'
+      linkUrl: '/our-businesses/industries/supermarkets-and-custom-brands'
+    },
+    {
+      title: 'Ingredient & Bulk Suppliers',
+      description: 'Bulk pulses, legumes, and dehydrated vegetables are at the core of many ingredient suppliers. With 100,000+ tons annual production capacity, we offer stable, cost-effective, and large-scale supply for industrial applications.',
+      image: '/src/assets/explore/newsroom.png',
+      linkUrl: '/our-businesses/industries/ingredient-and-bulk-suppliers'
+    },
+    {
+      title: 'Importers & Trade Partners',
+      description: 'We work with global importers and trade partners to provide secure capacity, compliance support, and flexible cooperation models. Our proven expertise reduces supply chain risk and strengthens competitiveness in international markets.',
+      image: '/src/assets/explore/newsroom.png',
+      linkUrl: '/our-businesses/industries/importers-and-trade-partners'
     }
   ],
+
+  // CTA Section
+  cta: {
+    title: 'Let’s Build Stronger Partnerships and Grow Together',
+    description: 'Your business deserves a partner that delivers more than products. We deliver reliability, scale, and innovation. From manufacturers to retailers, we power success across industries. Connect with us today and turn supply chain challenges into new opportunities.',
+    buttonText: 'Start the Conversation',
+    buttonLink: '/contact',
+    background: 'transparent',
+    backgroundColor: 'tree-poppy-200',
+    backgroundStyle: ''
+  },
+
+  // SEO Metadata
   seo: {
     title: 'Industries - E-Sunrise Australia | Food Industry Solutions',
     description: 'Serving food manufacturing, retail, and food service industries with premium ingredients and reliable supply chain solutions.',

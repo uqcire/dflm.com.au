@@ -77,6 +77,7 @@ const CARD_LIBRARY = {
     alt: 'Our History',
     link: '/our-company/history'
   }
+  
 }
 
 // Page-specific card configurations
@@ -116,7 +117,9 @@ const PAGE_CONFIGS = {
   
   // Industries page - show products, services, and company
   industries: {
-    cards: ['ourProducts', 'ourServices', 'ourCompany']
+    background: 'transparent',
+    backgroundStyle: 'background-color: hsl(var(--pickled-bluewood-100))',
+    cards: ['ourBusinesses', 'ourProducts', 'ourCompany'],
   },
   
   // Contact page - show products, services, and company
@@ -157,7 +160,10 @@ export const exploreCards = {
     backgroundStyle: PAGE_CONFIGS.products.backgroundStyle
   }),
   
-  industries: createSection(PAGE_CONFIGS.industries.cards),
+  industries: createSection(PAGE_CONFIGS.industries.cards, {
+    background: PAGE_CONFIGS.industries.background,
+    backgroundStyle: PAGE_CONFIGS.industries.backgroundStyle
+  }),
   
   contact: createSection(PAGE_CONFIGS.contact.cards)
 }
