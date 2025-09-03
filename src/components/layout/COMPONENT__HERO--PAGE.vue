@@ -95,7 +95,7 @@ const getImageSizeClasses = (size) => {
                 </div>
             </div>
 
-            <!-- 16:9 Optimized Image Container (only for non-fullWidth) -->
+            <!-- 16:9 Aspect Ratio Image Container (only for non-fullWidth) -->
             <div v-if="!fullWidth && image" class="flex justify-center">
                 <div :class="[
                     'relative overflow-hidden rounded-lg shadow-lg',
@@ -104,7 +104,7 @@ const getImageSizeClasses = (size) => {
                     <!-- 16:9 Aspect Ratio Container -->
                     <div class="aspect-video w-full">
                         <img :src="image" :alt="title"
-                            class="w-full h-full object-cover transition-all duration-300 hover:scale-105" />
+                            class="w-full h-full object-contain transition-all duration-300 hover:scale-105" />
                     </div>
                 </div>
             </div>

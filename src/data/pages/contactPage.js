@@ -6,9 +6,9 @@ export const contactPage = {
   hero: {
     title: 'Contact Us',
     subtitle: 'Get in touch with our team for your food import and distribution needs',
-    image: null,
-    ctaText: 'Send Email',
-    ctaLink: 'mailto:hello@dflm.com.au'
+    backgroundImage: '/assets/contact__hero--global-connectivity.png',
+    fullWidth: true,
+    overlayOpacity: '50'
   },
   content: {
     title: 'Get in Touch',

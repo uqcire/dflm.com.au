@@ -2,6 +2,8 @@ import path from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import { wrapperEnv } from './src/utils/ENV-PROCESSOR__VITE--WRAPPER'
 import { createVitePlugins } from './src/utils/PLUGINS__VITE--UNIFIED'
+import vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
 
 
 // https://vitejs.dev/config/

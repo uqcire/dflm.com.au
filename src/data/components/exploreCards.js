@@ -124,7 +124,7 @@ const PAGE_CONFIGS = {
   
   // Contact page - show products, services, and company
   contact: {
-    cards: ['ourProducts', 'ourServices', 'ourCompany']
+    cards: ['ourProducts', 'ourBusinesses', 'ourHistory']
   }
 }
 

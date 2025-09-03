@@ -323,6 +323,19 @@ const routes = [
     },
   },
 
+  {
+    path: '/contact/success',
+    name: 'contact-success',
+    component: () => import('@/views/contact/PAGE__CONTACT--SUCCESS.vue'),
+    meta: {
+      title: 'Thank you for contacting us',
+      preload: false,
+      transition: 'fade',
+      keepAlive: false,
+      layout: ''
+    },
+  },
+
   // ========================================
   // DEVELOPMENT / UTILITY PAGES
   // ========================================
