@@ -116,7 +116,7 @@ const handleReset = () => {
                 </el-form-item>
 
                 <el-form-item label="Phone Number" prop="phone">
-                    <el-input v-model="formData.phone" placeholder="Enter your phone number (optional)" size="large" />
+                    <el-input v-model="formData.phone" placeholder="Enter your phone number" size="large" />
                 </el-form-item>
             </div>
 
