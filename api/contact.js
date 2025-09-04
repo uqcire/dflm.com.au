@@ -1,6 +1,11 @@
 // api/contact.js
 import { Resend } from 'resend'
 
+// Check if Resend API key is configured
+if (!process.env.RESEND_API_KEY) {
+  console.error('RESEND_API_KEY environment variable is not set')
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export default async function handler(req, res) {
@@ -8,11 +13,16 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
+  // Check if Resend is properly configured
+  if (!process.env.RESEND_API_KEY) {
+    return res.status(500).json({ message: 'Email service not configured' })
+  }
+
   try {
     const { name, email, company, phone, subject, message, inquiryType } = req.body
 
-    // Validate required fields
-    if (!name || !email || !company || !subject || !message || !inquiryType || !phone) {
+    // Validate required fields (phone is optional)
+    if (!name || !email || !company || !subject || !message || !inquiryType) {
       return res.status(400).json({ message: 'Missing required fields' })
     }
 
@@ -59,4 +69,4 @@ export default async function handler(req, res) {
     console.error('Contact form error:', error)
     res.status(500).json({ message: 'Failed to send message' })
   }
-} 
+}
