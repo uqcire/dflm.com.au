@@ -52,6 +52,14 @@ export default defineConfig(({ mode }) => {
       strictPort: false, // Set to false to try next available port if current port is occupied
       https: false, // Whether to enable HTTPS protocol
       cors: true, // Configure CORS for development server - enabled by default and allows any origin
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8800', // Assuming your dev server is running on port 8800
+          changeOrigin: true,
+          secure: false,
+          rewrite: (path) => path
+        }
+      }
     },
     
     build: {

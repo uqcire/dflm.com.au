@@ -12,14 +12,14 @@ export default async function handler(req, res) {
     const { name, email, company, phone, subject, message, inquiryType } = req.body
 
     // Validate required fields
-    if (!name || !email || !company || !subject || !message || !inquiryType) {
+    if (!name || !email || !company || !subject || !message || !inquiryType || !phone) {
       return res.status(400).json({ message: 'Missing required fields' })
     }
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'E-Sunrise Australia <onboarding@resend.dev>',
-      to: ['ci_re@foxmail.com'], // Use your verified email for now
+      to: ['hello@dflm.com.au'], // Use your verified email for now
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
