@@ -26,10 +26,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'Missing required fields' })
     }
 
-    // Send email using Resend
+    // Send email using Resend with your verified domain
     const { data, error } = await resend.emails.send({
-      from: 'E-Sunrise Australia <onboarding@resend.dev>',
-      to: ['hello@dflm.com.au'], // Use your verified email for now
+      from: 'E-Sunrise Australia <hello@dflm.com.au>', // Use your verified domain
+      to: ['hello@dflm.com.au'], // Use your verified email
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
