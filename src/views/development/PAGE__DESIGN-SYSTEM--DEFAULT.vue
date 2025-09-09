@@ -5,9 +5,7 @@ import { ref } from 'vue'
 import ComponentHeroPage from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentProductCard from '@/components/ui/COMPONENT__PRODUCT--CARD.vue'
 import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
-import ComponentTestimonialCard from '@/components/ui/COMPONENT__TESTIMONIAL--CARD.vue'
 import ComponentCtaSection from '@/components/forms/COMPONENT__CTA--SECTION.vue'
-import ComponentStatsGrid from '@/components/ui/COMPONENT__STATS--GRID.vue'
 import ComponentCompanyLogo from '@/components/ui/COMPONENT__COMPANY--LOGO.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
 import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
@@ -33,25 +31,6 @@ const sampleService = ref({
     features: ['24/7 Support', 'Expert Consultation', 'Quality Assurance']
 })
 
-const sampleTestimonial = ref({
-    id: 1,
-    content: 'Outstanding service and quality products. Highly recommended for professional needs.',
-    author: {
-        name: 'John Smith',
-        title: 'Operations Manager',
-        company: 'Tech Solutions Inc.',
-        avatar: ''
-    },
-    rating: 5,
-    date: '2024-01-15'
-})
-
-const sampleStats = ref([
-    { label: 'Projects Completed', value: '500+', trend: '+12%', icon: 'chart-bar' },
-    { label: 'Client Satisfaction', value: '98%', trend: '+3%', icon: 'heart' },
-    { label: 'Years Experience', value: '15+', trend: null, icon: 'calendar' },
-    { label: 'Global Partners', value: '50+', trend: '+8%', icon: 'globe' }
-])
 
 const sampleLogos = ref([
     { name: 'Partner 1', url: '', link: '#' },
