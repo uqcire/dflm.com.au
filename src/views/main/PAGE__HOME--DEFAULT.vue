@@ -1,12 +1,9 @@
 <script setup>
-import { homePage } from '@/data/pages/homePage.js'
-import { productsPage } from '@/data/pages/productsPage.js'
-import { exploreCards } from '@/data/components/exploreCards.js'
+import { homePage, productsPage, exploreCards } from '@/data/index.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
 import ComponentProductCard from '@/components/ui/COMPONENT__PRODUCT--CARD.vue'
-import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue'
 import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 import ComponentExploreMore from '@/components/content/COMPONENT__EXPLORE--MORE.vue'
 import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TOUCH.vue'
@@ -84,43 +81,34 @@ const navigateToPage = (path) => {
 
   <!-- Products -->
   <ComponentSection spacing="sm" containerSize="full" background="transparent">
-    <ComponentContainer size="xl" padding="sm">
-      <!-- Top 3 Product Cards -->
+    <!-- Top Section - Garlic -->
+    <componentContainer size="2xl" padding="responsive" :constrainWidth="true">
+      <h3 class="font-heading text-3xl md:text-4xl lg:text-5xl pb-8 font-bold text-pickled-bluewood-600 leading-tight">
+        Premium Garlic That Powers Global Brands
+      </h3>
+
+      <p class="font-body text-lg text-pickled-bluewood-600 leading-relaxed pb-4">
+        Proven partner to global brands. Our garlic portfolio combines large-scale processing, vertical integration,
+        and strict quality control to deliver dependable supply for every industrial application.
+      </p>
+
+      <router-link to="/products/garlic"
+        class="inline-flex items-center text-pickled-bluewood-600 underline font-medium hover:text-pickled-bluewood-900 transition-colors duration-200 group">
+        Discover more
+        <svg class="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none"
+          stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </router-link>
+    </componentContainer>
+
+    <!-- Bottom Product Cards -->
+    <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
       <ComponentGrid :columns="{ base: 1, md: 2, lg: 3 }" gap="lg" class="mb-16">
         <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
-          variant="standard" :showSpecs="true" :showLink="true" />
+          variant="standard" :showSpecs="true" :showLink="true" imageFit="object-cover" />
       </ComponentGrid>
 
-      <!-- Bottom Section - Garlic -->
-      <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="xl" align="center">
-        <!-- Left Column - Image -->
-        <div class="order-2 lg:order-1">
-          <ComponentImageDisplay src="/assets/home/home__product-card--garlic.jpg" alt="Garlic" size="lg" variant="plain"
-            object-fit="cover" />
-        </div>
-
-        <!-- Right Column - Content -->
-        <div class="order-1 lg:order-2 space-y-6">
-          <h3
-            class="font-heading text-3xl md:text-4xl lg:text-5xl pb-8 font-bold text-pickled-bluewood-600 leading-tight">
-            Premium Garlic That Powers Global Brands
-          </h3>
-
-          <p class="font-body text-lg text-pickled-bluewood-600 leading-relaxed pb-4">
-            Proven partner to global brands. Our garlic portfolio combines large-scale processing, vertical integration,
-            and strict quality control to deliver dependable supply for every industrial application.
-          </p>
-
-          <router-link to="/products/garlic"
-            class="inline-flex items-center text-pickled-bluewood-600 underline font-medium hover:text-pickled-bluewood-900 transition-colors duration-200 group">
-            Discover more
-            <svg class="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none"
-              stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </router-link>
-        </div>
-      </ComponentGrid>
     </ComponentContainer>
   </ComponentSection>
 

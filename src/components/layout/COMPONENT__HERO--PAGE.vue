@@ -29,6 +29,11 @@ defineProps({
         type: Boolean,
         default: false
     },
+    imageFit: {
+        type: String,
+        default: 'object-cover',
+        validator: (value) => ['object-cover', 'object-contain', 'object-fill', 'object-scale-down', 'object-none'].includes(value)
+    },
     backgroundImage: {
         type: String,
         default: ''
@@ -103,8 +108,8 @@ const getImageSizeClasses = (size) => {
                 ]">
                     <!-- 16:9 Aspect Ratio Container -->
                     <div class="aspect-video w-full">
-                        <img :src="image" :alt="title"
-                            class="w-full h-full object-contain transition-all duration-300 hover:scale-105" />
+                        <img :src="image" :alt="title" class="w-full h-full transition-all duration-300 hover:scale-105"
+                            :class="imageFit" />
                     </div>
                 </div>
             </div>

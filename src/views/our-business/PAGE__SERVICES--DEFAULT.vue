@@ -7,8 +7,6 @@ import ComponentNavigation from '@/components/navigation/COMPONENT__NAVIGATION--
 import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TOUCH.vue'
 import ComponentExploreMore from '@/components/content/COMPONENT__EXPLORE--MORE.vue'
 import ComponentAlternatingContent from '@/components/content/COMPONENT__ALTERNATING--CONTENT.vue'
-import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
-import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
 </script>
 
 <template>
@@ -20,13 +18,13 @@ import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
   </ComponentSection>
 
   <!-- Sub Navigation -->
-  <ComponentSection spacing="xs" background="transparent">
+  <ComponentSection spacing="xs" background="transparent" style="padding-bottom: 0px;">
     <ComponentNavigation :isSubNavigation="true" :subNavItems="businessesPage.services.items"
       :sticky="businessesPage.services.sticky" />
   </ComponentSection>
 
   <!-- Statement Section -->
-  <ComponentSection spacing="xs" background="transparent">
+  <ComponentSection spacing="xs" background="transparent" style="padding-top: 0px;">
     <ComponentContainer size="sm" padding="sm">
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold pb-8 text-pickled-bluewood-800 leading-tight">
         Driving Reliability Across Food Manufacturing and Supply
@@ -51,21 +49,9 @@ import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
   </ComponentSection>
 
   <!-- Industries -->
-  <ComponentSection id="industry-solutions" spacing="xs" containerSize="full" background="transparent">
-    <ComponentContainer id="industry-solutions" size="2xl" padding="responsive" :constrainWidth="true">
-      <!-- Section Title -->
-      <div class="text-center mb-12">
-        <h2
-          class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-pickled-bluewood-800 leading-tight mb-6">
-          Industries We Serve
-        </h2>
-      </div>
-
-      <!-- Industries Grid -->
-      <ComponentGrid :columns="{ base: 1, md: 3 }" gap="lg">
-        <ComponentServiceCard v-for="industry in businessesPage.industries" :key="industry.title" :service="industry"
-          variant="standard" :showLink="true" />
-      </ComponentGrid>
+  <ComponentSection spacing="sm" containerSize="full" background="transparent">
+    <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
+      <ComponentAlternatingContent :sections="businessesPage.industrySections" imageSize="lg" />
     </ComponentContainer>
   </ComponentSection>
 

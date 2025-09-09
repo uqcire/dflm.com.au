@@ -1,6 +1,5 @@
 <script setup>
-import { productsPage } from '@/data/pages/productsPage.js'
-import { exploreCards } from '@/data/components/exploreCards.js'
+import { productsPage, exploreCards } from '@/data/index.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'

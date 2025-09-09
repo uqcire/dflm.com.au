@@ -68,14 +68,14 @@ const getTitleSize = (variant) => {
         <div class="service-card__content flex flex-col h-full">
 
             <!-- Service Title -->
-            <h3 class="font-heading font-bold text-xl pb-4 text-pickled-bluewood-800 mb-4 leading-tight"
+            <h3 class="font-body font-bold md:text-base pb-4 text-pickled-bluewood-800 mb-4 leading-tight"
                 :class="getTitleSize(variant)">
                 {{ service.title }}
             </h3>
 
             <!-- Service Description -->
             <div class="mb-6 flex-1">
-                <p class="text-base text-pickled-bluewood-700 leading-relaxed line-clamp-5">
+                <p class="text-xs text-pickled-bluewood-700 leading-relaxed line-clamp-5">
                     {{ service.description }}
                 </p>
             </div>

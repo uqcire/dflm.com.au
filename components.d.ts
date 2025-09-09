@@ -22,6 +22,7 @@ declare module 'vue' {
     'COMPONENT__ERRORBOUNDARY-GLOBAL': typeof import('./src/components/system/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue')['default']
     'COMPONENT__EXPLORE-MORE': typeof import('./src/components/content/COMPONENT__EXPLORE--MORE.vue')['default']
     'COMPONENT__FEATURE-LIST': typeof import('./src/components/ui/COMPONENT__FEATURE--LIST.vue')['default']
+    'COMPONENT__FEATURES-TWOCOLUMN': typeof import('./src/components/content/COMPONENT__FEATURES--TWO-COLUMN.vue')['default']
     'COMPONENT__FOOTER-SITE': typeof import('./src/components/navigation/COMPONENT__FOOTER--SITE.vue')['default']
     COMPONENT__GRID: typeof import('./src/components/layout/COMPONENT__GRID.vue')['default']
     'COMPONENT__HEADER-SITE': typeof import('./src/components/navigation/COMPONENT__HEADER--SITE.vue')['default']

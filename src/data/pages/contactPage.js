@@ -4,8 +4,8 @@
 
 export const contactPage = {
   hero: {
-    title: 'Contact Us',
-    subtitle: 'Get in touch with our team for your food import and distribution needs',
+    title: 'Let’s Build Reliable Supply Together',
+    subtitle: 'Partner with E-Sunrise Australia for fresh produce, garlic specialties, and industrial food ingredients. Our experts are here to answer questions and create tailored solutions for your growth.',
     backgroundImage: '/assets/contact__hero--global-connectivity.png',
     fullWidth: true,
     overlayOpacity: '50'
@@ -16,17 +16,6 @@ export const contactPage = {
       <p>Ready to partner with E-Sunrise Australia? Our team is here to help you with your food import and distribution needs.</p>
       <p>Contact us today to discuss your requirements and learn how we can support your business.</p>
     `,
-    contactInfo: {
-      email: 'hello@dflm.com.au',
-      phone: '+61 3 1234 5678',
-      address: {
-        line1: '123 Business Street',
-        city: 'Melbourne',
-        region: 'VIC',
-        country: 'Australia',
-        postcode: '3000'
-      }
-    }
   },
   locations: {
     xuzhou: {

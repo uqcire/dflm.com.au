@@ -2,13 +2,13 @@
 import facebookIcon from '/assets/icons/facebook.svg'
 import instagramIcon from '/assets/icons/instagram.svg'
 import linkedinIcon from '/assets/icons/linkedin.svg'
-import xIcon from '/assets/icons/x.svg'
+import rednoteIcon from '/assets/icons/rednote.svg'
 
 const iconMap = {
     facebook: facebookIcon,
     instagram: instagramIcon,
     linkedin: linkedinIcon,
-    x: xIcon
+    rednote: rednoteIcon
 }
 
 defineProps({

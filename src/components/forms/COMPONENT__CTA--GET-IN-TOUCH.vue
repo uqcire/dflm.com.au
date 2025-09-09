@@ -1,6 +1,11 @@
 <script setup>
+import { useRouter } from 'vue-router'
 import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
+import ComponentButtonCustom from '@/components/ui/COMPONENT__BUTTON--CUSTOM.vue'
+
+// Router
+const router = useRouter()
 
 // Props
 const props = defineProps({
@@ -20,6 +25,20 @@ const props = defineProps({
         type: String,
         default: '/contact'
     },
+    buttonVariant: {
+        type: String,
+        default: 'danger',
+        validator: (value) => ['primary', 'secondary', 'outline', 'ghost', 'danger'].includes(value)
+    },
+    buttonSize: {
+        type: String,
+        default: 'lg',
+        validator: (value) => ['sm', 'md', 'lg'].includes(value)
+    },
+    buttonFullWidth: {
+        type: Boolean,
+        default: false
+    },
     background: {
         type: String,
         default: 'transparent'
@@ -33,6 +52,11 @@ const props = defineProps({
         default: ''
     }
 })
+
+// Navigation handler
+const handleButtonClick = () => {
+    router.push(props.buttonLink)
+}
 </script>
 
 <template>
@@ -48,10 +72,10 @@ const props = defineProps({
                     {{ description }}
                 </p>
                 <div class="pt-8">
-                    <router-link :to="buttonLink"
-                        class="inline-flex items-center px-6 py-3 font-body text-base font-medium text-white bg-monza-600 border-0 rounded-lg shadow-sm transition-all duration-200 no-underline tracking-wide hover:bg-monza-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-monza-500 focus:ring-offset-2">
+                    <ComponentButtonCustom :variant="buttonVariant" :size="buttonSize" :fullWidth="buttonFullWidth"
+                        @click="handleButtonClick">
                         {{ buttonText }}
-                    </router-link>
+                    </ComponentButtonCustom>
                 </div>
             </div>
         </ComponentContainer>

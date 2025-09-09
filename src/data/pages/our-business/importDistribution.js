@@ -4,34 +4,31 @@
 
 export const serviceImportDistribution = {
   hero: {
-    title: 'Import & Distribution',
-    subtitle: 'End-to-end import and distribution services for food products across Australia',
-    image: null,
-    ctaText: 'Get Quote',
-    ctaLink: '/contact'
+    title: 'Reliable Import and Distribution for Food Supply',
+    subtitle: 'Connecting global sources with local demand through certified, large-scale, and dependable logistics solutions.',
+    image: '/assets/import__hero--importers-trade-partners-port.png',
+    overlayOpacity: '50',
+    fullWidth: true
   },
-  content: {
-    title: 'Comprehensive Import & Distribution Solutions',
-    text: `
-      <p>Our import and distribution services cover the complete supply chain from international sourcing to final delivery. We handle all aspects of the import process to ensure your products reach customers efficiently and cost-effectively.</p>
-      <p>With our extensive network and expertise, we can help you navigate the complexities of international trade while maintaining the highest standards of quality and compliance.</p>
-    `,
+  ourStrengths: {
+    title: 'Our Strengths in Import and Distribution',
+    description: 'At E-Sunrise Group Australia, reliability is built into every step of our import and distribution process. From sourcing and compliance to logistics and delivery, our operations are designed to simplify complex supply chains while ensuring safety, scale, and efficiency for industries across Australia.',
     features: [
       {
-        title: 'Customs Clearance',
-        text: 'Expert handling of all customs documentation and clearance procedures'
+        title: 'Global Sourcing',
+        description: 'Direct access to trusted producers worldwide. We partner with established growers and manufacturers across key agricultural regions, ensuring consistent quality and dependable supply of fresh produce and processed food ingredients.'
       },
       {
-        title: 'Warehousing',
-        text: 'Secure storage facilities with temperature-controlled options available'
+        title: 'Certified Operations',
+        description: 'HACCP, ISO, and Australian regulatory compliance. Every shipment meets strict international and domestic standards, giving partners confidence in safety, traceability, and long-term reliability.'
       },
       {
-        title: 'Distribution Network',
-        text: 'Nationwide distribution network covering all major Australian cities'
+        title: 'Cold-Chain Logistics',
+        description: 'End-to-end temperature-controlled supply chain. Our cold-chain facilities protect product freshness and integrity from origin to destination, reducing risk and safeguarding value.'
       },
       {
-        title: 'Quality Control',
-        text: 'Rigorous quality control processes throughout the supply chain'
+        title: 'Scale & Efficiency',
+        description: 'Palletized distribution, container handling, and bulk supply. With industrial-scale warehousing and streamlined distribution networks, we manage large volumes efficiently, minimizing costs and ensuring on-time delivery.'
       }
     ]
   },

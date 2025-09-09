@@ -7,7 +7,7 @@ defineProps({
             // Basic validation - check if required properties exist
             return value &&
                 typeof value.title === 'string' &&
-                typeof value.description === 'string';
+                (value.description === undefined || typeof value.description === 'string');
         }
     },
     variant: {
@@ -26,6 +26,11 @@ defineProps({
     linkText: {
         type: String,
         default: 'View Details'
+    },
+    imageFit: {
+        type: String,
+        default: 'object-contain',
+        validator: (value) => ['object-cover', 'object-contain', 'object-fill', 'object-scale-down', 'object-none'].includes(value)
     }
 })
 
@@ -63,21 +68,21 @@ const getTitleSize = (variant) => {
         ]" :aria-label="`Product: ${product.title}`">
 
         <!-- Product Image -->
-        <div v-if="product.image && variant !== 'minimal'" class="w-full overflow-hidden bg-slate-100"
+        <div v-if="product.image && variant !== 'minimal'" class="w-full overflow-hidden border-b-6 border-monza-200"
             :class="getImageHeight(variant)">
-            <img :src="product.image" :alt="product.title" class="w-full h-full object-cover" />
+            <img :src="product.image" :alt="product.title" class="w-full h-full" :class="imageFit" />
         </div>
 
         <!-- Product Content -->
         <div :class="getContentPadding(variant)">
             <!-- Product Title -->
-            <h3 class="font-heading font-semibold text-pickled-bluewood-900 mb-2 pb-4 leading-tight md:text-xl"
+            <h3 class="font-body font-semibold text-pickled-bluewood-900 mb-2 pb-4 leading-tight md:text-sm"
                 :class="getTitleSize(variant)">
                 {{ product.title }}
             </h3>
 
             <!-- Product Description -->
-            <div class="pb-4">
+            <div v-if="product.description" class="pb-4">
                 <p class="text-xs text-pickled-bluewood-800 leading-normal line-clamp-3">
                     {{ product.description }}
                 </p>
@@ -118,30 +123,5 @@ const getTitleSize = (variant) => {
 
 .product-card:hover:not(.border-b) {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Text truncation utilities */
-.line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.line-clamp-1 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 </style>

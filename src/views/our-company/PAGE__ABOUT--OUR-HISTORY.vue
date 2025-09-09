@@ -23,7 +23,7 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
         <ComponentContainer size="sm" padding="sm">
             <h2
                 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold pb-8 text-pickled-bluewood-800 leading-tight">
-                A Journey of Growth and Trust
+                Built on Partnerships and Progress
             </h2>
             <p class="font-body text-lg text-pickled-bluewood-700 leading-relaxed pb-8">
                 Our story begins in 2002 with Jiangsu Liming Food Group, a pioneer in garlic processing and agricultural
@@ -44,11 +44,13 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
             <div class="mb-16">
                 <h2
                     class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold pb-4 text-pickled-bluewood-800 leading-tight mb-6">
-                    Our Journey Through Time
+                    Two Decades of Progress and Innovation
                 </h2>
                 <p class="font-body text-lg text-pickled-bluewood-700 leading-relaxed max-w-4xl">
-                    From humble beginnings to global scale, our story is one of continuous growth, innovation, and
-                    unwavering commitment to quality.
+                    For over two decades, we’ve transformed from a regional pioneer into a global force in agricultural
+                    processing and food supply. Our journey is defined by innovation, resilience, and unwavering
+                    commitment to quality, enabling us to serve industries worldwide with safe, reliable, and
+                    sustainable solutions.
                 </p>
             </div>
         </ComponentContainer>

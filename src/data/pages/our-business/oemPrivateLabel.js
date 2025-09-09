@@ -4,34 +4,31 @@
 
 export const serviceOEM = {
   hero: {
-    title: 'OEM / Private Label Services',
-    subtitle: 'Custom private label and OEM solutions for your brand',
-    image: null,
-    ctaText: 'Start Project',
-    ctaLink: '/contact'
+    title: 'Creating Brands Through OEM & Private Label Solutions',
+    subtitle: 'We help retailers and food businesses design, produce, and launch custom products with the backing of certified manufacturing, scalable capacity, and trusted industry expertise.',
+    image: '/assets/oem-private-label__hero--product-packaging-lineup.png',
+    overlayOpacity: '50',
+    fullWidth: true
   },
-  content: {
-    title: 'Custom Branding Solutions',
-    text: `
-      <p>Our OEM and private label services help you develop and market products under your own brand name. We work closely with you to understand your requirements and deliver solutions that meet your quality standards and business objectives.</p>
-      <p>From product development to final packaging, we provide comprehensive support to help you succeed in the market.</p>
-    `,
+  ourCapabilities: {
+    title: 'Our Capabilities in OEM & Private Label',
+    description: 'E-Sunrise Group Australia delivers more than manufacturing, we deliver complete solutions. With proven expertise and certified facilities, we help businesses create unique products that combine market insight with industrial scale. From concept to shelf, our capabilities ensure safety, flexibility, and brand differentiation every step of the way.',
     features: [
       {
-        title: 'Product Development',
-        text: 'Collaborative product development to meet your specific requirements'
+        title: 'Custom Formulations',
+        description: 'Our R&D team collaborates with partners to design products that align with consumer trends, flavor profiles, and dietary requirements, ensuring differentiation in competitive markets.'
       },
       {
-        title: 'Custom Packaging',
-        text: 'Professional packaging design and production for your brand'
+        title: 'Flexible Packaging',
+        description: 'Jars, sachets, bulk packs, or branded gift sets. We offer versatile packaging solutions that balance function and shelf appeal. From single-serve sachets to premium boxed sets, we adapt to retail and food service requirements.'
       },
       {
-        title: 'Quality Assurance',
-        text: 'Rigorous quality control and compliance with Australian standards'
+        title: 'Regulatory Compliance',
+        description: 'HACCP, ISO, and Australian standards fully integrated. Every stage of production follows strict compliance protocols, giving partners confidence in safety, traceability, and meeting both local and global regulatory expectations.'
       },
       {
-        title: 'Brand Support',
-        text: 'Ongoing support and consultation for your brand development'
+        title: 'End-to-End Service',
+        description: 'From R&D and sourcing to production and delivery. Our vertically integrated approach covers the entire supply chain, enabling faster turnaround, reduced costs, and seamless scalability from pilot runs to full-scale production.'
       }
     ]
   },

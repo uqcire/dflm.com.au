@@ -3,41 +3,37 @@ import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
 import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TOUCH.vue'
+import ComponentProductCard from '@/components/ui/COMPONENT__PRODUCT--CARD.vue'
+import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
+import { processedGarlic } from '@/data/index.js'  
 </script>
 
 <template>
     <!-- Hero -->
     <ComponentSection spacing="xs" :fullWidth="true">
-        <ComponentHero title="Processed Garlic"
-            subtitle="From fresh garlic to dehydrated, pickled, and black garlic varieties. Our garlic products are processed under strict quality controls for consistent flavor and safety across all applications."
-            :fullWidth="true" backgroundImage="/assets/home/home__product-card--garlic.jpg" overlayOpacity="50" />
+        <ComponentHero :title="processedGarlic.hero.title" :subtitle="processedGarlic.hero.subtitle"
+            :fullWidth="processedGarlic.hero.fullWidth" :backgroundImage="processedGarlic.hero.backgroundImage"
+            :overlayOpacity="processedGarlic.hero.overlayOpacity" />
     </ComponentSection>
 
-    <!-- Overview Section -->
-    <ComponentSection spacing="lg" background="transparent">
-        <ComponentContainer size="lg" padding="responsive" :constrainWidth="true">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+    <!-- Statement Section -->
+    <ComponentSection spacing="sm" containerSize="full" background="transparent">
+        <ComponentContainer size="xl" padding="responsive" :constrainWidth="true">
+            <ComponentGrid :columns="{ base: 1, md: 2 }" gap="xl" align="center">
                 <div>
                     <h2
-                        class="font-heading text-3xl md:text-4xl font-bold text-pickled-bluewood-800 leading-tight mb-6">
-                        Premium Garlic Processing Excellence
+                        class="font-heading text-3xl md:text-4xl font-bold text-pickled-bluewood-800 leading-tight mb-6 pb-6">
+                        {{ processedGarlic.productOverview.title }}
                     </h2>
                     <p class="font-body text-lg text-pickled-bluewood-700 leading-relaxed mb-6">
-                        Our garlic processing facility combines traditional methods with modern technology to deliver
-                        consistent, high-quality garlic products that meet the exacting standards of food manufacturers
-                        worldwide.
-                    </p>
-                    <p class="font-body text-lg text-pickled-bluewood-700 leading-relaxed">
-                        From fresh peeled garlic to specialty black garlic, our range supports diverse culinary
-                        applications
-                        while maintaining the authentic flavor profiles that chefs and manufacturers demand.
+                        {{ processedGarlic.productOverview.description }}
                     </p>
                 </div>
-                <div class="bg-slate-50 p-8 rounded-lg">
-                    <h3 class="font-heading text-xl font-semibold text-pickled-bluewood-800 mb-4">Processing Methods
-                    </h3>
+                <div class="bg-[hsl(var(--cello-100))] p-8 rounded-lg">
+                    <h3 class="font-heading text-xl font-semibold text-pickled-bluewood-800 mb-4 pb-4">Key Features</h3>
                     <ul class="space-y-3">
-                        <li class="flex items-start space-x-3">
+                        <li v-for="feature in processedGarlic.productOverview.features" :key="feature.title"
+                            class="flex items-start space-x-3">
                             <div class="w-5 h-5 bg-monza-600 rounded-full flex items-center justify-center mt-0.5">
                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -45,79 +41,45 @@ import ComponentCtaGetInTouch from '@/components/forms/COMPONENT__CTA--GET-IN-TO
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <span class="font-body text-pickled-bluewood-700">Fresh peeled garlic</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <div class="w-5 h-5 bg-monza-600 rounded-full flex items-center justify-center mt-0.5">
-                                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                            <div>
+                                <span class="font-body text-pickled-bluewood-700 font-medium">{{ feature.title }}</span>
+                                <p class="font-body text-sm text-pickled-bluewood-600">{{ feature.description }}</p>
                             </div>
-                            <span class="font-body text-pickled-bluewood-700">Dehydrated garlic</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <div class="w-5 h-5 bg-monza-600 rounded-full flex items-center justify-center mt-0.5">
-                                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <span class="font-body text-pickled-bluewood-700">Pickled garlic</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <div class="w-5 h-5 bg-monza-600 rounded-full flex items-center justify-center mt-0.5">
-                                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <span class="font-body text-pickled-bluewood-700">Black garlic</span>
                         </li>
                     </ul>
                 </div>
-            </div>
+            </ComponentGrid>
         </ComponentContainer>
     </ComponentSection>
 
-    <!-- Applications Section -->
-    <ComponentSection spacing="lg" background="transparent" :style="'background-color: hsl(var(--cello-100))'">
-        <ComponentContainer size="lg" padding="responsive" :constrainWidth="true">
+    <!-- Product Range Section -->
+    <ComponentSection spacing="sm" containerSize="full" background="transparent"
+        :style="'background-color: hsl(var(--tree-poppy-100))'">
+        <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
             <div class="text-center mb-12">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-pickled-bluewood-800 leading-tight mb-6">
-                    Applications & Markets
+                <h2
+                    class="font-heading text-3xl md:text-4xl font-bold text-pickled-bluewood-800 leading-tight mb-6 pb-4">
+                    {{ processedGarlic.productCategories.title }}
                 </h2>
-                <p class="font-body text-lg text-pickled-bluewood-700 leading-relaxed max-w-3xl mx-auto">
-                    Our garlic products serve diverse markets and applications, from food service to industrial
-                    manufacturing.
+                <p class="font-body text-lg text-pickled-bluewood-700 leading-relaxed max-w-4xl mx-auto">
+                    {{ processedGarlic.productCategories.description }}
                 </p>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="font-heading text-xl font-semibold text-pickled-bluewood-800 mb-3">Food Service</h3>
-                    <p class="font-body text-pickled-bluewood-700">Restaurants, catering, and hospitality applications
-                    </p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="font-heading text-xl font-semibold text-pickled-bluewood-800 mb-3">Manufacturing</h3>
-                    <p class="font-body text-pickled-bluewood-700">Sauce, condiment, and processed food production</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="font-heading text-xl font-semibold text-pickled-bluewood-800 mb-3">Retail</h3>
-                    <p class="font-body text-pickled-bluewood-700">Supermarkets and specialty food stores</p>
-                </div>
-            </div>
+            <ComponentGrid :columns="{ base: 1, md: 2, lg: 4 }" gap="lg">
+                <ComponentProductCard v-for="category in processedGarlic.productCategories.categories"
+                    :key="category.title" :product="{
+                        title: category.title,
+                        image: category.image,
+                        specs: category.specs
+                    }" variant="detailed" imageFit="object-fill" />
+            </ComponentGrid>
         </ComponentContainer>
     </ComponentSection>
 
     <!-- CTA Section -->
-    <ComponentCtaGetInTouch
-        description="Looking for premium garlic products for your business? Contact us to discuss your specific requirements and discover how our processed garlic solutions can enhance your products and streamline your operations."
-        backgroundColor="monza-300" />
+    <ComponentCtaGetInTouch title="Partner With Us for Premium Processed Garlic Supply"
+        description="Whether you’re a food manufacturer, distributor, or brand owner, our processed garlic solutions simplify production while elevating quality. With proven global logistics, certified operations, and product flexibility, E-Sunrise Australia is your trusted partner for garlic that delivers taste, safety, and consistency."
+        buttonText="Request a Quote" backgroundColor="cello-100" />
 </template>
 
 <style scoped></style>

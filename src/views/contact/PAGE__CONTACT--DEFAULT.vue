@@ -15,7 +15,7 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
     <ComponentSection spacing="xs" :fullWidth="true" :style="'padding-bottom: 0px; padding-top: 0px'">
         <ComponentHero :title="contactPage.hero.title" :subtitle="contactPage.hero.subtitle"
             :fullWidth="contactPage.hero.fullWidth" :backgroundImage="contactPage.hero.backgroundImage"
-            :overlayOpacity="contactPage.hero.overlayOpacity" />
+            :overlayOpacity="contactPage.hero.overlayOpacity" imageFit="object-contain" />
     </ComponentSection>
 
     <!-- Contact Form Section -->

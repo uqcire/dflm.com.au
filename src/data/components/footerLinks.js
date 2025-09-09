@@ -41,7 +41,7 @@ export const footerLinks = [
 
 export const socialLinks = [
     { name: 'Facebook', icon: 'facebook', url: '#' },
-    { name: 'Twitter', icon: 'x', url: '#' },
-    { name: 'LinkedIn', icon: 'linkedin', url: '#' },
+    { name: 'Rednote', icon: 'rednote', url: 'https://www.xiaohongshu.com/user/profile/668f3c91000000000f035ee5' },
+    { name: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/company/dflm/' },
     { name: 'Instagram', icon: 'instagram', url: '#' }
 ] 
