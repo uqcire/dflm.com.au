@@ -10,7 +10,7 @@ import { snacksConsumer } from '@/data/index.js'
 
 <template>
     <!-- Hero -->
-    <ComponentSection spacing="xs" :fullWidth="true">
+    <ComponentSection spacing="xs" :fullWidth="true" style="padding-bottom: 0px; padding-top: 0px">
         <ComponentHero :title="snacksConsumer.hero.title" :subtitle="snacksConsumer.hero.subtitle"
             :fullWidth="snacksConsumer.hero.fullWidth" :backgroundImage="snacksConsumer.hero.backgroundImage"
             :overlayOpacity="snacksConsumer.hero.overlayOpacity" />

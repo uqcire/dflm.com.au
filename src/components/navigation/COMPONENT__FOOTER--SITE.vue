@@ -41,7 +41,8 @@ const currentYear = ref(new Date().getFullYear())
                                 <ul class="footer__links space-y-2">
                                     <li v-for="(link, linkIndex) in section.links" :key="linkIndex"
                                         class="footer__link-item">
-                                        <router-link v-if="!link.path.startsWith('mailto') && !link.path.startsWith('tel')" 
+                                        <router-link
+                                            v-if="!link.path.startsWith('mailto') && !link.path.startsWith('tel')"
                                             :to="link.path"
                                             class="footer__link text-white hover:text-monza-50 transition-colors duration-200 text-sm">
                                             {{ link.text }}
@@ -99,6 +100,8 @@ const currentYear = ref(new Date().getFullYear())
                         <router-link to="/cookie-policy"
                             class="footer__legal-link text-white hover:text-monza-50 transition-colors duration-200">Cookie
                             Policy</router-link>
+                        <router-link to="/sitemap"
+                            class="footer__legal-link text-white hover:text-monza-50 transition-colors duration-200">Sitemap</router-link>
                     </div>
                 </el-col>
             </el-row>

@@ -10,7 +10,7 @@ import { freshProduce } from '@/data/index.js'
 
 <template>
     <!-- Hero -->
-    <ComponentSection spacing="xs" :fullWidth="true">
+    <ComponentSection spacing="xs" :fullWidth="true" style="padding-bottom: 0px; padding-top: 0px">
         <ComponentHero :title="freshProduce.hero.title" :subtitle="freshProduce.hero.subtitle"
             :fullWidth="freshProduce.hero.fullWidth" :backgroundImage="freshProduce.hero.backgroundImage"
             :overlayOpacity="freshProduce.hero.overlayOpacity" />

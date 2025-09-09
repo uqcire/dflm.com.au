@@ -10,7 +10,7 @@ import { processedGarlic } from '@/data/index.js'
 
 <template>
     <!-- Hero -->
-    <ComponentSection spacing="xs" :fullWidth="true">
+    <ComponentSection spacing="xs" :fullWidth="true" style="padding-bottom: 0px; padding-top: 0px">
         <ComponentHero :title="processedGarlic.hero.title" :subtitle="processedGarlic.hero.subtitle"
             :fullWidth="processedGarlic.hero.fullWidth" :backgroundImage="processedGarlic.hero.backgroundImage"
             :overlayOpacity="processedGarlic.hero.overlayOpacity" />

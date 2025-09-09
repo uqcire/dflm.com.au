@@ -5,8 +5,9 @@ import { ref } from 'vue'
 import ComponentHeroPage from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentProductCard from '@/components/ui/COMPONENT__PRODUCT--CARD.vue'
 import ComponentServiceCard from '@/components/ui/COMPONENT__SERVICE--CARD.vue'
+
 import ComponentCtaSection from '@/components/forms/COMPONENT__CTA--SECTION.vue'
-import ComponentCompanyLogo from '@/components/ui/COMPONENT__COMPANY--LOGO.vue'
+
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
 import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'

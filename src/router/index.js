@@ -353,6 +353,22 @@ const routes = [
   },
 
   // ========================================
+  // UTILITY PAGES
+  // ========================================
+  {
+    path: '/sitemap',
+    name: 'sitemap',
+    component: () => import('@/views/utility/PAGE__SITEMAP--DEFAULT.vue'),
+    meta: {
+      title: 'Site Map',
+      preload: false,
+      transition: 'fade',
+      keepAlive: true,
+      layout: ''
+    },
+  },
+
+  // ========================================
   // LEGAL PAGES (Redirected to Under Construction)
   // ========================================
   {

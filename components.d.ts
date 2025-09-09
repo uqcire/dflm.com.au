@@ -75,6 +75,7 @@ declare module 'vue' {
     'PAGE__SERVICESINDUSTRIES-INGREDIENTANDBULKSUPPLIERS': typeof import('./src/views/our-business/PAGE__SERVICES-INDUSTRIES--INGREDIENT-AND-BULK-SUPPLIERS.vue')['default']
     'PAGE__SERVICESINDUSTRIES-SUPERMARKETSANDCUSTOMBRANDS': typeof import('./src/views/our-business/PAGE__SERVICES-INDUSTRIES--SUPERMARKETS-AND-CUSTOM-BRANDS.vue')['default']
     'PAGE__SERVICESOEM-DEFAULT': typeof import('./src/views/our-business/PAGE__SERVICES-OEM--DEFAULT.vue')['default']
+    'PAGE__SITEMAP-DEFAULT': typeof import('./src/views/utility/PAGE__SITEMAP--DEFAULT.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

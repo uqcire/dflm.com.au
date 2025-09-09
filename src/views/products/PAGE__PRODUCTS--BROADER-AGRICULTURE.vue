@@ -10,7 +10,7 @@ import { broaderAgriculture } from '@/data/index.js'
 
 <template>
     <!-- Hero -->
-    <ComponentSection spacing="xs" :fullWidth="true">
+    <ComponentSection spacing="xs" :fullWidth="true" style="padding-bottom: 0px; padding-top: 0px">
         <ComponentHero :title="broaderAgriculture.hero.title" :subtitle="broaderAgriculture.hero.subtitle"
             :fullWidth="broaderAgriculture.hero.fullWidth" :backgroundImage="broaderAgriculture.hero.backgroundImage"
             :overlayOpacity="broaderAgriculture.hero.overlayOpacity" />
