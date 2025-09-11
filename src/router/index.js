@@ -40,7 +40,7 @@ const routes = [
     component: () => import('@/views/our-company/PAGE__ABOUT--MISSION-AND-VISION.vue'),
     meta: {
       title: 'Mission & Vision',
-      preload: false,   
+      preload: false,
       transition: 'fade',
       keepAlive: true,
       layout: ''
@@ -374,9 +374,9 @@ const routes = [
   {
     path: '/privacy-policy',
     name: 'privacy-policy',
-    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
+    component: () => import('@/views/legal/PAGE__PRIVACY-POLICY--DEFAULT.vue'),
     meta: {
-      title: 'Privacy Policy - Under Construction',
+      title: 'Privacy Policy',
       preload: false,
       transition: 'fade',
       keepAlive: true,
@@ -386,9 +386,9 @@ const routes = [
   {
     path: '/terms-of-service',
     name: 'terms-of-service',
-    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
+    component: () => import('@/views/legal/PAGE__TERMS-OF-SERVICE--DEFAULT.vue'),
     meta: {
-      title: 'Terms of Service - Under Construction',
+      title: 'Terms of Service',
       preload: false,
       transition: 'fade',
       keepAlive: true,
@@ -398,9 +398,9 @@ const routes = [
   {
     path: '/cookie-policy',
     name: 'cookie-policy',
-    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
+    component: () => import('@/views/legal/PAGE__COOKIE-POLICY--DEFAULT.vue'),
     meta: {
-      title: 'Cookie Policy - Under Construction',
+      title: 'Cookie Policy',
       preload: false,
       transition: 'fade',
       keepAlive: true,
