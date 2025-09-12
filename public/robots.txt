@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://dflm.com.au/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_vercel/
+Disallow: /preview/
+
+# Allow specific bot access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay for aggressive crawlers
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+# Block unwanted bots
+User-agent: MJ12bot
+Disallow: /
+
+# Cache-friendly directives
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content

@@ -8,7 +8,7 @@
 const SITE_NAME = 'E-Sunrise Australia'
 const DEFAULT_DESCRIPTION = 'E‑Sunrise Australia — B2B Agricultural Import & Distribution in Melbourne.'
 const DEFAULT_OG_IMAGE = '/assets/brand__logo--icon.png'
-const SITE_URL = import.meta.env.VITE_APP_URL || ''
+const SITE_URL = import.meta.env.VITE_APP_URL || 'https://dflm.com.au'
 
 /**
  * Set or create a meta tag
