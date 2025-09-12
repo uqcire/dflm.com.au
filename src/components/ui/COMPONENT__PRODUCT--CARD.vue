@@ -25,7 +25,7 @@ defineProps({
     },
     linkText: {
         type: String,
-        default: 'View Details'
+        default: 'View Product Details'
     },
     imageFit: {
         type: String,

@@ -24,7 +24,7 @@ defineProps({
     },
     linkText: {
         type: String,
-        default: 'Learn More'
+        default: 'View Service Details'
     }
 })
 

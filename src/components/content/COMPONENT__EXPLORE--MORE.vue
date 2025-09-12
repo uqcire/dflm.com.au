@@ -113,8 +113,9 @@ const navigateToPage = (link) => {
                             </p>
 
                             <router-link :to="card.link"
-                                class="inline-flex items-center text-tree-poppy-300 font-medium hover:text-tree-poppy-200 transition-colors duration-200 group">
-                                Read more
+                                class="inline-flex items-center text-tree-poppy-300 font-medium hover:text-tree-poppy-200 transition-colors duration-200 group"
+                                :aria-label="`Learn more about ${card.title}`">
+                                Learn more about {{ card.title }}
                                 <svg class="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

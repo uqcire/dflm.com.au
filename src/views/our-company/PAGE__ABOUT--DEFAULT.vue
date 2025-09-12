@@ -50,8 +50,9 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 
           <div class="pt-8">
             <router-link to="/our-company/mission-and-vision"
-              class="inline-flex items-center px-8 py-4 bg-transparent text-pickled-bluewood-700 font-medium text-sm rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-pickled-bluewood-700">
-              Read more about our purpose
+              class="inline-flex items-center px-8 py-4 bg-transparent text-pickled-bluewood-700 font-medium text-sm rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-pickled-bluewood-700"
+              aria-label="Learn more about our mission and vision">
+              Learn more about our mission and vision
             </router-link>
           </div>
         </div>

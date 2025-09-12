@@ -60,7 +60,7 @@ import ComponentProductCard from '@/components/ui/COMPONENT__PRODUCT--CARD.vue'
             <!-- Products Grid -->
             <ComponentGrid :columns="{ base: 1, md: 2, lg: 3 }" gap="lg" align="stretch">
                 <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
-                    variant="detailed" :showLink="true" :showSpecs="true" linkText="Learn More"
+                    variant="detailed" :showLink="true" :showSpecs="true" linkText="View Product Details"
                     imageFit="object-cover" />
             </ComponentGrid>
         </ComponentContainer>

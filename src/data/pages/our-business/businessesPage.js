@@ -73,35 +73,35 @@ const INDUSTRIES_DATA = [
     title: 'Food Manufacturers & Processors',
     description: 'We supply dehydrated vegetables, garlic products, sauces, pulses, and legumes to food manufacturers and processors. With HACCP and ISO certifications, we ensure consistent, safe, and traceable ingredients for large-scale production.',
     image: '/assets/industries__card--food-processing.png',
-    linkText: 'Learn more',
+    linkText: 'Explore food manufacturers and processors',
     linkUrl: '/our-businesses/industries/food-manufacturers-and-processors'
   },
   {
     title: 'Food Service & Distribution',
     description: 'From restaurants to catering suppliers, we support Australia\'s food service industry through strong distributor partnerships. Our cold-chain logistics and scalable supply guarantee freshness, efficiency, and long-term reliability.',
     image: '/assets/industries__card--food-service-distribution.png',
-    linkText: 'Learn more',
+    linkText: 'Explore food service and distribution solutions',
     linkUrl: '/our-businesses/industries/food-service-and-distribution'
   },
   {
     title: 'Supermarkets & Custom Brands',
     description: 'We partner with retail chains and supermarkets to deliver tailored OEM solutions. From garlic sauces to packaged legumes, we help retailers build distinctive, compliant, and trusted private label products.Want to create foods and beverages that benefit health & wellbeing? We offer ingredients that support digestive health, immunity, and overall wellness.',
     image: '/assets/industries__card--supermarkets-custom-brands.png',
-    linkText: 'Learn more',
+    linkText: 'Explore supermarket and custom brand solutions',
     linkUrl: '/our-businesses/industries/supermarkets-and-custom-brands'
   },
   {
     title: 'Ingredient & Bulk Suppliers',
     description: 'Bulk pulses, legumes, and dehydrated vegetables are at the core of many ingredient suppliers. With 100,000+ tons annual production capacity, we offer stable, cost-effective, and large-scale supply for industrial applications.',
     image: '/assets/industries__card--ingredient-bulk-suppliers.png',
-    linkText: 'Learn more',
+    linkText: 'Explore ingredient and bulk supply solutions',
     linkUrl: '/our-businesses/industries/ingredient-and-bulk-suppliers'
   },
   {
     title: 'Importers & Trade Partners',
     description: 'We work with global importers and trade partners to provide secure capacity, compliance support, and flexible cooperation models. Our proven expertise reduces supply chain risk and strengthens competitiveness in international markets.',
     image: '/assets/industries__card--importers-and-trade-partners.png',
-    linkText: 'Learn more',
+    linkText: 'Explore import and trade partner services',
     linkUrl: '/our-businesses/industries/importers-and-trade-partners'
   }
 ]

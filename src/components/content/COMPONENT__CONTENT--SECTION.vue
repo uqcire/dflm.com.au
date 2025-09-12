@@ -37,7 +37,7 @@ defineProps({
     },
     ctaText: {
         type: String,
-        default: 'Learn More'
+        default: 'View Details'
     },
     ctaUrl: {
         type: String,

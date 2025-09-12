@@ -54,7 +54,7 @@ import ComponentExploreMore from '@/components/content/COMPONENT__EXPLORE--MORE.
                     title: industry.title,
                     description: industry.description,
                     image: industry.image || '/assets/explore/explore__card--industries.png',
-                    linkText: 'Learn more',
+                    linkText: 'Explore industry solutions',
                     linkUrl: industry.linkUrl || '/industries'
                 }" variant="standard" :showLink="true" />
             </ComponentGrid>
