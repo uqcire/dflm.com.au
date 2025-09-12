@@ -6,7 +6,7 @@ export const serviceOEM = {
   hero: {
     title: 'Creating Brands Through OEM & Private Label Solutions',
     subtitle: 'We help retailers and food businesses design, produce, and launch custom products with the backing of certified manufacturing, scalable capacity, and trusted industry expertise.',
-    image: '/assets/oem-private-label__hero--product-packaging-lineup.png',
+    image: '/assets/oem-private-label__hero--product-packaging-lineup.webp',
     overlayOpacity: '50',
     fullWidth: true
   },

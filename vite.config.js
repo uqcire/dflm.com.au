@@ -21,9 +21,9 @@ export default defineConfig(({ mode }) => {
       enableCompression: mode === 'production',
       enableBundleAnalysis: mode === 'production',
     }),
-    
+
     base: VITE_PUBLIC_PATH || '/',
-    
+
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
@@ -44,7 +44,7 @@ export default defineConfig(({ mode }) => {
         '.json',
       ],
     },
-    
+
     server: {
       host: true, // Specify server hostname - allows access from any host
       port: VITE_PORT, // Specify server port number
@@ -61,21 +61,45 @@ export default defineConfig(({ mode }) => {
         }
       }
     },
-    
+
     build: {
       target: 'esnext',
-      sourcemap: true,
+      sourcemap: false, // 生产环境关闭sourcemap
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true
+        }
+      },
+      // 增加chunk大小警告限制
+      chunkSizeWarningLimit: 1000,
+      // 启用CSS代码分割
+      cssCodeSplit: true,
       rollupOptions: {
         output: {
           manualChunks: {
             'vue-vendor': ['vue', 'vue-router'],
-            'utils-vendor': ['axios'],
-            'element-plus-vendor': ['element-plus']
+            'ui-vendor': ['element-plus'],
+            'utils-vendor': ['axios']
+          },
+          // 优化资源文件名 - 支持WebP和现代图片格式
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name.match(/\.(png|jpe?g|svg|gif|webp|avif)$/i)) {
+              return 'assets/images/[name]-[hash][extname]'
+            }
+            if (assetInfo.name.match(/\.(woff2?|eot|ttf|otf)$/i)) {
+              return 'assets/fonts/[name]-[hash][extname]'
+            }
+            if (assetInfo.name.match(/\.css$/i)) {
+              return 'assets/css/[name]-[hash][extname]'
+            }
+            return 'assets/[name]-[hash][extname]'
           }
         }
       }
     },
-    
+
     optimizeDeps: {
       include: ['vue', 'vue-router', 'axios', 'element-plus']
     }

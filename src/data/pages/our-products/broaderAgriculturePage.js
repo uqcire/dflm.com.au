@@ -7,7 +7,7 @@ export const broaderAgriculture = {
     hero: {
         title: 'Broader Agriculture Products for Global Trade',
         subtitle: 'E-Sunrise Australia delivers bulk dehydrated vegetables, pulses, legumes, and peanuts to meet industrial demand. Certified quality, scalable supply, and global expertise ensure reliability for export and large-scale applications.',
-        backgroundImage: '/assets/our-products__product-card--pulses.png',
+        backgroundImage: '/assets/our-products__product-card--pulses.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -31,102 +31,102 @@ export const broaderAgriculture = {
         categories: [
             {
                 title: 'Dehydrated Chives',
-                image: '/assets/our-products__dehydrated--chives.png',
+                image: '/assets/our-products__dehydrated--chives.webp',
                 specs: null
             },
             {
                 title: 'Paprika',
-                image: '/assets/our-products__dehydrated--paprika.png',
+                image: '/assets/our-products__dehydrated--paprika.webp',
                 specs: null
             },
             {
                 title: 'Mixed Vegetables',
-                image: '/assets/our-products__dehydrated--mixed-vegetables.png',
+                image: '/assets/our-products__dehydrated--mixed-vegetables.webp',
                 specs: null
             },
             {
                 title: 'Dried Chilli',
-                image: '/assets/our-products__dehydrated--dried-chilli.png',
+                image: '/assets/our-products__dehydrated--dried-chilli.webp',
                 specs: null
             },
             {
                 title: 'Chilli Crush',
-                image: '/assets/our-products__dehydrated--chilli-crush.png',
+                image: '/assets/our-products__dehydrated--chilli-crush.webp',
                 specs: null
             },
             {
                 title: 'Dehydrated Onion Slices',
-                image: '/assets/our-products__dehydrated--onion-slices.png',
+                image: '/assets/our-products__dehydrated--onion-slices.webp',
                 specs: null
             },
             {
                 title: 'Dehydrated Onion Granulars',
-                image: '/assets/our-products__dehydrated--onion-granulars.png',
+                image: '/assets/our-products__dehydrated--onion-granulars.webp',
                 specs: null
             },
             {
                 title: 'Dehydrated Onion Powder',
-                image: '/assets/our-products__dehydrated--onion-powder.png',
+                image: '/assets/our-products__dehydrated--onion-powder.webp',
                 specs: null
             },
             {
                 title: 'Dehydrated Ginger Slices',
-                image: '/assets/our-products__dehydrated--ginger-slices.png',
+                image: '/assets/our-products__dehydrated--ginger-slices.webp',
                 specs: null
             },
             {
                 title: 'Dehydrated Ginger Powder',
-                image: '/assets/our-products__dehydrated--ginger-powder.png',
+                image: '/assets/our-products__dehydrated--ginger-powder.webp',
                 specs: null
             },
             {
                 title: 'Dehydrated Carrot Slices',
-                image: '/assets/our-products__dehydrated--carrot-slices.png',
+                image: '/assets/our-products__dehydrated--carrot-slices.webp',
                 specs: null
             },
             {
                 title: 'Green Beans',
-                image: '/assets/our-products__pulses--green-beans.png',
+                image: '/assets/our-products__pulses--green-beans.webp',
                 specs: null
             },
             {
                 title: 'Red Beans',
-                image: '/assets/our-products__pulses--red-beans.png',
+                image: '/assets/our-products__pulses--red-beans.webp',
                 specs: null
             },
             {
                 title: 'Soybeans',
-                image: '/assets/our-products__pulses--soybeans.png',
+                image: '/assets/our-products__pulses--soybeans.webp',
                 specs: null
             },
             {
                 title: 'Black Beans',
-                image: '/assets/our-products__pulses--black-beans.png',
+                image: '/assets/our-products__pulses--black-beans.webp',
                 specs: null
             },
             {
                 title: 'White Kidney Beans',
-                image: '/assets/our-products__pulses--white-kidney-beans.png',
+                image: '/assets/our-products__pulses--white-kidney-beans.webp',
                 specs: null
             },
             {
                 title: 'Speckled Kidney Beans',
-                image: '/assets/our-products__pulses--speckled-kidney-beans.png',
+                image: '/assets/our-products__pulses--speckled-kidney-beans.webp',
                 specs: null
             },
             {
                 title: 'Purple Kidney Beans',
-                image: '/assets/our-products__pulses--purple-kidney-beans.png',
+                image: '/assets/our-products__pulses--purple-kidney-beans.webp',
                 specs: null
             },
             {
                 title: 'Peeled Peanuts',
-                image: '/assets/our-products__pulses--peeled-peanuts.png',
+                image: '/assets/our-products__pulses--peeled-peanuts.webp',
                 specs: null
             },
             {
                 title: 'Peanuts',
-                image: '/assets/our-products__pulses--peanuts.png',
+                image: '/assets/our-products__pulses--peanuts.webp',
                 specs: null
             },
         ]

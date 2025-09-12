@@ -7,7 +7,7 @@ const brand = 'E-Sunrise Australia'
         <el-container class="UC__container">
             <el-main>
                 <div class="UC__content ">
-                    <img class="UC__logo" src="/assets/brand__logo--icon.png" alt="Logo" />
+                    <img class="UC__logo" src="/assets/brand__logo--icon.webp" alt="Logo" />
                     <h1 class="UC__title">
                         {{ brand }} is under construction
                     </h1>

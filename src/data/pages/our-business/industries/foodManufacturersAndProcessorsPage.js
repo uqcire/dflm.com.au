@@ -2,7 +2,7 @@ export const foodManufacturersAndProcessorsPage = {
     hero: {
         title: 'Powering Food Production with Confidence',
         subtitle: 'Trusted garlic, vegetables, and pulses backed by HACCP and ISO.',
-        backgroundImage: '/assets/industries__card--food-processing.png',
+        backgroundImage: '/assets/industries__card--food-processing.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -69,7 +69,7 @@ export const foodManufacturersAndProcessorsPage = {
         og: {
             title: 'Food Manufacturers & Processors - E-Sunrise Australia',
             description: 'Premium certified food ingredients for manufacturers and processors. HACCP & ISO certified supply chain solutions.',
-            image: 'https://dflm.com.au/assets/industries__card--food-processing.png',
+            image: 'https://dflm.com.au/assets/industries__card--food-processing.webp',
             url: 'https://dflm.com.au/our-businesses/industries/food-manufacturers-and-processors',
             type: 'website'
         },
@@ -77,7 +77,7 @@ export const foodManufacturersAndProcessorsPage = {
             card: 'summary_large_image',
             title: 'Food Manufacturers & Processors - E-Sunrise Australia',
             description: 'Premium certified food ingredients for manufacturers and processors. HACCP & ISO certified supply chain solutions.',
-            image: 'https://dflm.com.au/assets/industries__card--food-processing.png'
+            image: 'https://dflm.com.au/assets/industries__card--food-processing.webp'
         },
         structuredData: {
             '@context': 'https://schema.org',
@@ -85,7 +85,7 @@ export const foodManufacturersAndProcessorsPage = {
             name: 'E-Sunrise Australia',
             description: 'Premium food ingredients supplier for manufacturers and processors in Australia',
             url: 'https://dflm.com.au',
-            logo: 'https://dflm.com.au/assets/brand__logo--icon.png',
+            logo: 'https://dflm.com.au/assets/brand__logo--icon.webp',
             address: {
                 '@type': 'PostalAddress',
                 addressCountry: 'AU'

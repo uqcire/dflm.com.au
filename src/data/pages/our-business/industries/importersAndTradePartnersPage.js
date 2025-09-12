@@ -15,7 +15,7 @@ export const importersAndTradePartnersPage = {
     hero: {
         title: 'Building Strong Partnerships With Global Importers & Trade Networks',
         subtitle: 'E-Sunrise Group Australia partners with importers and trade professionals worldwide, supplying certified garlic, dehydrated vegetables, pulses, and sauces. With reliable logistics and compliance expertise, we make global trade simpler and more secure.',
-        backgroundImage: '/assets/industries__card--importers-and-trade-partners.png',
+        backgroundImage: '/assets/industries__card--importers-and-trade-partners.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -88,7 +88,7 @@ export const importersAndTradePartnersPage = {
         og: {
             title: 'Importers & Trade Partners - E-Sunrise Australia',
             description: 'Global food trade partnerships for importers and trade partners. Secure capacity, compliance support, and flexible cooperation models.',
-            image: 'https://dflm.com.au/assets/industries__card--importers-and-trade-partners.png',
+            image: 'https://dflm.com.au/assets/industries__card--importers-and-trade-partners.webp',
             url: 'https://dflm.com.au/our-businesses/industries/importers-and-trade-partners',
             type: 'website'
         },
@@ -96,7 +96,7 @@ export const importersAndTradePartnersPage = {
             card: 'summary_large_image',
             title: 'Importers & Trade Partners - E-Sunrise Australia',
             description: 'Global food trade partnerships for importers and trade partners. Secure capacity, compliance support, and flexible cooperation models.',
-            image: 'https://dflm.com.au/assets/industries__card--importers-and-trade-partners.png'
+            image: 'https://dflm.com.au/assets/industries__card--importers-and-trade-partners.webp'
         },
         structuredData: {
             '@context': 'https://schema.org',
@@ -104,7 +104,7 @@ export const importersAndTradePartnersPage = {
             name: 'E-Sunrise Australia',
             description: 'Global food trade partner for importers and international trade partners',
             url: 'https://dflm.com.au',
-            logo: 'https://dflm.com.au/assets/brand__logo--icon.png',
+            logo: 'https://dflm.com.au/assets/brand__logo--icon.webp',
             address: {
                 '@type': 'PostalAddress',
                 addressCountry: 'AU'

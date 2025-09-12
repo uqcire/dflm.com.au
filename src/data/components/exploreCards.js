@@ -25,7 +25,7 @@ const CARD_LIBRARY = {
   ourCompany: {
     title: 'Our Company',
     description: 'Learn more about who we are as a company, our mission and values, and how we combine global manufacturing expertise with local operations to deliver certified, reliable food solutions for partners across Australia and international markets.',
-    image: '/assets/explore__card--our-company.png',
+    image: '/assets/explore__card--our-company.webp',
     alt: 'Our Company',
     link: '/our-company'
   },
@@ -33,7 +33,7 @@ const CARD_LIBRARY = {
   ourNewsroom: {
     title: 'Our Newsroom',
     description: 'Stay updated with the latest news, company announcements, and industry insights. Explore milestones, product launches, and strategic developments that highlight our continued growth, innovation, and commitment to building stronger food supply chains for the future.',
-    image: '/assets/explore__card--newsroom.png',
+    image: '/assets/explore__card--newsroom.webp',
     alt: 'Our Newsroom',
     link: '/blog'
   },
@@ -41,7 +41,7 @@ const CARD_LIBRARY = {
   ourBusinesses: {
     title: 'Our Businesses',
     description: 'Discover our core business divisions that power the E-Sunrise Group. From large-scale manufacturing and OEM solutions to import, distribution, and logistics, we deliver integrated services that create value across the entire food supply chain.',
-    image: '/assets/explore__card--our-business.png',
+    image: '/assets/explore__card--our-business.webp',
     alt: 'Our Businesses',
     link: '/our-businesses'
   },
@@ -49,7 +49,7 @@ const CARD_LIBRARY = {
   ourIndustries: {
     title: 'Industries We Serve',
     description: 'Explore the industries we serve, including food manufacturers, processors, distributors, retailers, supermarkets, and trade partners. Learn how our scale, reliability, and supply chain expertise help support long-term growth and resilience across the food sector.',
-    image: '/assets/explore__card--industries.png',
+    image: '/assets/explore__card--industries.webp',
     alt: 'Industries We Serve',
     link: '/our-businesses/industries'
   },
@@ -57,7 +57,7 @@ const CARD_LIBRARY = {
   ourProducts: {
     title: 'Our Products',
     description: 'Browse our comprehensive portfolio of food ingredients, from fresh and dehydrated vegetables to garlic specialties, sauces, pulses, legumes, and snacks. Designed to meet industrial demand, our products deliver consistent quality and versatility across global and local markets.',
-    image: '/assets/explore__card--our-product.png',
+    image: '/assets/explore__card--our-product.webp',
     alt: 'Our Products',
     link: '/products'
   },
@@ -65,7 +65,7 @@ const CARD_LIBRARY = {
   missionAndValues: {
     title: 'Mission & Values',
     description: 'Discover our mission to build trusted, lasting value across food supply chains and explore the core values that drive our commitment to quality, innovation, and sustainable partnerships. Learn how our purpose guides every aspect of our business operations and relationships.',
-    image: '/assets/explore__card--our-company.png',
+    image: '/assets/explore__card--our-company.webp',
     alt: 'Mission & Values',
     link: '/our-company/mission-and-vision'
   },
@@ -73,7 +73,7 @@ const CARD_LIBRARY = {
   ourHistory: {
     title: 'Our History',
     description: 'Explore our journey from humble beginnings to global scale, from local roots to global growth. Learn about our milestones, innovations, and the journey that led us to where we are today.',
-    image: '/assets/explore__card--our-history.png',
+    image: '/assets/explore__card--our-history.webp',
     alt: 'Our History',
     link: '/our-company/history'
   },
@@ -81,7 +81,7 @@ const CARD_LIBRARY = {
   importDistribution: {
     title: 'Import & Distribution',
     description: 'Explore our import and distribution services, including global sourcing, certified operations, cold-chain logistics, and scale & efficiency. Learn how we simplify complex supply chains while ensuring safety, scale, and efficiency for industries across Australia.',
-    image: '/assets/import__hero--importers-trade-partners-port.png',
+    image: '/assets/import__hero--importers-trade-partners-port.webp',
     alt: 'Import & Distribution',
     link: '/our-businesses/import-and-distribution'
   },
@@ -89,7 +89,7 @@ const CARD_LIBRARY = {
   oemPrivateLabel: {
     title: 'OEM & Private Label',
     description: 'Explore our OEM and private label services, including custom formulations, flexible packaging, regulatory compliance, and end-to-end service. Learn how we help businesses create unique products that combine market insight with industrial scale.',
-    image: '/assets/oem-private-label__hero--product-packaging-lineup.png',
+    image: '/assets/oem-private-label__hero--product-packaging-lineup.webp',
     alt: 'OEM & Private Label',
     link: '/our-businesses/oem-and-private-label'
   }

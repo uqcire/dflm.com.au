@@ -15,7 +15,7 @@ export const supermarketsAndCustomBrandsPage = {
     hero: {
         title: 'Building Retail Brands That Win on Every Shelf',
         subtitle: 'Our expertise in product development and private label manufacturing helps supermarkets create distinctive offerings that stand out, strengthen loyalty, and increase category share.',
-        backgroundImage: '/assets/industries__card--supermarkets-custom-brands.png',
+        backgroundImage: '/assets/industries__card--supermarkets-custom-brands.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -83,7 +83,7 @@ export const supermarketsAndCustomBrandsPage = {
         og: {
             title: 'Supermarkets & Custom Brands - E-Sunrise Australia',
             description: 'Private label solutions for supermarkets and retail chains. Custom OEM products and health-focused ingredients for distinctive private label brands.',
-            image: 'https://dflm.com.au/assets/industries__card--supermarkets-custom-brands.png',
+            image: 'https://dflm.com.au/assets/industries__card--supermarkets-custom-brands.webp',
             url: 'https://dflm.com.au/our-businesses/industries/supermarkets-and-custom-brands',
             type: 'website'
         },
@@ -91,7 +91,7 @@ export const supermarketsAndCustomBrandsPage = {
             card: 'summary_large_image',
             title: 'Supermarkets & Custom Brands - E-Sunrise Australia',
             description: 'Private label solutions for supermarkets and retail chains. Custom OEM products and health-focused ingredients for distinctive private label brands.',
-            image: 'https://dflm.com.au/assets/industries__card--supermarkets-custom-brands.png'
+            image: 'https://dflm.com.au/assets/industries__card--supermarkets-custom-brands.webp'
         },
         structuredData: {
             '@context': 'https://schema.org',
@@ -99,7 +99,7 @@ export const supermarketsAndCustomBrandsPage = {
             name: 'E-Sunrise Australia',
             description: 'Private label solutions provider for supermarkets and retail chains in Australia',
             url: 'https://dflm.com.au',
-            logo: 'https://dflm.com.au/assets/brand__logo--icon.png',
+            logo: 'https://dflm.com.au/assets/brand__logo--icon.webp',
             address: {
                 '@type': 'PostalAddress',
                 addressCountry: 'AU'

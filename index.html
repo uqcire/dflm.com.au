@@ -34,10 +34,34 @@
     <!-- Umami Cloud Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="fb3c346e-f7bf-4ad7-a758-d4a60e1ea11d"></script>
     
+    <!-- WebP Support Detection -->
+    <script>
+      // WebP support detection
+      function checkWebPSupport() {
+        const webP = new Image();
+        webP.onload = webP.onerror = function() {
+          document.documentElement.classList.add(webP.height === 2 ? 'webp' : 'no-webp');
+        };
+        webP.src = 'data:image/webp;base64,UklGRjoBAABXRUJQVlA4IC4BAABwAAAQAA==';
+      }
+      checkWebPSupport();
+    </script>
+    
     <!-- Preload critical resources -->
     
     <!-- DNS prefetch for external domains (if needed) -->
     <!-- <link rel="dns-prefetch" href="//api.example.com" /> -->
+
+    <!-- 预加载关键图片 (WebP格式) -->
+    <link rel="preload" href="/assets/home__hero--factory-building.webp" as="image">
+    <link rel="preload" href="/assets/home__service-card--supply-chain.webp" as="image">
+    <link rel="preload" href="/assets/home__service-card--manufacturing.webp" as="image">
+
+    <!-- 预加载关键字体 -->
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- 预加载关键CSS -->
+    <link rel="preload" href="/src/styles/global.css" as="style">
   </head>
   <body>
     <div id="app"></div>

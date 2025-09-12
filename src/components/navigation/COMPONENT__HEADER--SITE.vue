@@ -38,7 +38,7 @@ onUnmounted(() => {
             <RouterLink to="/"
                 class="header__brand flex items-center gap-3 no-underline transition-opacity duration-200 hover:opacity-90"
                 :aria-label="`${title} - Home`">
-                <img src="/assets/brand__logo--icon.png" :alt="`${title} logo`"
+                <img src="/assets/brand__logo--icon.webp" :alt="`${title} logo`"
                     class="header__logo h-8 w-auto flex-shrink-0 sm:h-10" />
                 <div class="header__brand-text flex flex-col">
                     <span

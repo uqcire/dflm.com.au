@@ -6,7 +6,7 @@ export const contactPage = {
   hero: {
     title: 'Let’s Build Reliable Supply Together',
     subtitle: 'Partner with E-Sunrise Australia for fresh produce, garlic specialties, and industrial food ingredients. Our experts are here to answer questions and create tailored solutions for your growth.',
-    backgroundImage: '/assets/contact__hero--global-connectivity.png',
+    backgroundImage: '/assets/contact__hero--global-connectivity.webp',
     fullWidth: true,
     overlayOpacity: '50'
   },
@@ -19,27 +19,27 @@ export const contactPage = {
   },
   locations: {
     xuzhou: {
-      image: '/assets/contact__locations--xuzhou-office.png',
+      image: '/assets/contact__locations--xuzhou-office.webp',
       alt: 'Xuzhou, China'
     },
     pizhou: {
-      image: '/assets/contact__locations--pizhou-office.png',
+      image: '/assets/contact__locations--pizhou-office.webp',
       alt: 'Pizhou, China'
     },
     melbourne: {
-      image: '/assets/contact__locations--melbourne-office.png',
+      image: '/assets/contact__locations--melbourne-office.webp',
       alt: 'Melbourne, Australia'
     },
     bangkok: {
-      image: '/assets/contact__locations--bangkok-office.png',
+      image: '/assets/contact__locations--bangkok-office.webp',
       alt: 'Bangkok, Thailand'
     },
     jakarta: {
-      image: '/assets/contact__locations--jarkata-office.png',
+      image: '/assets/contact__locations--jarkata-office.webp',
       alt: 'Jakarta, Indonesia'
     },
     hochi: {
-      image: '/assets/contact__locations--hochi-office.png',
+      image: '/assets/contact__locations--hochi-office.webp',
       alt: 'Ho Chi Minh City, Vietnam'
     }
   },

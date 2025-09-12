@@ -18,7 +18,7 @@
 const HERO_CONFIG = {
   title: 'Global Food Ingredients You Can Rely On',
   subtitle: 'E-Sunrise Group Australia delivers fresh garlic, dehydrated vegetables, pickled and black garlic, sauces, pulses, legumes, and fresh produce at industrial scale. Backed by HACCP and ISO systems, we simplify sourcing with safe, reliable, and versatile ingredients trusted across global food and retail markets.',
-  backgroundImage: '/assets/our-products__hero--products-lineup.png',
+  backgroundImage: '/assets/our-products__hero--products-lineup.webp',
   overlayOpacity: '50',
   fullWidth: true
 }
@@ -30,7 +30,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Fresh Produce',
     slug: 'fresh-produce',
     description: 'Premium fresh vegetables and fruits sourced directly from trusted farms. Our cold-chain logistics ensure peak freshness and extended shelf life for retail and food service applications.',
-    image: '/assets/our-products__product-card--fresh-vegetables.png',
+    image: '/assets/our-products__product-card--fresh-vegetables.webp',
     link: '/products/fresh-produce'
   },
   {
@@ -38,7 +38,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Processed Garlic',
     slug: 'processed-garlic',
     description: 'From fresh garlic to dehydrated, pickled, and black garlic varieties. Our garlic products are processed under strict quality controls for consistent flavor and safety across all applications.',
-    image: '/assets/our-products__product-card--processed-garlic.png',
+    image: '/assets/our-products__product-card--processed-garlic.webp',
     link: '/products/processed-garlic'
   },
   {
@@ -46,7 +46,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Condiments & Sauces',
     slug: 'condiments-sauces',
     description: 'Premium sauces and condiments crafted for food service and retail markets. Our range includes garlic sauces, specialty condiments, and custom formulations for diverse culinary applications.',
-    image: '/assets/our-products__product-card--condiments-and-sauces.png',
+    image: '/assets/our-products__product-card--condiments-and-sauces.webp',
     link: '/products/condiments-sauces'
   },
   {
@@ -54,7 +54,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Snacks & Consumer Products',
     slug: 'snacks-consumer',
     description: 'Ready-to-eat snacks and consumer products designed for modern lifestyles. From healthy snack options to convenient meal solutions, we deliver quality and taste that consumers trust.',
-    image: '/assets/our-products__product-card--snacks-and-consumer-products.png',
+    image: '/assets/our-products__product-card--snacks-and-consumer-products.webp',
     link: '/products/snacks-consumer'
   },
   {
@@ -62,7 +62,7 @@ const PRODUCT_CATEGORIES = [
     title: 'Broader Agriculture',
     slug: 'broader-agriculture',
     description: 'Comprehensive agricultural products including pulses, legumes, and specialty crops. Our broad portfolio supports diverse food manufacturing needs with reliable supply and consistent quality.',
-    image: '/assets/our-products__product-card--pulses.png',
+    image: '/assets/our-products__product-card--pulses.webp',
     link: '/products/broader-agriculture'
   }
 ]

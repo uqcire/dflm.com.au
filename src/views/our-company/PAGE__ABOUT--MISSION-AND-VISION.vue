@@ -154,7 +154,7 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
 
                 <!-- Right Column - Image -->
                 <div>
-                    <ComponentImageDisplay src="/assets/mission-values__sustainable-farming.png"
+                    <ComponentImageDisplay src="/assets/mission-values__sustainable-farming.webp"
                         alt="Farmer harvesting fresh garlic leaves by hand, symbolizing sustainable farming and human care in agriculture"
                         size="lg" variant="plain" object-fit="cover" class="w-full h-full rounded-lg" />
                 </div>

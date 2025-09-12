@@ -6,7 +6,7 @@ export const serviceImportDistribution = {
   hero: {
     title: 'Reliable Import and Distribution for Food Supply',
     subtitle: 'Connecting global sources with local demand through certified, large-scale, and dependable logistics solutions.',
-    image: '/assets/import__hero--importers-trade-partners-port.png',
+    image: '/assets/import__hero--importers-trade-partners-port.webp',
     overlayOpacity: '50',
     fullWidth: true
   },

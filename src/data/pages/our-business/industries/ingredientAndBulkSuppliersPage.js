@@ -15,7 +15,7 @@ export const ingredientAndBulkSuppliersPage = {
     hero: {
         title: 'Supplying Ingredients and Bulk Commodities with Scale and Reliability',
         subtitle: 'E-Sunrise Group Australia partners with bulk suppliers and ingredient traders, delivering garlic, dehydrated vegetables, pulses, and condiments at scale. With HACCP and ISO certifications, we guarantee consistency, compliance, and reliable supply.',
-        backgroundImage: '/assets/industries__card--ingredient-bulk-suppliers.png',
+        backgroundImage: '/assets/industries__card--ingredient-bulk-suppliers.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -88,7 +88,7 @@ export const ingredientAndBulkSuppliersPage = {
         og: {
             title: 'Ingredient & Bulk Suppliers - E-Sunrise Australia',
             description: 'Bulk food ingredients for industrial applications. 100,000+ tons annual capacity of pulses, legumes, and dehydrated vegetables.',
-            image: 'https://dflm.com.au/assets/industries__card--ingredient-bulk-suppliers.png',
+            image: 'https://dflm.com.au/assets/industries__card--ingredient-bulk-suppliers.webp',
             url: 'https://dflm.com.au/our-businesses/industries/ingredient-and-bulk-suppliers',
             type: 'website'
         },
@@ -96,7 +96,7 @@ export const ingredientAndBulkSuppliersPage = {
             card: 'summary_large_image',
             title: 'Ingredient & Bulk Suppliers - E-Sunrise Australia',
             description: 'Bulk food ingredients for industrial applications. 100,000+ tons annual capacity of pulses, legumes, and dehydrated vegetables.',
-            image: 'https://dflm.com.au/assets/industries__card--ingredient-bulk-suppliers.png'
+            image: 'https://dflm.com.au/assets/industries__card--ingredient-bulk-suppliers.webp'
         },
         structuredData: {
             '@context': 'https://schema.org',
@@ -104,7 +104,7 @@ export const ingredientAndBulkSuppliersPage = {
             name: 'E-Sunrise Australia',
             description: 'Bulk food ingredients supplier for industrial applications in Australia',
             url: 'https://dflm.com.au',
-            logo: 'https://dflm.com.au/assets/brand__logo--icon.png',
+            logo: 'https://dflm.com.au/assets/brand__logo--icon.webp',
             address: {
                 '@type': 'PostalAddress',
                 addressCountry: 'AU'

@@ -2,7 +2,7 @@ export const foodServiceAndDistributionPage = {
     hero: {
         title: 'Supporting Food Service & Distribution Excellence',
         subtitle: 'From restaurants and catering groups to wholesale distributors, E-Sunrise Group Australia delivers safe, certified, and consistent ingredients at scale. With a strong cold-chain network and regulatory expertise, we keep your kitchens stocked and your business moving.',
-        backgroundImage: '/assets/industries__card--food-service-distribution.png',
+        backgroundImage: '/assets/industries__card--food-service-distribution.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -74,7 +74,7 @@ export const foodServiceAndDistributionPage = {
         og: {
             title: 'Food Service & Distribution - E-Sunrise Australia',
             description: 'Premium food ingredients for restaurants, caterers, and food service distributors. Reliable supply chain solutions with cold-chain logistics.',
-            image: 'https://dflm.com.au/assets/industries__card--food-service-distribution.png',
+            image: 'https://dflm.com.au/assets/industries__card--food-service-distribution.webp',
             url: 'https://dflm.com.au/our-businesses/industries/food-service-and-distribution',
             type: 'website'
         },
@@ -82,7 +82,7 @@ export const foodServiceAndDistributionPage = {
             card: 'summary_large_image',
             title: 'Food Service & Distribution - E-Sunrise Australia',
             description: 'Premium food ingredients for restaurants, caterers, and food service distributors. Reliable supply chain solutions with cold-chain logistics.',
-            image: 'https://dflm.com.au/assets/industries__card--food-service-distribution.png'
+            image: 'https://dflm.com.au/assets/industries__card--food-service-distribution.webp'
         },
         structuredData: {
             '@context': 'https://schema.org',
@@ -90,7 +90,7 @@ export const foodServiceAndDistributionPage = {
             name: 'E-Sunrise Australia',
             description: 'Premium food ingredients supplier for food service and distribution in Australia',
             url: 'https://dflm.com.au',
-            logo: 'https://dflm.com.au/assets/brand__logo--icon.png',
+            logo: 'https://dflm.com.au/assets/brand__logo--icon.webp',
             address: {
                 '@type': 'PostalAddress',
                 addressCountry: 'AU'

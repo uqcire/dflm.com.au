@@ -7,7 +7,7 @@ export const snacksConsumer = {
     hero: {
         title: 'Snacks & Consumer Products That Delight',
         subtitle: 'From premium garlic snacks to innovative consumer products, E-Sunrise Australia delivers authentic flavors and quality that consumers trust. Our consumer-focused range combines traditional craftsmanship with modern convenience.',
-        backgroundImage: '/assets/our-products__product-card--snacks-and-consumer-products.png',
+        backgroundImage: '/assets/our-products__product-card--snacks-and-consumer-products.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -31,52 +31,52 @@ export const snacksConsumer = {
         categories: [
             {
                 title: 'Gold Pack Black Garlic',
-                image: '/assets/our-products__consumers--gold-pack-black-garlic.png',
+                image: '/assets/our-products__consumers--gold-pack-black-garlic.webp',
                 specs: null
             },
             {
                 title: 'Black Garlic Gift Box',
-                image: '/assets/our-products__consumers--black-garlic-gift-box.png',
+                image: '/assets/our-products__consumers--black-garlic-gift-box.webp',
                 specs: null
             },
             {
                 title: 'Black Garlic Gift Set',
-                image: '/assets/our-products__consumers--black-garlic-gift-set.png',
+                image: '/assets/our-products__consumers--black-garlic-gift-set.webp',
                 specs: null
             },
             {
                 title: 'Black Garlic Jar',
-                image: '/assets/our-products__consumers--black-garlic-jar.png',
+                image: '/assets/our-products__consumers--black-garlic-jar.webp',
                 specs: null
             },
             {
                 title: 'Haosuandao Black Garlic Gift Pack',
-                image: '/assets/our-products__consumers--haosuandao-black-garlic-gift-pack.png',
+                image: '/assets/our-products__consumers--haosuandao-black-garlic-gift-pack.webp',
                 specs: null
             },
             {
                 title: 'Black Garlic Probiotics Oral Liquid',
-                image: '/assets/our-products__consumers--black-garlic-oral-liquid.png',
+                image: '/assets/our-products__consumers--black-garlic-oral-liquid.webp',
                 specs: null
             },
             {
                 title: 'Black Garlic Soy Vinegar',
-                image: '/assets/our-products__consumers--black-garlic-soy-vinegar.png',
+                image: '/assets/our-products__consumers--black-garlic-soy-vinegar.webp',
                 specs: null
             },
             {
                 title: 'Black Garlic Gelatin Cake',
-                image: '/assets/our-products__consumers--black-garlic-gelatin-cake.png',
+                image: '/assets/our-products__consumers--black-garlic-gelatin-cake.webp',
                 specs: null
             },
             {
                 title: 'Zhang\'s Organic Black Garlic Snack',
-                image: '/assets/our-products__consumers--zhang-organic-black-garlic.png',
+                image: '/assets/our-products__consumers--zhang-organic-black-garlic.webp',
                 specs: null
             },
             {
                 title: 'Garlic Chips',
-                image: '/assets/our-prodcuts__consumers--garlic-chips.png',
+                image: '/assets/our-prodcuts__consumers--garlic-chips.webp',
                 specs: null
             },
         ]

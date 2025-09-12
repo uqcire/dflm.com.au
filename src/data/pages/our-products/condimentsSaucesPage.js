@@ -7,7 +7,7 @@ export const condimentsSauces = {
     hero: {
         title: 'Flavors That Inspire, Quality That Scales',
         subtitle: 'From garlic sauces to custom condiments, E-Sunrise Australia crafts certified, versatile, and scalable flavor solutions for food manufacturers, retailers, and private label brands worldwide.',
-        backgroundImage: '/assets/our-products__product-card--condiments-and-sauces.png',
+        backgroundImage: '/assets/our-products__product-card--condiments-and-sauces.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -31,47 +31,47 @@ export const condimentsSauces = {
         categories: [
             {
                 title: 'Black Garlic Beef Sauce',
-                image: '/assets/our-products__sauce--black-garlic-beef-sauce.png',
+                image: '/assets/our-products__sauce--black-garlic-beef-sauce.webp',
                 specs: null
             },
             {
                 title: 'Minced Black Garlic Black Bean Beef Sauce',
-                image: '/assets/our-products__sauce--beef-black-garlic-black-bean-suace.png',
+                image: '/assets/our-products__sauce--beef-black-garlic-black-bean-suace.webp',
                 specs: null
             },
             {
                 title: 'Chilli Black Garlic Beef Sauce',
-                image: '/assets/our-products__sauce--chilli-black-garlic-beef-sauce.png',
+                image: '/assets/our-products__sauce--chilli-black-garlic-beef-sauce.webp',
                 specs: null
             },
             {
                 title: 'All-Purpose Spicy Garlic Sauce',
-                image: '/assets/our-products__sauce--garlic--all-purpose.png',
+                image: '/assets/our-products__sauce--garlic--all-purpose.webp',
                 specs: null
             },
             {
                 title: 'Steam & Roast Garlic Sauce',
-                image: '/assets/our-products__sauce--garlic--roast.png',
+                image: '/assets/our-products__sauce--garlic--roast.webp',
                 specs: null
             },
             {
                 title: 'Umami Garlic Sauce',
-                image: '/assets/our-products__sauce--garlic--umami.png',
+                image: '/assets/our-products__sauce--garlic--umami.webp',
                 specs: null
             },
             {
                 title: 'Golden Broth Beef Hotpot Seasoning',
-                image: '/assets/our-products__sauce--golden-broth-beef-hotpot-seasoning.png',
+                image: '/assets/our-products__sauce--golden-broth-beef-hotpot-seasoning.webp',
                 specs: null
             },
             {
                 title: 'Golden Broth Lobster Hotpot Seasoning',
-                image: '/assets/our-products__sauce--golden-broth-lobster-hotpot-seasoning.png',
+                image: '/assets/our-products__sauce--golden-broth-lobster-hotpot-seasoning.webp',
                 specs: null
             },
             {
                 title: 'Seasoning Packet',
-                image: '/assets/our-products__sauce--seasoning-packet.png',
+                image: '/assets/our-products__sauce--seasoning-packet.webp',
                 specs: null
             },
         ]

@@ -1,0 +1,20 @@
+/* WebP Fallback CSS - Auto-generated */
+/* This CSS provides fallback for browsers that don't support WebP */
+
+@supports not (background-image: url('data:image/webp;base64,UklGRhoBAABXRUJQVlA4TA4BAABwAAAQAA=')) {
+  /* Fallback styles for non-WebP browsers */
+  .hero-image,
+  .service-card-image,
+  .product-image {
+    /* These will fall back to PNG if WebP is not supported */
+  }
+}
+
+/* WebP support detection */
+.webp .hero-image {
+  background-image: url('/assets/home__hero--factory-building.webp');
+}
+
+.no-webp .hero-image {
+  background-image: url('/assets/home__hero--factory-building.png');
+}

@@ -14,7 +14,7 @@ export const freshProduce = {
     hero: {
         title: 'Fresh Produce Delivered With Trust',
         subtitle: 'E-Sunrise Australia sources premium garlic, onions, ginger, and seasonal vegetables directly from growers. With cold-chain logistics and HACCP certification, we ensure freshness, safety, and consistency from farm to market.',
-        backgroundImage: '/assets/our-products__product-card--fresh-vegetables.png',
+        backgroundImage: '/assets/our-products__product-card--fresh-vegetables.webp',
         overlayOpacity: '50',
         fullWidth: true
     },
@@ -50,130 +50,130 @@ export const freshProduce = {
         categories: [
             {
                 title: '“ZLM” Brand Fresh Garlic',
-                image: '/assets/our-products__fresh-produce--zlm-fresh-garlic.png',
+                image: '/assets/our-products__fresh-produce--zlm-fresh-garlic.webp',
             },
             {
                 title: '3 PCS Mesh Bag Garlic',
-                image: '/assets/our-products__fresh-produce--3-pcs-mesh-bag-garlic.png',
+                image: '/assets/our-products__fresh-produce--3-pcs-mesh-bag-garlic.webp',
 
             },
             {
                 title: '5 PCS Mesh Bag Garlic',
-                image: '/assets/our-products__fresh-produce--5-pcs-mesh-bag-garlic.png',
+                image: '/assets/our-products__fresh-produce--5-pcs-mesh-bag-garlic.webp',
 
             },
             {
                 title: 'Yellow Potatoes',
-                image: '/assets/our-products__fresh-produce--yellow-potato.png',
+                image: '/assets/our-products__fresh-produce--yellow-potato.webp',
 
             },
             {
                 title: 'Red Potatoes',
-                image: '/assets/our-products__fresh-produce--red-potato.png',
+                image: '/assets/our-products__fresh-produce--red-potato.webp',
 
             },
             {
                 title: 'Yellow Onions',
-                image: '/assets/our-products__fresh-produce--yellow-onion.png',
+                image: '/assets/our-products__fresh-produce--yellow-onion.webp',
 
             },
             {
                 title: 'Red Onions',
-                image: '/assets/our-products__fresh-produce--red-onions.png',
+                image: '/assets/our-products__fresh-produce--red-onions.webp',
 
             },
             {
                 title: 'Peeled Onions',
-                image: '/assets/our-products__fresh-produce--peeled-onions.png',
+                image: '/assets/our-products__fresh-produce--peeled-onions.webp',
 
             },
             {
                 title: 'Wombok (Chinese Cabbage)',
-                image: '/assets/our-products__fresh-produce--wombok.png',
+                image: '/assets/our-products__fresh-produce--wombok.webp',
 
             },
             {
                 title: 'Cauliflowers',
-                image: '/assets/our-products__fresh-produce--cauliflowers.png',
+                image: '/assets/our-products__fresh-produce--cauliflowers.webp',
 
             },
             {
                 title: 'Broccoli',
-                image: '/assets/our-products__fresh-produce--broccoli.png',
+                image: '/assets/our-products__fresh-produce--broccoli.webp',
 
             },
             {
                 title: 'Carrots',
-                image: '/assets/our-products__fresh-produce--carrots.png',
+                image: '/assets/our-products__fresh-produce--carrots.webp',
             },
             {
                 title: 'Celery',
-                image: '/assets/our-products__fresh-produce--celery.png',
+                image: '/assets/our-products__fresh-produce--celery.webp',
 
             },
             {
                 title: 'Asparagus',
-                image: '/assets/our-products__fresh-produce--asparagus.png',
+                image: '/assets/our-products__fresh-produce--asparagus.webp',
 
             },
             {
                 title: 'Leek',
-                image: '/assets/our-products__fresh-produce--leek.png',
+                image: '/assets/our-products__fresh-produce--leek.webp',
 
             },
             {
                 title: 'Cabbages',
-                image: '/assets/our-products__fresh-produce--cabbages.png',
+                image: '/assets/our-products__fresh-produce--cabbages.webp',
 
             },
             {
                 title: 'Purple Cabbages',
-                image: '/assets/our-products__fresh-produce--purple-cabbages.png',
+                image: '/assets/our-products__fresh-produce--purple-cabbages.webp',
 
             },
             {
                 title: 'Lettuce',
-                image: '/assets/our-products__fresh-produce--lettuce.png',
+                image: '/assets/our-products__fresh-produce--lettuce.webp',
             },
             {
                 title: 'Garlic Sprouts',
-                image: '/assets/our-products__fresh-produce--garlic-sprouts.png',
+                image: '/assets/our-products__fresh-produce--garlic-sprouts.webp',
 
             },
             {
                 title: 'Red Chillis',
-                image: '/assets/our-products__fresh-produce--red-chillis.png',
+                image: '/assets/our-products__fresh-produce--red-chillis.webp',
 
             },
             {
                 title: 'White Radish',
-                image: '/assets/our-products__fresh-produce--white-radish.png',
+                image: '/assets/our-products__fresh-produce--white-radish.webp',
             },
             {
                 title: 'Fresh Ginger',
-                image: '/assets/our-products__fresh-produce--fresh-ginger.png',
+                image: '/assets/our-products__fresh-produce--fresh-ginger.webp',
             },
             {
                 title: 'Carton Packed Ginger',
-                image: '/assets/our-products__fresh-produce--carton-packed-ginger.png',
+                image: '/assets/our-products__fresh-produce--carton-packed-ginger.webp',
             },
             {
                 title: 'Mesh Bag Packaging Ginger',
-                image: '/assets/our-products__fresh-produce--mesh-bag-packaging-ginger.png',
+                image: '/assets/our-products__fresh-produce--mesh-bag-packaging-ginger.webp',
             },
             {
                 title: 'PVC Packaging Ginger (Green Label)',
-                image: '/assets/our-products__fresh-produce--pvc-packaging-ginger--green-label.png',
+                image: '/assets/our-products__fresh-produce--pvc-packaging-ginger--green-label.webp',
 
             },
             {
                 title: 'PVC Packaging Ginger (White Label)',
-                image: '/assets/our-products__fresh-produce--pvc-packaging-ginger--white-label.png',
+                image: '/assets/our-products__fresh-produce--pvc-packaging-ginger--white-label.webp',
 
             },
             {
                 title: 'PVC Packaging Ginger (Apollo Brand)',
-                image: '/assets/our-products__fresh-produce--pvc-packaging-ginger--apollo-brand.png',
+                image: '/assets/our-products__fresh-produce--pvc-packaging-ginger--apollo-brand.webp',
             },
         ]
     },
@@ -219,7 +219,7 @@ export const freshProduce = {
             name: 'E-Sunrise Australia',
             description: 'Premium fresh produce supplier in Australia',
             url: 'https://dflm.com.au',
-            logo: 'https://dflm.com.au/assets/brand__logo--icon.png',
+            logo: 'https://dflm.com.au/assets/brand__logo--icon.webp',
             address: {
                 '@type': 'PostalAddress',
                 addressCountry: 'AU'
