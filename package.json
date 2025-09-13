@@ -30,6 +30,7 @@
     "glob": "^11.0.3",
     "rollup-plugin-visualizer": "^6.0.3",
     "sharp": "^0.34.3",
+    "terser": "^5.44.0",
     "unplugin-auto-import": "^20.1.0",
     "unplugin-vue-components": "^29.0.0",
     "vite-plugin-compression": "^0.5.1"

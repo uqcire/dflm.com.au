@@ -38,15 +38,12 @@ onUnmounted(() => {
             <RouterLink to="/"
                 class="header__brand flex items-center gap-3 no-underline transition-opacity duration-200 hover:opacity-90"
                 :aria-label="`${title} - Home`">
-                <img src="/assets/brand__logo--icon.webp" :alt="`${title} logo`"
-                    class="header__logo h-8 w-auto flex-shrink-0 sm:h-10" />
+                <img src="/assets/brand__logo--icon.webp" :alt="`${title} logo`" style="height: 40px; width: auto;"
+                    class="header__logo h-10 w-10 flex-shrink-0 sm:h-10" />
                 <div class="header__brand-text flex flex-col">
                     <span
                         class="header__title text-lg font-semibold font-heading text-white leading-tight sm:text-xl lg:text-2xl">
                         {{ title }}
-                    </span>
-                    <span v-if="tagline" class="header__tagline text-xs font-body text-monza-100 opacity-90">
-                        {{ tagline }}
                     </span>
                 </div>
             </RouterLink>

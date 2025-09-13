@@ -85,9 +85,7 @@ export function createVitePlugins(options = {}) {
     // TAILWIND CSS PLUGIN
     // =============================================================================
 
-    tailwindcss({
-      config: './tailwind.config.js'
-    }),
+    tailwindcss(),
 
     // =============================================================================
     // AUTO IMPORT PLUGIN

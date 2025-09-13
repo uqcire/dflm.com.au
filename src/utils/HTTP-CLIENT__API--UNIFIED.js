@@ -160,7 +160,7 @@ export function getToken() {
 export function setToken(token, remember = false) {
   try {
     if (isServer) return
-    
+
     if (remember) {
       localStorage.setItem(TOKEN_KEY, token)
       sessionStorage.removeItem(TOKEN_KEY)
@@ -202,13 +202,13 @@ export function isAuthenticated() {
  */
 export function reLogIn() {
   removeToken()
-  
+
   // Custom event for components to listen to
   if (!isServer) {
     window.dispatchEvent(new CustomEvent('auth:logout', {
       detail: { reason: 'session_expired' }
     }))
-    
+
     // Redirect to login page if we're in a browser
     if (window.location && !window.location.pathname.includes('/login')) {
       window.location.href = '/login'
@@ -234,18 +234,18 @@ export function showAlert({ text, type = 'info', title = 'Notice', duration }) {
   if (window.notifications) {
     const notificationMethod = {
       error: 'error',
-      warning: 'warning', 
+      warning: 'warning',
       success: 'success',
       info: 'info'
     }[type] || 'info'
-    
+
     window.notifications[notificationMethod](text, {
       title,
       duration: duration !== undefined ? duration : (type === 'error' ? 0 : 5000)
     })
     return
   }
-  
+
   // Try Element Plus if available
   if (window.ElMessage) {
     window.ElMessage({
@@ -256,7 +256,7 @@ export function showAlert({ text, type = 'info', title = 'Notice', duration }) {
     })
     return
   }
-  
+
   // Try Vue global message
   if (window.Vue && window.Vue.prototype && window.Vue.prototype.$message) {
     window.Vue.prototype.$message({
@@ -265,15 +265,15 @@ export function showAlert({ text, type = 'info', title = 'Notice', duration }) {
     })
     return
   }
-  
+
   // Dispatch custom event for components to handle
   window.dispatchEvent(new CustomEvent('app:alert', {
     detail: { text, type, title }
   }))
-  
+
   // Fallback to console and browser alert for errors
   console.log(`[${type.toUpperCase()}] ${title}: ${text}`)
-  
+
   // Show browser alert only for critical errors as last resort
   if (type === 'error' && !window.notifications && !window.ElMessage) {
     window.alert(`${title}: ${text}`)
@@ -402,10 +402,10 @@ const createHttpInstance = () => {
         // If we can't set isAxiosError, just add our own property
         error.isHttpClientError = true;
       }
-      
+
       // Always set our custom property
       error.isHttpClientError = true;
-      
+
       // Handle network errors
       if (error.code === 'ECONNABORTED') {
         showAlert({
@@ -414,7 +414,7 @@ const createHttpInstance = () => {
           title: 'Timeout',
           duration: 8000
         })
-        
+
         // Report to global error handler for tracking
         if (window.globalErrorHandler) {
           window.globalErrorHandler.processError(
@@ -429,7 +429,7 @@ const createHttpInstance = () => {
         // Server responded with error status
         const status = error.response.status
         const message = HTTP_STATUS_MESSAGES[status] || 'An error occurred'
-        
+
         if (status === 401) {
           showAlert({
             text: 'Your session has expired. Redirecting to login...',
@@ -446,7 +446,7 @@ const createHttpInstance = () => {
             title: 'Server Error',
             duration: 8000
           })
-          
+
           // Report server errors to global handler
           if (window.globalErrorHandler) {
             window.globalErrorHandler.processError(
@@ -476,7 +476,7 @@ const createHttpInstance = () => {
           title: 'Connection Error',
           duration: 8000
         })
-        
+
         // Report network errors to global handler
         if (window.globalErrorHandler) {
           window.globalErrorHandler.processError(
@@ -504,7 +504,7 @@ const createHttpInstance = () => {
         method: error.config?.method,
         stack: error.stack
       })
-      
+
       return Promise.reject(error)
     }
   )
@@ -635,7 +635,7 @@ export async function upload(url, formData, config = {}) {
       ...config.headers,
     },
   }
-  
+
   return post(url, formData, uploadConfig)
 }
 
@@ -686,14 +686,14 @@ export default httpInstance
 
 /*
 // Type checking
-import { isString, isArray, ifNull } from './HTTP-CLIENT__API--UNIFIED'
+import { isString, isArray, ifNull } from '@/utils/HTTP-CLIENT__API--UNIFIED'
 
 if (isString(data.name)) {
   console.log('Name is valid')
 }
 
 // Authentication
-import { setToken, isAuthenticated, getToken } from './HTTP-CLIENT__API--UNIFIED'
+import { setToken, isAuthenticated, getToken } from '@/utils/HTTP-CLIENT__API--UNIFIED'
 
 // Login
 const loginResponse = await post('/auth/login', { email, password })
@@ -705,7 +705,7 @@ if (isAuthenticated()) {
 }
 
 // HTTP requests
-import { get, post, put, del } from './HTTP-CLIENT__API--UNIFIED'
+import { get, post, put, del } from '@/utils/HTTP-CLIENT__API--UNIFIED'
 
 // Simple requests
 const users = await get('/users')

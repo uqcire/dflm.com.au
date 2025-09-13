@@ -11,12 +11,12 @@ const currentYear = ref(new Date().getFullYear())
         <div class="mx-auto max-w-7xl p-4 lg:pt-16 lg:pb-0">
             <div class="footer__top pb-8">
                 <el-row :gutter="24" justify="space-between">
-                    <el-col :span="24" :lg="6">
+                    <el-col :span="24" :lg="6" class="sm:pt-8 lg:pt-0">
                         <!-- Company Info -->
                         <div class="footer__section flex flex-col gap-4">
                             <div class="footer__brand flex items-center gap-4">
                                 <img src="/assets/brand__logo--icon.webp" alt="E‑Sunrise Australia"
-                                    class="footer__logo h-10 w-auto" />
+                                    class="footer__logo h-10 w-auto" style="height: 40px; width: auto;" />
                                 <div class="footer__brand-text flex flex-col gap-2">
                                     <span class="footer__title text-xl font-semibold font-heading">E‑Sunrise
                                         Australia</span>
@@ -36,7 +36,7 @@ const currentYear = ref(new Date().getFullYear())
                             <div v-for="(section, index) in footerLinks" :key="index"
                                 class="footer__section pb-4 border-b-2 border-tree-poppy-400 lg:border-b-0 lg:pb-0">
                                 <h3 class="footer__heading text-lg font-bold font-playfair mb-4 pb-6">{{ section.title
-                                }}
+                                    }}
                                 </h3>
                                 <ul class="footer__links space-y-2">
                                     <li v-for="(link, linkIndex) in section.links" :key="linkIndex"

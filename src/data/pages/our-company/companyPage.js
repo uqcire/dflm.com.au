@@ -44,7 +44,7 @@ export const companyPage = {
   // Company History Section
   ourHistory: {
     title: 'Two Decades of Trust and Transformation',
-    subtitle: 'Founded in 2002 as Jiangsu Liming Food Group, we’ve grown from an agricultural pioneer in China to a trusted international food manufacturer. In 2024, E-Sunrise Group Australia was established, bringing our global strength closer to the Australian market.',
+    subtitle: 'Founded in 2002 as Jiangsu Liming Food Group, we’ve grown from an agricultural pioneer in China to a trusted international food manufacturer. In 2024, E-Sunrise Australia was established, bringing our global strength closer to the Australian market.',
     backgroundImage: '/assets/about__section--our-history.webp',
     fullWidth: true,
     overlayOpacity: '50',
@@ -85,7 +85,7 @@ export const companyPage = {
       },
       {
         title: 'Capabilities That Power Food Supply Chains',
-        description: 'E-Sunrise Group Australia delivers certified food ingredients with manufacturing strength, cold-chain logistics, and OEM solutions, ensuring reliable supply, full traceability, and compliance for Australia\'s food industry.',
+        description: 'E-Sunrise Australia delivers certified food ingredients with manufacturing strength, cold-chain logistics, and OEM solutions, ensuring reliable supply, full traceability, and compliance for Australia\'s food industry.',
         image: '/assets/about__section--capabilities.webp',
         linkText: 'Partner With Us for Reliable Supply',
         linkUrl: '/our-businesses/oem-and-private-label',

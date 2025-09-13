@@ -43,7 +43,7 @@ defineProps({
     transform: translateY(-1px);
 }
 
-.challenge-card:deep {
+.challenge-card :deep(*) {
     background: transparent !important;
     border: none !important;
 }
