@@ -43,6 +43,11 @@ const runWhenIdle = (callback) => {
   }
 }
 
+// 将应用挂载也推迟到下一个事件循环，避免阻塞初始渲染
+const mountApp = () => {
+  app.mount('#app')
+}
+
 runWhenIdle(() => {
   // 动态加载错误处理并初始化
   import('@/utils/ERROR-HANDLER__GLOBAL--SYSTEM').then(({ globalErrorHandler }) => {
@@ -73,8 +78,8 @@ app.config.errorHandler = (error, componentInstance, errorInfo) => {
 // Setup application
 setupRouter(app)
 
-// Mount application
-app.mount('#app')
+// Mount application (deferred to next tick to reduce initial blocking)
+setTimeout(mountApp, 0)
 
 // 将日志输出推迟到空闲时间，避免阻塞渲染
 runWhenIdle(() => {

@@ -38,7 +38,7 @@ const currentYear = ref(new Date().getFullYear())
                             <div v-for="(section, index) in footerLinks" :key="index"
                                 class="footer__section pb-4 border-b-2 border-tree-poppy-400 lg:border-b-0 lg:pb-0">
                                 <h3 class="footer__heading text-lg font-bold font-playfair mb-4 pb-6">{{ section.title
-                                }}
+                                    }}
                                 </h3>
                                 <ul class="footer__links space-y-2">
                                     <li v-for="(link, linkIndex) in section.links" :key="linkIndex"
