@@ -1,5 +1,5 @@
-@import url("https://use.typekit.net/dcp0ukb.css");
 @import "tailwindcss";
+@import url("https://use.typekit.net/dcp0ukb.css");
 
 @theme {
   --font-playfair: "playfair-display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;

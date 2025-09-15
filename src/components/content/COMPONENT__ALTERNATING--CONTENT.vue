@@ -25,8 +25,8 @@ const props = defineProps({
     },
     imageSize: {
         type: String,
-        default: 'xl',
-        validator: (value) => ['sm', 'md', 'lg', 'xl', '2xl'].includes(value)
+        default: 'lg',
+        validator: (value) => ['xs', 'sm', 'md', 'lg', 'xl', '2xl'].includes(value)
     },
     imageClass: {
         type: String,

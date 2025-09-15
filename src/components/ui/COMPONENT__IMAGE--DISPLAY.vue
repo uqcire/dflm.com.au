@@ -11,7 +11,7 @@ defineProps({
     size: {
         type: String,
         default: 'md',
-        validator: (value) => ['xs', 'sm', 'md', 'lg', 'xl'].includes(value)
+        validator: (value) => ['xs', 'sm', 'md', 'lg', 'xl', '2xl'].includes(value)
     },
     variant: {
         type: String,
@@ -33,11 +33,23 @@ defineProps({
 // Size mappings for different breakpoints
 const getSizeClasses = (size) => {
     const sizeMap = {
-        xs: 'w-88 h-88 md:w-40 md:h-40',
-        sm: 'w-88 h-88 md:w-64 md:h-64',
-        md: 'w-88 h-88 md:w-80 md:h-80',
-        lg: 'w-88 h-88 md:w-128 md:h-128',
-        xl: 'w-88 h-88 md:w-160 md:h-160'
+        // Extra Small - For icons and small thumbnails
+        xs: 'w-16 h-16 md:w-20 md:h-20',
+        
+        // Small - For social media icons and small cards
+        sm: 'w-24 h-24 md:w-32 md:h-32',
+        
+        // Medium - For product cards and medium content images
+        md: 'w-32 h-32 md:w-48 md:h-48',
+        
+        // Large - For section images and featured content
+        lg: 'w-40 h-40 md:w-64 md:h-64',
+        
+        // Extra Large - For hero images and large banners
+        xl: 'w-48 h-48 md:w-80 md:h-80',
+        
+        // 2XL - For full-width hero sections
+        '2xl': 'w-56 h-56 md:w-96 md:h-96'
     }
     return sizeMap[size] || sizeMap.md
 }

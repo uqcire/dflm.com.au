@@ -59,10 +59,10 @@ export function createVitePlugins(options = {}) {
     vue({
       // Include files to be processed as Vue components
       include: [/\.vue$/],
-      
+
       // Enable reactive transform (experimental)
       reactivityTransform: false,
-      
+
       // Script setup options
       script: {
         // Enable defining props, emits, etc. in script setup
@@ -70,7 +70,7 @@ export function createVitePlugins(options = {}) {
         // Enable props destructuring
         propsDestructure: true
       },
-      
+
       // Template compilation options
       template: {
         // Compile template with optimized mode
@@ -90,7 +90,7 @@ export function createVitePlugins(options = {}) {
     // =============================================================================
     // AUTO IMPORT PLUGIN
     // =============================================================================
-    
+
     /**
      * unplugin-auto-import
      * 
@@ -129,17 +129,17 @@ export function createVitePlugins(options = {}) {
           /\.vue\?vue/,    // .vue files with query
           /\.md$/          // .md files (for documentation)
         ],
-        
+
         // What to auto-import
         imports: [
           // Vue 3 core functions
           'vue',
-          
+
           // Vue Router functions
           'vue-router',
-          
-              // Vue and Vue Router functions only
-          
+
+          // Vue and Vue Router functions only
+
           // Custom auto-imports
           {
             // Import specific functions from HTTP client
@@ -157,28 +157,28 @@ export function createVitePlugins(options = {}) {
               'isEmpty',
               'ifNull'
             ],
-            
+
             // Import commonly used stores
             '@/stores/auth': ['useAuthStore'],
             '@/stores/ui': ['useUIStore']
           }
         ],
-        
+
         // Generate TypeScript declaration file
         dts: true,
-                
+
         // Custom resolvers for special cases
         resolvers: [
           // Add custom resolvers here if needed
           ElementPlusResolver({ importStyle: 'css' })
         ],
-        
+
         // Directories to scan for auto-imports
         dirs: [
           './src/composables/**',
           './src/utils/**'
         ],
-        
+
         // Development-only imports
         ...(isDev && {
           imports: [
@@ -194,7 +194,7 @@ export function createVitePlugins(options = {}) {
     // =============================================================================
     // COMPONENT AUTO-REGISTRATION PLUGIN
     // =============================================================================
-    
+
     /**
      * unplugin-vue-components
      * 
@@ -235,13 +235,13 @@ export function createVitePlugins(options = {}) {
         'src/components',
         'src/views'
       ],
-      
+
       // File extensions to include
       extensions: ['vue', 'tsx', 'jsx'],
-      
+
       // Include subdirectories
       deep: true,
-      
+
       // Component naming convention
       // Uses BEM naming: COMPONENT__NAME--VARIANT.vue
       resolvers: [
@@ -250,24 +250,24 @@ export function createVitePlugins(options = {}) {
         ElementPlusResolver({ importStyle: 'css' }),
         ...componentResolvers
       ],
-      
+
       // Generate TypeScript declarations
       dts: true,
-      
+
       // Transform component names
       // COMPONENT__BUTTON--PRIMARY.vue → ComponentButtonPrimary
       directoryAsNamespace: false,
-      
+
       // Global component registration
       globalNamespaces: ['global'],
-      
+
       // Include/exclude patterns
       include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/, /\.jsx$/],
       exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
-      
+
       // Custom component transformation
       transformer: 'vue3',
-      
+
       // Allow overrides
       allowOverrides: true
     }),
@@ -275,7 +275,7 @@ export function createVitePlugins(options = {}) {
     // =============================================================================
     // BUILD OPTIMIZATION PLUGINS
     // =============================================================================
-    
+
     /**
      * vite-plugin-compression
      * 
@@ -302,28 +302,28 @@ export function createVitePlugins(options = {}) {
       viteCompression({
         // Compression algorithm
         algorithm: 'gzip',
-        
+
         // File extension for compressed files
         ext: '.gz',
-        
+
         // Only compress files larger than this threshold (10KB)
         threshold: 10240,
-        
+
         // Don't delete original files after compression
         deleteOriginFile: false,
-        
+
         // Show compression results in console
         verbose: true,
-        
+
         // Compression level (1-9, 9 is highest compression)
         compressionOptions: {
           level: 9
         },
-        
+
         // File types to compress
         filter: /\.(js|mjs|json|css|html|svg)$/i
       }),
-      
+
       // Optional: Brotli compression (better than gzip)
       viteCompression({
         algorithm: 'brotliCompress',
@@ -366,25 +366,25 @@ export function createVitePlugins(options = {}) {
       visualizer({
         // Output file location
         filename: 'dist/stats.html',
-        
+
         // Auto-open analysis page after build
         open: true,
-        
+
         // Analyze gzip compressed sizes
         gzipSize: true,
-        
+
         // Analyze brotli compressed sizes  
         brotliSize: true,
-        
+
         // Template type for visualization
         template: 'treemap', // Options: treemap, sunburst, network
-        
+
         // Include source map information
         sourcemap: true,
-        
+
         // Project root for relative paths
         projectRoot: process.cwd(),
-        
+
         // Title for the analysis page
         title: 'Bundle Analysis - Project Development Environment'
       })
@@ -484,23 +484,23 @@ export function getPluginInfo() {
  */
 export function validatePluginConfig(options = {}) {
   const errors = []
-  
+
   if (options.componentResolvers && !Array.isArray(options.componentResolvers)) {
     errors.push('componentResolvers must be an array')
   }
-  
+
   if (typeof options.enableAutoImport !== 'undefined' && typeof options.enableAutoImport !== 'boolean') {
     errors.push('enableAutoImport must be a boolean')
   }
-  
+
   if (typeof options.enableCompression !== 'undefined' && typeof options.enableCompression !== 'boolean') {
     errors.push('enableCompression must be a boolean')
   }
-  
+
   if (typeof options.enableBundleAnalysis !== 'undefined' && typeof options.enableBundleAnalysis !== 'boolean') {
     errors.push('enableBundleAnalysis must be a boolean')
   }
-  
+
   return {
     isValid: errors.length === 0,
     errors

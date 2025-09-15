@@ -179,7 +179,7 @@ const navigateToPage = (path) => {
   <!-- Our Businesses -->
   <ComponentSection spacing="sm" containerSize="full" background="transparent">
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
-      <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" />
+      <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" :imageSize="sm" />
     </ComponentContainer>
   </ComponentSection>
 

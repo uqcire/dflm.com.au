@@ -73,7 +73,7 @@ import ComponentExploreMore from '@/components/content/COMPONENT__EXPLORE--MORE.
       <!-- Products Grid -->
       <ComponentGrid :columns="{ base: 1, md: 2, lg: 3 }" gap="lg" align="stretch">
         <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
-          variant="detailed" :showLink="true" :showSpecs="true" linkText="View Product Details" />
+          variant="standard" :showLink="true" linkText="View Product Details" imageFit="object-cover" />
       </ComponentGrid>
     </ComponentContainer>
   </ComponentSection>

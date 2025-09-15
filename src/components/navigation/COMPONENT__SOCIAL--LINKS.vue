@@ -46,10 +46,11 @@ defineProps({
 const getSizeClasses = (size) => {
     switch (size) {
         case 'small':
-            return 'w-8 h-8'
+            return 'w-4 h-4'
         case 'large':
             return 'w-12 h-12'
         case 'medium':
+            return 'w-8 h-8'
         default:
             return 'w-10 h-10'
     }
@@ -60,8 +61,9 @@ const getIconSizeClasses = (size) => {
         case 'small':
             return 'w-4 h-4'
         case 'large':
-            return 'w-8 h-8'
+            return 'w-4 h-4'
         case 'medium':
+            return 'w-12 h-12'
         default:
             return 'w-6 h-6'
     }
