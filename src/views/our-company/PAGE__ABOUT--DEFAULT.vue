@@ -83,7 +83,7 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
           <!-- Statistics Grid -->
           <ComponentGrid :columns="{ base: 1, md: 3 }" gap="lg" class="pt-8">
             <!-- Revenue -->
-            <div class="text-center">
+            <div class="lg:text-center text-left">
               <div class="pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
                   100,000+ tons
@@ -95,11 +95,10 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
             </div>
 
             <!-- People -->
-            <div class="text-center">
+            <div class="lg:text-center text-left">
               <div class="pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
-                  20+ <br>
-                  years
+                  20+ years
                 </div>
               </div>
               <p class="font-body text-sm text-pickled-bluewood-700">
@@ -108,7 +107,7 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
             </div>
 
             <!-- Years -->
-            <div class="text-center">
+            <div class="lg:text-center text-left">
               <div class="pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
                   60+ countries
@@ -127,7 +126,7 @@ import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
   <!-- Our Edge & Capabilities -->
   <ComponentSection id="capabilities" containerSize="full" spacing="sm" background="transparent">
     <ComponentContainer size="xl" padding="sm" :constrainWidth="true">
-      <ComponentAlternatingContent :sections="companyPage.capabilities.sections" />
+      <ComponentAlternatingContent :sections="companyPage.capabilities.sections" imageSize="2xl" />
     </ComponentContainer>
   </ComponentSection>
 

@@ -10,7 +10,7 @@ export const industriesPage = {
     title: 'Powering Food Supply Across Industries',
     subtitle: 'We combine large-scale manufacturing with trusted supply chain expertise to deliver certified, reliable, and versatile food solutions. Serving manufacturers, distributors, supermarkets, and trade partners, we power growth across the entire food industry.',
     backgroundImage: '/assets/industries__hero--infrastructure-scale.webp',
-    overlayOpacity: '50',
+    overlayOpacity: '40',
     fullWidth: true
   },
 

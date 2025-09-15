@@ -26,7 +26,7 @@ const props = defineProps({
     imageSize: {
         type: String,
         default: 'lg',
-        validator: (value) => ['xs', 'sm', 'md', 'lg', 'xl', '2xl'].includes(value)
+        validator: (value) => ['xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full'].includes(value)
     },
     imageClass: {
         type: String,
@@ -63,8 +63,8 @@ const props = defineProps({
                 section.imagePosition === 'right' ? 'order-1 lg:order-2' : 'order-1',
                 imageClass
             ]">
-                <ComponentImageDisplay :src="section.image" :alt="section.title" :size="section.imageSize || imageSize"
-                    variant="plain" object-fit="cover" :class="section.imageClass || ''" />
+                <ComponentImageDisplay :src="section.image" :alt="section.title" :size="imageSize || section.imageSize"
+                    variant="plain" :object-fit="'fill'" :class="section.imageClass || ''" />
             </div>
 
             <!-- Content Column -->

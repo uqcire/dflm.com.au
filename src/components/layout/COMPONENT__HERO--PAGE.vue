@@ -65,8 +65,10 @@ const getImageSizeClasses = (size) => {
     ]">
         <!-- Full Width Background Image -->
         <div v-if="fullWidth && backgroundImage" class="absolute inset-0 w-full h-full">
-            <img :src="backgroundImage" :alt="title" class="w-full h-full object-cover" />
-            <div :class="`absolute inset-0 bg-black/${overlayOpacity}`"></div>
+            <img :src="backgroundImage" :alt="title"
+                class="w-full h-full object-cover object-center min-h-full min-w-full" loading="eager" decoding="async"
+                style="object-position: center center;" />
+            <div :class="`absolute inset-0 bg-black/${overlayOpacity} mobile:bg-black/30`"></div>
         </div>
 
         <div :class="[
@@ -129,9 +131,49 @@ const getImageSizeClasses = (size) => {
 .hero-full-width {
     position: relative;
     height: 100vh;
+    height: 100dvh;
+    /* Use dynamic viewport height for mobile */
     overflow: hidden;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
+}
+
+/* Ensure background image covers entire container */
+.hero-full-width img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .hero-full-width {
+        height: 100vh;
+        height: 100svh;
+        /* Use small viewport height for mobile */
+        min-height: 500px;
+        /* Ensure minimum height */
+    }
+
+    .hero-full-width img {
+        object-position: center center;
+        /* Ensure proper image positioning */
+        min-height: 100%;
+        /* Ensure image covers full height */
+        width: 100%;
+        /* Ensure image covers full width */
+    }
+
+    /* Improve text readability on mobile */
+    .hero-full-width .text-white {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
 }
 </style>

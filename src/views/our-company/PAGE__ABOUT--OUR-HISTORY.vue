@@ -73,8 +73,11 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
                             </div>
                             <!-- Image on right for center placement, left for top placement -->
                             <div class="flex-shrink-0" :class="{ 'order-1 lg:order-2': item.placement === 'center' }">
-                                <ComponentImageDisplay :src="item.image" :alt="item.imageAlt" size="xs" variant="plain"
-                                    object-fit="cover" class="rounded-lg" />
+                                <div class="h-48 w-48">
+                                    <ComponentImageDisplay :src="item.image" :alt="item.imageAlt" size="sm"
+                                        variant="plain" object-fit="cover" class="rounded-lg" />
+                                </div>
+
                             </div>
                         </div>
                     </el-card>
@@ -100,9 +103,9 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
                         {{ historyPage.futureVision.buttonText }}
                     </router-link>
                 </div>
-                <div>
+                <div class="h-full">
                     <ComponentImageDisplay :src="historyPage.futureVision.image"
-                        :alt="historyPage.futureVision.imageAlt" size="lg" variant="plain" object-fit="cover"
+                        :alt="historyPage.futureVision.imageAlt" size="2xl" variant="plain" object-fit="cover"
                         class="rounded-lg" />
                 </div>
             </ComponentGrid>
@@ -125,5 +128,27 @@ html {
 /* Section transitions */
 section {
     transition: all 0.3s ease;
+}
+
+/* Ensure the image display component fills its container */
+:deep(.image-display-wrapper) {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+:deep(.image-display-wrapper img) {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
 }
 </style>

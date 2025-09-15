@@ -91,12 +91,12 @@ const navigateToPage = (link) => {
             <!-- Cards Grid -->
             <ComponentGrid :columns="columns" :gap="gap" align="stretch">
                 <el-card v-for="(card, index) in cards" :key="index"
-                    class="explore-card h-88 cursor-pointer transition-transform duration-300 hover:scale-105 relative overflow-hidden"
+                    class="explore-card lg:h-96 h-72 cursor-pointer transition-transform duration-300 hover:scale-105 relative overflow-hidden"
                     shadow="always" @click="navigateToPage(card.link)">
                     <!-- Full Background Image -->
                     <div class="absolute inset-0 w-full h-full">
-                        <ComponentImageDisplay :src="card.image" :alt="card.alt" size="xl" variant="plain"
-                            object-fit="cover" loading="lazy" class="w-full h-full" />
+                        <ComponentImageDisplay :src="card.image" :alt="card.alt || card.title" size="full"
+                            variant="plain" :object-fit="'cover'" loading="lazy" class="w-full h-full" />
                         <!-- Dark Overlay for Text Readability -->
                         <div class="absolute inset-0 bg-black/50"></div>
                     </div>
@@ -141,5 +141,33 @@ const navigateToPage = (link) => {
 
 :deep(.el-card__body) {
     padding: 0;
+}
+
+/* Ensure the image container fills the card completely */
+.explore-card {
+    position: relative;
+    /* h-96 = 24rem */
+}
+
+/* Ensure the image display component fills its container */
+:deep(.image-display-wrapper) {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+:deep(.image-display-wrapper img) {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
 }
 </style>

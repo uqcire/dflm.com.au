@@ -18,13 +18,13 @@ import ComponentAlternatingContent from '@/components/content/COMPONENT__ALTERNA
   </ComponentSection>
 
   <!-- Sub Navigation -->
-  <ComponentSection spacing="xs" background="transparent" style="padding-bottom: 0px;">
+  <ComponentSection spacing="xs" background="transparent" :style="'padding-top: 0px; padding-bottom: 0px;'">
     <ComponentNavigation :isSubNavigation="true" :subNavItems="businessesPage.services.items"
       :sticky="businessesPage.services.sticky" />
   </ComponentSection>
 
   <!-- Statement Section -->
-  <ComponentSection spacing="xs" background="transparent" style="padding-top: 0px;">
+  <ComponentSection spacing="xs" background="transparent">
     <ComponentContainer size="sm" padding="sm">
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold pb-8 text-pickled-bluewood-800 leading-tight">
         Driving Reliability Across Food Manufacturing and Supply
@@ -44,14 +44,14 @@ import ComponentAlternatingContent from '@/components/content/COMPONENT__ALTERNA
   <ComponentSection spacing="sm" containerSize="full" background="transparent"
     :style="'background-color: hsl(var(--tree-poppy-100))'">
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
-      <ComponentAlternatingContent :sections="businessesPage.serviceSections" imageSize="lg" />
+      <ComponentAlternatingContent :sections="businessesPage.serviceSections" imageSize="2xl" />
     </ComponentContainer>
   </ComponentSection>
 
   <!-- Industries -->
   <ComponentSection spacing="sm" containerSize="full" background="transparent">
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
-      <ComponentAlternatingContent :sections="businessesPage.industrySections" imageSize="lg" />
+      <ComponentAlternatingContent :sections="businessesPage.industrySections" imageSize="2xl" />
     </ComponentContainer>
   </ComponentSection>
 

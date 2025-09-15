@@ -17,32 +17,44 @@ export const contactPage = {
       <p>Contact us today to discuss your requirements and learn how we can support your business.</p>
     `,
   },
-  locations: {
-    xuzhou: {
+  locations: [
+    {
+      id: 'xuzhou',
+      name: 'Xuzhou, China',
       image: '/assets/contact__locations--xuzhou-office.webp',
       alt: 'Xuzhou, China'
     },
-    pizhou: {
+    {
+      id: 'pizhou',
+      name: 'Pizhou, China',
       image: '/assets/contact__locations--pizhou-office.webp',
       alt: 'Pizhou, China'
     },
-    melbourne: {
+    {
+      id: 'melbourne',
+      name: 'Melbourne, Australia',
       image: '/assets/contact__locations--melbourne-office.webp',
       alt: 'Melbourne, Australia'
     },
-    bangkok: {
+    {
+      id: 'bangkok',
+      name: 'Bangkok, Thailand',
       image: '/assets/contact__locations--bangkok-office.webp',
       alt: 'Bangkok, Thailand'
     },
-    jakarta: {
+    {
+      id: 'jakarta',
+      name: 'Jakarta, Indonesia',
       image: '/assets/contact__locations--jarkata-office.webp',
       alt: 'Jakarta, Indonesia'
     },
-    hochi: {
+    {
+      id: 'hochi',
+      name: 'Vietnam, Ho Chi Minh City',
       image: '/assets/contact__locations--hochi-office.webp',
       alt: 'Ho Chi Minh City, Vietnam'
     }
-  },
+  ],
   seo: {
     title: 'Contact Us - E-Sunrise Australia | Food Import & Distribution',
     description: 'Contact E-Sunrise Australia for your food import and distribution needs. Get in touch with our team for quality ingredients and reliable service.',

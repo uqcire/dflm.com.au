@@ -54,77 +54,13 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
 
                 <div class="mx-auto">
                     <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="xl">
-
-                        <!-- Xuzhou Location -->
-                        <ComponentContainer padding="none" size="md" :constrainWidth="false"
-                            class="flex flex-col gap-2">
-                            <ComponentImageDisplay :src="contactPage.locations.xuzhou.image"
-                                :alt="contactPage.locations.xuzhou.alt" size="md" variant="plain" objectFit="cover" />
-                            <div class="text-sm text-pickled-bluewood-700">
-                                <p>
-                                    Xuzhou, China
-                                </p>
-                            </div>
-                        </ComponentContainer>
-
-                        <!-- Pizhou Location -->
-                        <ComponentContainer padding="none" size="md" :constrainWidth="false"
-                            class="flex flex-col gap-2">
-                            <ComponentImageDisplay :src="contactPage.locations.pizhou.image"
-                                :alt="contactPage.locations.pizhou.alt" size="md" variant="plain" objectFit="cover" />
-                            <div class="text-sm text-pickled-bluewood-700">
-                                <p>
-                                    Pizhou, China
-                                </p>
-                            </div>
-                        </ComponentContainer>
-
-                        <!-- Australia Location -->
-                        <ComponentContainer padding="none" size="md" :constrainWidth="false"
-                            class="flex flex-col gap-2">
-                            <ComponentImageDisplay :src="contactPage.locations.melbourne.image"
-                                :alt="contactPage.locations.melbourne.alt" size="md" variant="plain"
+                        <!-- Location Cards -->
+                        <ComponentContainer v-for="location in contactPage.locations" :key="location.id" padding="none"
+                            size="md" :constrainWidth="false" class="flex flex-col gap-2">
+                            <ComponentImageDisplay :src="location.image" :alt="location.alt" size="lg" variant="plain"
                                 objectFit="cover" />
                             <div class="text-sm text-pickled-bluewood-700">
-                                <p>
-                                    Melbourne, Australia
-                                </p>
-                            </div>
-                        </ComponentContainer>
-
-                        <!-- Thailand Location -->
-                        <ComponentContainer padding="none" size="md" :constrainWidth="false"
-                            class="flex flex-col gap-2">
-                            <ComponentImageDisplay :src="contactPage.locations.bangkok.image"
-                                :alt="contactPage.locations.bangkok.alt" size="md" variant="plain" objectFit="cover" />
-                            <div class="text-sm text-pickled-bluewood-700">
-                                <p>
-                                    Bangkok, Thailand
-                                </p>
-                            </div>
-                        </ComponentContainer>
-
-                        <!-- Indonesia Location -->
-                        <ComponentContainer padding="none" size="md" :constrainWidth="false"
-                            class="flex flex-col gap-2">
-                            <ComponentImageDisplay :src="contactPage.locations.jakarta.image"
-                                :alt="contactPage.locations.jakarta.alt" size="md" variant="plain" objectFit="cover" />
-                            <div class="text-sm text-pickled-bluewood-700">
-                                <p>
-                                    Jakarta, Indonesia
-                                </p>
-                            </div>
-                        </ComponentContainer>
-
-                        <!-- Vietnam Location -->
-                        <ComponentContainer padding="none" size="md" :constrainWidth="false"
-                            class="flex flex-col gap-2">
-                            <ComponentImageDisplay :src="contactPage.locations.hochi.image"
-                                :alt="contactPage.locations.hochi.alt" size="md" variant="plain" objectFit="cover" />
-                            <div class="text-sm text-pickled-bluewood-700">
-                                <p>
-                                    Vietnam, Ho Chi Minh City
-                                </p>
+                                <p>{{ location.name }}</p>
                             </div>
                         </ComponentContainer>
                     </ComponentGrid>
@@ -139,5 +75,5 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
         :style="exploreCards.contact.backgroundStyle" />
 </template>
 
-
+<style scoped></style>
 <style scoped></style>

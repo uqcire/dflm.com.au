@@ -135,7 +135,7 @@ const navigateToPage = (path) => {
           <!-- Statistics Grid -->
           <ComponentGrid :columns="{ base: 1, md: 3 }" gap="lg" class="pt-4">
             <!-- Revenue -->
-            <div class="text-center">
+            <div class="lg:text-center text-left">
               <div class=" pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
                   100,000+ tons
@@ -147,11 +147,10 @@ const navigateToPage = (path) => {
             </div>
 
             <!-- People -->
-            <div class="text-center">
+            <div class="lg:text-center text-left">
               <div class="pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
-                  20+ <br>
-                  years
+                  20+ years
                 </div>
               </div>
               <p class="font-body text-sm text-pickled-bluewood-700">
@@ -160,7 +159,7 @@ const navigateToPage = (path) => {
             </div>
 
             <!-- Years -->
-            <div class="text-center">
+            <div class="lg:text-center text-left">
               <div class=" pt-4 mb-2">
                 <div class="font-heading text-3xl font-bold text-pickled-bluewood-800">
                   60+ countries
@@ -179,7 +178,7 @@ const navigateToPage = (path) => {
   <!-- Our Businesses -->
   <ComponentSection spacing="sm" containerSize="full" background="transparent">
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
-      <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" :imageSize="sm" />
+      <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" imageSize="2xl" />
     </ComponentContainer>
   </ComponentSection>
 

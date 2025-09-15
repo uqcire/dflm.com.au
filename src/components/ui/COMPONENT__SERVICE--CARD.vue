@@ -1,5 +1,6 @@
 <script setup>
 import { ElCard } from 'element-plus'
+import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue'
 
 defineProps({
     service: {
@@ -59,8 +60,9 @@ const getTitleSize = (variant) => {
         ]" :body-style="{ padding: variant === 'minimal' ? '0' : '24px' }" :aria-label="`Service: ${service.title}`">
         <!-- Image Section - Top -->
         <div v-if="service.image" class="service-card__visual mb-6">
-            <div class="w-full h-64 rounded-lg overflow-hidden bg-slate-100">
-                <img :src="service.image" :alt="service.title" class="w-full h-full object-cover" />
+            <div class="w-full h-48 lg:h-72 rounded-lg overflow-hidden bg-slate-100">
+                <ComponentImageDisplay :src="service.image" :alt="service.title" size="2xl" variant="plain"
+                    :object-fit="'cover'" loading="lazy" class="w-full h-full" />
             </div>
         </div>
 
@@ -83,10 +85,10 @@ const getTitleSize = (variant) => {
             <!-- Action Button -->
             <div v-if="showLink" class="service-card__action mt-auto">
                 <router-link :to="service.linkUrl || '#'"
-                    class="inline-flex items-center text-sm font-medium font-body text-monza-600 no-underline transition-all duration-200 ease-out hover:text-monza-700 group"
+                    class="inline-flex items-center text-xs font-medium font-body text-monza-600 no-underline transition-all duration-200 ease-out hover:text-monza-700 group"
                     :aria-label="`${service.linkText || linkText} for ${service.title}`">
                     {{ service.linkText || linkText }}
-                    <span class="ml-2 text-sm transition-transform duration-200 group-hover:translate-x-1"
+                    <span class="ml-2 text-xs transition-transform duration-200 group-hover:translate-x-1"
                         aria-hidden="true">→</span>
                 </router-link>
             </div>
@@ -120,6 +122,8 @@ const getTitleSize = (variant) => {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transform: translateY(-2px);
 }
+
+
 
 /* Essential responsive overrides that can't be done with Tailwind alone */
 @media (max-width: 767px) {

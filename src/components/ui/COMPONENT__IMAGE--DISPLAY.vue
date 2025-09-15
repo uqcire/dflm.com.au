@@ -11,7 +11,7 @@ defineProps({
     size: {
         type: String,
         default: 'md',
-        validator: (value) => ['xs', 'sm', 'md', 'lg', 'xl', '2xl'].includes(value)
+        validator: (value) => ['xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full'].includes(value)
     },
     variant: {
         type: String,
@@ -20,7 +20,7 @@ defineProps({
     },
     objectFit: {
         type: String,
-        default: 'contain',
+        default: 'cover',
         validator: (value) => ['contain', 'cover', 'fill', 'none', 'scale-down'].includes(value)
     },
     loading: {
@@ -34,22 +34,25 @@ defineProps({
 const getSizeClasses = (size) => {
     const sizeMap = {
         // Extra Small - For icons and small thumbnails
-        xs: 'w-16 h-16 md:w-20 md:h-20',
-        
+        xs: 'w-auto h-16 md:w-20 md:h-20',
+
         // Small - For social media icons and small cards
-        sm: 'w-24 h-24 md:w-32 md:h-32',
-        
+        sm: 'w-auto h-24 md:w-32 md:h-32',
+
         // Medium - For product cards and medium content images
-        md: 'w-32 h-32 md:w-48 md:h-48',
-        
+        md: 'w-auto h-32 md:w-48 md:h-48',
+
         // Large - For section images and featured content
-        lg: 'w-40 h-40 md:w-64 md:h-64',
-        
+        lg: 'w-48 h-48 md:w-64 md:h-64',
+
         // Extra Large - For hero images and large banners
-        xl: 'w-48 h-48 md:w-80 md:h-80',
-        
+        xl: 'w-64 h-64 md:w-80 md:h-80',
+
         // 2XL - For full-width hero sections
-        '2xl': 'w-56 h-56 md:w-96 md:h-96'
+        '2xl': 'w-auto h-72 md:w-128 md:h-96',
+
+        // Full - Maximum height and width (fills container)
+        full: 'w-full h-full'
     }
     return sizeMap[size] || sizeMap.md
 }
@@ -67,33 +70,44 @@ const getVariantClasses = (variant) => {
 
 // Object fit classes
 const getObjectFitClasses = (objectFit) => {
-    const objectFitMap = {
-        contain: 'object-contain',
-        cover: 'object-cover',
-        fill: 'object-fill',
-        none: 'object-none',
-        'scale-down': 'object-scale-down'
-    }
-    return objectFitMap[objectFit] || 'object-contain'
+    // Direct mapping to Tailwind classes
+    if (!objectFit) return 'object-cover'
+    return `object-${objectFit}`
 }
 </script>
 
 <template>
     <div :class="[
-        'image-display-wrapper transition-all duration-300',
+        'image-display-wrapper transition-all duration-300 overflow-hidden',
         getSizeClasses(size),
         getVariantClasses(variant),
         { 'flex items-center justify-center': variant !== 'plain' }
     ]">
         <img :src="src" :alt="alt" :loading="loading" :class="[
-            'transition-all duration-300',
+            'transition-all duration-300 w-full h-full',
             getObjectFitClasses(objectFit),
-            variant === 'plain' ? getSizeClasses(size) : 'max-w-full max-h-full'
+            'object-center',
+            variant === 'plain' ? '' : 'max-w-full max-h-full'
         ]" />
     </div>
 </template>
 
 <style scoped>
+/* Ensure image fills container completely */
+.image-display-wrapper {
+    position: relative;
+    display: block;
+}
+
+.image-display-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}
+
 /* Additional hover effects for variants */
 .image-display-wrapper:hover {
     transform: scale(1.02);

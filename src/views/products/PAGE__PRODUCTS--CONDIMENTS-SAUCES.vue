@@ -65,13 +65,13 @@ import { condimentsSauces } from '@/data/index.js'
                     {{ condimentsSauces.productCategories.description }}
                 </p>
             </div>
-            <ComponentGrid :columns="{ base: 1, md: 2, lg: 4 }" gap="lg">
+            <ComponentGrid :columns="{ base: 1, lg: 3 }" gap="lg">
                 <ComponentProductCard v-for="category in condimentsSauces.productCategories.categories"
                     :key="category.title" :product="{
                         title: category.title,
                         image: category.image,
                         specs: category.specs
-                    }" variant="detailed" imageFit="object-contain" />
+                    }" variant="standard" imageFit="contain" />
             </ComponentGrid>
         </ComponentContainer>
     </ComponentSection>

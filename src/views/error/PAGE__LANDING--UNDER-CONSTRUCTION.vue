@@ -7,7 +7,6 @@ const brand = 'E-Sunrise Australia'
         <el-container class="UC__container">
             <el-main>
                 <div class="UC__content ">
-                    <img class="UC__logo" src="/assets/brand__logo--icon.webp" alt="Logo" />
                     <h1 class="UC__title">
                         {{ brand }} is under construction
                     </h1>
@@ -59,7 +58,7 @@ const brand = 'E-Sunrise Australia'
 }
 
 .UC__logo {
-    @apply mb-6 opacity-90
+    @apply mb-6 opacity-90 flex items-center justify-center
 }
 
 .UC__title {

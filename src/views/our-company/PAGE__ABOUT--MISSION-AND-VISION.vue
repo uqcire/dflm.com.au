@@ -12,14 +12,14 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
 
 <template>
     <!-- Hero -->
-    <ComponentSection spacing="xs" :fullWidth="true">
+    <ComponentSection spacing="xs" :fullWidth="true" style="padding-bottom: 0px; padding-top: 0px">
         <ComponentHero :title="companyPage.mission.title" :subtitle="companyPage.mission.subtitle"
             :fullWidth="companyPage.mission.fullWidth" :backgroundImage="companyPage.mission.backgroundImage"
             :overlayOpacity="companyPage.mission.overlayOpacity" />
     </ComponentSection>
 
     <!-- Sub Navigation -->
-    <ComponentSection spacing="sm" background="subtle">
+    <ComponentSection spacing="sm" background="subtle" style="padding-top: 0px">
         <ComponentNavigation :isSubNavigation="true" :subNavItems="companyPage.subNavigation.mission"
             :sticky="companyPage.subNavigation.sticky" />
     </ComponentSection>
@@ -153,10 +153,10 @@ import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue
                 </div>
 
                 <!-- Right Column - Image -->
-                <div>
+                <div class="h-full">
                     <ComponentImageDisplay src="/assets/mission-values__sustainable-farming.webp"
                         alt="Farmer harvesting fresh garlic leaves by hand, symbolizing sustainable farming and human care in agriculture"
-                        size="lg" variant="plain" object-fit="cover" class="w-full h-full rounded-lg" />
+                        size="2xl" variant="plain" object-fit="cover" class="h-128 w-full rounded-lg" />
                 </div>
             </ComponentGrid>
         </ComponentContainer>
@@ -178,5 +178,27 @@ html {
 /* Section transitions */
 section {
     transition: all 0.3s ease;
+}
+
+/* Ensure the image display component fills its container */
+:deep(.image-display-wrapper) {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+:deep(.image-display-wrapper img) {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
 }
 </style>

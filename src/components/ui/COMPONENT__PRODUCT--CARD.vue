@@ -1,4 +1,6 @@
 <script setup>
+import ComponentImageDisplay from '@/components/ui/COMPONENT__IMAGE--DISPLAY.vue'
+
 defineProps({
     product: {
         type: Object,
@@ -29,7 +31,7 @@ defineProps({
     },
     imageFit: {
         type: String,
-        default: 'object-contain',
+        default: 'object-cover',
         validator: (value) => ['object-cover', 'object-contain', 'object-fill', 'object-scale-down', 'object-none'].includes(value)
     }
 })
@@ -48,7 +50,7 @@ const getVariantClasses = (variant) => {
 }
 
 const getImageHeight = (variant) => {
-    return 'h-48'
+    return 'h-56' // Increased from h-48 to h-56 for better proportions
 }
 
 const getContentPadding = (variant) => {
@@ -70,7 +72,8 @@ const getTitleSize = (variant) => {
         <!-- Product Image -->
         <div v-if="product.image && variant !== 'minimal'" class="w-full overflow-hidden border-b-6 border-monza-200"
             :class="getImageHeight(variant)">
-            <img :src="product.image" :alt="product.title" class="w-full h-full" :class="imageFit" />
+            <ComponentImageDisplay :src="product.image" :alt="product.title" size="2xl" variant="plain"
+                :objectFit="imageFit.replace('object-', '')" loading="lazy" class="w-full h-full" />
         </div>
 
         <!-- Product Content -->
@@ -123,5 +126,31 @@ const getTitleSize = (variant) => {
 
 .product-card:hover:not(.border-b) {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure the image container fills the card completely */
+.product-card {
+    position: relative;
+}
+
+/* Ensure the image display component fills its container */
+:deep(.image-display-wrapper) {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+:deep(.image-display-wrapper img) {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
 }
 </style>
