@@ -3,15 +3,60 @@ import { homePage, productsPage, exploreCards } from '@/data/index.js'
 import ComponentHero from '@/components/layout/COMPONENT__HERO--PAGE.vue'
 import ComponentSection from '@/components/layout/COMPONENT__SECTION.vue'
 import ComponentContainer from '@/components/layout/COMPONENT__CONTAINER.vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, ref, onMounted } from 'vue'
 import ComponentGrid from '@/components/layout/COMPONENT__GRID.vue'
 
-// 懒加载组件以减少主线程阻塞
-const ComponentProductCard = defineAsyncComponent(() => import('@/components/ui/COMPONENT__PRODUCT--CARD.vue'))
-const ComponentExploreMore = defineAsyncComponent(() => import('@/components/content/COMPONENT__EXPLORE--MORE.vue'))
-const ComponentCtaGetInTouch = defineAsyncComponent(() => import('@/components/forms/COMPONENT__CTA--GET-IN-TOUCH.vue'))
-const ComponentAlternatingContent = defineAsyncComponent(() => import('@/components/content/COMPONENT__ALTERNATING--CONTENT.vue'))
+// 懒加载组件以减少主线程阻塞 - 使用更激进的懒加载策略
+const ComponentProductCard = defineAsyncComponent({
+  loader: () => import('@/components/ui/COMPONENT__PRODUCT--CARD.vue'),
+  delay: 200,
+  timeout: 3000
+})
+const ComponentExploreMore = defineAsyncComponent({
+  loader: () => import('@/components/content/COMPONENT__EXPLORE--MORE.vue'),
+  delay: 200,
+  timeout: 3000
+})
+const ComponentCtaGetInTouch = defineAsyncComponent({
+  loader: () => import('@/components/forms/COMPONENT__CTA--GET-IN-TOUCH.vue'),
+  delay: 200,
+  timeout: 3000
+})
+const ComponentAlternatingContent = defineAsyncComponent({
+  loader: () => import('@/components/content/COMPONENT__ALTERNATING--CONTENT.vue'),
+  delay: 200,
+  timeout: 3000
+})
+
 import { useRouter } from 'vue-router'
+
+// 使用 Intersection Observer 来延迟加载非首屏组件
+const showProducts = ref(false)
+const showBusinesses = ref(false)
+const showCta = ref(false)
+const showExplore = ref(false)
+
+onMounted(() => {
+  // 延迟加载产品卡片
+  setTimeout(() => {
+    showProducts.value = true
+  }, 100)
+  
+  // 延迟加载业务信息
+  setTimeout(() => {
+    showBusinesses.value = true
+  }, 300)
+  
+  // 延迟加载CTA
+  setTimeout(() => {
+    showCta.value = true
+  }, 500)
+  
+  // 延迟加载探索更多
+  setTimeout(() => {
+    showExplore.value = true
+  }, 700)
+})
 
 // Navigation
 const router = useRouter()
@@ -108,17 +153,24 @@ const navigateToPage = (path) => {
     <!-- Bottom Product Cards - 懒加载以减少主线程阻塞 -->
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
       <ComponentGrid :columns="{ base: 1, md: 2, lg: 3 }" gap="lg" class="mb-16">
-        <Suspense>
-          <template #default>
-            <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
-              variant="standard" :showSpecs="true" :showLink="true" imageFit="object-cover" />
-          </template>
-          <template #fallback>
-            <div class="col-span-full flex justify-center items-center h-32">
-              <div class="animate-pulse text-pickled-bluewood-600">Loading products...</div>
-            </div>
-          </template>
-        </Suspense>
+        <template v-if="showProducts">
+          <Suspense>
+            <template #default>
+              <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
+                variant="standard" :showSpecs="true" :showLink="true" imageFit="object-cover" />
+            </template>
+            <template #fallback>
+              <div class="col-span-full flex justify-center items-center h-32">
+                <div class="animate-pulse text-pickled-bluewood-600">Loading products...</div>
+              </div>
+            </template>
+          </Suspense>
+        </template>
+        <template v-else>
+          <div class="col-span-full flex justify-center items-center h-32">
+            <div class="animate-pulse text-pickled-bluewood-600">Preparing products...</div>
+          </div>
+        </template>
       </ComponentGrid>
 
     </ComponentContainer>
@@ -190,46 +242,67 @@ const navigateToPage = (path) => {
   <!-- Our Businesses - 懒加载以减少主线程阻塞 -->
   <ComponentSection spacing="sm" containerSize="full" background="transparent">
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
-      <Suspense>
-        <template #default>
-          <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" imageSize="2xl" />
-        </template>
-        <template #fallback>
-          <div class="flex justify-center items-center h-64">
-            <div class="animate-pulse text-pickled-bluewood-600">Loading business information...</div>
-          </div>
-        </template>
-      </Suspense>
+      <template v-if="showBusinesses">
+        <Suspense>
+          <template #default>
+            <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" imageSize="2xl" />
+          </template>
+          <template #fallback>
+            <div class="flex justify-center items-center h-64">
+              <div class="animate-pulse text-pickled-bluewood-600">Loading business information...</div>
+            </div>
+          </template>
+        </Suspense>
+      </template>
+      <template v-else>
+        <div class="flex justify-center items-center h-64">
+          <div class="animate-pulse text-pickled-bluewood-600">Preparing business information...</div>
+        </div>
+      </template>
     </ComponentContainer>
   </ComponentSection>
 
   <!-- Get in Touch - 懒加载 -->
-  <Suspense>
-    <template #default>
-      <ComponentCtaGetInTouch :title="homePage.getInTouch.title" :description="homePage.getInTouch.description"
-        :buttonText="homePage.getInTouch.buttonText" :buttonLink="homePage.getInTouch.buttonLink"
-        :background="homePage.getInTouch.background" :backgroundColor="homePage.getInTouch.backgroundColor"
-        :backgroundStyle="homePage.getInTouch.backgroundStyle" />
-    </template>
-    <template #fallback>
-      <div class="flex justify-center items-center h-32">
-        <div class="animate-pulse text-pickled-bluewood-600">Loading contact section...</div>
-      </div>
-    </template>
-  </Suspense>
+  <template v-if="showCta">
+    <Suspense>
+      <template #default>
+        <ComponentCtaGetInTouch :title="homePage.getInTouch.title" :description="homePage.getInTouch.description"
+          :buttonText="homePage.getInTouch.buttonText" :buttonLink="homePage.getInTouch.buttonLink"
+          :background="homePage.getInTouch.background" :backgroundColor="homePage.getInTouch.backgroundColor"
+          :backgroundStyle="homePage.getInTouch.backgroundStyle" />
+      </template>
+      <template #fallback>
+        <div class="flex justify-center items-center h-32">
+          <div class="animate-pulse text-pickled-bluewood-600">Loading contact section...</div>
+        </div>
+      </template>
+    </Suspense>
+  </template>
+  <template v-else>
+    <div class="flex justify-center items-center h-32">
+      <div class="animate-pulse text-pickled-bluewood-600">Preparing contact section...</div>
+    </div>
+  </template>
 
   <!-- Explore More - 懒加载 -->
-  <Suspense>
-    <template #default>
-      <ComponentExploreMore :title="exploreCards.home.title" :cards="exploreCards.home.cards"
-        :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.home.background"
-        :style="exploreCards.home.backgroundStyle" />
-    </template>
-    <template #fallback>
-      <div class="flex justify-center items-center h-32">
-        <div class="animate-pulse text-pickled-bluewood-600">Loading explore section...</div>
-      </div>
-    </template>
-  </Suspense>
+  <template v-if="showExplore">
+    <Suspense>
+      <template #default>
+        <ComponentExploreMore :title="exploreCards.home.title" :cards="exploreCards.home.cards"
+          :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.home.background"
+          :style="exploreCards.home.backgroundStyle" />
+      </template>
+      <template #fallback>
+        <div class="flex justify-center items-center h-32">
+          <div class="animate-pulse text-pickled-bluewood-600">Loading explore section...</div>
+        </div>
+      </template>
+    </Suspense>
+  </template>
+  <template v-else>
+    <div class="flex justify-center items-center h-32">
+      <div class="animate-pulse text-pickled-bluewood-600">Preparing explore section...</div>
+    </div>
+  </template>
 
 </template>

@@ -78,8 +78,15 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: true,
       rollupOptions: {
         output: {
-          // 让 Rollup 自动根据实际使用关系拆分，避免把未使用的库强行打入公共 chunk
-          // manualChunks 留空以利于更细粒度的 Tree Shaking 与懒加载
+          // 优化代码分割以减少关键请求链
+          manualChunks: {
+            // 将Vue核心库分离
+            'vue-vendor': ['vue', 'vue-router'],
+            // 将UI库分离
+            'ui-vendor': ['element-plus'],
+            // 将工具库分离
+            'utils-vendor': ['axios', 'qs']
+          },
           // 优化资源文件名 - 支持WebP和现代图片格式
           assetFileNames: (assetInfo) => {
             if (assetInfo.name.match(/\.(png|jpe?g|svg|gif|webp|avif)$/i)) {
@@ -92,7 +99,10 @@ export default defineConfig(({ mode }) => {
               return 'assets/css/[name]-[hash][extname]'
             }
             return 'assets/[name]-[hash][extname]'
-          }
+          },
+          // 优化chunk文件名
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js'
         }
       }
     },
