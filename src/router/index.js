@@ -1,6 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { updateRouteSEO } from '@/utils/SEO-MANAGER__DYNAMIC'
 
+// 将耗时操作延后到空闲时执行，避免在导航钩子中产生长任务
+const runWhenIdle = (callback) => {
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    window.requestIdleCallback(() => callback(), { timeout: 1500 })
+  } else {
+    setTimeout(() => callback(), 0)
+  }
+}
+
 // Routes configuration organized by category
 const routes = [
   // ========================================
@@ -470,21 +479,17 @@ router.beforeEach(async (to, from, next) => {
     ]
   }
 
-  // Update SEO using the utility
-  updateRouteSEO(to, seoData)
+  // Update SEO using the utility（延后执行以避免阻塞导航）
+  runWhenIdle(() => updateRouteSEO(to, seoData))
 
   next()
 })
 
 // Scroll to top on navigation
 router.afterEach((to, from) => {
-  // Scroll to top when navigating to a different page
+  // Scroll to top when navigating to a different page（避免 smooth 带来的额外主线程工作）
   if (to.path !== from.path) {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
+    window.scrollTo(0, 0)
   }
 })
 

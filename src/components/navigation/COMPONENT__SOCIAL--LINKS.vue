@@ -61,11 +61,25 @@ const getIconSizeClasses = (size) => {
         case 'small':
             return 'w-4 h-4'
         case 'large':
-            return 'w-4 h-4'
-        case 'medium':
             return 'w-12 h-12'
+        case 'medium':
+            return 'w-8 h-8'
         default:
             return 'w-6 h-6'
+    }
+}
+
+// Provide explicit pixel dimensions to reduce CLS
+const getIconPixelSize = (size) => {
+    switch (size) {
+        case 'small':
+            return 16
+        case 'large':
+            return 48
+        case 'medium':
+            return 32
+        default:
+            return 24
     }
 }
 
@@ -98,10 +112,11 @@ const getVariantClasses = (variant) => {
                 getSizeClasses(size),
                 getVariantClasses(variant)
             ]" :aria-label="`Follow us on ${link.name}`" target="_blank" rel="noopener noreferrer">
-                <img :src="iconMap[link.icon]" :alt="link.name" :class="[
-                    'social-links__icon',
-                    getIconSizeClasses(size)
-                ]" />
+                <img :src="iconMap[link.icon]" :alt="link.name" :width="getIconPixelSize(size)"
+                    :height="getIconPixelSize(size)" :class="[
+                        'social-links__icon',
+                        getIconSizeClasses(size)
+                    ]" />
             </a>
         </div>
     </div>

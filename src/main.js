@@ -1,7 +1,6 @@
 import { setupRouter } from '@/router'
 import { createApp } from 'vue'
 import App from '/APP__ROOT--MAIN.vue'
-import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
 import '@/styles/global.css'
 // 默认将 touch 与 wheel 事件设置为 passive，以提升滚动性能（移动端）
 (() => {
@@ -24,12 +23,16 @@ import '@/styles/global.css'
     return originalAddEventListener.call(this, type, listener, options)
   }
 })()
-import { initDefaultSEO } from '@/utils/SEO-MANAGER__DYNAMIC'
+// 动态加载以减少初始包体积
 
 const app = createApp(App)
 
-// Initialize global error handling before everything else
-globalErrorHandler.initialize()
+// 轻量占位，避免初始化前访问报错
+window.globalErrorHandler = {
+  initialize: () => { },
+  handleVueError: (e) => { if (import.meta.env.DEV) console.error(e) },
+  getStatistics: () => ({})
+}
 
 // 将非关键初始化推迟到浏览器空闲时执行，缩短首屏长任务
 const runWhenIdle = (callback) => {
@@ -41,18 +44,30 @@ const runWhenIdle = (callback) => {
 }
 
 runWhenIdle(() => {
-  // Initialize default SEO meta tags (非阻塞)
-  initDefaultSEO()
+  // 动态加载错误处理并初始化
+  import('@/utils/ERROR-HANDLER__GLOBAL--SYSTEM').then(({ globalErrorHandler }) => {
+    try {
+      globalErrorHandler.initialize()
+      window.globalErrorHandler = globalErrorHandler
+    } catch (e) { if (import.meta.env.DEV) console.error(e) }
+  })
+
+  // 动态加载并初始化默认 SEO（非阻塞）
+  import('@/utils/SEO-MANAGER__DYNAMIC').then(({ initDefaultSEO }) => {
+    try { initDefaultSEO() } catch (e) { if (import.meta.env.DEV) console.error(e) }
+  })
 })
 
 // Element Plus 不再全局注册；依赖按需自动导入（unplugin-auto-import & unplugin-vue-components）
 
-// Make global error handler accessible globally for HTTP client and other utilities
-window.globalErrorHandler = globalErrorHandler
-
 // Setup Vue error handler integration
 app.config.errorHandler = (error, componentInstance, errorInfo) => {
-  globalErrorHandler.handleVueError(error, componentInstance, errorInfo)
+  const geh = window.globalErrorHandler
+  if (geh && typeof geh.handleVueError === 'function') {
+    geh.handleVueError(error, componentInstance, errorInfo)
+  } else if (import.meta.env.DEV) {
+    console.error(error)
+  }
 }
 
 // Setup application
