@@ -41,17 +41,17 @@ onMounted(() => {
   setTimeout(() => {
     showProducts.value = true
   }, 100)
-  
+
   // 延迟加载业务信息
   setTimeout(() => {
     showBusinesses.value = true
   }, 300)
-  
+
   // 延迟加载CTA
   setTimeout(() => {
     showCta.value = true
   }, 500)
-  
+
   // 延迟加载探索更多
   setTimeout(() => {
     showExplore.value = true
