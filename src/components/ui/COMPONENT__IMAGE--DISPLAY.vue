@@ -83,7 +83,7 @@ const getObjectFitClasses = (objectFit) => {
         getVariantClasses(variant),
         { 'flex items-center justify-center': variant !== 'plain' }
     ]">
-        <img :src="src" :alt="alt" :loading="loading" :class="[
+        <img :src="src" :alt="alt" :loading="loading" decoding="async" fetchpriority="low" :class="[
             'transition-all duration-300 w-full h-full',
             getObjectFitClasses(objectFit),
             'object-center',

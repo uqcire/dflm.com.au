@@ -66,8 +66,8 @@ const getImageSizeClasses = (size) => {
         <!-- Full Width Background Image -->
         <div v-if="fullWidth && backgroundImage" class="absolute inset-0 w-full h-full">
             <img :src="backgroundImage" :alt="title"
-                class="w-full h-full object-cover object-center min-h-full min-w-full" loading="eager" decoding="async"
-                style="object-position: center center;" />
+                class="w-full h-full object-cover object-center min-h-full min-w-full" loading="lazy" decoding="async"
+                fetchpriority="low" style="object-position: center center;" />
             <div :class="`absolute inset-0 bg-black/${overlayOpacity} mobile:bg-black/30`"></div>
         </div>
 
@@ -111,7 +111,7 @@ const getImageSizeClasses = (size) => {
                     <!-- 16:9 Aspect Ratio Container -->
                     <div class="aspect-video w-full">
                         <img :src="image" :alt="title" class="w-full h-full transition-all duration-300 hover:scale-105"
-                            :class="imageFit" />
+                            :class="imageFit" loading="lazy" decoding="async" fetchpriority="low" />
                     </div>
                 </div>
             </div>

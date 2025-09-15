@@ -52,10 +52,7 @@
     <!-- DNS prefetch for external domains (if needed) -->
     <!-- <link rel="dns-prefetch" href="//api.example.com" /> -->
 
-    <!-- 预加载关键图片 (WebP格式) -->
-    <link rel="preload" href="/assets/home__hero--factory-building.webp" as="image">
-    <link rel="preload" href="/assets/home__service-card--supply-chain.webp" as="image">
-    <link rel="preload" href="/assets/home__service-card--manufacturing.webp" as="image">
+    <!-- 移除大图预加载，交由组件按需与懒加载控制，降低首屏网络负载 -->
 
     <!-- 预加载关键字体 -->
     <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
