@@ -110,8 +110,21 @@ const getImageSizeClasses = (size) => {
                 ]">
                     <!-- 16:9 Aspect Ratio Container -->
                     <div class="aspect-video w-full">
-                        <img :src="image" :alt="title" class="w-full h-full transition-all duration-300 hover:scale-105"
-                            :class="imageFit" loading="eager" decoding="async" fetchpriority="high" />
+                        <!-- Desktop-optimized responsive sources for the home hero image -->
+                        <picture v-if="image && image.includes('home__hero--factory-building.webp')">
+                            <source type="image/avif"
+                                srcset="/assets/hero-factory-768.avif 768w, /assets/hero-factory-1200.avif 1200w, /assets/hero-factory-1600.avif 1600w"
+                                sizes="(max-width: 1024px) 90vw, 1200px" />
+                            <source type="image/webp"
+                                srcset="/assets/hero-factory-768.webp 768w, /assets/hero-factory-1200.webp 1200w, /assets/hero-factory-1600.webp 1600w"
+                                sizes="(max-width: 1024px) 90vw, 1200px" />
+                            <img :src="image" :alt="title"
+                                class="w-full h-full transition-all duration-300 hover:scale-105" :class="imageFit"
+                                width="1200" height="675" loading="eager" decoding="async" fetchpriority="high" />
+                        </picture>
+                        <img v-else :src="image" :alt="title"
+                            class="w-full h-full transition-all duration-300 hover:scale-105" :class="imageFit"
+                            loading="eager" decoding="async" fetchpriority="high" />
                     </div>
                 </div>
             </div>

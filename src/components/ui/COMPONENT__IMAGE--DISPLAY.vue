@@ -1,5 +1,6 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+const props = defineProps({
     src: {
         type: String,
         required: true
@@ -27,6 +28,34 @@ defineProps({
         type: String,
         default: 'lazy',
         validator: (value) => ['lazy', 'eager'].includes(value)
+    }
+})
+
+// Build responsive sources for known large desktop images
+const responsiveInfo = computed(() => {
+    const srcValue = typeof props.src === 'string' ? props.src : ''
+    /** map original file -> generated base name */
+    const mapping = [
+        ['our-products__product-card--fresh-vegetables.webp', 'products-fresh'],
+        ['our-products__product-card--pulses.webp', 'products-pulses'],
+        ['home__service-card--supply-chain.webp', 'service-supply'],
+        ['our-products__product-card--snacks-and-consumer-products.webp', 'products-snacks'],
+        ['our-products__product-card--condiments-and-sauces.webp', 'products-condiments'],
+        ['our-products__product-card--processed-garlic.webp', 'products-garlic']
+    ]
+
+    const match = mapping.find(([needle]) => srcValue.includes(needle))
+    if (!match) return null
+
+    const base = match[1]
+    const widths = [600, 900, 1200]
+    const makeSet = (ext) => widths.map(w => `/assets/${base}-${w}.${ext} ${w}w`).join(', ')
+
+    return {
+        avif: makeSet('avif'),
+        webp: makeSet('webp'),
+        // A conservative sizes for product/section grids
+        sizes: '(max-width: 1024px) 90vw, 600px'
     }
 })
 
@@ -79,16 +108,27 @@ const getObjectFitClasses = (objectFit) => {
 <template>
     <div :class="[
         'image-display-wrapper transition-all duration-300 overflow-hidden',
-        getSizeClasses(size),
-        getVariantClasses(variant),
-        { 'flex items-center justify-center': variant !== 'plain' }
+        getSizeClasses(props.size),
+        getVariantClasses(props.variant),
+        { 'flex items-center justify-center': props.variant !== 'plain' }
     ]">
-        <img :src="src" :alt="alt" :loading="loading" decoding="async" fetchpriority="low" :class="[
-            'transition-all duration-300 w-full h-full',
-            getObjectFitClasses(objectFit),
-            'object-center',
-            variant === 'plain' ? '' : 'max-w-full max-h-full'
-        ]" />
+        <picture v-if="responsiveInfo">
+            <source type="image/avif" :srcset="responsiveInfo.avif" :sizes="responsiveInfo.sizes" />
+            <source type="image/webp" :srcset="responsiveInfo.webp" :sizes="responsiveInfo.sizes" />
+            <img :src="props.src" :alt="props.alt" :loading="props.loading" decoding="async" fetchpriority="low" :class="[
+                'transition-all duration-300 w-full h-full',
+                getObjectFitClasses(props.objectFit),
+                'object-center',
+                props.variant === 'plain' ? '' : 'max-w-full max-h-full'
+            ]" />
+        </picture>
+        <img v-else :src="props.src" :alt="props.alt" :loading="props.loading" decoding="async" fetchpriority="low"
+            :class="[
+                'transition-all duration-300 w-full h-full',
+                getObjectFitClasses(props.objectFit),
+                'object-center',
+                props.variant === 'plain' ? '' : 'max-w-full max-h-full'
+            ]" />
     </div>
 </template>
 
