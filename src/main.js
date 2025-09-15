@@ -31,8 +31,19 @@ const app = createApp(App)
 // Initialize global error handling before everything else
 globalErrorHandler.initialize()
 
-// Initialize default SEO meta tags
-initDefaultSEO()
+// 将非关键初始化推迟到浏览器空闲时执行，缩短首屏长任务
+const runWhenIdle = (callback) => {
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    window.requestIdleCallback(() => callback(), { timeout: 1500 })
+  } else {
+    setTimeout(() => callback(), 0)
+  }
+}
+
+runWhenIdle(() => {
+  // Initialize default SEO meta tags (非阻塞)
+  initDefaultSEO()
+})
 
 // Element Plus 不再全局注册；依赖按需自动导入（unplugin-auto-import & unplugin-vue-components）
 
@@ -50,7 +61,9 @@ setupRouter(app)
 // Mount application
 app.mount('#app')
 
-// Log successful initialization
-console.log('🚀 Application started with comprehensive error handling')
-console.log('📊 Error statistics available at: window.globalErrorHandler.getStatistics()')
-console.log('🔍 SEO initialized with dynamic meta tags and structured data')
+// 将日志输出推迟到空闲时间，避免阻塞渲染
+runWhenIdle(() => {
+  console.log('🚀 Application started with comprehensive error handling')
+  console.log('📊 Error statistics available at: window.globalErrorHandler.getStatistics()')
+  console.log('🔍 SEO initialized with dynamic meta tags and structured data')
+})
