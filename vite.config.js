@@ -78,11 +78,8 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: true,
       rollupOptions: {
         output: {
-          manualChunks: {
-            'vue-vendor': ['vue', 'vue-router'],
-            'ui-vendor': ['element-plus'],
-            'utils-vendor': ['axios']
-          },
+          // 让 Rollup 自动根据实际使用关系拆分，避免把未使用的库强行打入公共 chunk
+          // manualChunks 留空以利于更细粒度的 Tree Shaking 与懒加载
           // 优化资源文件名 - 支持WebP和现代图片格式
           assetFileNames: (assetInfo) => {
             if (assetInfo.name.match(/\.(png|jpe?g|svg|gif|webp|avif)$/i)) {
@@ -100,8 +97,7 @@ export default defineConfig(({ mode }) => {
       }
     },
 
-    optimizeDeps: {
-      include: ['vue', 'vue-router', 'axios', 'element-plus']
-    }
+    // 让依赖预打包遵循真实引用路径，避免把未使用的库（如 element-plus 全量）强行打入
+    optimizeDeps: {}
   }
 })
