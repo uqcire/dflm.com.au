@@ -136,7 +136,7 @@ export function generateBreadcrumbJsonLd(breadcrumbs) {
       '@type': 'ListItem',
       position: index + 1,
       name: crumb.name,
-      item: crumb.url
+      item: crumb.url.startsWith('http') ? crumb.url : `${SITE_URL}${crumb.url}`
     }))
   }
 }

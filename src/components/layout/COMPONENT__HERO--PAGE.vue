@@ -1,5 +1,9 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import COMPONENT__BREADCRUMB__NAVIGATION from '@/components/navigation/COMPONENT__BREADCRUMB--NAVIGATION.vue'
+
+const props = defineProps({
     title: {
         type: String,
         required: true
@@ -42,7 +46,46 @@ defineProps({
         type: String,
         default: '40',
         validator: (value) => ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90'].includes(value)
+    },
+    breadcrumbs: {
+        type: Array,
+        default: () => []
+    },
+    showBreadcrumbs: {
+        type: Boolean,
+        default: true
     }
+})
+
+const route = useRoute()
+
+// Generate breadcrumbs based on route if not provided
+const computedBreadcrumbs = computed(() => {
+    if (props.breadcrumbs && props.breadcrumbs.length > 0) {
+        return props.breadcrumbs
+    }
+
+    // Auto-generate breadcrumbs from route
+    const pathSegments = route.path.split('/').filter(Boolean)
+    const breadcrumbItems = [{ name: 'Home', path: '/' }]
+
+    let currentPath = ''
+    pathSegments.forEach((segment, index) => {
+        currentPath += `/${segment}`
+
+        // Convert route segment to readable name
+        const name = segment
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ')
+
+        breadcrumbItems.push({
+            name,
+            path: currentPath
+        })
+    })
+
+    return breadcrumbItems
 })
 
 // 16:9 aspect ratio image size mappings for different breakpoints
@@ -71,9 +114,19 @@ const getImageSizeClasses = (size) => {
             <div :class="`absolute inset-0 bg-black/${overlayOpacity} mobile:bg-black/30`"></div>
         </div>
 
-        <div :class="[
-            fullWidth ? 'relative z-10 h-full flex items-center justify-center px-4' : 'max-w-7xl mx-auto'
+        <!-- Breadcrumb Navigation - Top of Hero -->
+        <div v-if="showBreadcrumbs && computedBreadcrumbs.length > 1" :class="[
+            'flex justify-center pt-12 pl-12',
+            fullWidth ? 'relative z-10' : 'max-w-7xl mx-auto px-4'
         ]">
+            <COMPONENT__BREADCRUMB__NAVIGATION :items="computedBreadcrumbs"
+                :class="fullWidth ? 'breadcrumb--light' : 'breadcrumb--dark'" />
+        </div>
+
+        <div :class="[
+            fullWidth ? 'relative z-10 h-full flex flex-col justify-center px-4' : 'max-w-7xl mx-auto'
+        ]">
+
             <div :class="[
                 'text-center',
                 fullWidth ? 'text-white max-w-4xl mx-auto' : ''
@@ -133,6 +186,8 @@ const getImageSizeClasses = (size) => {
 </template>
 
 <style scoped>
+@import "tailwindcss" reference;
+
 /* Minimal scoped styles - everything else handled by Tailwind */
 
 /* Ensure aspect-video works properly */
@@ -188,5 +243,30 @@ const getImageSizeClasses = (size) => {
     .hero-full-width .text-white {
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
+}
+
+/* Breadcrumb styling for hero - minimal overrides only */
+.breadcrumb--light :deep(.el-breadcrumb__item) {
+    @apply text-white;
+}
+
+.breadcrumb--light :deep(.el-breadcrumb__inner) {
+    @apply text-white hover:text-[hsl(var(--tree-poppy-200))];
+}
+
+.breadcrumb--light :deep(.el-breadcrumb__separator) {
+    @apply text-white/70;
+}
+
+.breadcrumb--dark :deep(.el-breadcrumb__item) {
+    @apply text-slate-600;
+}
+
+.breadcrumb--dark :deep(.el-breadcrumb__inner) {
+    @apply text-slate-600 hover:text-[hsl(var(--monza-600))];
+}
+
+.breadcrumb--dark :deep(.el-breadcrumb__separator) {
+    @apply text-slate-400;
 }
 </style>

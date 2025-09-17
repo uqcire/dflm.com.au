@@ -417,6 +417,7 @@ const routes = [
     },
   },
 
+
   // ========================================
   // ERROR PAGES
   // ========================================
@@ -456,26 +457,53 @@ router.beforeEach(async (to, from, next) => {
   // Add breadcrumbs for detail pages
   if (to.name === 'product-detail' || to.name === 'industry-detail' || to.name === 'news-detail') {
     seoData.breadcrumbs = [
-      { name: 'Home', url: '/' },
-      { name: to.meta?.title, url: to.fullPath }
+      { name: 'Home', url: '/', path: '/' },
+      { name: to.meta?.title, url: to.fullPath, path: to.fullPath }
     ]
   }
 
   // Add breadcrumbs for product detail pages
   if (to.name && to.name.startsWith('products-') && to.name !== 'products') {
     seoData.breadcrumbs = [
-      { name: 'Home', url: '/' },
-      { name: 'Products', url: '/products' },
-      { name: to.meta?.title, url: to.fullPath }
+      { name: 'Home', url: '/', path: '/' },
+      { name: 'Products', url: '/products', path: '/products' },
+      { name: to.meta?.title, url: to.fullPath, path: to.fullPath }
     ]
   }
 
   // Add breadcrumbs for about sub-pages
   if (to.name === 'our-company-mission-vision') {
     seoData.breadcrumbs = [
-      { name: 'Home', url: '/' },
-      { name: 'Our Company', url: '/our-company' },
-      { name: to.meta?.title, url: to.fullPath }
+      { name: 'Home', url: '/', path: '/' },
+      { name: 'Our Company', url: '/our-company', path: '/our-company' },
+      { name: to.meta?.title, url: to.fullPath, path: to.fullPath }
+    ]
+  }
+
+  // Add breadcrumbs for business sub-pages
+  if (to.name && to.name.startsWith('our-business-') && to.name !== 'our-business') {
+    seoData.breadcrumbs = [
+      { name: 'Home', url: '/', path: '/' },
+      { name: 'Our Business', url: '/our-business', path: '/our-business' },
+      { name: to.meta?.title, url: to.fullPath, path: to.fullPath }
+    ]
+  }
+
+  // Add breadcrumbs for company sub-pages
+  if (to.name && to.name.startsWith('our-company-') && to.name !== 'our-company') {
+    seoData.breadcrumbs = [
+      { name: 'Home', url: '/', path: '/' },
+      { name: 'Our Company', url: '/our-company', path: '/our-company' },
+      { name: to.meta?.title, url: to.fullPath, path: to.fullPath }
+    ]
+  }
+
+  // Add breadcrumbs for news sub-pages
+  if (to.name && to.name.startsWith('news-') && to.name !== 'news') {
+    seoData.breadcrumbs = [
+      { name: 'Home', url: '/', path: '/' },
+      { name: 'News', url: '/news', path: '/news' },
+      { name: to.meta?.title, url: to.fullPath, path: to.fullPath }
     ]
   }
 

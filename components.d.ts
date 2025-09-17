@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     'COMPONENT__ALTERNATING-CONTENT': typeof import('./src/components/content/COMPONENT__ALTERNATING--CONTENT.vue')['default']
+    'COMPONENT__BREADCRUMB-NAVIGATION': typeof import('./src/components/navigation/COMPONENT__BREADCRUMB--NAVIGATION.vue')['default']
     'COMPONENT__BUTTON-CUSTOM': typeof import('./src/components/ui/COMPONENT__BUTTON--CUSTOM.vue')['default']
     'COMPONENT__CHALLENGE-CARD': typeof import('./src/components/ui/COMPONENT__CHALLENGE--CARD.vue')['default']
     'COMPONENT__COMPANY-LOGO': typeof import('./src/components/ui/COMPONENT__COMPANY--LOGO.vue')['default']
@@ -54,6 +55,7 @@ declare module 'vue' {
     'PAGE__ABOUT-OURHISTORY': typeof import('./src/views/our-company/PAGE__ABOUT--OUR-HISTORY.vue')['default']
     'PAGE__BLOG-DETAIL': typeof import('./src/views/news/PAGE__BLOG--DETAIL.vue')['default']
     'PAGE__BLOG-LIST': typeof import('./src/views/news/PAGE__BLOG--LIST.vue')['default']
+    'PAGE__BREADCRUMB-TEST': typeof import('./src/views/test/PAGE__BREADCRUMB--TEST.vue')['default']
     'PAGE__CONTACT-DEFAULT': typeof import('./src/views/contact/PAGE__CONTACT--DEFAULT.vue')['default']
     'PAGE__CONTACT-SUCCESS': typeof import('./src/views/contact/PAGE__CONTACT--SUCCESS.vue')['default']
     'PAGE__COOKIEPOLICY-DEFAULT': typeof import('./src/views/legal/PAGE__COOKIE-POLICY--DEFAULT.vue')['default']

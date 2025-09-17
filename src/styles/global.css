@@ -461,10 +461,4 @@ img {
   width: 100%;
   height: auto;
   object-fit: cover;
-  loading: eager; /* 关键图片立即加载 */
-}
-
-/* 非关键图片延迟加载 */
-.lazy-image {
-  loading: lazy;
 }
