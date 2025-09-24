@@ -289,32 +289,30 @@ const routes = [
   },
 
   // ========================================
-  // BLOG / NEWS PAGES (Redirected to Under Construction)
+  // NEWS PAGES
   // ========================================
   {
     path: '/news',
     name: 'news',
-    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
+    component: () => import('@/views/news/PAGE__NEWS--LIST.vue'),
     meta: {
-      title: 'News - Under Construction',
+      title: 'News & Insights',
       preload: false,
       transition: 'fade',
       keepAlive: true,
-      layout: '',
-      noindex: true
+      layout: ''
     },
   },
   {
     path: '/news/:slug',
     name: 'news-detail',
-    component: () => import('@/views/error/PAGE__LANDING--UNDER-CONSTRUCTION.vue'),
+    component: () => import('@/views/news/PAGE__NEWS--DETAIL.vue'),
     meta: {
-      title: 'News - Under Construction',
+      title: 'News Article',
       preload: false,
       transition: 'fade',
       keepAlive: true,
-      layout: '',
-      noindex: true
+      layout: ''
     },
   },
 
