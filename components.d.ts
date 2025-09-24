@@ -55,7 +55,6 @@ declare module 'vue' {
     'PAGE__ABOUT-OURHISTORY': typeof import('./src/views/our-company/PAGE__ABOUT--OUR-HISTORY.vue')['default']
     'PAGE__BLOG-DETAIL': typeof import('./src/views/news/PAGE__BLOG--DETAIL.vue')['default']
     'PAGE__BLOG-LIST': typeof import('./src/views/news/PAGE__BLOG--LIST.vue')['default']
-    'PAGE__BREADCRUMB-TEST': typeof import('./src/views/test/PAGE__BREADCRUMB--TEST.vue')['default']
     'PAGE__CONTACT-DEFAULT': typeof import('./src/views/contact/PAGE__CONTACT--DEFAULT.vue')['default']
     'PAGE__CONTACT-SUCCESS': typeof import('./src/views/contact/PAGE__CONTACT--SUCCESS.vue')['default']
     'PAGE__COOKIEPOLICY-DEFAULT': typeof import('./src/views/legal/PAGE__COOKIE-POLICY--DEFAULT.vue')['default']
