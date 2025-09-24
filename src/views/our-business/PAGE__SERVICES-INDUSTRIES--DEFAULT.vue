@@ -15,7 +15,7 @@ import ComponentExploreMore from '@/components/content/COMPONENT__EXPLORE--MORE.
     <ComponentSection spacing="xs" :fullWidth="true" style="padding-bottom: 0px; padding-top: 0px">
         <ComponentHero :title="industriesPage.hero.title" :subtitle="industriesPage.hero.subtitle"
             :fullWidth="industriesPage.hero.fullWidth" :backgroundImage="industriesPage.hero.backgroundImage"
-            :overlayOpacity="industriesPage.hero.overlayOpacity" imageFit="object-cover" />
+            :overlayOpacity="industriesPage.hero.overlayOpacity" imageFit="cover" />
     </ComponentSection>
 
     <!-- Intro Statement -->

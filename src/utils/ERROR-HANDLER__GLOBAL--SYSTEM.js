@@ -54,13 +54,13 @@ export class GlobalErrorHandler {
       ],
       ...options
     }
-    
+
     this.errorCount = 0
     this.errorHistory = []
     this.retryAttempts = new Map()
     this.listeners = []
     this.isInitialized = false
-    
+
     // Bind methods to preserve context
     this.handleUnhandledRejection = this.handleUnhandledRejection.bind(this)
     this.handleGlobalError = this.handleGlobalError.bind(this)
@@ -78,15 +78,15 @@ export class GlobalErrorHandler {
 
     // Handle unhandled promise rejections
     window.addEventListener('unhandledrejection', this.handleUnhandledRejection)
-    
+
     // Handle general JavaScript errors
     window.addEventListener('error', this.handleGlobalError)
-    
+
     // Vue error handler integration
     if (window.Vue || (typeof app !== 'undefined' && app.config)) {
       this.setupVueErrorHandler()
     }
-    
+
     this.isInitialized = true
     this.log('GlobalErrorHandler initialized successfully')
   }
@@ -106,26 +106,32 @@ export class GlobalErrorHandler {
    */
   handleUnhandledRejection(event) {
     const error = this.normalizeError(event.reason)
-    
+
     // Skip axios errors (they should be handled by HTTP client)
     if (this.isAxiosError(error)) {
       return
     }
-    
+
+    // Skip browser extension related errors
+    if (this.isBrowserExtensionError(error)) {
+      event.preventDefault()
+      return
+    }
+
     const errorInfo = this.createErrorInfo(error, {
       type: ErrorTypes.PROMISE_REJECTION,
       severity: ErrorSeverity.HIGH,
       context: 'Unhandled Promise Rejection',
       source: 'window.unhandledrejection'
     })
-    
+
     // Check if error should be excluded before processing
     if (this.shouldExcludeError(errorInfo)) {
       return
     }
-    
+
     this.processError(errorInfo)
-    
+
     // Prevent default browser behavior
     event.preventDefault()
   }
@@ -135,7 +141,7 @@ export class GlobalErrorHandler {
    */
   handleGlobalError(event) {
     const error = event.error || new Error(event.message || 'Unknown error')
-    
+
     const errorInfo = this.createErrorInfo(error, {
       type: ErrorTypes.JAVASCRIPT_ERROR,
       severity: this.determineSeverity(error),
@@ -145,12 +151,12 @@ export class GlobalErrorHandler {
       lineno: event.lineno,
       colno: event.colno
     })
-    
+
     // Check if error should be excluded before processing
     if (this.shouldExcludeError(errorInfo)) {
       return
     }
-    
+
     this.processError(errorInfo)
   }
 
@@ -159,7 +165,7 @@ export class GlobalErrorHandler {
    */
   handleVueError(error, componentInstance, errorInfo) {
     const normalizedError = this.normalizeError(error)
-    
+
     const errorInfoObj = this.createErrorInfo(normalizedError, {
       type: ErrorTypes.COMPONENT_ERROR,
       severity: ErrorSeverity.MEDIUM,
@@ -168,7 +174,7 @@ export class GlobalErrorHandler {
       componentName: componentInstance?.$options?.name || 'Unknown Component',
       componentInfo: errorInfo
     })
-    
+
     this.processError(errorInfoObj)
   }
 
@@ -178,13 +184,13 @@ export class GlobalErrorHandler {
   setupVueErrorHandler() {
     if (typeof app !== 'undefined' && app.config) {
       const originalErrorHandler = app.config.errorHandler
-      
+
       app.config.errorHandler = (error, componentInstance, errorInfo) => {
         // Call original handler first if it exists
         if (originalErrorHandler) {
           originalErrorHandler(error, componentInstance, errorInfo)
         }
-        
+
         // Handle with our system
         this.handleVueError(error, componentInstance, errorInfo)
       }
@@ -199,33 +205,33 @@ export class GlobalErrorHandler {
     if (this.shouldExcludeError(errorInfo)) {
       return
     }
-    
+
     // Increment error count
     this.errorCount++
-    
+
     // Add to error history
     this.addToHistory(errorInfo)
-    
+
     // Log error
     if (this.options.enableConsoleLogging) {
       this.logError(errorInfo)
     }
-    
+
     // Show user notification
     if (this.options.enableUserNotifications) {
       this.showUserNotification(errorInfo)
     }
-    
+
     // Report error to external service
     if (this.options.enableErrorReporting) {
       this.reportError(errorInfo)
     }
-    
+
     // Attempt recovery if enabled
     if (this.options.enableRecovery) {
       this.attemptRecovery(errorInfo)
     }
-    
+
     // Notify listeners
     this.notifyListeners(errorInfo)
   }
@@ -266,7 +272,7 @@ export class GlobalErrorHandler {
         stack: 'No stack trace available'
       }
     }
-    
+
     // Handle string errors
     if (typeof error === 'string') {
       return {
@@ -275,7 +281,7 @@ export class GlobalErrorHandler {
         stack: 'No stack trace available'
       }
     }
-    
+
     // Handle Error objects
     if (error instanceof Error) {
       return {
@@ -284,7 +290,7 @@ export class GlobalErrorHandler {
         stack: error.stack || 'No stack trace available'
       }
     }
-    
+
     // Handle other objects
     if (typeof error === 'object') {
       return {
@@ -293,7 +299,7 @@ export class GlobalErrorHandler {
         stack: error.stack || 'No stack trace available'
       }
     }
-    
+
     // Fallback for primitives
     return {
       name: 'PrimitiveError',
@@ -307,22 +313,22 @@ export class GlobalErrorHandler {
    */
   determineSeverity(error) {
     // Critical errors
-    if (error.name === 'ChunkLoadError' || 
-        error.message.includes('Loading chunk') ||
-        error.message.includes('Script error')) {
+    if (error.name === 'ChunkLoadError' ||
+      error.message.includes('Loading chunk') ||
+      error.message.includes('Script error')) {
       return ErrorSeverity.CRITICAL
     }
-    
+
     // High severity errors
     if (error.name === 'TypeError' && error.message.includes('Cannot read prop')) {
       return ErrorSeverity.HIGH
     }
-    
+
     // Network errors
     if (error.name === 'NetworkError' || error.message.includes('fetch')) {
       return ErrorSeverity.MEDIUM
     }
-    
+
     // Default to medium
     return ErrorSeverity.MEDIUM
   }
@@ -332,26 +338,26 @@ export class GlobalErrorHandler {
    */
   shouldExcludeError(errorInfo) {
     // Exclude SES lockdown extension errors (browser extension noise)
-    if (errorInfo.message?.includes('SES_UNCAUGHT_EXCEPTION') || 
-        errorInfo.message?.includes('lockdown-install.js')) {
+    if (errorInfo.message?.includes('SES_UNCAUGHT_EXCEPTION') ||
+      errorInfo.message?.includes('lockdown-install.js')) {
       return true
     }
-    
+
     // Exclude ResizeObserver errors (common browser noise)
     if (errorInfo.message?.includes('ResizeObserver loop completed')) {
       return true
     }
-    
+
     // Exclude non-actionable errors
     if (errorInfo.message?.includes('Non-Error promise rejection captured')) {
       return true
     }
-    
+
     // Exclude network errors that should be handled by HTTP client
     if (this.isAxiosError(errorInfo.error)) {
       return true
     }
-    
+
     return false
   }
 
@@ -367,11 +373,50 @@ export class GlobalErrorHandler {
   }
 
   /**
+   * Check if error is from browser extension
+   */
+  isBrowserExtensionError(error) {
+    if (!error) return false
+
+    const errorMessage = String(error.message || error || '')
+
+    // Common browser extension error patterns
+    const extensionErrorPatterns = [
+      'A listener indicated an asynchronous response by returning true',
+      'message channel closed before a response was received',
+      'The message port closed before a response was received',
+      'chrome-extension://',
+      'moz-extension://',
+      'safari-extension://',
+      'Extension context invalidated',
+      'Could not establish connection. Receiving end does not exist',
+      'Non-Error promise rejection captured with value: Object'
+    ]
+
+    // Check for extension-related error patterns
+    for (const pattern of extensionErrorPatterns) {
+      if (errorMessage.toLowerCase().includes(pattern.toLowerCase())) {
+        return true
+      }
+    }
+
+    // Check for extension-related stack traces
+    const stack = String(error.stack || '')
+    if (stack.includes('chrome-extension://') ||
+      stack.includes('moz-extension://') ||
+      stack.includes('safari-extension://')) {
+      return true
+    }
+
+    return false
+  }
+
+  /**
    * Add error to history with size limit
    */
   addToHistory(errorInfo) {
     this.errorHistory.unshift(errorInfo)
-    
+
     // Keep only last 50 errors
     if (this.errorHistory.length > 50) {
       this.errorHistory = this.errorHistory.slice(0, 50)
@@ -383,7 +428,7 @@ export class GlobalErrorHandler {
    */
   logError(errorInfo) {
     const style = this.getConsoleStyle(errorInfo.severity)
-    
+
     console.group(`%c🚨 ${errorInfo.severity.toUpperCase()} ERROR`, style)
     console.error('Message:', errorInfo.message)
     console.error('Type:', errorInfo.type)
@@ -403,7 +448,7 @@ export class GlobalErrorHandler {
       [ErrorSeverity.HIGH]: 'color: #dc2626; font-weight: bold; background: #fef2f2;',
       [ErrorSeverity.CRITICAL]: 'color: #ffffff; font-weight: bold; background: #dc2626; padding: 2px 6px; border-radius: 3px;'
     }
-    
+
     return styles[severity] || styles[ErrorSeverity.MEDIUM]
   }
 
@@ -423,12 +468,12 @@ export class GlobalErrorHandler {
         })
         return
       }
-      
+
       // Fallback to simple alert for critical errors
       if (errorInfo.severity === ErrorSeverity.CRITICAL) {
         alert(`Error: ${this.getUserFriendlyMessage(errorInfo)}`)
       }
-      
+
     } catch (notificationError) {
       console.error('Failed to show error notification:', notificationError)
     }
@@ -447,7 +492,7 @@ export class GlobalErrorHandler {
       [ErrorTypes.JAVASCRIPT_ERROR]: 'Application Error',
       [ErrorTypes.PROMISE_REJECTION]: 'Operation Failed'
     }
-    
+
     return titles[errorInfo.type] || 'Error Occurred'
   }
 
@@ -459,19 +504,19 @@ export class GlobalErrorHandler {
     if (errorInfo.message.includes('Network Error')) {
       return 'Please check your internet connection and try again.'
     }
-    
+
     if (errorInfo.message.includes('Loading chunk')) {
       return 'Failed to load application resources. Please refresh the page.'
     }
-    
+
     if (errorInfo.message.includes('Cannot read prop')) {
       return 'Some data is temporarily unavailable. Please try again.'
     }
-    
+
     if (errorInfo.type === ErrorTypes.AUTHENTICATION_ERROR) {
       return 'Your session has expired. Please log in again.'
     }
-    
+
     // Default message based on severity
     const messages = {
       [ErrorSeverity.CRITICAL]: 'A critical error occurred. Please refresh the page.',
@@ -479,7 +524,7 @@ export class GlobalErrorHandler {
       [ErrorSeverity.MEDIUM]: 'A minor error occurred. You can continue using the application.',
       [ErrorSeverity.LOW]: 'A minor issue was detected and resolved automatically.'
     }
-    
+
     return messages[errorInfo.severity] || 'An unexpected error occurred.'
   }
 
@@ -493,7 +538,7 @@ export class GlobalErrorHandler {
       [ErrorSeverity.HIGH]: 8000,
       [ErrorSeverity.CRITICAL]: 0 // Don't auto-hide critical errors
     }
-    
+
     return durations[severity] || 5000
   }
 
@@ -504,7 +549,7 @@ export class GlobalErrorHandler {
     if (!this.options.enableErrorReporting) {
       return
     }
-    
+
     try {
       // TODO: Replace with actual error reporting service when backend is ready
       console.log('📊 Error Report (not sent - no backend):', {
@@ -516,12 +561,12 @@ export class GlobalErrorHandler {
         url: errorInfo.url,
         userAgent: errorInfo.userAgent
       })
-      
+
       // Example integration with error tracking services:
       // Sentry: Sentry.captureException(errorInfo.error, { extra: errorInfo })
       // LogRocket: LogRocket.captureException(errorInfo.error)
       // Custom: await fetch('/api/errors', { method: 'POST', body: JSON.stringify(errorInfo) })
-      
+
     } catch (reportingError) {
       console.error('Failed to report error:', reportingError)
     }
@@ -533,29 +578,29 @@ export class GlobalErrorHandler {
   attemptRecovery(errorInfo) {
     const errorKey = `${errorInfo.type}-${errorInfo.context}`
     const retryCount = this.retryAttempts.get(errorKey) || 0
-    
+
     if (retryCount >= this.options.maxRetries) {
       return
     }
-    
+
     // Increment retry count
     this.retryAttempts.set(errorKey, retryCount + 1)
-    
+
     // Attempt recovery based on error type
     setTimeout(() => {
       switch (errorInfo.type) {
         case ErrorTypes.NETWORK_ERROR:
           this.recoverFromNetworkError(errorInfo)
           break
-          
+
         case ErrorTypes.COMPONENT_ERROR:
           this.recoverFromComponentError(errorInfo)
           break
-          
+
         case ErrorTypes.JAVASCRIPT_ERROR:
           this.recoverFromJavaScriptError(errorInfo)
           break
-          
+
         default:
           this.genericRecovery(errorInfo)
       }
@@ -662,12 +707,12 @@ export class GlobalErrorHandler {
   getStatistics() {
     const typeStats = {}
     const severityStats = {}
-    
+
     this.errorHistory.forEach(error => {
       typeStats[error.type] = (typeStats[error.type] || 0) + 1
       severityStats[error.severity] = (severityStats[error.severity] || 0) + 1
     })
-    
+
     return {
       totalErrors: this.errorCount,
       recentErrors: this.errorHistory.length,

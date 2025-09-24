@@ -135,7 +135,7 @@ const totalPages = computed(() => {
             </componentContainer>
 
             <!-- Sitemap Categories -->
-            <ComponentGrid columns="1" gap="lg" class="lg:grid-cols-2">
+            <ComponentGrid :columns="{ base: 1, lg: 2 }" gap="lg">
                 <div v-for="(category, categoryIndex) in siteRoutes" :key="categoryIndex"
                     class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 ease-in-out">
                     <h3 class="text-xl font-body font-semibold text-gray-800 mb-4 pb-4 border-b border-monza-200">

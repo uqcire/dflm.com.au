@@ -300,7 +300,8 @@ const routes = [
       preload: false,
       transition: 'fade',
       keepAlive: true,
-      layout: ''
+      layout: '',
+      noindex: true
     },
   },
   {
@@ -312,7 +313,8 @@ const routes = [
       preload: false,
       transition: 'fade',
       keepAlive: true,
-      layout: ''
+      layout: '',
+      noindex: true
     },
   },
 
@@ -389,7 +391,8 @@ const routes = [
       preload: false,
       transition: 'fade',
       keepAlive: true,
-      layout: ''
+      layout: '',
+      noindex: true
     },
   },
   {
@@ -401,7 +404,8 @@ const routes = [
       preload: false,
       transition: 'fade',
       keepAlive: true,
-      layout: ''
+      layout: '',
+      noindex: true
     },
   },
   {
@@ -413,7 +417,8 @@ const routes = [
       preload: false,
       transition: 'fade',
       keepAlive: true,
-      layout: ''
+      layout: '',
+      noindex: true
     },
   },
 

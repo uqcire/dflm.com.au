@@ -157,7 +157,7 @@ const navigateToPage = (path) => {
           <Suspense>
             <template #default>
               <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
-                variant="standard" :showSpecs="true" :showLink="true" imageFit="object-cover" />
+                variant="standard" :showSpecs="true" :showLink="true" imageFit="cover" />
             </template>
             <template #fallback>
               <div class="col-span-full flex justify-center items-center h-32">

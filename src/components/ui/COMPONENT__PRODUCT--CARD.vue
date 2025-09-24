@@ -31,8 +31,8 @@ defineProps({
     },
     imageFit: {
         type: String,
-        default: 'object-cover',
-        validator: (value) => ['object-cover', 'object-contain', 'object-fill', 'object-scale-down', 'object-none'].includes(value)
+        default: 'cover',
+        validator: (value) => ['cover', 'contain', 'fill', 'scale-down', 'none'].includes(value)
     }
 })
 
@@ -73,7 +73,7 @@ const getTitleSize = (variant) => {
         <div v-if="product.image && variant !== 'minimal'" class="w-full overflow-hidden border-b-6 border-monza-200"
             :class="getImageHeight(variant)">
             <ComponentImageDisplay :src="product.image" :alt="product.title" size="2xl" variant="plain"
-                :objectFit="imageFit.replace('object-', '')" loading="lazy" class="w-full h-full" />
+                :objectFit="imageFit" loading="lazy" class="w-full h-full" />
         </div>
 
         <!-- Product Content -->

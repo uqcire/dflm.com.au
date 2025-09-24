@@ -35,8 +35,8 @@ const props = defineProps({
     },
     imageFit: {
         type: String,
-        default: 'object-cover',
-        validator: (value) => ['object-cover', 'object-contain', 'object-fill', 'object-scale-down', 'object-none'].includes(value)
+        default: 'cover',
+        validator: (value) => ['cover', 'contain', 'fill', 'scale-down', 'none'].includes(value)
     },
     backgroundImage: {
         type: String,
@@ -172,12 +172,13 @@ const getImageSizeClasses = (size) => {
                                 srcset="/assets/hero-factory-768.webp 768w, /assets/hero-factory-1200.webp 1200w, /assets/hero-factory-1600.webp 1600w"
                                 sizes="(max-width: 1024px) 90vw, 1200px" />
                             <img :src="image" :alt="title"
-                                class="w-full h-full transition-all duration-300 hover:scale-105" :class="imageFit"
-                                width="1200" height="675" loading="eager" decoding="async" fetchpriority="high" />
+                                class="w-full h-full transition-all duration-300 hover:scale-105"
+                                :class="`object-${imageFit}`" width="1200" height="675" loading="eager" decoding="async"
+                                fetchpriority="high" />
                         </picture>
                         <img v-else :src="image" :alt="title"
-                            class="w-full h-full transition-all duration-300 hover:scale-105" :class="imageFit"
-                            loading="eager" decoding="async" fetchpriority="high" />
+                            class="w-full h-full transition-all duration-300 hover:scale-105"
+                            :class="`object-${imageFit}`" loading="eager" decoding="async" fetchpriority="high" />
                     </div>
                 </div>
             </div>

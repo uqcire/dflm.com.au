@@ -10,6 +10,16 @@ const DEFAULT_DESCRIPTION = 'E‑Sunrise Australia — B2B Agricultural Import &
 const DEFAULT_OG_IMAGE = '/assets/brand__logo--icon.webp'
 const SITE_URL = import.meta.env.VITE_APP_URL || 'https://dflm.com.au'
 
+// Sanitize a path by removing query strings and hash fragments
+function sanitizePath(path) {
+  if (!path) return '/'
+  const hashIndex = path.indexOf('#')
+  if (hashIndex !== -1) path = path.slice(0, hashIndex)
+  const queryIndex = path.indexOf('?')
+  if (queryIndex !== -1) path = path.slice(0, queryIndex)
+  return path || '/'
+}
+
 /**
  * Set or create a meta tag
  * @param {string} attr - The attribute name (e.g., 'name', 'property')
@@ -68,7 +78,7 @@ export function setTitle(title) {
  * @param {string} path - The current path
  */
 export function setCanonical(path) {
-  const url = SITE_URL + path
+  const url = SITE_URL + sanitizePath(path)
   setLinkTag('canonical', url)
 }
 
@@ -197,7 +207,7 @@ export function setBasicMetaTags(options = {}) {
   setMetaTag('property', 'og:image', SITE_URL + image)
   setMetaTag('property', 'og:type', type)
   if (url) {
-    setMetaTag('property', 'og:url', SITE_URL + url)
+    setMetaTag('property', 'og:url', SITE_URL + sanitizePath(url))
   }
 
   // Twitter Card meta tags
@@ -250,12 +260,13 @@ export function updateRouteSEO(route, data = {}) {
     title,
     description,
     image,
-    url: route.fullPath,
-    type: route.name === 'post-detail' ? 'article' : 'website'
+    url: route.path,
+    type: route.name === 'post-detail' ? 'article' : 'website',
+    noIndex: route.meta?.noindex || false
   })
 
   // Generate and set JSON-LD structured data
-  const url = SITE_URL + route.fullPath
+  const url = SITE_URL + sanitizePath(route.path)
   let jsonLdData = generateBaseJsonLd(url)
 
   // Add specific structured data based on route

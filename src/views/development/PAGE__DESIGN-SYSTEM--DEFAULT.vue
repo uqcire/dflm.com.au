@@ -156,7 +156,7 @@ const componentCategories = ref([
                         marginBottom: 'var(--space-6)'
                     }">Brand Colors</h3>
 
-                    <ComponentGrid columns="1" gap="lg" class="md:grid-cols-3">
+                    <ComponentGrid :columns="{ base: 1, md: 3 }" gap="lg">
 
                         <!-- Primary Colors -->
                         <div :style="{
@@ -299,7 +299,7 @@ const componentCategories = ref([
                         marginBottom: 'var(--space-6)'
                     }">Typography</h3>
 
-                    <ComponentGrid columns="1" gap="lg" class="md:grid-cols-2">
+                    <ComponentGrid :columns="{ base: 1, md: 2 }" gap="lg">
 
                         <!-- Headings Font -->
                         <div :style="{
@@ -446,7 +446,7 @@ const componentCategories = ref([
                         marginBottom: 'var(--space-6)'
                     }">Layout Components</h3>
 
-                    <ComponentGrid columns="1" gap="lg" class="md:grid-cols-2">
+                    <ComponentGrid :columns="{ base: 1, md: 2 }" gap="lg">
 
                         <!-- Container Example -->
                         <div :style="{
@@ -494,7 +494,7 @@ const componentCategories = ref([
                                 marginBottom: 'var(--space-4)',
                                 color: 'var(--color-text-primary)'
                             }">Grid</h4>
-                            <ComponentGrid columns="3" gap="sm">
+                            <ComponentGrid :columns="3" gap="sm">
                                 <div v-for="i in 3" :key="'grid-' + i" :style="{
                                     padding: 'var(--space-3)',
                                     backgroundColor: 'var(--color-secondary)',
@@ -537,7 +537,7 @@ const componentCategories = ref([
                                 marginBottom: 'var(--space-4)',
                                 color: 'var(--color-text-primary)'
                             }">Product Card</h4>
-                            <ComponentGrid columns="1" gap="lg" class="md:grid-cols-2 lg:grid-cols-3">
+                            <ComponentGrid :columns="{ base: 1, md: 2, lg: 3 }" gap="lg">
                                 <ComponentProductCard :product="sampleProduct" variant="standard" />
                                 <ComponentProductCard :product="sampleProduct" variant="detailed" />
                                 <ComponentProductCard :product="sampleProduct" variant="featured" />
@@ -552,7 +552,7 @@ const componentCategories = ref([
                                 marginBottom: 'var(--space-4)',
                                 color: 'var(--color-text-primary)'
                             }">Service Card</h4>
-                            <ComponentGrid columns="1" gap="lg" class="md:grid-cols-2">
+                            <ComponentGrid :columns="{ base: 1, md: 2 }" gap="lg">
                                 <ComponentServiceCard :service="sampleService" variant="standard" icon-position="top" />
                                 <ComponentServiceCard :service="sampleService" variant="detailed"
                                     icon-position="left" />
@@ -603,7 +603,7 @@ const componentCategories = ref([
                 </header>
 
                 <!-- Implementation Guidelines -->
-                <ComponentGrid columns="1" gap="lg" class="md:grid-cols-2">
+                <ComponentGrid :columns="{ base: 1, md: 2 }" gap="lg">
 
                     <!-- Design Tokens Usage -->
                     <div :style="{
