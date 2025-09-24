@@ -14,25 +14,25 @@
     "compress-images-simple": "node scripts/simple-compress.js"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.12",
-    "axios": "^1.11.0",
-    "element-plus": "^2.11.1",
+    "@tailwindcss/vite": "^4.1.13",
+    "axios": "^1.12.2",
+    "element-plus": "^2.11.3",
     "qs": "^6.14.0",
-    "resend": "^6.0.2",
-    "tailwindcss": "^4.1.12",
-    "vite": "^7.1.4",
-    "vue": "^3.5.20",
+    "resend": "^6.1.0",
+    "tailwindcss": "^4.1.13",
+    "vite": "^7.1.7",
+    "vue": "^3.5.21",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^5.3.1",
+    "@stylistic/eslint-plugin": "^5.4.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "glob": "^11.0.3",
     "rollup-plugin-visualizer": "^6.0.3",
-    "sharp": "^0.34.3",
+    "sharp": "^0.34.4",
     "terser": "^5.44.0",
-    "unplugin-auto-import": "^20.1.0",
-    "unplugin-vue-components": "^29.0.0",
+    "unplugin-auto-import": "^20.2.0",
+    "unplugin-vue-components": "^29.1.0",
     "vite-plugin-compression": "^0.5.1"
   }
 }

@@ -45,21 +45,13 @@ export default defineConfig(({ mode }) => {
       ],
     },
 
+    // Server configuration for development
     server: {
-      host: true, // Specify server hostname - allows access from any host
-      port: VITE_PORT, // Specify server port number
+      host: '127.0.0.1', // Keep this as 127.0.0.1 to avoid permission issues
+      port: 5174, // Changed from VITE_PORT (likely 8800) to 5174 to bypass the blocking issue
       open: false, // Automatically open application in browser when server starts
-      strictPort: false, // Set to false to try next available port if current port is occupied
+      strictPort: true, // Set to true to fail if port is already in use
       https: false, // Whether to enable HTTPS protocol
-      cors: true, // Configure CORS for development server - enabled by default and allows any origin
-      proxy: {
-        '/api': {
-          target: 'http://localhost:8800', // Assuming your dev server is running on port 8800
-          changeOrigin: true,
-          secure: false,
-          rewrite: (path) => path
-        }
-      }
     },
 
     build: {
