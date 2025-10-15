@@ -7,7 +7,9 @@
 // Supabase Content Services
 export {
   fetchPosts as getPosts,
-  fetchPostBySlug as getPostBySlug
+  fetchPosts as getPostsSupabase,
+  fetchPostBySlug as getPostBySlug,
+  fetchPostBySlug as getPostBySlugSupabase
 } from './postsSupabase.js';
 
 // Fallback data services

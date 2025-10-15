@@ -10,14 +10,6 @@ import { useApiError } from './useApiError.js';
 import {
   getPosts,
   getPostBySlug,
-  getPostById,
-  getCategories,
-  getCategoryBySlug,
-  getCategoryById,
-  getTags,
-  getTagBySlug,
-  getTagById,
-  // Supabase-first parallel exports (migration phase)
   getPostsSupabase,
   getPostBySlugSupabase
 } from '../api/index.js';
@@ -263,19 +255,6 @@ export function usePosts(options = {}) {
     });
   }
 
-  /**
-   * Get post by ID (still via legacy Strapi if needed)
-   * @param {number|string} id - Post ID
-   * @returns {Promise<any>} Post data
-   */
-  async function loadPostById(id) {
-    return await fetchData(getPostById, id, {
-      operation: 'loadPostById',
-      contentType: 'post',
-      id
-    });
-  }
-
   return {
     // State
     posts,
@@ -287,7 +266,6 @@ export function usePosts(options = {}) {
     // Methods
     loadPosts,
     loadPostBySlug,
-    loadPostById,
     refreshPosts: () => refreshData(getPostsSupabase),
     clearPosts: clearData
   };
@@ -297,6 +275,9 @@ export function usePosts(options = {}) {
  * Blog Categories Composable
  * @param {Object} options - Configuration options
  * @returns {Object} Blog categories utilities
+ * 
+ * NOTE: Categories are currently fetched from Supabase as part of posts data
+ * This composable is kept for future implementation if needed
  */
 export function useCategories(options = {}) {
   const {
@@ -305,48 +286,8 @@ export function useCategories(options = {}) {
     hasError,
     errorDisplay,
     isEmpty,
-    fetchData,
-    refreshData,
     clearData
   } = useDataFetching(options);
-
-  /**
-   * Load categories
-   * @param {Object} params - Fetch parameters
-   * @returns {Promise<any>} Categories data
-   */
-  async function loadCategories(params = {}) {
-    return await fetchData(getCategories, params, {
-      operation: 'loadCategories',
-      contentType: 'category'
-    });
-  }
-
-  /**
-   * Get category by slug
-   * @param {string} slug - Category slug
-   * @returns {Promise<any>} Category data
-   */
-  async function loadCategoryBySlug(slug) {
-    return await fetchData(getCategoryBySlug, slug, {
-      operation: 'loadCategoryBySlug',
-      contentType: 'category',
-      slug
-    });
-  }
-
-  /**
-   * Get category by ID
-   * @param {number|string} id - Category ID
-   * @returns {Promise<any>} Category data
-   */
-  async function loadCategoryById(id) {
-    return await fetchData(getCategoryById, id, {
-      operation: 'loadCategoryById',
-      contentType: 'category',
-      id
-    });
-  }
 
   return {
     // State
@@ -357,10 +298,6 @@ export function useCategories(options = {}) {
     isEmpty,
 
     // Methods
-    loadCategories,
-    loadCategoryBySlug,
-    loadCategoryById,
-    refreshCategories: () => refreshData(getCategories),
     clearCategories: clearData
   };
 }
@@ -369,6 +306,9 @@ export function useCategories(options = {}) {
  * Blog Tags Composable
  * @param {Object} options - Configuration options
  * @returns {Object} Blog tags utilities
+ * 
+ * NOTE: Tags are currently fetched from Supabase as part of posts data
+ * This composable is kept for future implementation if needed
  */
 export function useTags(options = {}) {
   const {
@@ -377,48 +317,8 @@ export function useTags(options = {}) {
     hasError,
     errorDisplay,
     isEmpty,
-    fetchData,
-    refreshData,
     clearData
   } = useDataFetching(options);
-
-  /**
-   * Load tags
-   * @param {Object} params - Fetch parameters
-   * @returns {Promise<any>} Tags data
-   */
-  async function loadTags(params = {}) {
-    return await fetchData(getTags, params, {
-      operation: 'loadTags',
-      contentType: 'tag'
-    });
-  }
-
-  /**
-   * Get tag by slug
-   * @param {string} slug - Tag slug
-   * @returns {Promise<any>} Tag data
-   */
-  async function loadTagBySlug(slug) {
-    return await fetchData(getTagBySlug, slug, {
-      operation: 'loadTagBySlug',
-      contentType: 'tag',
-      slug
-    });
-  }
-
-  /**
-   * Get tag by ID
-   * @param {number|string} id - Tag ID
-   * @returns {Promise<any>} Tag data
-   */
-  async function loadTagById(id) {
-    return await fetchData(getTagById, id, {
-      operation: 'loadTagById',
-      contentType: 'tag',
-      id
-    });
-  }
 
   return {
     // State
@@ -429,10 +329,6 @@ export function useTags(options = {}) {
     isEmpty,
 
     // Methods
-    loadTags,
-    loadTagBySlug,
-    loadTagById,
-    refreshTags: () => refreshData(getTags),
     clearTags: clearData
   };
 }
