@@ -6,24 +6,22 @@
  */
 
 export const productionConfig = {
-  // Strapi API Configuration
-      strapi: {
-      // Update this to your production Strapi URL
-      apiUrl: 'https://cms-fklk.onrender.com',
-      mediaUrl: 'https://cms-fklk.onrender.com',
-      enabled: true,
-    },
-  
+  // Supabase Configuration
+  supabase: {
+    enabled: true,
+    timeout: 30000,
+  },
+
   // API Settings
   api: {
     timeout: 30000,
     retryAttempts: 3,
     useMockData: false,
   },
-  
+
   // Environment
   environment: 'production',
-  
+
   // Features
   features: {
     analytics: true,
@@ -39,9 +37,7 @@ export const productionConfig = {
 export function getProductionApiConfig() {
   return {
     useMockApi: false,
-    strapiEnabled: productionConfig.strapi.enabled,
-    strapiApiUrl: productionConfig.strapi.apiUrl,
-    strapiMediaUrl: productionConfig.strapi.mediaUrl,
+    supabaseEnabled: productionConfig.supabase.enabled,
     apiTimeout: productionConfig.api.timeout,
     apiRetryAttempts: productionConfig.api.retryAttempts,
     environment: productionConfig.environment
@@ -64,13 +60,11 @@ export function getApiConfig() {
   if (isProduction()) {
     return getProductionApiConfig();
   }
-  
+
   // Development configuration
   return {
     useMockApi: import.meta.env.VITE_USE_MOCK_API === 'true',
-    strapiEnabled: import.meta.env.VITE_STRAPI_ENABLED === 'true',
-    strapiApiUrl: import.meta.env.VITE_STRAPI_API_URL || 'http://localhost:1337',
-    strapiMediaUrl: import.meta.env.VITE_STRAPI_MEDIA_URL || '',
+    supabaseEnabled: import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY,
     apiTimeout: parseInt(import.meta.env.VITE_API_TIMEOUT) || 30000,
     apiRetryAttempts: parseInt(import.meta.env.VITE_API_RETRY_ATTEMPTS) || 3,
     environment: import.meta.env.MODE

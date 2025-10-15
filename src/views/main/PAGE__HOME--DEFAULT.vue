@@ -154,17 +154,8 @@ const navigateToPage = (path) => {
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
       <ComponentGrid :columns="{ base: 1, md: 2, lg: 3 }" gap="lg" class="mb-16">
         <template v-if="showProducts">
-          <Suspense>
-            <template #default>
-              <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
-                variant="standard" :showSpecs="true" :showLink="true" imageFit="cover" />
-            </template>
-            <template #fallback>
-              <div class="col-span-full flex justify-center items-center h-32">
-                <div class="animate-pulse text-pickled-bluewood-600">Loading products...</div>
-              </div>
-            </template>
-          </Suspense>
+          <ComponentProductCard v-for="product in productsPage.products" :key="product.id" :product="product"
+            variant="standard" :showSpecs="true" :showLink="true" imageFit="cover" />
         </template>
         <template v-else>
           <div class="col-span-full flex justify-center items-center h-32">
@@ -243,16 +234,7 @@ const navigateToPage = (path) => {
   <ComponentSection spacing="sm" containerSize="full" background="transparent">
     <ComponentContainer size="2xl" padding="responsive" :constrainWidth="true">
       <template v-if="showBusinesses">
-        <Suspense>
-          <template #default>
-            <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" imageSize="2xl" />
-          </template>
-          <template #fallback>
-            <div class="flex justify-center items-center h-64">
-              <div class="animate-pulse text-pickled-bluewood-600">Loading business information...</div>
-            </div>
-          </template>
-        </Suspense>
+        <ComponentAlternatingContent :sections="homePage.ourBusinesses.sections" imageSize="2xl" />
       </template>
       <template v-else>
         <div class="flex justify-center items-center h-64">
@@ -264,19 +246,10 @@ const navigateToPage = (path) => {
 
   <!-- Get in Touch - 懒加载 -->
   <template v-if="showCta">
-    <Suspense>
-      <template #default>
-        <ComponentCtaGetInTouch :title="homePage.getInTouch.title" :description="homePage.getInTouch.description"
-          :buttonText="homePage.getInTouch.buttonText" :buttonLink="homePage.getInTouch.buttonLink"
-          :background="homePage.getInTouch.background" :backgroundColor="homePage.getInTouch.backgroundColor"
-          :backgroundStyle="homePage.getInTouch.backgroundStyle" />
-      </template>
-      <template #fallback>
-        <div class="flex justify-center items-center h-32">
-          <div class="animate-pulse text-pickled-bluewood-600">Loading contact section...</div>
-        </div>
-      </template>
-    </Suspense>
+    <ComponentCtaGetInTouch :title="homePage.getInTouch.title" :description="homePage.getInTouch.description"
+      :buttonText="homePage.getInTouch.buttonText" :buttonLink="homePage.getInTouch.buttonLink"
+      :background="homePage.getInTouch.background" :backgroundColor="homePage.getInTouch.backgroundColor"
+      :backgroundStyle="homePage.getInTouch.backgroundStyle" />
   </template>
   <template v-else>
     <div class="flex justify-center items-center h-32">
@@ -286,18 +259,9 @@ const navigateToPage = (path) => {
 
   <!-- Explore More - 懒加载 -->
   <template v-if="showExplore">
-    <Suspense>
-      <template #default>
-        <ComponentExploreMore :title="exploreCards.home.title" :cards="exploreCards.home.cards"
-          :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.home.background"
-          :style="exploreCards.home.backgroundStyle" />
-      </template>
-      <template #fallback>
-        <div class="flex justify-center items-center h-32">
-          <div class="animate-pulse text-pickled-bluewood-600">Loading explore section...</div>
-        </div>
-      </template>
-    </Suspense>
+    <ComponentExploreMore :title="exploreCards.home.title" :cards="exploreCards.home.cards"
+      :columns="exploreCards.columns" :gap="exploreCards.gap" :background="exploreCards.home.background"
+      :style="exploreCards.home.backgroundStyle" />
   </template>
   <template v-else>
     <div class="flex justify-center items-center h-32">

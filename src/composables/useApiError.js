@@ -6,10 +6,10 @@
  */
 
 import { ref, computed, readonly } from 'vue';
-import { 
-  handleApiError, 
-  ApiError, 
-  errorMonitor, 
+import {
+  handleApiError,
+  ApiError,
+  errorMonitor,
   isCriticalError,
   formatErrorForDisplay,
   executeRecoveryStrategy
@@ -29,7 +29,7 @@ export function useApiError(options = {}) {
   const error = ref(null);
   const isLoading = ref(false);
   const retryCount = ref(0);
-  
+
   // Configuration
   const config = {
     showAlerts: options.showAlerts !== false,
@@ -37,23 +37,23 @@ export function useApiError(options = {}) {
     autoRetry: options.autoRetry !== false,
     ...options
   };
-  
+
   // Computed properties
   const hasError = computed(() => error.value !== null);
   const isCritical = computed(() => error.value && isCriticalError(error.value));
   const canRetry = computed(() => error.value && error.value.isRetryable() && retryCount.value < config.maxRetries);
   const requiresUserAction = computed(() => error.value && error.value.requiresUserAction());
-  
+
   // Error display information
   const errorDisplay = computed(() => {
     if (!error.value) return null;
     return formatErrorForDisplay(error.value);
   });
-  
+
   // =============================================================================
   // ERROR HANDLING METHODS
   // =============================================================================
-  
+
   /**
    * Handle API error
    * @param {Error} originalError - Original error
@@ -61,27 +61,47 @@ export function useApiError(options = {}) {
    * @param {Object} options - Handling options
    */
   function handleError(originalError, context = {}, options = {}) {
-    const apiError = handleApiError(originalError, context, {
-      showAlert: config.showAlerts && options.showAlert !== false,
-      reportError: options.reportError !== false
-    });
-    
+    // Safe fallback for error handling to prevent secondary errors
+    let apiError;
+    try {
+      apiError = handleApiError(originalError, context, {
+        showAlert: config.showAlerts && options.showAlert !== false,
+        reportError: options.reportError !== false
+      });
+    } catch (handlerError) {
+      // Create a fallback error object if handleApiError fails
+      console.warn('[useApiError] Error handler failed, using fallback:', handlerError);
+      apiError = {
+        message: originalError?.message || 'Unknown error',
+        type: 'UNKNOWN_ERROR',
+        name: originalError?.name || 'Error',
+        stack: originalError?.stack,
+        context,
+        isRetryable: () => false,
+        requiresUserAction: () => false
+      };
+    }
+
     // Set reactive error state
     error.value = apiError;
-    
-    // Record error for monitoring
-    errorMonitor.recordError(apiError);
-    
+
+    // Record error for monitoring (with safe fallback)
+    try {
+      errorMonitor.recordError(apiError);
+    } catch (monitorError) {
+      console.warn('[useApiError] Error monitoring failed:', monitorError);
+    }
+
     // Auto-retry if enabled and error is retryable
-    if (config.autoRetry && apiError.isRetryable() && retryCount.value < config.maxRetries) {
+    if (config.autoRetry && typeof apiError.isRetryable === 'function' && apiError.isRetryable() && retryCount.value < config.maxRetries) {
       setTimeout(() => {
         retry();
       }, 1000);
     }
-    
+
     return apiError;
   }
-  
+
   /**
    * Clear error state
    */
@@ -89,7 +109,7 @@ export function useApiError(options = {}) {
     error.value = null;
     retryCount.value = 0;
   }
-  
+
   /**
    * Retry the last failed operation
    * @param {Function} retryFunction - Function to retry
@@ -98,10 +118,10 @@ export function useApiError(options = {}) {
     if (!canRetry.value || !retryFunction) {
       return;
     }
-    
+
     retryCount.value++;
     clearError();
-    
+
     try {
       isLoading.value = true;
       const result = await retryFunction();
@@ -113,7 +133,7 @@ export function useApiError(options = {}) {
       isLoading.value = false;
     }
   }
-  
+
   /**
    * Execute API call with error handling
    * @param {Function} apiCall - API function to execute
@@ -124,7 +144,7 @@ export function useApiError(options = {}) {
     try {
       isLoading.value = true;
       clearError();
-      
+
       const result = await apiCall();
       return result;
     } catch (err) {
@@ -134,7 +154,7 @@ export function useApiError(options = {}) {
       isLoading.value = false;
     }
   }
-  
+
   /**
    * Execute API call with retry logic
    * @param {Function} apiCall - API function to execute
@@ -151,11 +171,11 @@ export function useApiError(options = {}) {
       throw err;
     }
   }
-  
+
   // =============================================================================
   // UTILITY METHODS
   // =============================================================================
-  
+
   /**
    * Get error summary for logging
    * @returns {string} Error summary
@@ -164,7 +184,7 @@ export function useApiError(options = {}) {
     if (!error.value) return '';
     return `[${error.value.type}] ${error.value.message}`;
   }
-  
+
   /**
    * Check if error is of specific type
    * @param {string} errorType - Error type to check
@@ -173,7 +193,7 @@ export function useApiError(options = {}) {
   function isErrorType(errorType) {
     return error.value && error.value.type === errorType;
   }
-  
+
   /**
    * Get error statistics
    * @returns {Object} Error statistics
@@ -181,11 +201,11 @@ export function useApiError(options = {}) {
   function getErrorStats() {
     return errorMonitor.getErrorStats();
   }
-  
+
   // =============================================================================
   // REACTIVE HELPERS
   // =============================================================================
-  
+
   /**
    * Create reactive API call wrapper
    * @param {Function} apiCall - API function
@@ -197,7 +217,7 @@ export function useApiError(options = {}) {
       try {
         isLoading.value = true;
         clearError();
-        
+
         const result = await apiCall(...args);
         return result;
       } catch (err) {
@@ -212,7 +232,7 @@ export function useApiError(options = {}) {
       }
     };
   }
-  
+
   /**
    * Create reactive API call with retry
    * @param {Function} apiCall - API function
@@ -231,24 +251,24 @@ export function useApiError(options = {}) {
       }
     };
   }
-  
+
   // =============================================================================
   // RETURN OBJECT
   // =============================================================================
-  
+
   return {
     // Reactive state
     error: readonly(error),
     isLoading: readonly(isLoading),
     retryCount: readonly(retryCount),
-    
+
     // Computed properties
     hasError,
     isCritical,
     canRetry,
     requiresUserAction,
     errorDisplay,
-    
+
     // Methods
     handleError,
     clearError,
@@ -258,7 +278,7 @@ export function useApiError(options = {}) {
     getErrorSummary,
     isErrorType,
     getErrorStats,
-    
+
     // Reactive helpers
     createApiCall,
     createApiCallWithRetry
@@ -284,11 +304,11 @@ export function useContentLoader(options = {}) {
     clearError,
     executeWithErrorHandling
   } = useApiError(options);
-  
+
   // Content state
   const content = ref(null);
   const isEmpty = computed(() => !isLoading.value && !hasError.value && !content.value);
-  
+
   /**
    * Load content with error handling
    * @param {Function} loader - Content loading function
@@ -305,7 +325,7 @@ export function useContentLoader(options = {}) {
       throw err;
     }
   }
-  
+
   /**
    * Refresh content
    * @param {Function} loader - Content loading function
@@ -316,7 +336,7 @@ export function useContentLoader(options = {}) {
     clearError();
     return await loadContent(loader, context);
   }
-  
+
   return {
     // State
     content: readonly(content),
@@ -324,7 +344,7 @@ export function useContentLoader(options = {}) {
     hasError,
     errorDisplay,
     isEmpty,
-    
+
     // Methods
     loadContent,
     refreshContent,
@@ -347,11 +367,11 @@ export function useFormSubmission(options = {}) {
     clearError,
     executeWithErrorHandling
   } = useApiError(options);
-  
+
   // Form state
   const isSubmitted = ref(false);
   const isSuccess = ref(false);
-  
+
   /**
    * Submit form with error handling
    * @param {Function} submitter - Form submission function
@@ -362,9 +382,9 @@ export function useFormSubmission(options = {}) {
     try {
       isSubmitted.value = true;
       isSuccess.value = false;
-      
+
       const result = await executeWithErrorHandling(submitter, context);
-      
+
       isSuccess.value = true;
       return result;
     } catch (err) {
@@ -372,7 +392,7 @@ export function useFormSubmission(options = {}) {
       throw err;
     }
   }
-  
+
   /**
    * Reset form state
    */
@@ -381,7 +401,7 @@ export function useFormSubmission(options = {}) {
     isSubmitted.value = false;
     isSuccess.value = false;
   }
-  
+
   return {
     // State
     isLoading,
@@ -389,7 +409,7 @@ export function useFormSubmission(options = {}) {
     errorDisplay,
     isSubmitted: readonly(isSubmitted),
     isSuccess: readonly(isSuccess),
-    
+
     // Methods
     submitForm,
     resetForm,
@@ -414,7 +434,7 @@ export function useErrorBoundary(options = {}) {
     handleError,
     clearError
   } = useApiError(options);
-  
+
   /**
    * Handle component error
    * @param {Error} err - Error object
@@ -427,19 +447,19 @@ export function useErrorBoundary(options = {}) {
       location: window.location.href
     });
   }
-  
+
   /**
    * Reset error boundary
    */
   function resetErrorBoundary() {
     clearError();
   }
-  
+
   return {
     // State
     hasError,
     errorDisplay,
-    
+
     // Methods
     handleComponentError,
     resetErrorBoundary

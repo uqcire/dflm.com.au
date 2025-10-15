@@ -57,7 +57,7 @@ const currentPost = computed(() => posts.value || null)
             <h1 class="page-article__title">{{ currentPost.title }}</h1>
             <div class="page-article__meta">
                 <time :datetime="currentPost.publishedAt">{{ new Date(currentPost.publishedAt).toLocaleDateString()
-                }}</time>
+                    }}</time>
                 <span v-if="currentPost.category" class="page-article__category">{{ currentPost.category.name }}</span>
                 <span v-if="currentPost.author" class="page-article__author">By {{ currentPost.author }}</span>
             </div>

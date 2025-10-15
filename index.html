@@ -34,8 +34,20 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     
-    <!-- Umami Cloud Analytics -->
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="fb3c346e-f7bf-4ad7-a758-d4a60e1ea11d"></script>
+    <!-- Umami Cloud Analytics with fallback handling -->
+    <script>
+      // Load Umami with error handling to prevent blocking
+      (function() {
+        var script = document.createElement('script');
+        script.defer = true;
+        script.src = 'https://cloud.umami.is/script.js';
+        script.setAttribute('data-website-id', 'fb3c346e-f7bf-4ad7-a758-d4a60e1ea11d');
+        script.onerror = function() {
+          console.info('Umami analytics blocked - this is expected if using ad blockers');
+        };
+        document.head.appendChild(script);
+      })();
+    </script>
     
     <!-- WebP Support Detection (deferred) -->
     <script>

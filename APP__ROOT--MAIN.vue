@@ -14,6 +14,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import ErrorBoundary from '@/components/system/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue'
 import NotificationContainer from '@/components/system/COMPONENT__NOTIFICATION--CONTAINER.vue'
+import DevStatusBanner from '@/components/system/COMPONENT__DEV-STATUS--BANNER.vue'
 import ComponentHeaderSite from '@/components/navigation/COMPONENT__HEADER--SITE.vue'
 import ComponentFooterSite from '@/components/navigation/COMPONENT__FOOTER--SITE.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
@@ -100,6 +101,9 @@ const zIndex = ref(3000)
 
 <template>
   <el-config-provider :size="size" :z-index="zIndex">
+    <!-- Development Status Banner -->
+    <DevStatusBanner />
+
     <div id="app" class="app min-h-screen bg-white text-slate-900">
       <el-container class="min-h-screen">
         <!-- Site Navigation -->

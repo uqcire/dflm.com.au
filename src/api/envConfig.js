@@ -20,14 +20,14 @@ export const envConfig = {
     type: 'string',
     required: true
   },
-  
+
   VITE_STRAPI_MEDIA_URL: {
     description: 'Strapi media base URL for blog images',
     default: '',
     type: 'string',
     required: false
   },
-  
+
   // Authentication (optional for public blog content)
   VITE_STRAPI_TOKEN: {
     description: 'Strapi API token for authenticated requests',
@@ -35,7 +35,7 @@ export const envConfig = {
     type: 'string',
     required: false
   },
-  
+
   // Performance settings
   VITE_API_TIMEOUT: {
     description: 'Blog API request timeout in milliseconds',
@@ -89,16 +89,16 @@ export function validateEnvConfig() {
     warnings: [],
     config: {}
   };
-  
+
   // Check required variables
   Object.entries(envConfig).forEach(([key, config]) => {
     const value = getEnvVar(key);
-    
+
     if (config.required && !value) {
       result.valid = false;
       result.errors.push(`Missing required environment variable: ${key}`);
     }
-    
+
     // Type validation
     if (value) {
       switch (config.type) {
@@ -121,11 +121,11 @@ export function validateEnvConfig() {
           break;
       }
     }
-    
+
     // Store validated value
     result.config[key] = value;
   });
-  
+
   return result;
 }
 
@@ -184,23 +184,23 @@ export function setupBlogApiEnvironment() {
   const validation = validateEnvConfig();
   const config = getCurrentApiConfig();
   const isConfigured = isBlogApiConfigured();
-  
+
   console.log('🔧 Blog API Environment Setup:');
   console.log(`  Environment: ${config.environment}`);
   console.log(`  Blog API: ${isConfigured ? 'configured' : 'not configured'}`);
-  
+
   if (isConfigured) {
     console.log(`  Strapi URL: ${config.strapiApiUrl}`);
   }
-  
+
   if (validation.errors.length > 0) {
     console.error('❌ Environment validation errors:', validation.errors);
   }
-  
+
   if (validation.warnings.length > 0) {
     console.warn('⚠️ Environment validation warnings:', validation.warnings);
   }
-  
+
   return {
     valid: validation.valid,
     configured: isConfigured,

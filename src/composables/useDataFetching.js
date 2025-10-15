@@ -7,7 +7,7 @@
 
 import { ref, computed, readonly } from 'vue';
 import { useApiError } from './useApiError.js';
-import { 
+import {
   getPosts,
   getPostBySlug,
   getPostById,
@@ -16,7 +16,10 @@ import {
   getCategoryById,
   getTags,
   getTagBySlug,
-  getTagById
+  getTagById,
+  // Supabase-first parallel exports (migration phase)
+  getPostsSupabase,
+  getPostBySlugSupabase
 } from '../api/index.js';
 
 // =============================================================================
@@ -32,7 +35,7 @@ class DataCache {
     this.maxSize = 50; // Smaller cache for blog only
     this.ttl = 5 * 60 * 1000; // 5 minutes
   }
-  
+
   /**
    * Generate cache key
    * @param {string} operation - API operation
@@ -42,7 +45,7 @@ class DataCache {
   generateKey(operation, params = {}) {
     return `${operation}_${JSON.stringify(params)}`;
   }
-  
+
   /**
    * Get cached data
    * @param {string} key - Cache key
@@ -51,15 +54,15 @@ class DataCache {
   get(key) {
     const item = this.cache.get(key);
     if (!item) return null;
-    
+
     if (Date.now() - item.timestamp > this.ttl) {
       this.cache.delete(key);
       return null;
     }
-    
+
     return item.data;
   }
-  
+
   /**
    * Set cache data
    * @param {string} key - Cache key
@@ -71,13 +74,13 @@ class DataCache {
       const firstKey = this.cache.keys().next().value;
       this.cache.delete(firstKey);
     }
-    
+
     this.cache.set(key, {
       data,
       timestamp: Date.now()
     });
   }
-  
+
   /**
    * Clear specific cache entry
    * @param {string} key - Cache key
@@ -85,7 +88,7 @@ class DataCache {
   clear(key) {
     this.cache.delete(key);
   }
-  
+
   /**
    * Clear all cache
    */
@@ -110,12 +113,12 @@ export function useDataFetching(options = {}) {
     clearError,
     executeWithErrorHandling
   } = useApiError(options);
-  
+
   // Data state
   const data = ref(null);
   const lastFetched = ref(null);
   const cacheKey = ref(null);
-  
+
   // Computed properties
   const isEmpty = computed(() => !isLoading.value && !hasError.value && !data.value);
   const isStale = computed(() => {
@@ -123,7 +126,7 @@ export function useDataFetching(options = {}) {
     const staleThreshold = options.staleThreshold || 5 * 60 * 1000; // 5 minutes
     return Date.now() - lastFetched.value > staleThreshold;
   });
-  
+
   /**
    * Fetch data with caching
    * @param {Function} fetcher - Data fetching function
@@ -134,7 +137,7 @@ export function useDataFetching(options = {}) {
   async function fetchData(fetcher, params = {}, context = {}) {
     const key = dataCache.generateKey(fetcher.name, params);
     cacheKey.value = key;
-    
+
     // Check cache first
     if (options.useCache !== false) {
       const cached = dataCache.get(key);
@@ -144,28 +147,28 @@ export function useDataFetching(options = {}) {
         return cached;
       }
     }
-    
+
     try {
       const result = await executeWithErrorHandling(
         () => fetcher(params),
         context
       );
-      
+
       data.value = result;
       lastFetched.value = Date.now();
-      
+
       // Cache the result
       if (options.useCache !== false) {
         dataCache.set(key, result);
       }
-      
+
       return result;
     } catch (err) {
       data.value = null;
       throw err;
     }
   }
-  
+
   /**
    * Refresh data (ignore cache)
    * @param {Function} fetcher - Data fetching function
@@ -175,15 +178,15 @@ export function useDataFetching(options = {}) {
    */
   async function refreshData(fetcher, params = {}, context = {}) {
     clearError();
-    
+
     // Clear cache for this key
     if (cacheKey.value) {
       dataCache.clear(cacheKey.value);
     }
-    
+
     return await fetchData(fetcher, params, context);
   }
-  
+
   /**
    * Clear current data
    */
@@ -193,7 +196,7 @@ export function useDataFetching(options = {}) {
     cacheKey.value = null;
     clearError();
   }
-  
+
   return {
     // State
     data: readonly(data),
@@ -203,7 +206,7 @@ export function useDataFetching(options = {}) {
     lastFetched: readonly(lastFetched),
     isEmpty,
     isStale,
-    
+
     // Methods
     fetchData,
     refreshData,
@@ -232,34 +235,36 @@ export function usePosts(options = {}) {
     refreshData,
     clearData
   } = useDataFetching(options);
-  
+
   /**
-   * Load posts
+   * Load posts (Supabase-first)
    * @param {Object} params - Fetch parameters
    * @returns {Promise<any>} Posts data
    */
   async function loadPosts(params = {}) {
-    return await fetchData(getPosts, params, {
+    // Switch to Supabase implementation
+    return await fetchData(getPostsSupabase, params, {
       operation: 'loadPosts',
       contentType: 'post'
     });
   }
-  
+
   /**
-   * Get post by slug
+   * Get post by slug (Supabase-first)
    * @param {string} slug - Post slug
    * @returns {Promise<any>} Post data
    */
   async function loadPostBySlug(slug) {
-    return await fetchData(getPostBySlug, slug, {
+    // Switch to Supabase implementation
+    return await fetchData(getPostBySlugSupabase, slug, {
       operation: 'loadPostBySlug',
       contentType: 'post',
       slug
     });
   }
-  
+
   /**
-   * Get post by ID
+   * Get post by ID (still via legacy Strapi if needed)
    * @param {number|string} id - Post ID
    * @returns {Promise<any>} Post data
    */
@@ -270,7 +275,7 @@ export function usePosts(options = {}) {
       id
     });
   }
-  
+
   return {
     // State
     posts,
@@ -278,12 +283,12 @@ export function usePosts(options = {}) {
     hasError,
     errorDisplay,
     isEmpty,
-    
+
     // Methods
     loadPosts,
     loadPostBySlug,
     loadPostById,
-    refreshPosts: () => refreshData(getPosts),
+    refreshPosts: () => refreshData(getPostsSupabase),
     clearPosts: clearData
   };
 }
@@ -304,7 +309,7 @@ export function useCategories(options = {}) {
     refreshData,
     clearData
   } = useDataFetching(options);
-  
+
   /**
    * Load categories
    * @param {Object} params - Fetch parameters
@@ -316,7 +321,7 @@ export function useCategories(options = {}) {
       contentType: 'category'
     });
   }
-  
+
   /**
    * Get category by slug
    * @param {string} slug - Category slug
@@ -329,7 +334,7 @@ export function useCategories(options = {}) {
       slug
     });
   }
-  
+
   /**
    * Get category by ID
    * @param {number|string} id - Category ID
@@ -342,7 +347,7 @@ export function useCategories(options = {}) {
       id
     });
   }
-  
+
   return {
     // State
     categories,
@@ -350,7 +355,7 @@ export function useCategories(options = {}) {
     hasError,
     errorDisplay,
     isEmpty,
-    
+
     // Methods
     loadCategories,
     loadCategoryBySlug,
@@ -376,7 +381,7 @@ export function useTags(options = {}) {
     refreshData,
     clearData
   } = useDataFetching(options);
-  
+
   /**
    * Load tags
    * @param {Object} params - Fetch parameters
@@ -388,7 +393,7 @@ export function useTags(options = {}) {
       contentType: 'tag'
     });
   }
-  
+
   /**
    * Get tag by slug
    * @param {string} slug - Tag slug
@@ -401,7 +406,7 @@ export function useTags(options = {}) {
       slug
     });
   }
-  
+
   /**
    * Get tag by ID
    * @param {number|string} id - Tag ID
@@ -414,7 +419,7 @@ export function useTags(options = {}) {
       id
     });
   }
-  
+
   return {
     // State
     tags,
@@ -422,7 +427,7 @@ export function useTags(options = {}) {
     hasError,
     errorDisplay,
     isEmpty,
-    
+
     // Methods
     loadTags,
     loadTagBySlug,
@@ -439,12 +444,12 @@ export function useTags(options = {}) {
 export default {
   // Core composables
   useDataFetching,
-  
+
   // Blog composables
   usePosts,
   useCategories,
   useTags,
-  
+
   // Cache instance (for advanced usage)
   dataCache
 }; 

@@ -52,6 +52,7 @@ export default defineConfig(({ mode }) => {
       open: false, // Automatically open application in browser when server starts
       strictPort: true, // Set to true to fail if port is already in use
       https: false, // Whether to enable HTTPS protocol
+      allowedHosts: ['ghost.dflm.com.au'],
     },
 
     build: {

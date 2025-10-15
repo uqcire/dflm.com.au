@@ -1,34 +1,20 @@
 /**
- * Blog API Services Index
+ * API Services Index
  * 
- * This file exports blog-related API service methods for the
- * Strapi CMS integration (posts, categories, tags only).
+ * This file exports all API service methods for Supabase integration.
  */
 
-// Blog Content Services
+// Supabase Content Services
 export {
-  getPosts,
-  getPostBySlug,
-  getPostById,
-  createPost,
-  updatePost,
-  deletePost
-} from './postService.js';
+  fetchPosts as getPosts,
+  fetchPostBySlug as getPostBySlug
+} from './postsSupabase.js';
 
+// Fallback data services
 export {
-  getCategories,
-  getCategoryBySlug,
-  getCategoryById,
-  createCategory,
-  updateCategory,
-  deleteCategory
-} from './categoryService.js';
-
-export {
-  getTags,
-  getTagBySlug,
-  getTagById,
-  createTag,
-  updateTag,
-  deleteTag
-} from './tagService.js'; 
+  getMockPosts,
+  getMockPostBySlug,
+  getMockCategories,
+  getMockTags,
+  shouldUseMockData
+} from './fallbackData.js'; 
