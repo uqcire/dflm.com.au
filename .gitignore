@@ -40,3 +40,4 @@ DOCS/
 
 # Project specific excludes
 CHANGELOG__PROJECT--DAILY.md
+.vercel
