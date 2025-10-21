@@ -298,7 +298,8 @@ async function transformGhostPost(ghostPost) {
       slug: ghostPost.slug,
       title: ghostPost.title,
       excerpt: ghostPost.custom_excerpt || ghostPost.excerpt || '',
-      body: ghostPost.html || '',
+      content: ghostPost.html || '',  // 改为 content 字段
+      body: ghostPost.html || '',     // 同时填充 body 字段（向后兼容）
       cover_url: coverUrl,
       feature_image_original: ghostPost.feature_image,
       author: ghostPost.primary_author?.name || 'Unknown',
@@ -511,8 +512,9 @@ export default async function handler(req, res) {
       })
     }
 
-    console.log('📥 Request body:', JSON.stringify(req.body, null, 2));
-    
+    console.log('📥 Full Request Headers:', JSON.stringify(req.headers, null, 2));
+    console.log('📥 Full Request Body:', JSON.stringify(req.body, null, 2));
+
     // 解析请求数据
     const { post, meta } = req.body
     
