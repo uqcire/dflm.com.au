@@ -78,7 +78,15 @@ export function useApiError(options = {}) {
         stack: originalError?.stack,
         context,
         isRetryable: () => false,
-        requiresUserAction: () => false
+        requiresUserAction: () => false,
+        getUserFriendlyError: () => ({
+          type: 'UNKNOWN_ERROR',
+          title: 'Something went wrong',
+          message: originalError?.message || 'An unexpected error occurred. Please try again or reload the page.',
+          userAction: 'Please try again or reload the page.',
+          severity: 'error',
+          timestamp: new Date()
+        })
       };
     }
 

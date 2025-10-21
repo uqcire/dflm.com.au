@@ -709,15 +709,28 @@ export function getErrorSummary(apiError) {
  * @returns {Object} Formatted error
  */
 export function formatErrorForDisplay(apiError) {
-  const userError = apiError.getUserFriendlyError();
+  // Safe fallback if getUserFriendlyError method doesn't exist
+  let userError;
+  
+  if (typeof apiError.getUserFriendlyError === 'function') {
+    userError = apiError.getUserFriendlyError();
+  } else {
+    // Fallback for errors without getUserFriendlyError method
+    userError = {
+      title: 'Something went wrong',
+      message: apiError?.message || 'An unexpected error occurred. Please try again or reload the page.',
+      userAction: 'Please try again or reload the page.',
+      severity: 'error'
+    };
+  }
   
   return {
     title: userError.title,
     message: userError.message,
     action: userError.userAction,
     severity: userError.severity,
-    retryable: apiError.isRetryable(),
-    requiresUserAction: apiError.requiresUserAction()
+    retryable: typeof apiError.isRetryable === 'function' ? apiError.isRetryable() : false,
+    requiresUserAction: typeof apiError.requiresUserAction === 'function' ? apiError.requiresUserAction() : false
   };
 }
 
