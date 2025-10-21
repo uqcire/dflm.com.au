@@ -536,10 +536,6 @@ export default async function handler(req, res) {
     
     // 在数据处理前添加
     console.log('📊 Processing webhook data...')
-    console.log('📊 Event type:', req.body?.meta?.event)
-    console.log('📊 Post ID:', req.body?.post?.current?.id)
-    console.log('📊 Post title:', req.body?.post?.current?.title)
-    
     console.log('📥 Full Request Headers:', JSON.stringify(req.headers, null, 2));
     console.log('📥 Full Request Body:', JSON.stringify(req.body, null, 2));
 
@@ -552,16 +548,19 @@ export default async function handler(req, res) {
       meta = req.body.meta;
       post = req.body.post;
       event = meta.event;
+      console.log('📊 Using standard Ghost format');
     } else if (req.body.event) {
       // 备用格式 1
       event = req.body.event;
       post = req.body;
       meta = { event: event, request_id: 'ghost-' + Date.now() };
+      console.log('📊 Using backup format 1');
     } else if (req.body.type) {
       // 备用格式 2
       event = req.body.type;
       post = { current: req.body };
       meta = { event: event, request_id: 'ghost-' + Date.now() };
+      console.log('📊 Using backup format 2');
     } else {
       // 尝试从其他字段推断
       console.log('🔍 Attempting to parse unknown webhook format...');
@@ -572,6 +571,7 @@ export default async function handler(req, res) {
         event = 'post.published'; // 默认事件
         post = { current: req.body };
         meta = { event: event, request_id: 'ghost-inferred-' + Date.now() };
+        console.log('📊 Using inferred format');
       } else {
         throw new Error(`Unknown webhook format. Available keys: ${Object.keys(req.body).join(', ')}`);
       }
