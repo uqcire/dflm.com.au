@@ -101,6 +101,11 @@ export default defineConfig(({ mode }) => {
     },
 
     // 让依赖预打包遵循真实引用路径，避免把未使用的库（如 element-plus 全量）强行打入
-    optimizeDeps: {}
+    optimizeDeps: {},
+    define: {
+      // 确保环境变量被正确传递
+      __VITE_SUPABASE_URL__: JSON.stringify(env.VITE_SUPABASE_URL),
+      __VITE_SUPABASE_ANON_KEY__: JSON.stringify(env.VITE_SUPABASE_ANON_KEY),
+    }
   }
 })
