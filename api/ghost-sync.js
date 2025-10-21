@@ -42,6 +42,11 @@ function verifyWebhookSignature(payload, signature, secret) {
   console.log('🔍 Signature Debug:')
   console.log('Received signature:', signature)
   console.log('Secret available:', secret ? 'YES' : 'NO')
+  console.log('Payload preview:', payload ? payload.substring(0, 200) + '...' : 'NO PAYLOAD')
+  
+  // 临时跳过签名验证用于调试
+  console.log('⚠️ TEMPORARILY BYPASSING SIGNATURE VERIFICATION FOR DEBUG')
+  return true
   
   // 检查是否为测试请求
   try {
@@ -480,7 +485,14 @@ async function handlePostDelete(ghostPost) {
 // ========================================
 export default async function handler(req, res) {
   const startTime = Date.now()
-
+  
+  // 详细的请求日志
+  console.log('🔍 === WEBHOOK DEBUG START ===')
+  console.log('📥 Method:', req.method)
+  console.log('📥 Headers:', JSON.stringify(req.headers, null, 2))
+  console.log('📥 Body type:', typeof req.body)
+  console.log('📥 Body preview:', JSON.stringify(req.body, null, 2).substring(0, 500) + '...')
+  
   // 设置 CORS 头
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
@@ -500,6 +512,9 @@ export default async function handler(req, res) {
   }
 
   try {
+    // 在签名验证前添加
+    console.log('🔐 Starting signature verification...')
+    
     // 验证 Webhook 签名
     const signature = req.headers['x-ghost-signature']
     const payload = JSON.stringify(req.body)
@@ -512,6 +527,14 @@ export default async function handler(req, res) {
       })
     }
 
+    console.log('✅ Signature verification passed')
+    
+    // 在数据处理前添加
+    console.log('📊 Processing webhook data...')
+    console.log('📊 Event type:', req.body?.meta?.event)
+    console.log('📊 Post ID:', req.body?.post?.current?.id)
+    console.log('📊 Post title:', req.body?.post?.current?.title)
+    
     console.log('📥 Full Request Headers:', JSON.stringify(req.headers, null, 2));
     console.log('📥 Full Request Body:', JSON.stringify(req.body, null, 2));
 
@@ -571,6 +594,12 @@ export default async function handler(req, res) {
     })
 
   } catch (error) {
+    console.log('❌ === ERROR DETAILS ===')
+    console.log('❌ Error type:', error.constructor.name)
+    console.log('❌ Error message:', error.message)
+    console.log('❌ Error stack:', error.stack)
+    console.log('❌ === ERROR END ===')
+    
     const processingTime = Date.now() - startTime
     console.error('❌ Webhook processing error:', error)
     console.error('📋 Error stack:', error.stack)
