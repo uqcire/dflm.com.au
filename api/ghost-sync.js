@@ -512,8 +512,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 在签名验证前添加
-    console.log('🔐 Starting signature verification...')
+    // Ghost 版本和格式检测
+    console.log('🔍 === GHOST WEBHOOK ANALYSIS ===');
+    console.log('�� User-Agent:', req.headers['user-agent']);
+    console.log('📥 Content-Type:', req.headers['content-type']);
+    console.log('📥 Ghost-Version:', req.headers['ghost-version'] || 'Unknown');
+    console.log('📥 Request Keys:', Object.keys(req.body));
+    console.log('📥 Request Size:', JSON.stringify(req.body).length);
     
     // 验证 Webhook 签名
     const signature = req.headers['x-ghost-signature']
@@ -538,46 +543,96 @@ export default async function handler(req, res) {
     console.log('📥 Full Request Headers:', JSON.stringify(req.headers, null, 2));
     console.log('📥 Full Request Body:', JSON.stringify(req.body, null, 2));
 
-    // 解析请求数据
-    const { post, meta } = req.body
-    
+    // 解析请求数据 - 增强版本
+    let meta, post, event;
+
+    // 检查不同的 Ghost webhook 格式
+    if (req.body.meta) {
+      // 标准格式
+      meta = req.body.meta;
+      post = req.body.post;
+      event = meta.event;
+    } else if (req.body.event) {
+      // 备用格式 1
+      event = req.body.event;
+      post = req.body;
+      meta = { event: event, request_id: 'ghost-' + Date.now() };
+    } else if (req.body.type) {
+      // 备用格式 2
+      event = req.body.type;
+      post = { current: req.body };
+      meta = { event: event, request_id: 'ghost-' + Date.now() };
+    } else {
+      // 尝试从其他字段推断
+      console.log('🔍 Attempting to parse unknown webhook format...');
+      console.log('🔍 Available keys:', Object.keys(req.body));
+      
+      // 如果有 post 相关数据，尝试处理
+      if (req.body.id || req.body.title || req.body.slug) {
+        event = 'post.published'; // 默认事件
+        post = { current: req.body };
+        meta = { event: event, request_id: 'ghost-inferred-' + Date.now() };
+      } else {
+        throw new Error(`Unknown webhook format. Available keys: ${Object.keys(req.body).join(', ')}`);
+      }
+    }
+
+    console.log('📊 Parsed event:', event);
+    console.log('📊 Parsed meta:', JSON.stringify(meta, null, 2));
+    console.log('📊 Parsed post keys:', post ? Object.keys(post) : 'No post data');
+
     if (!meta) {
-      throw new Error('Missing meta data in webhook payload')
+      throw new Error('Could not parse webhook metadata from payload');
+    }
+
+    if (!event) {
+      throw new Error('Could not determine event type from webhook payload');
     }
     
-    if (!meta.event) {
-      throw new Error('Missing event type in meta data')
-    }
-    
-    const event = meta.event
-    console.log(`🎯 Processing Ghost webhook: ${event} (${meta.request_id || 'no-request-id'})`)
+    // 根据事件类型处理 - 增强版本
+    let result;
+    console.log(`🎯 Processing event: ${event}`);
 
-    // 根据事件类型处理
-    let result
-    switch (event) {
-      case 'post.published':
-      case 'post.updated':
-        if (!post || !post.current) {
-          throw new Error('Missing post.current data in webhook payload')
-        }
-        console.log(`📝 Syncing post: ${post.current.title} (${post.current.id})`)
-        result = await handlePostSync(post.current)
-        break
+    // 标准化事件名称
+    const normalizedEvent = event.toLowerCase();
 
-      case 'post.unpublished':
-      case 'post.deleted':
-        if (!post.previous) {
-          throw new Error('Missing previous post data in webhook payload')
-        }
-        result = await handlePostDelete(post.previous)
-        break
-
-      default:
-        console.log(`Unhandled event: ${event}`)
-        return res.status(200).json({ 
-          success: true, 
-          message: `Event ${event} not handled` 
-        })
+    if (normalizedEvent.includes('publish') || normalizedEvent.includes('create') || normalizedEvent.includes('update') || normalizedEvent.includes('edit')) {
+      // 处理发布/更新事件
+      let ghostPost = post?.current || post;
+      
+      if (!ghostPost) {
+        console.log('🔍 No post.current, trying direct post data...');
+        ghostPost = req.body;
+      }
+      
+      if (!ghostPost || !ghostPost.id) {
+        throw new Error('Missing post data in webhook payload');
+      }
+      
+      console.log(`📝 Processing post: ${ghostPost.title || ghostPost.id}`);
+      result = await handlePostSync(ghostPost);
+      
+    } else if (normalizedEvent.includes('unpublish') || normalizedEvent.includes('delete')) {
+      // 处理删除事件
+      let ghostPost = post?.previous || post?.current || post;
+      
+      if (!ghostPost) {
+        ghostPost = req.body;
+      }
+      
+      if (!ghostPost || !ghostPost.id) {
+        throw new Error('Missing post data for deletion');
+      }
+      
+      result = await handlePostDelete(ghostPost);
+      
+    } else {
+      console.log(`ℹ️ Unhandled event type: ${event}`);
+      return res.status(200).json({ 
+        success: true, 
+        message: `Event ${event} acknowledged but not processed`,
+        event: event
+      });
     }
 
     // 返回成功响应
