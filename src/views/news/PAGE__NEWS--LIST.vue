@@ -129,14 +129,14 @@ const formatDate = (dateString) => {
 
 
                             <!-- Meta Info -->
-                            <div class="flex flex-wrap gap-3 text-xs text-pickled-bluewood-600">
+                            <div class="flex flex-wrap gap-2 text-xs text-pickled-bluewood-600 mt-3">
                                 <!-- Tags -->
-                                <span v-if="post.tags && post.tags.length > 0" class="flex gap-2">
+                                <div v-if="post.tags && post.tags.length > 0" class="flex flex-wrap gap-2">
                                     <span v-for="tag in post.tags" :key="tag.id"
-                                        class="font-medium bg-monza-300 text-white rounded-full px-3 py-1">
+                                        class="inline-flex items-center font-medium bg-monza-400 hover:bg-monza-500 text-white rounded-full px-3 py-1.5 text-xs transition-colors duration-200 shadow-sm">
                                         #{{ tag.name }}
                                     </span>
-                                </span>
+                                </div>
                             </div>
                         </article>
                     </div>

@@ -107,7 +107,7 @@ const formatDate = (dateString) => {
                     <!-- Categories/Tags -->
                     <div class="flex flex-wrap gap-2 mb-8">
                         <span v-for="tag in currentPost.tags" :key="tag.id"
-                            class="px-3 py-1 text-xs font-medium bg-monza-300 text-white rounded-full">
+                            class="px-3 py-1 text-xs font-medium bg-monza-400 hover:bg-monza-500 text-white rounded-full">
                             {{ tag.name }}
                         </span>
                     </div>
@@ -120,9 +120,10 @@ const formatDate = (dateString) => {
             style="padding-top: 0; padding-bottom: 0;">
             <ComponentContainer size="2xl" padding="none">
                 <div class="max-w-4xl mx-auto">
-                    <div class="aspect-video md:aspect-[16/10] overflow-hidden rounded-lg shadow-lg">
-                        <img :src="currentPost.coverUrl" :alt="currentPost.title" class="w-full h-full object-cover"
-                            loading="eager" />
+                    <div class="aspect-video md:aspect-[16/10] overflow-hidden rounded-lg shadow-lg bg-gray-200">
+                        <img :src="currentPost.coverUrl" :alt="currentPost.title"
+                            class="w-full h-full object-cover min-w-full min-h-full"
+                            style="object-fit: cover; object-position: center;" loading="eager" />
                     </div>
                 </div>
             </ComponentContainer>
@@ -205,28 +206,35 @@ const formatDate = (dateString) => {
     font-family: var(--font-family-heading);
     font-weight: 700;
     color: hsl(var(--pickled-bluewood-800));
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
 }
 
 .prose-content h1 {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+    font-size: 1.75rem;
+    line-height: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .prose-content h2 {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
+    font-size: 1.375rem;
+    line-height: 1.875rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.875rem;
 }
 
 .prose-content h3 {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .prose-content h4 {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .prose-content h5 {
@@ -241,36 +249,44 @@ const formatDate = (dateString) => {
 
 @media (min-width: 768px) {
     .prose-content h1 {
-        font-size: 3rem;
-        line-height: 1;
+        font-size: 2.25rem;
+        line-height: 1.1;
+        margin-top: 1.75rem;
+        margin-bottom: 1.25rem;
     }
 
     .prose-content h2 {
-        font-size: 2.25rem;
-        line-height: 2.5rem;
+        font-size: 1.75rem;
+        line-height: 2rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .prose-content h3 {
-        font-size: 1.875rem;
-        line-height: 2.25rem;
+        font-size: 1.375rem;
+        line-height: 1.875rem;
+        margin-top: 1.25rem;
+        margin-bottom: 0.875rem;
     }
 
     .prose-content h4 {
-        font-size: 1.5rem;
-        line-height: 2rem;
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+        margin-top: 1rem;
+        margin-bottom: 0.75rem;
     }
 }
 
 .prose-content p {
-    margin-bottom: 1rem;
-    line-height: 1.625;
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
     color: hsl(var(--pickled-bluewood-700));
 }
 
 .prose-content ul,
 .prose-content ol {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
+    margin: 0 0 1.25rem 0;
+    padding-left: 1.25rem;
     color: hsl(var(--pickled-bluewood-700));
 }
 
@@ -279,8 +295,8 @@ const formatDate = (dateString) => {
 }
 
 .prose-content blockquote {
-    margin: 1.5rem 0;
-    padding: 1rem;
+    margin: 1.25rem 0;
+    padding: 0.875rem 1rem;
     border-left: 4px solid hsl(var(--tree-poppy-400));
     background-color: #f9fafb;
     font-style: italic;
@@ -307,26 +323,26 @@ const formatDate = (dateString) => {
 }
 
 .prose-content code {
-    padding: 0.25rem 0.5rem;
+    padding: 0.2rem 0.4rem;
     background-color: #f3f4f6;
     border-radius: 0.25rem;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .prose-content pre {
-    padding: 1rem;
+    padding: 0.875rem 1rem;
     background-color: #111827;
     color: #f9fafb;
     border-radius: 0.5rem;
     overflow-x: auto;
-    margin: 1.5rem 0;
+    margin: 1.25rem 0;
 }
 
 .prose-content img {
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     max-width: 100%;
     height: auto;
 }
@@ -341,7 +357,7 @@ const formatDate = (dateString) => {
 .prose-content th,
 .prose-content td {
     border: 1px solid #d1d5db;
-    padding: 0.75rem;
+    padding: 0.5rem 0.75rem;
     text-align: left;
 }
 
