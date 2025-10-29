@@ -102,14 +102,20 @@ const formatDate = (dateString) => {
                             </div>
 
                             <!-- Title and Arrow -->
+                            <h3
+                                class="font-heading text-xl md:text-2xl font-bold text-pickled-bluewood-800 leading-tight flex-1 pb-4">
+                                <router-link :to="{ name: 'news-detail', params: { slug: post.slug } }"
+                                    class="no-underline text-pickled-bluewood-800 hover:text-pickled-bluewood-600 transition-colors duration-200">
+                                    {{ post.title }}
+                                </router-link>
+                            </h3>
+
+
+                            <!-- Excerpt -->
                             <div class="flex items-start justify-between gap-2">
-                                <h3
-                                    class="font-heading text-xl md:text-2xl font-bold text-pickled-bluewood-800 leading-tight flex-1">
-                                    <router-link :to="{ name: 'news-detail', params: { slug: post.slug } }"
-                                        class="no-underline text-pickled-bluewood-800 hover:text-pickled-bluewood-600 transition-colors duration-200">
-                                        {{ post.title }}
-                                    </router-link>
-                                </h3>
+                                <p class="font-body text-pickled-bluewood-700 leading-relaxed pb-2 pr-6">
+                                    {{ post.excerpt }}
+                                </p>
                                 <div class="flex-shrink-0 mt-1">
                                     <router-link :to="{ name: 'news-detail', params: { slug: post.slug } }"
                                         class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-pickled-bluewood-600 hover:bg-pickled-bluewood-100 hover:text-pickled-bluewood-800 transition-all duration-200 group-hover:translate-x-1">
@@ -121,22 +127,13 @@ const formatDate = (dateString) => {
                                 </div>
                             </div>
 
-                            <!-- Excerpt -->
-                            <p class="font-body text-pickled-bluewood-700 leading-relaxed pb-2">
-                                {{ post.excerpt }}
-                            </p>
 
                             <!-- Meta Info -->
-                            <div class="flex flex-wrap gap-3 text-sm text-pickled-bluewood-600">
-                                <span v-if="post.category" class="font-medium text-tree-poppy-600">
-                                    {{ post.category.name }}
-                                </span>
-                                <span v-if="post.author">
-                                    by {{ post.author }}
-                                </span>
+                            <div class="flex flex-wrap gap-3 text-xs text-pickled-bluewood-600">
                                 <!-- Tags -->
                                 <span v-if="post.tags && post.tags.length > 0" class="flex gap-2">
-                                    <span v-for="tag in post.tags" :key="tag.id" class="text-xs">
+                                    <span v-for="tag in post.tags" :key="tag.id"
+                                        class="font-medium bg-monza-300 text-white rounded-full px-3 py-1">
                                         #{{ tag.name }}
                                     </span>
                                 </span>

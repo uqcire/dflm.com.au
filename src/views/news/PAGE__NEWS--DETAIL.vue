@@ -106,12 +106,8 @@ const formatDate = (dateString) => {
 
                     <!-- Categories/Tags -->
                     <div class="flex flex-wrap gap-2 mb-8">
-                        <span v-if="currentPost.category"
-                            class="px-3 py-1 text-xs font-medium bg-tree-poppy-100 text-tree-poppy-800 rounded-full">
-                            {{ currentPost.category.name }}
-                        </span>
                         <span v-for="tag in currentPost.tags" :key="tag.id"
-                            class="px-3 py-1 text-xs font-medium bg-gray-100 text-pickled-bluewood-600 rounded-full">
+                            class="px-3 py-1 text-xs font-medium bg-monza-300 text-white rounded-full">
                             {{ tag.name }}
                         </span>
                     </div>
