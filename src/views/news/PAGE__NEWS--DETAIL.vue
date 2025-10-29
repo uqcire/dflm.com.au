@@ -132,16 +132,14 @@ const formatDate = (dateString) => {
         <ComponentSection spacing="lg" background="transparent" style="padding-top: 0; padding-bottom: 0;">
             <ComponentContainer size="2xl" padding="md">
                 <div class="max-w-4xl mx-auto">
-                    <div class="text-pickled-bluewood-800 leading-relaxed max-w-none">
-                        <div v-html="currentPost.body" class="prose-content text-base md:text-lg leading-relaxed"></div>
+                    <div class="text-pickled-bluewood-800 leading-relaxed max-w-none ">
+                        <div v-html="currentPost.body" class="prose-content text-base md:text-lg leading-relaxed ">
+                        </div>
                     </div>
 
                     <!-- Article Footer -->
                     <div class="mt-12 pt-8 border-t border-gray-200">
                         <div class="flex flex-wrap gap-4 text-sm text-pickled-bluewood-600">
-                            <span v-if="currentPost.author" class="font-medium">
-                                By {{ currentPost.author }}
-                            </span>
                             <span v-if="currentPost.updatedAt && currentPost.updatedAt !== currentPost.publishedAt">
                                 Updated {{ formatDate(currentPost.updatedAt) }}
                             </span>

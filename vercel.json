@@ -1,4 +1,45 @@
 {
+  "redirects": [
+    {
+      "source": "http://dflm.com.au/(.*)",
+      "destination": "https://dflm.com.au/$1",
+      "permanent": true
+    },
+    {
+      "source": "http://www.dflm.com.au/(.*)",
+      "destination": "https://dflm.com.au/$1",
+      "permanent": true
+    },
+    {
+      "source": "https://www.dflm.com.au/(.*)",
+      "destination": "https://dflm.com.au/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)/$",
+      "destination": "/$1",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }

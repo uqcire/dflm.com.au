@@ -13,10 +13,21 @@ const SITE_URL = import.meta.env.VITE_APP_URL || 'https://dflm.com.au'
 // Sanitize a path by removing query strings and hash fragments
 function sanitizePath(path) {
   if (!path) return '/'
+  
+  // 移除 hash 和 query 参数
   const hashIndex = path.indexOf('#')
   if (hashIndex !== -1) path = path.slice(0, hashIndex)
   const queryIndex = path.indexOf('?')
   if (queryIndex !== -1) path = path.slice(0, queryIndex)
+  
+  // 确保路径以 / 开头
+  if (!path.startsWith('/')) path = '/' + path
+  
+  // 移除尾随斜杠（除了根路径）
+  if (path.length > 1 && path.endsWith('/')) {
+    path = path.slice(0, -1)
+  }
+  
   return path || '/'
 }
 
@@ -78,7 +89,8 @@ export function setTitle(title) {
  * @param {string} path - The current path
  */
 export function setCanonical(path) {
-  const url = SITE_URL + sanitizePath(path)
+  const cleanPath = sanitizePath(path)
+  const url = SITE_URL + cleanPath
   setLinkTag('canonical', url)
 }
 
