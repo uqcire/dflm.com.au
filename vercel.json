@@ -1,21 +1,6 @@
 {
   "redirects": [
     {
-      "source": "http://dflm.com.au/(.*)",
-      "destination": "https://dflm.com.au/$1",
-      "permanent": true
-    },
-    {
-      "source": "http://www.dflm.com.au/(.*)",
-      "destination": "https://dflm.com.au/$1",
-      "permanent": true
-    },
-    {
-      "source": "https://www.dflm.com.au/(.*)",
-      "destination": "https://dflm.com.au/$1",
-      "permanent": true
-    },
-    {
       "source": "/(.*)/$",
       "destination": "/$1",
       "permanent": true
