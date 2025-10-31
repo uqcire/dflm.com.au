@@ -132,6 +132,14 @@
     <priority>0.6</priority>
   </url>
   
+  <!-- News & Blog -->
+  <url>
+    <loc>https://dflm.com.au/news</loc>
+    <lastmod>2024-12-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <!-- Legal Pages -->
   <url>
     <loc>https://dflm.com.au/privacy-policy</loc>
