@@ -25,53 +25,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="#B51C21" />
     
-    <!-- Adobe TypeKit Fonts -->
-    <link rel="stylesheet" href="https://use.typekit.net/dcp0ukb.css" />
-    <!-- Brand favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="mask-icon" href="/favicon.png" color="#B51C21" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    
-    <!-- Umami Cloud Analytics with fallback handling -->
-    <script>
-      // Load Umami with error handling to prevent blocking
-      (function() {
-        var script = document.createElement('script');
-        script.defer = true;
-        script.src = 'https://cloud.umami.is/script.js';
-        script.setAttribute('data-website-id', 'fb3c346e-f7bf-4ad7-a758-d4a60e1ea11d');
-        script.onerror = function() {
-          console.info('Umami analytics blocked - this is expected if using ad blockers');
-        };
-        document.head.appendChild(script);
-      })();
-    </script>
-    
-    <!-- WebP Support Detection (deferred) -->
-    <script>
-      // WebP support detection - deferred to avoid blocking initial render
-      function checkWebPSupport() {
-        const webP = new Image();
-        webP.onload = webP.onerror = function() {
-          document.documentElement.classList.add(webP.height === 2 ? 'webp' : 'no-webp');
-        };
-        webP.src = 'data:image/webp;base64,UklGRjoBAABXRUJQVlA4IC4BAABwAAAQAA==';
-      }
-      // Defer WebP detection to avoid blocking initial render
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', checkWebPSupport);
-      } else {
-        setTimeout(checkWebPSupport, 0);
-      }
-    </script>
-    
-    <!-- Preload critical resources -->
-    
-    <!-- DNS prefetch for external domains (if needed) -->
-    <!-- <link rel="dns-prefetch" href="//api.example.com" /> -->
+    <!-- DNS prefetch 和 preconnect 提前建立连接 -->
+    <link rel="dns-prefetch" href="https://use.typekit.net" />
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
 
+    <!-- 异步加载 TypeKit 字体（不阻塞渲染） -->
+    <link rel="stylesheet" href="https://use.typekit.net/dcp0ukb.css" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript>
+      <link rel="stylesheet" href="https://use.typekit.net/dcp0ukb.css" />
+    </noscript>
+
+    <!-- 防止 FOUT（Flash of Unstyled Text）的备用字体 -->
+    <style>
+      /* 临时字体回退，直到 TypeKit 加载完成 */
+      body { 
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      /* TypeKit 加载后的样式 */
+      html.wf-active body {
+        font-family: var(--font-montserrat, "montserrat", system-ui, sans-serif);
+      }
+      html.wf-active h1, html.wf-active h2, html.wf-active h3 {
+        font-family: var(--font-playfair, "playfair-display", ui-serif, Georgia, serif);
+      }
+    </style>
+    
+    <!-- 关键CSS内联以减少渲染阻塞 -->
+    <style>
+      /* 关键首屏样式 - 内联以减少阻塞 */
+      * { box-sizing: border-box; }
+      body { 
+        margin: 0; 
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.5;
+        color: #1e293b;
+      }
+      #app { min-height: 100vh; }
+      .header--site { background-color: #c41e3a; }
+      .footer { background-color: #b51c21; }
+      
+      /* 字体回退样式 */
+      html.wf-active body {
+        font-family: "montserrat", system-ui, sans-serif;
+      }
+      html.wf-active h1, html.wf-active h2, html.wf-active h3 {
+        font-family: "playfair-display", ui-serif, Georgia, serif;
+      }
+      
+      /* 隐藏未加载字体的内容（可选，防止 FOUT） */
+      html:not(.wf-active) .font-heading {
+        visibility: hidden;
+      }
+      html.wf-active .font-heading {
+        visibility: visible;
+      }
+    </style>
+    
+    <!-- 预加载但异步加载主 CSS -->
+    <link rel="preload" href="/src/styles/global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/src/styles/global.css"></noscript>
+    
     <!-- 移除大图预加载，交由组件按需与懒加载控制，降低首屏网络负载 -->
 
     <!-- Adobe TypeKit 字体已通过外部样式表加载，无需额外预加载 -->
