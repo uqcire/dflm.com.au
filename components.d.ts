@@ -49,6 +49,8 @@ declare module 'vue' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElRow: typeof import('element-plus/es')['ElRow']
+    ElTimeline: typeof import('element-plus/es')['ElTimeline']
+    ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     'PAGE__ABOUT-DEFAULT': typeof import('./src/views/our-company/PAGE__ABOUT--DEFAULT.vue')['default']
     'PAGE__ABOUT-MISSIONANDVISION': typeof import('./src/views/our-company/PAGE__ABOUT--MISSION-AND-VISION.vue')['default']
     'PAGE__ABOUT-OURHISTORY': typeof import('./src/views/our-company/PAGE__ABOUT--OUR-HISTORY.vue')['default']
