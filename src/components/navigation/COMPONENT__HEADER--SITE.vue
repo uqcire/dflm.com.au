@@ -31,7 +31,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <header class="header header--site w-full bg-monza-600 shadow-lg sticky top-0 z-40" role="banner">
+    <header class="header header--site w-full shadow-lg sticky top-0 z-40" role="banner"
+        style="background-color: hsl(var(--monza-600));">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4 sm:px-6 lg:px-8">
 
             <!-- Brand Logo -->

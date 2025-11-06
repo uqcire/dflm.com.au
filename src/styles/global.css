@@ -1,20 +1,12 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'montserrat-fallback';
-  src: local('Arial');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'playfair-display-fallback';
-  src: local('Georgia');
-  font-display: swap;
-}
+/* 移除这些错误的 @font-face 定义 */
+/* 不需要创建单独的 fallback 字体 */
 
 @theme {
-  --font-playfair: "playfair-display", "playfair-display-fallback", ui-serif, Georgia, serif;
-  --font-montserrat: "montserrat", "montserrat-fallback", system-ui, sans-serif;
+  /* 直接使用系统字体作为回退，TypeKit 字体在前 */
+  --font-playfair: "playfair-display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-montserrat: "montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 
   /* === FONT FAMILY DEFINITIONS FOR TAILWIND === */
   /* Define font families that can be used with Tailwind classes */
