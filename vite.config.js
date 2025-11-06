@@ -44,6 +44,53 @@ export default defineConfig(({ mode }) => {
             }
           );
         }
+      },
+      // 自定义插件：添加模块预加载以优化关键请求链
+      {
+        name: 'module-preload',
+        enforce: 'post',
+        transformIndexHtml(html, ctx) {
+          // 只在生产环境处理
+          if (mode !== 'production') return html;
+          
+          const viteManifest = ctx.bundle
+          if (!viteManifest) return html;
+          
+          // 查找入口 JS 文件
+          const entryJs = Object.keys(viteManifest).find(key => 
+            key.includes('index') && key.endsWith('.js')
+          )
+          
+          if (entryJs && viteManifest[entryJs]) {
+            const entryFile = viteManifest[entryJs]
+            const entryPath = entryFile.file || entryJs
+            
+            // 查找入口文件依赖的 JS 模块（Vue core, router 等）
+            const dependencies = entryFile.imports || []
+            
+            // 添加模块预加载链接
+            let preloadLinks = ''
+            
+            // 预加载入口文件本身
+            preloadLinks += `<link rel="modulepreload" href="/${entryPath}" crossorigin>\n    `
+            
+            // 预加载关键依赖（Vue core, router）
+            dependencies.forEach(dep => {
+              if (viteManifest[dep] && viteManifest[dep].file) {
+                const depFile = viteManifest[dep].file
+                // 只预加载关键的同步依赖，避免预加载太多
+                if (depFile.includes('vue-core') || depFile.includes('vue-router')) {
+                  preloadLinks += `<link rel="modulepreload" href="/${depFile}" crossorigin>\n    `
+                }
+              }
+            })
+            
+            // 在 </head> 之前插入预加载链接
+            return html.replace('</head>', `    ${preloadLinks}</head>`)
+          }
+          
+          return html
+        }
       }
     ],
 
@@ -91,7 +138,8 @@ export default defineConfig(({ mode }) => {
       terserOptions: {
         compress: {
           drop_console: true,
-          drop_debugger: true
+          drop_debugger: true,
+          pure_funcs: ['console.log', 'console.info', 'console.debug'],
         }
       },
       // 增加chunk大小警告限制
@@ -101,13 +149,35 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           // 优化代码分割以减少关键请求链
-          manualChunks: {
-            // 将Vue核心库分离
-            'vue-vendor': ['vue', 'vue-router'],
-            // 将UI库分离
-            'ui-vendor': ['element-plus'],
-            // 将工具库分离
-            'utils-vendor': ['axios', 'qs']
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              // Vue 核心（单独拆分，优先加载）
+              if (id.includes('vue/dist') || (id.includes('vue') && !id.includes('vue-router'))) {
+                return 'vue-core'
+              }
+              
+              // Vue Router（单独拆分）
+              if (id.includes('vue-router')) {
+                return 'vue-router'
+              }
+              
+              // Element Plus 及其依赖（保持在一起避免导入问题）
+              if (id.includes('element-plus') || id.includes('dayjs')) {
+                return 'ui-vendor'
+              }
+              
+              // 其他工具库
+              if (id.includes('axios') || id.includes('qs')) {
+                return 'utils-vendor'
+              }
+              
+              if (id.includes('@supabase')) {
+                return 'supabase-vendor'
+              }
+              
+              // 其他第三方库
+              return 'vendor'
+            }
           },
           // 优化资源文件名 - 支持WebP和现代图片格式
           assetFileNames: (assetInfo) => {
@@ -130,7 +200,12 @@ export default defineConfig(({ mode }) => {
     },
 
     // 让依赖预打包遵循真实引用路径，避免把未使用的库（如 element-plus 全量）强行打入
-    optimizeDeps: {},
+    optimizeDeps: {
+      include: [
+        'vue',
+        'vue-router'
+      ],
+    },
     define: {
       // 确保环境变量被正确传递
       __VITE_SUPABASE_URL__: JSON.stringify(env.VITE_SUPABASE_URL),
