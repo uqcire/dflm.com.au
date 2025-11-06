@@ -565,3 +565,23 @@ img {
   height: auto;
   object-fit: cover;
 }
+
+/* 使用 content-visibility 优化非首屏元素的渲染 */
+.el-footer,
+.app__main > *:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* 减少 Element Plus 组件的回流 */
+.el-container,
+.el-header,
+.el-main,
+.el-footer {
+  will-change: auto; /* 移除不必要的 will-change */
+  contain: layout style; /* 限制回流范围 */
+}
+
+.el-menu {
+  contain: layout style paint;
+}
