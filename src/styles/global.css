@@ -38,9 +38,6 @@
   font-display: swap;
 }
 
-/* 移除这些错误的 @font-face 定义 */
-/* 不需要创建单独的 fallback 字体 */
-
 @theme {
   /* 直接使用系统字体作为回退，自托管字体在前 */
   --font-playfair: "playfair-display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -566,22 +563,14 @@ img {
   object-fit: cover;
 }
 
-/* 使用 content-visibility 优化非首屏元素的渲染 */
-.el-footer,
-.app__main > *:not(:first-child) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+/* ========================================
+   性能优化 - LCP 和 FCP
+   ======================================== */
+
+/* 限制 Hero 区域的布局影响 */
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* 减少 Element Plus 组件的回流 */
-.el-container,
-.el-header,
-.el-main,
-.el-footer {
-  will-change: auto; /* 移除不必要的 will-change */
-  contain: layout style; /* 限制回流范围 */
-}
-
-.el-menu {
-  contain: layout style paint;
-}

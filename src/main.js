@@ -43,27 +43,12 @@ const runWhenIdle = (callback) => {
   }
 }
 
-// 将应用挂载也推迟到下一个事件循环，避免阻塞初始渲染
+// 🔥 立即挂载应用 - 不再延迟，改善 FCP 和 LCP
 const mountApp = () => {
   app.mount('#app')
+  // 挂载后标记应用已加载
+  document.documentElement.classList.add('app-loaded')
 }
-
-runWhenIdle(() => {
-  // 动态加载错误处理并初始化
-  import('@/utils/ERROR-HANDLER__GLOBAL--SYSTEM').then(({ globalErrorHandler }) => {
-    try {
-      globalErrorHandler.initialize()
-      window.globalErrorHandler = globalErrorHandler
-    } catch (e) { if (import.meta.env.DEV) console.error(e) }
-  })
-
-  // 动态加载并初始化默认 SEO（非阻塞）
-  import('@/utils/SEO-MANAGER__DYNAMIC').then(({ initDefaultSEO }) => {
-    try { initDefaultSEO() } catch (e) { if (import.meta.env.DEV) console.error(e) }
-  })
-})
-
-// Element Plus 不再全局注册；依赖按需自动导入（unplugin-auto-import & unplugin-vue-components）
 
 // Setup Vue error handler integration
 app.config.errorHandler = (error, componentInstance, errorInfo) => {
@@ -78,11 +63,25 @@ app.config.errorHandler = (error, componentInstance, errorInfo) => {
 // Setup application
 setupRouter(app)
 
-// Mount application (deferred to next tick to reduce initial blocking)
-setTimeout(mountApp, 0)
+// 🔥 立即挂载，不再使用 setTimeout
+mountApp()
 
-// 将日志输出推迟到空闲时间，避免阻塞渲染
+// 将非关键初始化推迟到空闲时间
 runWhenIdle(() => {
+  // 动态加载错误处理并初始化
+  import('@/utils/ERROR-HANDLER__GLOBAL--SYSTEM').then(({ globalErrorHandler }) => {
+    try {
+      globalErrorHandler.initialize()
+      window.globalErrorHandler = globalErrorHandler
+    } catch (e) { if (import.meta.env.DEV) console.error(e) }
+  })
+
+  // 动态加载并初始化默认 SEO（非阻塞）
+  import('@/utils/SEO-MANAGER__DYNAMIC').then(({ initDefaultSEO }) => {
+    try { initDefaultSEO() } catch (e) { if (import.meta.env.DEV) console.error(e) }
+  })
+  
+  // 将日志输出推迟到空闲时间
   console.log('🚀 Application started with comprehensive error handling')
   console.log('📊 Error statistics available at: window.globalErrorHandler.getStatistics()')
   console.log('🔍 SEO initialized with dynamic meta tags and structured data')

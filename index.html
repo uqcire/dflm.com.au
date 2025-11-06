@@ -24,7 +24,7 @@
     <!-- Performance & Security -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="#B51C21" />
-    
+
     <!-- 预加载自托管字体 -->
     <link rel="preload" href="/fonts/montserrat/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/playfair-display/playfair-display-regular.woff2" as="font" type="font/woff2" crossorigin />
@@ -41,8 +41,8 @@
         color: #1e293b;
       }
       #app { min-height: 100vh; }
-      .header--site { background-color: #c41e3a; }
-      .footer { background-color: #b51c21; }
+      .header--site { background-color: hsl(monza-800); }
+      .footer { background-color: hsl(monza-800); }
       
       /* 字体加载后立即应用（font-display: swap 会自动处理） */
       body {
@@ -98,5 +98,20 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    
+    <!-- 🔥 条件预加载首页英雄图片 -->
+    <script>
+      // 只在首页预加载英雄图片
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = '/assets/hero-factory-1200.avif';
+        link.imagesrcset = '/assets/hero-factory-768.avif 768w, /assets/hero-factory-1200.avif 1200w, /assets/hero-factory-1600.avif 1600w';
+        link.imagesizes = '(max-width: 1024px) 90vw, 1200px';
+        link.fetchpriority = 'high';
+        document.head.appendChild(link);
+      }
+    </script>
   </body>
 </html>

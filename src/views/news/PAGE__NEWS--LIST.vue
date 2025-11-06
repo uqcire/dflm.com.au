@@ -86,7 +86,7 @@ const formatDate = (dateString) => {
 
         <!-- News Content -->
         <ComponentSection containerSize="full" spacing="sm" background="transparent">
-            <ComponentContainer size="2xl" padding="responsive" constrainWidth="false">
+            <ComponentContainer size="2xl" padding="responsive" :constrainWidth="false">
                 <!-- Posts List -->
                 <div v-if="postsList.length > 0" class="max-w-4xl mx-auto">
                     <h2 class="font-heading text-4xl md:text-4xl font-bold text-pickled-bluewood-800 pb-12">

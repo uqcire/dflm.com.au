@@ -22,30 +22,25 @@ export default defineConfig(({ mode }) => {
         enableCompression: mode === 'production',
         enableBundleAnalysis: mode === 'production',
       }),
-      // 自定义插件：异步加载 CSS
-      {
-        name: 'async-css-loader',
-        enforce: 'post', // 确保在所有其他插件之后执行
-        transformIndexHtml(html, ctx) {
-          // 只在生产环境处理
-          if (mode !== 'production') return html;
-          
-          // 替换所有 stylesheet 链接为异步加载
-          return html.replace(
-            /<link([^>]*rel=["']stylesheet["'][^>]*)>/gi,
-            (match, attrs) => {
-              // 跳过已处理的标签（已有 onload 或 media="print" 的）
-              if (attrs.includes('onload') || attrs.includes('media="print"')) {
-                return match;
-              }
-              
-              // 创建异步加载的链接
-              return `<link${attrs} media="print" onload="this.media='all'; this.onload=null;"><noscript><link${attrs}></noscript>`;
-            }
-          );
-        }
-      },
-      // 自定义插件：添加模块预加载以优化关键请求链
+      // 🔥 注释掉这个插件 - CSS 应该同步加载以改善 FCP
+      // {
+      //   name: 'async-css-loader',
+      //   enforce: 'post',
+      //   transformIndexHtml(html, ctx) {
+      //     if (mode !== 'production') return html;
+      //     return html.replace(
+      //       /<link([^>]*rel=["']stylesheet["'][^>]*)>/gi,
+      //       (match, attrs) => {
+      //         if (attrs.includes('onload') || attrs.includes('media="print"')) {
+      //           return match;
+      //         }
+      //         return `<link${attrs} media="print" onload="this.media='all'; this.onload=null;"><noscript><link${attrs}></noscript>`;
+      //       }
+      //     );
+      //   }
+      // },
+      
+      // 保留模块预加载插件
       {
         name: 'module-preload',
         enforce: 'post',
