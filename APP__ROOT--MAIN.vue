@@ -11,13 +11,17 @@
 -->
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, nextTick } from 'vue'
 import ErrorBoundary from '@/components/system/COMPONENT__ERROR-BOUNDARY--GLOBAL.vue'
 import NotificationContainer from '@/components/system/COMPONENT__NOTIFICATION--CONTAINER.vue'
 import DevStatusBanner from '@/components/system/COMPONENT__DEV-STATUS--BANNER.vue'
 import ComponentHeaderSite from '@/components/navigation/COMPONENT__HEADER--SITE.vue'
 import ComponentFooterSite from '@/components/navigation/COMPONENT__FOOTER--SITE.vue'
 import { globalErrorHandler } from '@/utils/ERROR-HANDLER__GLOBAL--SYSTEM'
+import { ElConfigProvider } from 'element-plus'
+
+// 延迟 Element Plus 组件渲染，减少初始回流
+const isElementPlusReady = ref(false)
 
 /**
  * Initialize application on mount
@@ -28,6 +32,14 @@ onMounted(() => {
   // Add custom error handler for demonstration
   globalErrorHandler.addEventListener((errorInfo) => {
     console.log('Application received error event:', errorInfo)
+  })
+
+  // 延迟 Element Plus 初始化，等待首次渲染完成
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      // 两次 RAF 确保在浏览器完成首次布局后再初始化
+      isElementPlusReady.value = true
+    })
   })
 })
 
@@ -93,14 +105,12 @@ function handleReload() {
   }
 }
 
-import { ElConfigProvider } from 'element-plus'
-
 const size = ref('small')
 const zIndex = ref(3000)
 </script>
 
 <template>
-  <el-config-provider :size="size" :z-index="zIndex">
+  <el-config-provider v-if="isElementPlusReady" :size="size" :z-index="zIndex">
     <!-- Development Status Banner -->
     <DevStatusBanner />
 
@@ -149,6 +159,35 @@ const zIndex = ref(3000)
       </el-container>
     </div>
   </el-config-provider>
+
+  <!-- Fallback for initial render (no Element Plus) -->
+  <div v-else id="app" class="app min-h-screen bg-white text-slate-900">
+    <div class="min-h-screen flex flex-col">
+      <header class="p-0">
+        <ComponentHeaderSite />
+      </header>
+      <main class="flex-1">
+        <router-view v-slot="{ Component, route }">
+          <Suspense>
+            <div>
+              <component :is="Component" :key="route.path" />
+            </div>
+            <template #fallback>
+              <div class="flex flex-col items-center justify-center min-h-[400px] p-8">
+                <div
+                  class="app__loading-spinner w-10 h-10 border-4 border-slate-200 border-t-monza-600 rounded-full animate-spin mb-4">
+                </div>
+                <p class="text-slate-600 text-sm m-0">Loading...</p>
+              </div>
+            </template>
+          </Suspense>
+        </router-view>
+      </main>
+      <footer class="p-0 m-0">
+        <ComponentFooterSite />
+      </footer>
+    </div>
+  </div>
 </template>
 
 <style scoped>

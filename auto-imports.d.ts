@@ -11,6 +11,7 @@ declare global {
   const ErrorTypes: typeof import('./src/utils/ERROR-HANDLER__GLOBAL--SYSTEM.js')['ErrorTypes']
   const GlobalErrorHandler: typeof import('./src/utils/ERROR-HANDLER__GLOBAL--SYSTEM.js')['GlobalErrorHandler']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
+  const batchDOMModifications: typeof import('./src/utils/DOM-OPTIMIZATION--REFLOW.js')['batchDOMModifications']
   const computed: typeof import('vue')['computed']
   const console.error: typeof import('console')['error']
   const console.log: typeof import('console')['log']
@@ -39,6 +40,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getCurrentWatcher: typeof import('vue')['getCurrentWatcher']
+  const getElementSize: typeof import('./src/utils/DOM-OPTIMIZATION--REFLOW.js')['getElementSize']
   const getErrorStatistics: typeof import('./src/utils/ERROR-HANDLER__GLOBAL--SYSTEM.js')['getErrorStatistics']
   const getPluginInfo: typeof import('./src/utils/PLUGINS__VITE--UNIFIED.js')['getPluginInfo']
   const getToken: typeof import('./src/utils/HTTP-CLIENT__API--UNIFIED.js')['getToken']
@@ -84,7 +86,9 @@ declare global {
   const mapStores: typeof import('pinia')['mapStores']
   const mapWritableState: typeof import('pinia')['mapWritableState']
   const markRaw: typeof import('vue')['markRaw']
+  const measureWithoutReflow: typeof import('./src/utils/DOM-OPTIMIZATION--REFLOW.js')['measureWithoutReflow']
   const nextTick: typeof import('vue')['nextTick']
+  const observeResize: typeof import('./src/utils/DOM-OPTIMIZATION--REFLOW.js')['observeResize']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
   const onBeforeRouteLeave: typeof import('vue-router')['onBeforeRouteLeave']
@@ -156,6 +160,7 @@ declare global {
   const useFormSubmission: typeof import('./src/composables/useApiError.js')['useFormSubmission']
   const useId: typeof import('vue')['useId']
   const useLink: typeof import('vue-router')['useLink']
+  const useMediaQuery: typeof import('./src/utils/DOM-OPTIMIZATION--REFLOW.js')['useMediaQuery']
   const useModel: typeof import('vue')['useModel']
   const usePages: typeof import('./src/composables/useDataFetching.js')['usePages']
   const usePagination: typeof import('./src/composables/useDataFetching.js')['usePagination']
@@ -180,9 +185,6 @@ declare global {
 }
 // for type re-export
 declare global {
-  // @ts-ignore
-  export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
-  import('vue')
   // @ts-ignore
   export type { GlobalErrorHandler } from './src/utils/ERROR-HANDLER__GLOBAL--SYSTEM.js'
   import('./src/utils/ERROR-HANDLER__GLOBAL--SYSTEM.js')

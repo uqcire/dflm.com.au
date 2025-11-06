@@ -12,21 +12,69 @@ function toggleMobile() {
     mobileOpen.value = !mobileOpen.value
 }
 
-// Close mobile navigation when screen size changes to desktop
+// 使用 requestAnimationFrame 延迟 resize 处理，避免强制回流
+let resizeTimer = null
+let rafId = null
+
 function handleResize() {
-    if (window.innerWidth >= 768) { // md breakpoint
-        mobileOpen.value = false
+    // 取消之前的 RAF
+    if (rafId !== null) {
+        cancelAnimationFrame(rafId)
     }
+
+    // 使用 requestAnimationFrame 批量处理，避免强制回流
+    rafId = requestAnimationFrame(() => {
+        // 使用 matchMedia 替代直接读取 innerWidth（更高效）
+        if (window.matchMedia('(min-width: 768px)').matches) {
+            mobileOpen.value = false
+        }
+    })
+}
+
+// Debounced resize handler
+function debouncedResize() {
+    clearTimeout(resizeTimer)
+    resizeTimer = setTimeout(handleResize, 150) // 150ms debounce
 }
 
 onMounted(() => {
-    window.addEventListener('resize', handleResize)
-    // Check initial screen size
-    handleResize()
+    // 使用 matchMedia 替代直接读取窗口大小
+    const mediaQuery = window.matchMedia('(min-width: 768px)')
+
+    // 延迟初始检查，避免在渲染过程中触发回流
+    requestAnimationFrame(() => {
+        if (mediaQuery.matches) {
+            mobileOpen.value = false
+        }
+    })
+
+    // 使用 ResizeObserver 或 debounced resize
+    window.addEventListener('resize', debouncedResize, { passive: true })
+
+    // 监听媒体查询变化（更高效）
+    if (mediaQuery.addListener) {
+        mediaQuery.addListener(handleResize)
+    } else {
+        mediaQuery.addEventListener('change', handleResize)
+    }
 })
 
 onUnmounted(() => {
-    window.removeEventListener('resize', handleResize)
+    window.removeEventListener('resize', debouncedResize)
+
+    if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+    }
+
+    clearTimeout(resizeTimer)
+
+    // 清理媒体查询监听
+    const mediaQuery = window.matchMedia('(min-width: 768px)')
+    if (mediaQuery.removeListener) {
+        mediaQuery.removeListener(handleResize)
+    } else {
+        mediaQuery.removeEventListener('change', handleResize)
+    }
 })
 </script>
 
