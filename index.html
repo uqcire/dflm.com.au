@@ -7,14 +7,18 @@
     <title>E-Sunrise Australia | B2B Agricultural Import & Distribution in Melbourne</title>
     <meta name="description" content="E‑Sunrise Australia is the Melbourne-based subsidiary of Jiangsu Liming Food Group, supplying Australian manufacturers, processors, distributors, and retailers with high‑quality agricultural products and OEM services." />
     <meta name="keywords" content="E-Sunrise Australia, agricultural import, B2B, OEM manufacturing, dehydrated vegetables, garlic powder, pulses, Melbourne, Jiangsu Liming Food Group" />
-    <link rel="canonical" href="https://dflm.com.au/" />
+    <!-- 🔥 移除静态 canonical，让 JavaScript 动态设置 -->
+    <!-- <link rel="canonical" href="https://dflm.com.au/" /> -->
+    
     <!-- Open Graph -->
     <meta property="og:title" content="E-Sunrise Australia | B2B Agricultural Import & Distribution in Melbourne" />
     <meta property="og:description" content="Melbourne-based subsidiary of Jiangsu Liming Food Group. Supplying Australian manufacturers, processors, distributors, and retailers with high‑quality agricultural products and OEM services." />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="E-Sunrise Australia" />
-    <meta property="og:url" content="https://dflm.com.au/" />
+    <!-- 🔥 移除静态 og:url，让 JavaScript 动态设置 -->
+    <!-- <meta property="og:url" content="https://dflm.com.au/" /> -->
     <meta property="og:image" content="/favicon.png" />
+    
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="E-Sunrise Australia | B2B Agricultural Import & Distribution in Melbourne" />
@@ -98,6 +102,34 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    
+    <!-- 🔥 立即设置 canonical（在 Vue 加载前） -->
+    <script>
+      // 立即设置 canonical URL，确保爬虫能看到
+      (function() {
+        const path = window.location.pathname;
+        const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
+        const canonicalUrl = 'https://dflm.com.au' + cleanPath;
+        
+        // 设置 canonical
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+          canonical = document.createElement('link');
+          canonical.rel = 'canonical';
+          document.head.appendChild(canonical);
+        }
+        canonical.href = canonicalUrl;
+        
+        // 设置 og:url
+        let ogUrl = document.querySelector('meta[property="og:url"]');
+        if (!ogUrl) {
+          ogUrl = document.createElement('meta');
+          ogUrl.setAttribute('property', 'og:url');
+          document.head.appendChild(ogUrl);
+        }
+        ogUrl.content = canonicalUrl;
+      })();
+    </script>
     
     <!-- 🔥 条件预加载首页英雄图片 -->
     <script>
