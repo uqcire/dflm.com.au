@@ -25,27 +25,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="#B51C21" />
     
-    <!-- DNS prefetch 和 preconnect 提前建立连接 -->
-    <link rel="dns-prefetch" href="https://use.typekit.net" />
-    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
-
-    <!-- 异步加载 TypeKit CSS（不阻塞渲染） -->
-    <link rel="stylesheet" href="https://use.typekit.net/dcp0ukb.css" media="print" onload="this.media='all'; this.onload=null;">
-    <noscript>
-      <link rel="stylesheet" href="https://use.typekit.net/dcp0ukb.css" />
-    </noscript>
-
-    <!-- TypeKit JavaScript - 必需来激活字体 -->
-    <script>
-      (function(d) {
-        var config = {
-          kitId: 'dcp0ukb',
-          scriptTimeout: 3000,
-          async: true
-        },
-        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-      })(document);
-    </script>
+    <!-- 预加载自托管字体 -->
+    <link rel="preload" href="/fonts/montserrat/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/playfair-display/playfair-display-regular.woff2" as="font" type="font/woff2" crossorigin />
     
     <!-- 关键CSS内联以减少渲染阻塞 -->
     <style>
@@ -53,7 +35,7 @@
       * { box-sizing: border-box; }
       body { 
         margin: 0; 
-        /* 使用系统字体作为初始字体，TypeKit 加载后会替换 */
+        /* 使用系统字体作为初始字体，字体加载后会替换 */
         font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         line-height: 1.5;
         color: #1e293b;
@@ -62,17 +44,11 @@
       .header--site { background-color: #c41e3a; }
       .footer { background-color: #b51c21; }
       
-      /* TypeKit 加载后应用自定义字体 */
-      html.wf-active body {
+      /* 字体加载后立即应用（font-display: swap 会自动处理） */
+      body {
         font-family: "montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       }
-      html.wf-active h1, 
-      html.wf-active h2, 
-      html.wf-active h3, 
-      html.wf-active h4, 
-      html.wf-active h5, 
-      html.wf-active h6,
-      html.wf-active .font-heading {
+      h1, h2, h3, h4, h5, h6, .font-heading {
         font-family: "playfair-display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
       }
     </style>
