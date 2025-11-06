@@ -4,12 +4,6 @@
       "source": "/(.*)/$",
       "destination": "/$1",
       "permanent": true
-    },
-    {
-      "source": "https://www.dflm.com.au/:path*",
-      "destination": "https://dflm.com.au/:path*",
-      "permanent": true,
-      "statusCode": 301
     }
   ],
   "headers": [
@@ -27,10 +21,6 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
-        },
-        {
-          "key": "Link",
-          "value": "<https://dflm.com.au>; rel=\"canonical\""
         }
       ]
     }

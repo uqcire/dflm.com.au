@@ -145,5 +145,11 @@
         document.head.appendChild(link);
       }
     </script>
+    <script>
+      // 客户端重定向 www 到 non-www（备用方案）
+      if (window.location.hostname === 'www.dflm.com.au') {
+        window.location.replace('https://dflm.com.au' + window.location.pathname + window.location.search + window.location.hash);
+      }
+    </script>
   </body>
 </html>
