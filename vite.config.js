@@ -119,7 +119,7 @@ export default defineConfig(({ mode }) => {
       open: false, // Automatically open application in browser when server starts
       strictPort: true, // Set to true to fail if port is already in use
       https: false, // Whether to enable HTTPS protocol
-      allowedHosts: ['webhook.dflm.com.au', 'ghost.dflm.com.au'],
+      allowedHosts: ['webhook.dflm.com.au'],
       // 禁用 HMR overlay 来避免错误干扰（可选）
       hmr: {
         overlay: false
